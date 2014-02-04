@@ -1,0 +1,11 @@
+<h1> Conversation with <%= @other_username %></h1>
+
+<% @messages.each do |message| %>
+<% author = message.is_sent? ? current_user.username : @other_username %>
+
+<b><%= author %></b>: <%= message.body %>
+<br>
+
+<% end %>
+
+<%= render "form", user_id: params[:user_id] %>

@@ -1,0 +1,10 @@
+<form action="<%= user_messages_url(user_id) %>" method="post">
+
+  <%= auth_token_input %>
+
+  <label>Body
+    <textarea name="message[body]"></textarea>
+  </label>
+
+  <input type="submit" value="Send message">
+</form>

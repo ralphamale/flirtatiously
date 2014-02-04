@@ -1,0 +1,43 @@
+
+
+<% @Question.answer_choices.each do |answer_choice| %>
+<label><input type="radio" name="response[answer_choice_id]" id="answer_answer_choice_id" value="<%= answer_choice.id %>"><%= answer_choice.text %></label><br>
+
+<% end %>
+
+
+<% @Question.answer_choices.each do |answer_choice| %>
+
+
+<% end %>
+answer_choice
+#  id          :integer          not null, primary key
+#  question_id :integer
+#  text        :string(255)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+
+#  id               :integer          not null, primary key
+#  user_id          :integer
+#  answer_choice_id :integer
+#  importance       :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  question_id      :integer
+
+
+<br>
+How important is this to you?
+<br>
+0 Irrelevant
+1 A little important
+10 - Important
+50 Very important
+250 Mandatory
+
+
+  has_many :answer_choices,
+
+
+
+  has_many :answer_choices,

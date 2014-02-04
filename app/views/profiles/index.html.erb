@@ -1,0 +1,6 @@
+
+
+<% @profiles.each do |profile| %>
+<%= @profiles.count %>
+	<%= link_to profile.user.username, profile_url(profile) %>
+<% end %>

@@ -1,0 +1,28 @@
+
+
+Username: <%= @profile.user.username %>
+<br>
+
+Drugs: <%= @profile.drugs %>
+<br>
+
+Description: <%= @profile.description %>
+
+<br>
+
+<% if current_user.likes?(@profile.user) %>
+	<% if @profile.user.likes?(current_user) %>
+	<b> You guys both like each other!</b>
+	<% else %>
+	<b> You've liked this user already. Let's hope they like you back. </b>
+	<% end %>
+<% else %>
+<br>
+<%= button_to "Like User", like_user_url(@profile.user_id), method: :post %>
+
+<% end %>
+<%#= button_to("Add WorkRequest", new_work_request_path(:article_id => @article.id), :action => "new", :method => :get)%>
+
+<br>
+
+<%= link_to "Message User", new_user_message_url(@profile.user_id) %>

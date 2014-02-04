@@ -1,0 +1,79 @@
+answers - body : null, false
+
+
+add_index "conversations", ['low-user-id', 'high-user-id'
+]
+
+profile - details - user_id - nullfalse
+
+last_online
+
+
+
+
+details
+
+t.string "height"
+t.string "body_type"
+t.string "diet"
+t.string "smokes"
+t.string "drinks"
+t.string "drugs"
+t.string "religion"
+t.string "sign"
+t.string "education"
+t.string "job"
+t.string "offspring"
+t.string "pets"
+
+profiles
+t.text "summary"
+t.text "job"
+t.text "Likes"
+
+user
+gender
+orientation
+birthday
+
+
+
+user prefs
+min_age
+max_age
+max_distance
+
+user
+zipcode - 33071
+
+order("created_at DESC") LIMIT 8
+
+
+module ApplicationHelper
+def nice_time(timestamp)
+   Time.at(timestamp).utc.strftime("%B %-d at %l:%M %P")
+ end
+
+
+require_current_user!
+require_no_current_user
+
+require_correct_user
+
+
+dependent:destory on porfile, detail, photo, response
+
+
+validates the user details
+last_online from Time.now
+
+
+===
+
+min/max validations
+
+
+add explanation to responses
+
+ add_index "responses", ["user_id", "question_id"], 
+

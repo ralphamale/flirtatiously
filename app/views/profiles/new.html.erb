@@ -1,0 +1,24 @@
+<h1> Make New Profile </h1>
+
+<form action="<%= profiles_url %>" method="post">
+
+  Username: <b><%= current_user.username %></b><br>
+
+  <%= auth_token_input %>
+  <label>Drugs?
+    <select name="profile[drugs]">
+      <option value="Often">Often</option>
+      <option value="Sometimes">Sometimes</option>
+      <option value="Rarely">Rarely</option>
+      <option value="Never">Never</option>
+    </select>
+  </label>
+
+
+  <label>Description
+    <textarea name="profile[description]"></textarea>
+  </label>
+
+  <input type="submit" value="Make New Profile">
+
+</form>
