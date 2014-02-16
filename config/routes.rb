@@ -15,7 +15,7 @@ Flirtatiously::Application.routes.draw do
 
   resources :messages, only: [:index, :destroy]
   
-  resources :questions do
+  resources :questions, only: [:show, :create] do
     post "answer"
   end
   

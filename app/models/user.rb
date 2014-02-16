@@ -12,7 +12,7 @@
 
 class User < ActiveRecord::Base
   attr_reader :password
-  attr_accessible :password_digest, :session_token, :username, :password
+  attr_accessible :password_digest, :session_token, :username, :password, :answer_choice_ids
 
   validates :username, :password_digest, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
@@ -59,10 +59,10 @@ class User < ActiveRecord::Base
    class_name: "User",
    foreign_key: :likee_id
    
-   has_many :responses,
+   has_many :responses, inverse_of: :user, dependent: :destroy,
    foreign_key: :user_id
 
-   has_many :acceptable_responses,
+   has_many :acceptable_responses, inverse_of: :user, dependent: :destroy,
    foreign_key: :user_id
    
    def is_liked_by?(user)

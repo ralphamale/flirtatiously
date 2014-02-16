@@ -1,0 +1,110 @@
+====== Backbone.Model ======
+
+Models contain the data of our application as well as any logic surrounding it including conversions, validations and computed properties
+
+initialize
+	can take JSON attributes as args and will set these attrs on the models.
+		var example = new BackboneExample.Models.Example({ title: "First Ex.", id: 1 });
+	
+	
+get and set
+	Never access attr objects directly. We abstract away so Backbone can expose events.
+	If we change title via attributes object, we lose that power.
+	
+			var example = new BackboneExample.Models.Example({ title: "First Ex.", id: 1 });
+			console.log(example.get('title')); // => "First Ex."
+			example.set({ title: "New Title" });
+			console.log(example.get('title')); // => "New Title"
+			
+escape
+	"escape" over "get" 
+			var example = new BackboneExample.Models.Example({
+			  title: "<script>test()</script>", id: 1
+			});
+			// not safe
+			console.log(example.get('title')); // => "<script>hack()</script>"
+			// safer
+			console.log(example.escape('title')); // => "&lt;script&gt;hack()&lt;&#x2F;script&gt;
+			
+id vs cid
+	id is special attr of model that maps to the "id" attr in the "attr" object. 
+	id can be accessed directly using the dot notation (example.id).
+	id used to determine if model isNew or not (will figure out whether to send PUT or POST)
+	
+	cid is an attribute added to all Models and is used to uniquely identify Models on the client side. All cid's will be prefixed with a c. This will come in handy when needing to display things on the client side by unique id, without having an id returned from the server.
+	
+=========================
+
+BACKBONE - COLLECTION
+
+Collections wrap sets of models, adds [underscore.js][underscorjs] methods and enables binding to events for notifications as things change in the collection. 
+
+Setup
+				BackboneExample.Collections.Examples = Backbone.Collection.extend({
+				  model: BackboneExample.Models.Example,
+				  url: "/api/examples",
+				  initialize: function (attribute) {}
+				});
+				
+model
+	specifies the model class collection contains.
+	defining this allows us to pass raw attrs and arrays of raw attrs when creating collections.
+		attrs will be converted to models of propert type
+		
+url
+	defines location of RESTful resource on the server.
+	this will be route to our rails api for the index action of that resource.
+	
+initialize
+	takes optional array of models. can also pass options to the constructor.
+	
+USE
+	models
+		coll.models --- to access models of a collection manually.
+		access to models usually done thru get(id) or "at".
+		
+				BackboneExample.Collections.Examples = Backbone.Collection.extend({
+				  model: BackboneExample.Models.Example,
+				  url: "/api/examples"
+				});
+				var examples = new BackboneExample.Collections.Examples([{ title: "First Ex" }]);
+				console.log(examples.models.length); // => 1
+				
+	fetch
+		is an async operation that sends $.ajax req to "url" to get models from the server. "fetch" takes optional options hash w/ success and error callbacks.
+				var examples = new BackboneExample.Collections.Examples();
+				console.log(examples.models.length); // => 0
+				examples.fetch({
+				  success: function(collection, resp, options) { // 7 examples back from server
+				    console.log(examples.models.length); // => 7
+				  },
+				  error: function(collection, resp, options) {}
+				});
+				
+==============
+
+BACKBONE.ROUTER 
+	Backbone.history.start() lets router listen for changes in the URL fragment.
+	Just use one router for al the backbone apps.
+	
+	routes
+		routes hash maps URLs with parameters to functions in youur router.
+		
+			routes: {
+			  '': 'index',
+			  'examples/new': 'new',
+			  'examples/:id': 'show',
+			  'examples/:id/edit': 'edit'
+			},
+			index: function () {},
+			show: function (id) {},
+			new: function () {},
+			edit: function (id) {}
+		
+		trailing / will fire different routes (docs != docs/)
+		
+========== BACKBONE.VIEW +==========
+
+
+
+	

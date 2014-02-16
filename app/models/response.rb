@@ -19,7 +19,7 @@ class Response < ActiveRecord::Base
   belongs_to :answer_choice,
   foreign_key: :answer_choice_id
   
-  belongs_to :user,
+  belongs_to :user, inverse_of: :responses,
   foreign_key: :user_id
   
   

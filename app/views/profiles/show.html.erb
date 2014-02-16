@@ -26,3 +26,29 @@ Description: <%= @profile.description %>
 <br>
 
 <%= link_to "Message User", new_user_message_url(@profile.user_id) %>
+
+<br>
+
+Questions:
+<br>
+
+<% @responses.each do |response| %>
+
+<%= response.question_text %><br>
+	<% if response.cur_user_answer.nil? %>
+	<a href="<%= question_url(response.question_id) %>">
+		Answer this question to see what his/her answer is.
+		</a>
+		<br>
+	<% else %>
+		You answered: <%= response.cur_user_answer %><br>
+		Your lover answered: <%= response.other_answer %><br>
+	<% end %>
+	
+<br>
+<% end %>
+
+
+<!-- @responses = Response.find_by_sql ["
+  
+  SELECT other_answer_choices.text AS other_answer, cur_user_answer_choices.text AS cur_user_answer, questions.text AS question_text -->

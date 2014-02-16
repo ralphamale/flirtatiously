@@ -1,3 +1,12 @@
+-Link up to user/profile.
+
+-Display questions answered/matches with others.
+-Calculate matches/percentages
+-Pop up question answer. -- random question that isnt answer.
+
+
+
+
 answers - body : null, false
 
 
