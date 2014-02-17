@@ -55,11 +55,15 @@ class ProfilesController < ApplicationController
     
     #acceptable :answer_choice_id, :importance, :user_id, :question_id, :answer_choice_ids
     # response attr_accessible :answer_choice_id, :user_id, :question_id
+    
+    # importance not working!
     @responses = Response.find_by_sql ["
       
       SELECT questions.text AS question_text, questions.id AS question_id, other_answer_choices.text AS other_answer, cur_user_answer_choices.text AS cur_user_answer, 
       (CASE WHEN cur_user_acceptable_responses.answer_choice_id IS NULL THEN 0 ELSE 1 END) AS acceptable_to_current_user, 
-      (CASE WHEN other_acceptable_responses.answer_choice_id IS NULL THEN 0 ELSE 1 END) AS acceptable_to_other
+      (CASE WHEN other_acceptable_responses.answer_choice_id IS NULL THEN 0 ELSE 1 END) AS acceptable_to_other,
+      cur_user_acceptable_responses.importance AS question_importance_cur,
+      other_acceptable_responses.importance AS question_importance_other
       FROM questions JOIN 
       (SELECT * FROM responses WHERE responses.user_id= ?) AS other_responses 
       ON questions.id = other_responses.question_id

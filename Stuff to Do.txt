@@ -4,7 +4,26 @@
 -Calculate matches/percentages
 -Pop up question answer. -- random question that isnt answer.
 
+-Write RSpec tests for all models
+-Live chat
 
+
+QUEASTIONS
+-What is UJS?
+
+-DMS menu + nav.
+
+
+
+-Zip code.
+-Picture upload with paperclip or filepicker.io
+Omniauth
+
+
+WHEN DONE:
+UI for editing pretty profiles
+
+-Action Mailer for authenticiation
 
 
 answers - body : null, false
