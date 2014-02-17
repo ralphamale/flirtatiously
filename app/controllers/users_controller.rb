@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.build_profile
 
     if @user.save
       log_in(@user)
@@ -40,9 +41,9 @@ class UsersController < ApplicationController
     @like = Like.create(liker_id: current_user.id, likee_id: params[:id], is_mutual: false)
     if @like_back
       @like_back.is_mutual = true
-      @like.is_mutual = true      
+      @like.is_mutual = true
     end
-    
+
     begin
       @like.transaction do
         @like.save!

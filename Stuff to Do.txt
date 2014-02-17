@@ -41,23 +41,11 @@ last_online
 
 details
 
-t.string "height"
-t.string "body_type"
-t.string "diet"
-t.string "smokes"
-t.string "drinks"
-t.string "drugs"
-t.string "religion"
-t.string "sign"
-t.string "education"
-t.string "job"
-t.string "offspring"
-t.string "pets"
-
-profiles
-t.text "summary"
-t.text "job"
-t.text "Likes"
+>>>    t.string   "sex"
+    t.string   "sexual_orientation"
+    t.string   "drugs"
+    t.text     "description"
+    >>>> ALREADY IN THERE
 
 user
 gender
@@ -103,5 +91,5 @@ min/max validations
 
 add explanation to responses
 
- add_index "responses", ["user_id", "question_id"], 
+ add_index "responses", ["user_id", "question_id"],
 
