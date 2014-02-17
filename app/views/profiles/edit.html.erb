@@ -1,25 +1,76 @@
 <h1> Your profile </h1>
 
-<form action="<%= profiles_url %>" method="post">
+<form action="<%= profile_url(@profile.id) %>" method="post">
+  <%= auth_token_input %>
   <input type="hidden" name="_method" value="PUT">
 
   Username: <b><%= current_user.username %></b><br>
 
-  <%= auth_token_input %>
+  <label>Height
+    <input type="text" name="profile[height]" value="<%= @profile.height %>">
+  </label><br>
+
+<%#= profile. %>
+<%#= profile. %>
+
+
+  <label>Body Type
+    <select name="profile[body_type]">
+
+      <% ["", "Rather not say", "Thin", "Overweight", "Skinny", "Average", "Fit", "Jacked", "A little extra", "Curvy", "Full-figured", "Used up"].each do |option_val| %>
+
+      <option value="<%= option_val %>" <%= "selected" if @profile.body_type == option_val %>><%= option_val %></option>
+      <% end %>
+
+    </select>
+  </label><br>
+
+  <label>Diet
+    <select name="profile[diet]">
+
+      <% ["", "Anything", "Vegetarian", "Vegan", "Kosher", "Halal", "Paleo"].each do |option_val| %>
+
+      <option value="<%= option_val %>" <%= "selected" if @profile.diet == option_val %>>
+        <%= option_val %></option>
+      <% end %>
+
+    </select>
+  </label><br>
+
+  <label>Religion
+    <select name="profile[religion]">
+
+      <% ["", "Atheism", "Christianity", "Judaism", "Catholicism", "Islam", "Hinduism", "Buddhism"].each do |option_val| %>
+
+      <option value="<%= option_val %>" <%= "selected" if @profile.religion == option_val %>>
+        <%= option_val %></option>
+      <% end %>
+
+    </select>
+  </label><br>
+
+
   <label>Drugs?
     <select name="profile[drugs]">
-      <option value="Often">Often</option>
-      <option value="Sometimes">Sometimes</option>
-      <option value="Rarely">Rarely</option>
-      <option value="Never">Never</option>
+
+      <% ["", "Often", "Sometimes", "Rarely", "Never"].each do |option_val| %>
+
+      <option value="<%= option_val %>" <%= "selected" if @profile.drugs == option_val %>><%= option_val %></option>
+      <% end %>
+
     </select>
-  </label>
+  </label><br>
+
 
 
   <label>Description
     <textarea name="profile[description]"></textarea>
-  </label>
+  </label><br>
 
-  <input type="submit" value="Make New Profile">
+  <label>Likes
+    <textarea name="profile[likes]"></textarea>
+  </label><br>
+
+  <input type="submit" value="Save Changes">
 
 </form>

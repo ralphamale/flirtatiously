@@ -3,12 +3,13 @@
 Username: <%= @profile.user.username %>
 <br>
 
-Drugs: <%= @profile.drugs %>
-<br>
+<% ["sex", "sexual_orientation", "body_type", "smokes", "drinks", "drugs", "religion", "sign", "education", "job", "offspring", "pets", "description", "likes"].each do |descriptor| %>
 
-Description: <%= @profile.description %>
+<%= descriptor.capitalize %>: <%= (@profile[descriptor].nil?) ? "--" : @profile[descriptor] %><br>
 
-<br>
+
+
+<% end %>
 
 <% if current_user.likes?(@profile.user) %>
 	<% if @profile.user.likes?(current_user) %>
@@ -44,11 +45,11 @@ Questions:
 		You answered: <%= response.cur_user_answer %><br>
 		Your lover answered: <%= response.other_answer %><br>
 	<% end %>
-	
+
 <br>
 <% end %>
 
 
 <!-- @responses = Response.find_by_sql ["
-  
+
   SELECT other_answer_choices.text AS other_answer, cur_user_answer_choices.text AS cur_user_answer, questions.text AS question_text -->

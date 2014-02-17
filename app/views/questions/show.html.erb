@@ -4,7 +4,7 @@
 <% @question.answer_choices.each do |answer_choice| %>
 <input type="hidden" name="response[question_id]" value="<%= @question.id %>">
 <label><input type="radio" name="response[answer_choice_id]" id="answer_answer_choice_id" value="<%= answer_choice.id %>"><%= answer_choice.text %></label><br>
-<!-- need to add user_id and question_id --> 
+<!-- need to add user_id and question_id -->
 <% end %>
 <br>
 What you prefer on match:

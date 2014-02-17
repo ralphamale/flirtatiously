@@ -10,6 +10,8 @@
 
   <% if logged_in? %>
   Glad to see you back, <%= current_user.username %>!
+
+  <%= link_to "Edit your profile", edit_profile_url(current_user.profile.id) %>
   <%= button_to "Sign Out", session_url, method: :delete %>
 
   <% else %>

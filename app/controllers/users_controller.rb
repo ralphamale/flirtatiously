@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
     if @user.save
       log_in(@user)
-      redirect_to profiles_url
+      redirect_to profiles_url if @user.build_profile.save
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new

@@ -5,3 +5,20 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+
+
+
+["Do you have low self esteem?",
+  "Do you moisturize your hands?",
+  "Will you do anal?",
+  "Are you a loser?"].each do |question_text|
+
+    q = Question.create({text: question_text})
+    AnswerChoice.create([{question_id: q.id, text: "Yes"}, {question_id: q.id, text: "No"}, {question_id: q.id, text: "Not by choice"}])
+  end
+
+
+  rafsgirl = User.create({username: "rafsgirl"})
+

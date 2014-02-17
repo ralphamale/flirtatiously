@@ -13,7 +13,7 @@
 #
 
 class Profile < ActiveRecord::Base
-  attr_accessible :description, :drugs, :sex, :sexual_orientation, :user_id
+  attr_accessible :description, :drugs, :sex, :sexual_orientation, :user_id, :height, :body_type, :diet, :smokes, :drinks, :religion, :sign, :education, :job, :offspring, :pets, :likes
 
   belongs_to :user, inverse_of: :profile,
   foreign_key: :user_id

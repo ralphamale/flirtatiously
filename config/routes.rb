@@ -3,7 +3,7 @@ Flirtatiously::Application.routes.draw do
     resources :messages, only: [:new, :create] do
       get 'conversation', on: :collection
     end
-    
+
     member do
       post "like"
     end
@@ -14,12 +14,12 @@ Flirtatiously::Application.routes.draw do
   resources :profiles
 
   resources :messages, only: [:index, :destroy]
-  
+
   resources :questions, only: [:show, :create] do
     post "answer"
   end
-  
+
   #resources :likes, only: [:index, :destroy]
 
-
+  root to: 'sessions#new'
 end
