@@ -1,6 +1,8 @@
 class ProfilesController < ApplicationController
   before_filter :require_logged_in!
 
+
+
   def new
 
   end
@@ -39,7 +41,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
-
+    @other_user_acceptable_responses = get_acceptable_responses(@profile.user.id)
     @responses = get_responses(@profile.user.id)
 
   end
@@ -50,6 +52,15 @@ class ProfilesController < ApplicationController
 
   private
 
+  def get_acceptable_responses(other_user_id)
+    User.find(other_user_id).acceptable_responses
+  end
+
+  def is_unacceptable?(response, acceptable_responses)
+
+
+  end
+
   def get_responses(other_user_id)
     return Response.find_by_sql ["
 
@@ -57,8 +68,8 @@ class ProfilesController < ApplicationController
     questions.text AS question_text,
     other_user_answer_choices.text AS other_user_answer_text,
     other_user_answer_choices.id AS other_user_answer_id,
-    current_user_answer_choices.text AS current_user_answer_text,
-    current_user_answer_choices.id AS current_user_answer_id
+    current_user_responses.answer_choice_id AS current_user_answer_choice_id,
+    current_user_responses.answer_choice_text AS current_user_answer_text
 
     FROM questions
     INNER JOIN responses
@@ -69,18 +80,20 @@ class ProfilesController < ApplicationController
     AS other_user_answer_choices
     ON other_user_responses.answer_choice_id = other_user_answer_choices.id
 
-    LEFT OUTER JOIN responses
-    AS current_user_responses
-    ON other_user_responses.question_id = current_user_responses.question_id
+    LEFT OUTER JOIN
+    (SELECT responses.question_id AS question_id, answer_choices.id AS answer_choice_id, answer_choices.text AS answer_choice_text
+    FROM responses
+    JOIN answer_choices
+    ON responses.answer_choice_id = answer_choices.id
+  WHERE responses.user_id = ?)
+  AS current_user_responses ON
+  other_user_responses.question_id = current_user_responses.question_id
 
-    INNER JOIN answer_choices
-    AS current_user_answer_choices
-    ON current_user_responses.answer_choice_id = current_user_answer_choices.id
 
-    WHERE other_user_responses.user_id = ? AND current_user_responses.user_id = ?
+    WHERE other_user_responses.user_id = ?
 
 
-                  ", other_user_id, current_user.id]
+                  ", current_user.id, other_user_id]
 
 
 
