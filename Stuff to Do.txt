@@ -27,8 +27,21 @@ CROSS JOIN
 
 TO DO
 
--Model tests only for model methods.
-~~~~~~~~~~
+
+uniqueness: Check to make sure can't answer question twice.
+Can't respond twice.
+Can't have the same answer_choice_id twice.
+
+Check to see if answer choice id already isnt there.
+    validates :name, uniqueness: { scope: :year,
+      message: "should happen once per year" }
+
+
+
+Geocoder + Search
+https://github.com/alexreisner/geocoder
+http://rubygeocoder.com/ ~~~ Search
+
 
 -Go through CSS guide and then use that to help with form.
 -Have bar at the bottom
@@ -37,16 +50,8 @@ When tired  - add more CSS.
   -Have main bar at top of page, but smaller one after its there.
 -start incorporating about.me
 
-Geocoder + Search
-https://github.com/alexreisner/geocoder
-http://rubygeocoder.com/
 
-Uniqueness validators
-Check to make sure can't answer question twice.
-Can't LIKE the same person twice.
-Check to see if answer choice id already isnt there.
-    validates :name, uniqueness: { scope: :year,
-      message: "should happen once per year" }
+
 
 BY MID DAY: START CSS
 -Layout and positioning
@@ -83,6 +88,27 @@ Thursday
 omniauth
 
 
+WEEKEND
+
+Important: Each time you migrate your database or change it, you must also update the test database by calling rake db:test:prepare.
+
+Write RSpec tests for every model as you go. This is an easy win, and a huge boon for employment.
+
+Do I have test coverage for my models?
+
+QUESTION
+self.get_responses
+self.get_acceptable_responses
+
+likes?
+is_liked_by?
+
+calculate percentages
+
+find by credentials
+
+
+
 
 ~_~_~__~_ TUESDAY ALREADY DONE~_~_~__~
 -Installed on Heroku
@@ -101,6 +127,9 @@ SHIT I LEARNED:
 
 SUPERFLUOUS:
 inverse_of?
+
+Uniqueness validators: can't like the same person twice.
+
 -Add validations through model and shit.
    use association name for presence validator.
 flash success.

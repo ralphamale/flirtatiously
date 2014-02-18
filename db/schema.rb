@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140217143238) do
+ActiveRecord::Schema.define(:version => 20140218195127) do
 
   create_table "acceptable_responses", :force => true do |t|
     t.integer  "user_id"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20140217143238) do
   end
 
   add_index "acceptable_responses", ["answer_choice_id"], :name => "index_acceptable_responses_on_answer_choice_id"
+  add_index "acceptable_responses", ["question_id"], :name => "index_acceptable_responses_on_question_id"
+  add_index "acceptable_responses", ["user_id", "answer_choice_id"], :name => "index_acceptable_responses_on_user_id_and_answer_choice_id", :unique => true
   add_index "acceptable_responses", ["user_id"], :name => "index_acceptable_responses_on_user_id"
 
   create_table "answer_choices", :force => true do |t|
@@ -115,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20140217143238) do
   end
 
   add_index "responses", ["answer_choice_id"], :name => "index_responses_on_answer_choice_id"
+  add_index "responses", ["user_id", "question_id"], :name => "index_responses_on_user_id_and_question_id", :unique => true
   add_index "responses", ["user_id"], :name => "index_responses_on_user_id"
 
   create_table "status_messages", :force => true do |t|
@@ -124,6 +127,8 @@ ActiveRecord::Schema.define(:version => 20140217143238) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "status_messages", ["user_id"], :name => "index_status_messages_on_user_id"
 
   create_table "user_filters", :force => true do |t|
     t.integer  "user_id"
