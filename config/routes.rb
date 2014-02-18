@@ -11,7 +11,7 @@ Flirtatiously::Application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
-  resources :profiles
+  resources :profiles, except: [:new]
 
   resources :messages, only: [:index, :destroy]
 

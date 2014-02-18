@@ -11,3 +11,28 @@
  *= require_self
  *= require_tree .
  */
+
+
+header {
+  background-color: white;
+  button-color #E1F9EB
+}
+
+a {
+  color: #00B5E4;
+}
+
+nav .head-nav {
+  width: 1000px;
+  height: 60px;
+}
+
+
+body {
+  background-color: #F7F8FA;
+  text-color: #373737;
+  accent-color-blue: #08AAC8;
+}
+
+
+

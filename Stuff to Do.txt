@@ -1,16 +1,20 @@
 REQUIRED:
 -Edit Responses (checkboxes hard as fucc)
--Required_current_user // required that you're the owner.
 -Install on Heroku
 inbox/sent
 
 Tuesday first off:
 -Install on Heroku
-
+-Make sure can't talk to self, can't see themselves in online profile.
+-Profiles Index add link
 
 AFTER:
+-Display how many unread messages there are.
+
+Controller/views: update_answer, ne question, create question, destroy profile.
 Status / post one. / newsfeed.
 Search Prefs
+-should i delete the response controller?
 Zip code.
 -notification on new messages.
 -hover over profile to edit. like click on.
@@ -25,6 +29,12 @@ Answer random question -- if done, say no more questions!
 -Add validations.
 -Live chat.   / gem pusher
 -Ethnicity box.
+-Action_Mailer
+-Omniauth
+
+AJAX/Backbone / own API for consumption by Backbone
+jquery UI: draggable/sortable
+
 
 MONDAY FINISH;
 -Calculate match/percentages - HOLY F- THIS WAS FRUSTRATRTING
