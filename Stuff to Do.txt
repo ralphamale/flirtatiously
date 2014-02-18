@@ -26,19 +26,6 @@ CROSS JOIN
 
 
 TO DO
--Add validations through model and shit.
-   use association name for presence validator.
-   -pick default "irrelevant" for answer questionf orm.
-   -default value for is_mutual on like.
-   -default value for is_read is false. (for every false, add true)
-
--Validations through models and not foreign_key indexes
-
-
-Render errors for non-working saves.
-error catching in transactions
--catch errors for update answers.
-redirect to back
 
 -Model tests only for model methods.
 ~~~~~~~~~~
@@ -113,6 +100,9 @@ SHIT I LEARNED:
 
 
 SUPERFLUOUS:
+inverse_of?
+-Add validations through model and shit.
+   use association name for presence validator.
 flash success.
 -Destory action for user that deletes profile.
 Do I need to worry about create controller action for Profile?
