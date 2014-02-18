@@ -3,7 +3,9 @@
 Username: <%= @profile.user.username %>
 <br>
 
-<%= current_user. calculate_percentages(@profile.user) %>
+<% percentages = current_user.calculate_percentages(@profile.user) %>
+
+<%= print_percentages(percentages) %>
 
 <br>
 
@@ -28,11 +30,14 @@ Username: <%= @profile.user.username %>
 
 <br>
 
-<%= link_to "Message User", new_user_message_url(@profile.user_id) %>
+<%= link_to "Message User", conversation_user_messages_url(@profile.user_id) %>
 
 <br>
 
-Questions:
+<h3>Questions:</h3>
+
+<%= "This person has not answered any questions." if @other_user_responses.length == 0 %>
+
 
 <% @other_user_responses.each do |other_response| %>
 <p>

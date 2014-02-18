@@ -3,8 +3,11 @@
 <b>Message with <%= message.recipient_username %>: </b><%= message.body %> <%= "(Sent by me)" if message.is_sent == "t" %>
 <br>
 <%= message.sent_date %><br>
+
 </p>
+
+
+
 
 <% end %>
 
-@messages = Message.joins("INNER JOIN message_headers ON messages.id = message_headers.message_id INNER JOIN users ON message_headers.other_id = users.id").select("message_headers.other_id AS recipient_id, users.username AS recipient_username, messages.body AS body, messages.created_at AS sent_date, message_headers.is_sent AS is_sent").

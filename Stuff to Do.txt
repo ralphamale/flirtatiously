@@ -1,39 +1,80 @@
-REQUIRED:
--Now need
--Figure out how to have different CSS for different views
+Ask TAs:
+-when googlign problems, do u go for the solution or understandin gin the realworld?
 
+
+
+Where to hit enters and shit to not fuck up code.
+
+
+
+
+
+params[:user_id]
+-how come sometimes shit returns to_s but someitmes to-i? => params alwys S, activerecord always I.
+
+
+-Zip code or how to log location? Dont wanna do that geocoding.
+-draggable, how to save?
+-text editor.. how to implement?
+-omniauth i can use now?
+
+zip code file.
+
+CROSS JOIN
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+TO DO
+-Add validations through model and shit.
+   use association name for presence validator.
+   -pick default "irrelevant" for answer questionf orm.
+   -default value for is_mutual on like.
+   -default value for is_read is false. (for every false, add true)
+
+-Validations through models and not foreign_key indexes
+
+
+Render errors for non-working saves.
+error catching in transactions
+-catch errors for update answers.
+-ADd default for questions: defaults for relevance.
+
+-Model tests only for model methods.
+
+
+-Go through CSS guide and then use that to help with form.
+-Have bar at the bottom
+
+When tired  - add more CSS.
+  -Have main bar at top of page, but smaller one after its there.
+-start incorporating about.me
+
+BY MID DAY: START CSS
+-Layout and positioning
+http://guides.rubyonrails.org/layouts_and_rendering.html
+The rails guide on layouts is a good place to start. Look at Section 3 - Structuring Layouts
+
+There are several ways to use a different layout but one of the easiest is to simply add a file with the same name as your controller in the layouts/ folder. So if your controller is PostsController then adding a layouts/post.html.haml would cause rails to use that layout. If no such layout is found, and no other layouts are specified, rails will use the default of layouts/application.html.haml
+
+
+
+-multiple CSS files. rough or no?
+
+-how to make things like italiczed and red? would i just have to wrap it in a DIV tag with a class name and then addclass?
+
+
+NOT IMPORTANT SHIT TO DO:
+-give only half.
 -Do "CSs measurements.txt" whenever bored
 -put mixes on computer
 -wheres my amazon?
 
-Ask TAs:
-Where to hit enters and shit to not fuck up code.
--how come sometimes shit returns to_s but someitmes to-i?
--error catching in transactions.
-
-SHIT I LEARNED:
--if no CSRF token, will start fuckning up
-
-Tuesday first off:
-NEED TO FINISH BEFORE DOING VALIDATIONS: (one fancy col), edit responses, inbox/sent,
-
--Make sure can't talk to self, can't see themselves in online profile.
--Have main bar at top of page, but smaller one after its there.
--Have bar at the bottom
--Does clicking on message do anything? Should take to conversation and "New"
-
-When tired  - add more CSS.
-
-TUESDAY
--Installed on Heroku
--Inbox/Sent now done.
--Edit Response now works. Pain in the ass complex nested form!
--Fixed bug where every message in inbox was sent. Fonud out that someitmes is converrted to "T" string. OY!
 
 
 
--start incorporating about.me
 Thursday
+-Refactor some shit.
 -Add Picture uplaoding after they teach how to.
 -Validations on models... since should be done with basic functinoaltiy.
 -Pagify
@@ -42,7 +83,26 @@ Thursday
 -Check the old JS/Rails stuff in order to see if there's anything more to be done.
 -Make some seed data that'll just get created period.
 
-AFTER:
+
+
+
+~_~_~__~_ TUESDAY ALREADY DONE~_~_~__~
+-Installed on Heroku
+-Does clicking on message do anything? Should take to conversation page/ not just  "New"
+-Inbox/Sent now done.
+before_Filter on talking to self, goign to their own online profile.
+-Edit Response now works. Pain in the ass complex nested form!
+-Fixed bug where every message in inbox was sent. Fonud out that someitmes is converrted to "T" string. OY!
+pretty print
+
+SHIT I LEARNED:
+-if no CSRF token, will start fuckning up
+
+
+
+
+SUPERFLUOUS:
+-PRetty print for DATE
 -Display how many unread messages there are.
 -SEarch how to limit by 1 for each unique entry thats the latest.
 
@@ -80,15 +140,6 @@ AJAX/Backbone / own API for consumption by Backbone
 jquery UI: draggable/sortable
 
 
-MONDAY FINISH;
--Calculate match/percentages - HOLY F- THIS WAS FRUSTRATRTING
-Put user + profile creation as transaction.
-Random question pop up
--CSS stylings
--Calculate matches/percentages
-
-
-
 -Write RSpec tests for all models
 -Live chat
 
@@ -108,8 +159,8 @@ Omniauth
 
 WHEN DONE:
 UI for editing pretty profiles
-
 -Action Mailer for authenticiation
+
 
 
 answers - body : null, false
@@ -122,16 +173,6 @@ profile - details - user_id - nullfalse
 
 last_online
 
-
-
-
-details
-
->>>    t.string   "sex"
-    t.string   "sexual_orientation"
-    t.string   "drugs"
-    t.text     "description"
-    >>>> ALREADY IN THERE
 
 user
 gender

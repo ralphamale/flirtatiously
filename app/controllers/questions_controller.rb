@@ -47,9 +47,9 @@ class QuestionsController < ApplicationController
     new_importance = params[:all_acceptable_response][:importance] #will need to do to_i.
     new_acceptable_ans_ids = params[:acceptable_response][:answer_choice_ids].map(&:to_i)
 
-    new_answer_choice_ids_to_add = new_acceptable_ans_ids.select { |ar_id| prev_acceptables.none? {|prev_ar| prev_ar.answer_choice_id == ar_id}}
+    new_answer_choice_ids_to_add = new_acceptable_ans_ids.select { |ar_id| prev_acceptables.none? {|prev_ar| prev_ar.answer_choice_id == ar_id}} #bang select
 
-    ar_ids_to_delete = prev_acceptables.select{ |ar| new_acceptable_ans_ids.none? {|ans_id| ar.answer_choice_id == ans_id}}.map(&:id)
+    ar_ids_to_delete = prev_acceptables.select{ |ar| new_acceptable_ans_ids.none? {|ans_id| ar.answer_choice_id == ans_id}}.map(&:id) #bang select
 
     new_answer_choice_ids_to_add.each do |answer_choice_id|
       AcceptableResponse.create({user_id: current_user.id, answer_choice_id: answer_choice_id, importance: new_importance, question_id: question_id})

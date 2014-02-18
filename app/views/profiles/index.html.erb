@@ -2,7 +2,8 @@
 
 <% @profiles.each do |profile| %>
 	<%= link_to profile.user.username, profile_url(profile) %>
-  <%= current_user.calculate_percentages(profile.user) %>
+  <% percentages = current_user.calculate_percentages(profile.user) %>
+  <%= print_percentages(percentages) %>
 
 
   <br>

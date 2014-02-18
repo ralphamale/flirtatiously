@@ -13,6 +13,7 @@
 
 class AcceptableResponse < ActiveRecord::Base
   attr_accessible :answer_choice_id, :importance, :user_id, :question_id, :answer_choice_ids
+  validates :importance, presence: true
   # attr_accessor :question_id, :importance, :user_id
 
   belongs_to :answer_choice,

@@ -11,9 +11,9 @@
 
 class ProfileView < ActiveRecord::Base
   #display last online date. from updated_at
-  
+
   attr_accessible :viewee_id, :viewer_id
-  
-  
-  
+
+
+
 end

@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :require_logged_in!
-
+  before_filter :require_not_current_users_page!, only: [:show]
   def new
 
   end

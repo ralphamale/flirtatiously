@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_filter :require_current_user!
-  before_filter :require_not_self!, only: [:conversation, :new, :create]
+  before_filter :require_not_current_users_page!, only: [:conversation, :new, :create]
 
   def index
     @messages = Message.joins("INNER JOIN message_headers ON messages.id = message_headers.message_id INNER JOIN users ON message_headers.other_id = users.id").select("message_headers.other_id AS recipient_id, users.username AS recipient_username, messages.body AS body, messages.created_at AS sent_date, message_headers.is_sent AS is_sent").where("message_headers.user_id = ?", current_user.id).order("messages.created_at DESC")

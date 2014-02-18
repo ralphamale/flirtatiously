@@ -1,0 +1,12 @@
+Remove the space after the backslash in another_question? \. You're escaping the space rather than the newline, which causes a syntax error.
+
+Note you don't need to escape every newline.
+
+result = (not question?) \
+          and (
+            condition \
+            or (
+              comparer == compared and another_question?
+            )
+          )
+
