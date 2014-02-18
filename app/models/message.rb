@@ -12,7 +12,7 @@ class Message < ActiveRecord::Base
   attr_accessible :body
   validates :body, presence: true
 
-  has_many :message_headers,
+  has_many :message_headers, dependent: :destroy,
   foreign_key: :message_id
 
 end

@@ -12,16 +12,16 @@
 
 class Response < ActiveRecord::Base
   attr_accessible :answer_choice_id, :user_id, :question_id
-  
+
   belongs_to :question,
   foreign_key: :question_id
-  
+
   belongs_to :answer_choice,
   foreign_key: :answer_choice_id
-  
+
   belongs_to :user, inverse_of: :responses,
   foreign_key: :user_id
-  
-  
-  
+
+
+
 end

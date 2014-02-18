@@ -38,10 +38,10 @@ TO DO
 Render errors for non-working saves.
 error catching in transactions
 -catch errors for update answers.
--ADd default for questions: defaults for relevance.
+redirect to back
 
 -Model tests only for model methods.
-
+~~~~~~~~~~
 
 -Go through CSS guide and then use that to help with form.
 -Have bar at the bottom
@@ -49,6 +49,17 @@ error catching in transactions
 When tired  - add more CSS.
   -Have main bar at top of page, but smaller one after its there.
 -start incorporating about.me
+
+Geocoder + Search
+https://github.com/alexreisner/geocoder
+http://rubygeocoder.com/
+
+Uniqueness validators
+Check to make sure can't answer question twice.
+Can't LIKE the same person twice.
+Check to see if answer choice id already isnt there.
+    validates :name, uniqueness: { scope: :year,
+      message: "should happen once per year" }
 
 BY MID DAY: START CSS
 -Layout and positioning
@@ -82,7 +93,7 @@ Thursday
 
 -Check the old JS/Rails stuff in order to see if there's anything more to be done.
 -Make some seed data that'll just get created period.
-
+omniauth
 
 
 
@@ -102,6 +113,10 @@ SHIT I LEARNED:
 
 
 SUPERFLUOUS:
+flash success.
+-Destory action for user that deletes profile.
+Do I need to worry about create controller action for Profile?
+-add email field / omniauth
 -PRetty print for DATE
 -Display how many unread messages there are.
 -SEarch how to limit by 1 for each unique entry thats the latest.

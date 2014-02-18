@@ -13,13 +13,13 @@ class Question < ActiveRecord::Base
   attr_accessible :category, :text
   validates :text, presence: true
 
-  has_many :answer_choices,
+  has_many :answer_choices, dependent: :destroy,
   foreign_key: :question_id
 
-  has_many :responses,
+  has_many :responses, dependent: :destroy,
   foreign_key: :question_id
 
-  has_many :acceptable_responses,
+  has_many :acceptable_responses, dependent: :destroy,
   foreign_key: :question_id
 
   def self.get_responses(user_id)

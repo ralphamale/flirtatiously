@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   attr_accessible :password_digest, :session_token, :username, :password, :answer_choice_ids
 
   validates :username, :password_digest, presence: true
+  validates :username, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :password_digest, presence: { message: "Password cannot be blank." }
   #ensure token
@@ -23,10 +24,10 @@ class User < ActiveRecord::Base
   #validates :orientation, inclusion: { in: ["Straight", "Gay", "Bisexual"] }
   validates :username, uniqueness: true
 
-  has_one :profile, inverse_of: :user,
+  has_one :profile, inverse_of: :user, dependent: :destroy,
   foreign_key: :user_id
 
-  has_many :message_headers,
+  has_many :message_headers, dependent: :destroy,
   foreign_key: :user_id
 
   has_many :other_message_headers,
@@ -35,7 +36,7 @@ class User < ActiveRecord::Base
 
   has_many :messages, through: :message_headers, source: :message
 
-  has_many :sent_likes,
+  has_many :sent_likes, dependent: :destroy,
   class_name: "Like",
   foreign_key: :liker_id
 

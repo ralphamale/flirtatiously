@@ -17,11 +17,11 @@ class AnswerChoice < ActiveRecord::Base
   foreign_key: :question_id
 
 
-  has_many :acceptable_responses,
+  has_many :acceptable_responses, dependent: :destroy,
   class_name: "Response",
   foreign_key: :answer_choice_id
 
-  has_many :personal_responses,
+  has_many :personal_responses, dependent: :destroy,
   class_name: "Response",
   foreign_key: :answer_choice_id
 

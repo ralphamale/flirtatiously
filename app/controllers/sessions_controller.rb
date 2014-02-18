@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       log_in(user)
       redirect_to profiles_url
     else
+      flash[:errors] = "Could not log you in"
       render :new
     end
   end

@@ -110,9 +110,10 @@ class QuestionsController < ApplicationController
       rescue
         # because we "soft" saved @user and @addresses we now
         # have access to all of the validation errors
-        render :json => "Error solving"
-      else
+        flash[:errors] = "Error answering the question"
         redirect_to profiles_url
+      else
+        redirect_to questions_url
       end
   end
 
