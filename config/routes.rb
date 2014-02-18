@@ -1,5 +1,5 @@
 Flirtatiously::Application.routes.draw do
-  resources :users, except: [:index] do
+  resources :users, except: [:index, :show] do
     resources :messages, only: [:new, :create] do
       get 'conversation', on: :collection
     end

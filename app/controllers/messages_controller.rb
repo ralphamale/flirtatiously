@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-
+  before_filter :require_current_user!
   def index
     @messages = Message.includes(:message_headers).where("message_headers.user_id = 1")
   end

@@ -1,25 +1,28 @@
 class UsersController < ApplicationController
+  before_filter :require_current_user!, :except => [:create, :new]
+  before_filter :require_no_current_user!, :only => [:create, :new]
 
   def new
     @user = User.new
   end
 
   def create
-    @user = User.new(params[:user])
-    @user.build_profile
 
-    if @user.save
+    @user = User.new(params[:user])
+    begin
+      @user.transaction do
+        @user.save!
+        @user.build_profile.save!
+      end
       log_in(@user)
-      redirect_to profiles_url if @user.build_profile.save
-    else
+      redirect_to profiles_url
+    rescue ActiveRecord::RecordInvalid => invalid
       flash.now[:errors] = @user.errors.full_messages
       render :new
     end
-  end
-
-  def show
 
   end
+
 
   def edit
 

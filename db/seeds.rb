@@ -20,5 +20,6 @@
   end
 
 
-  rafsgirl = User.create({username: "rafsgirl"})
+  rafsgirl = User.create({username: "rafsgirl", password: "password"})
 
+  #

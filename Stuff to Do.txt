@@ -1,30 +1,36 @@
 REQUIRED:
 -Edit Responses (checkboxes hard as fucc)
+-Required_current_user // required that you're the owner.
+-Install on Heroku
+inbox/sent
 
-Put user + profile creation as transaction.
-Answer random question -- if done, say no more questions!
-
--Display questions answered/matches with others.
--Calculate match/percentages
--Required_current_user
--requires_you_own
--Notifications on new messages
+Tuesday first off:
+-Install on Heroku
 
 
 AFTER:
--Inbox/sent
 Status / post one. / newsfeed.
 Search Prefs
 Zip code.
-
+-notification on new messages.
+-hover over profile to edit. like click on.
+-paperclip
+-
 
 BIG PART:
-make WYSWIG editor for profile.
+make WYSWIG editor for profile. // ContentEdigatable and JQueryUI
 
 LATER:
+Answer random question -- if done, say no more questions!
 -Add validations.
--Live chat.
+-Live chat.   / gem pusher
 -Ethnicity box.
+
+MONDAY FINISH;
+-Calculate match/percentages - HOLY F- THIS WAS FRUSTRATRTING
+Put user + profile creation as transaction.
+Random question pop up
+
 
 
 -Calculate matches/percentages

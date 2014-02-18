@@ -65,6 +65,10 @@ class User < ActiveRecord::Base
    has_many :acceptable_responses, inverse_of: :user, dependent: :destroy,
    foreign_key: :user_id
 
+   has_many :answered_questions,
+   through: :responses,
+   source: :question
+
    def is_liked_by?(user)
      self.likers.include?(user)
    end
