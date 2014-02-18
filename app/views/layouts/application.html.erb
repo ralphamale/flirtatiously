@@ -7,28 +7,33 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header class="group">
+    <nav class="main-top group">
+      <% if logged_in? %>
+      Glad to see you back, <%= current_user.username %>!
 
-  <% if logged_in? %>
-  Glad to see you back, <%= current_user.username %>!
-
-  <%= link_to "Browse", profiles_url %>
+      <%= link_to "Browse", profiles_url %>
 
 
-  <%= link_to "Your questions", questions_url %>
+      <%= link_to "Your questions", questions_url %>
 
-  <%= link_to "Messages", messages_url %>
+      <%= link_to "Messages", messages_url %>
 
-  <%= link_to "Edit your profile", edit_profile_url(current_user.profile.id) %>
-  <%= button_to "Sign Out", session_url, method: :delete %>
+      <%= link_to "Edit your profile", edit_profile_url(current_user.profile.id) %>
+      <%= button_to "Sign Out", session_url, method: :delete %>
 
-   <% link_to "Your Messages", messages_url %>
+       <% link_to "Your Messages", messages_url %>
 
-  <% else %>
-  <%= link_to "Sign In", new_session_url %>
-  <%= link_to "Sign Up", new_user_url %>
-  <% end %>
+      <% else %>
+      <%= link_to "Sign In", new_session_url %>
+      <%= link_to "Sign Up", new_user_url %>
+      <% end %>
+    </nav>
 
+  </header>
+  <content>
 <%= yield %>
+</content>
 
 </body>
 </html>

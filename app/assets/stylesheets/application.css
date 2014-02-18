@@ -12,19 +12,45 @@
  *= require_tree .
  */
 
+html, body, header, nav, h1, ul, li {
+  border: 0;
+  margin: 0;
+
+  padding: 0;
+  font: inherit;
+  font-family: sans-serif;
+}
+
+.group:after {
+  clear: both;
+  content: "";
+  display: block;
+}
 
 header {
   background-color: white;
-  button-color #E1F9EB
+  button-color: #E1F9EB;
+  border-bottom: 5px solid #DEDFE1;
+  margin-bottom: 25px;
+}
+
+header > .main-top {
+  width: 1000px;
+  height: 60px;
+  margin: 0 auto;
 }
 
 a {
   color: #00B5E4;
 }
 
-nav .head-nav {
-  width: 1000px;
-  height: 60px;
+
+
+.main-top a {
+  display: block;
+  padding: 25px;
+  margin-left: 10px;
+  float: left;
 }
 
 
@@ -34,5 +60,13 @@ body {
   accent-color-blue: #08AAC8;
 }
 
+content {
+  margin: 0 auto;
+  display: block;
+  width: 1000px;
+  background-color: white;
+}
 
+footer {
 
+}

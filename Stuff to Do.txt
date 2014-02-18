@@ -2,20 +2,27 @@ REQUIRED:
 -Edit Responses (checkboxes hard as fucc)
 -Install on Heroku
 inbox/sent
+-Figure out how to have different CSS for different views
+
 
 Tuesday first off:
 -Install on Heroku
 -Make sure can't talk to self, can't see themselves in online profile.
--Profiles Index add link
+-new messages shows message history, at least 5 messages.
+
+-Have main bar at top of page, but smaller one after its there.
+-Have bar at the bottom
+
 
 AFTER:
 -Display how many unread messages there are.
 
 Controller/views: update_answer, ne question, create question, destroy profile.
 Status / post one. / newsfeed.
-Search Prefs
+Search Prefs: straight/gay/bi girls/guys, age range, range,
 -should i delete the response controller?
 Zip code.
+
 -notification on new messages.
 -hover over profile to edit. like click on.
 -paperclip
@@ -25,12 +32,19 @@ BIG PART:
 make WYSWIG editor for profile. // ContentEdigatable and JQueryUI
 
 LATER:
+-status messages.
+-click to edit
+-last online
 Answer random question -- if done, say no more questions!
 -Add validations.
 -Live chat.   / gem pusher
 -Ethnicity box.
 -Action_Mailer
 -Omniauth
+In questions: You've answered X of her questions.
+-Sort questions
+-she cares, i care, ihavent answered, categories, (ethics, sex, religion, lifestyles, data, with explanation)
+-add explanation.
 
 AJAX/Backbone / own API for consumption by Backbone
 jquery UI: draggable/sortable

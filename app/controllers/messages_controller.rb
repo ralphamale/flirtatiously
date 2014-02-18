@@ -1,7 +1,22 @@
 class MessagesController < ApplicationController
   before_filter :require_current_user!
   def index
-    @messages = Message.includes(:message_headers).where("message_headers.user_id = 1")
+    @messages = Message.joins(:message_headers).where("message_headers.user_id = 1")
+    #includes user?
+    #if it says its not read, now set it to is_read
+    # if its is_sent last, then italics.
+    #limit one per user sent, the one that was created last.
+
+    #in "sent", have it from everyone. just 25 each.
+    #have link for destroy.
+
+    #draft.
+
+    #display time it was sent.
+
+
+
+    #messages.body #messages.oither
   end
 
   def new
