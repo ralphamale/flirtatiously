@@ -1,6 +1,5 @@
 REQUIRED:
 -Edit Responses (checkboxes hard as fucc)
--Install on Heroku
 -Figure out how to have different CSS for different views
 
 
@@ -10,18 +9,27 @@ REQUIRED:
 
 Ask TAs:
 Where to hit enters and shit to not fuck up code.
--Heroku Setup
+-how come sometimes shit returns to_s but someitmes to-i?
+-error catching in transactions.
+
+SHIT I LEARNED:
+-if no CSRF token, will start fuckning up
 
 Tuesday first off:
 NEED TO FINISH BEFORE DOING VALIDATIONS: (one fancy col), edit responses, inbox/sent,
 
--Install on Heroku
 -Make sure can't talk to self, can't see themselves in online profile.
--new messages shows message history, at least 5 messages.
 -Have main bar at top of page, but smaller one after its there.
 -Have bar at the bottom
+-Does clicking on message do anything? Should take to conversation and "New"
 
 When tired  - add more CSS.
+
+TUESDAY
+-Installed on Heroku
+-Inbox/Sent now done.
+
+
 
 -start incorporating about.me
 Thursday

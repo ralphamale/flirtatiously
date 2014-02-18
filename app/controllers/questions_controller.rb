@@ -32,10 +32,52 @@ class QuestionsController < ApplicationController
   end
 
   def update_answer
-    @question = 6;
-    fail
-    @answer = 5
-    dick = 5
+    #put in transaction.
+
+
+    question_id = params[:question_id]
+    responses = current_user.responses.where(question_id: question_id)
+    # if responses.length is 0, raise error. otherwise, take first.
+    @response = responses.first
+
+    @response.update_attributes(params[:response])
+
+    prev_acceptables = current_user.acceptable_responses.where(question_id: question_id)
+
+    new_importance = params[:all_acceptable_response][:importance] #will need to do to_i.
+    new_acceptable_ans_ids = params[:acceptable_response][:answer_choice_ids].map(&:to_i)
+
+    new_answer_choice_ids_to_add = new_acceptable_ans_ids.select { |ar_id| prev_acceptables.none? {|prev_ar| prev_ar.answer_choice_id == ar_id}}
+
+    ar_ids_to_delete = prev_acceptables.select{ |ar| new_acceptable_ans_ids.none? {|ans_id| ar.answer_choice_id == ans_id}}.map(&:id)
+
+    new_answer_choice_ids_to_add.each do |answer_choice_id|
+      AcceptableResponse.create({user_id: current_user.id, answer_choice_id: answer_choice_id, importance: new_importance, question_id: question_id})
+    end
+
+
+    AcceptableResponse.destroy_all(:id => ar_ids_to_delete)
+    prev_acceptables.delete_if { |ar| ar_ids_to_delete.include?(ar.id)}
+
+    prev_acceptables.each do |ar|
+      ar.update_attributes(importance: new_importance)
+    end
+
+
+    # @acceptable_responses = current_user.acceptable_responses.new(params[:acceptable_response].values)
+#
+#     @response.save
+#     @acceptable_responses.each do |acceptable_response|
+#       acceptable_response.save
+#     end
+
+
+    #remove from prev_acceptables, to_delete
+    #create new ones with importance
+    #update attributes of old ones to reflect importance.
+
+    redirect_to profiles_url
+
   end
 
   def show
