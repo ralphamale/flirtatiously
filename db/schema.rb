@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140218195127) do
+ActiveRecord::Schema.define(:version => 20140218203046) do
 
   create_table "acceptable_responses", :force => true do |t|
     t.integer  "user_id"
@@ -97,6 +97,10 @@ ActiveRecord::Schema.define(:version => 20140218195127) do
     t.string   "offspring"
     t.string   "pets"
     t.text     "likes"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "zip_code"
+    t.string   "city"
   end
 
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"

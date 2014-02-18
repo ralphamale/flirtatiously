@@ -68,6 +68,7 @@ GEM
     execjs (2.0.2)
     ffi (1.9.3)
     formatador (0.2.4)
+    geocoder (1.1.9)
     guard (2.3.0)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -183,6 +184,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.1)
   debugger
+  geocoder
   guard-rspec
   jquery-rails
   pg

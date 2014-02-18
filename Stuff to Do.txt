@@ -1,47 +1,21 @@
 Ask TAs:
 -when googlign problems, do u go for the solution or understandin gin the realworld?
 
-
-
 Where to hit enters and shit to not fuck up code.
-
-
-
-
 
 params[:user_id]
 -how come sometimes shit returns to_s but someitmes to-i? => params alwys S, activerecord always I.
 
-
--Zip code or how to log location? Dont wanna do that geocoding.
 -draggable, how to save?
 -text editor.. how to implement?
 -omniauth i can use now?
 
-zip code file.
+WHAT DO I DO IF I DONT REALLY HAVE ANYTHING TO TEST IN MODELS?
 
-CROSS JOIN
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 TO DO
-
-
-uniqueness: Check to make sure can't answer question twice.
-Can't respond twice.
-Can't have the same answer_choice_id twice.
-
-Check to see if answer choice id already isnt there.
-    validates :name, uniqueness: { scope: :year,
-      message: "should happen once per year" }
-
-
-
-Geocoder + Search
-https://github.com/alexreisner/geocoder
-http://rubygeocoder.com/ ~~~ Search
-
 
 -Go through CSS guide and then use that to help with form.
 -Have bar at the bottom
@@ -79,7 +53,6 @@ NOT IMPORTANT SHIT TO DO:
 Thursday
 -Refactor some shit.
 -Add Picture uplaoding after they teach how to.
--Validations on models... since should be done with basic functinoaltiy.
 -Pagify
 -PLAN WYSWIG EDITOR
 
@@ -118,6 +91,7 @@ before_Filter on talking to self, goign to their own online profile.
 -Edit Response now works. Pain in the ass complex nested form!
 -Fixed bug where every message in inbox was sent. Fonud out that someitmes is converrted to "T" string. OY!
 pretty print
+-GEocoding AWESOME.
 
 SHIT I LEARNED:
 -if no CSRF token, will start fuckning up
@@ -127,7 +101,7 @@ SHIT I LEARNED:
 
 SUPERFLUOUS:
 inverse_of?
-
+Reverse geocode
 Uniqueness validators: can't like the same person twice.
 
 -Add validations through model and shit.
@@ -157,7 +131,9 @@ make WYSWIG editor for profile. // ContentEdigatable and JQueryUI
 
 LATER:
 -status messages.
+INCLUSION validation on stuff
 -click to edit
+
 -last online
 Answer random question -- if done, say no more questions!
 -Add validations.

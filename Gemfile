@@ -7,7 +7,7 @@ gem 'annotate'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-
+gem "geocoder"
 gem 'bcrypt-ruby', require: 'bcrypt'
 
 # Gems used only for assets and not required

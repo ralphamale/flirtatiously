@@ -80,6 +80,8 @@ class User < ActiveRecord::Base
 
    def calculate_percentages(other_user)
 
+
+
      common_responses = Response.joins("JOIN responses
      AS other_responses
      ON responses.question_id = other_responses.question_id").select("responses.question_id AS question_id, responses.answer_choice_id AS current_user_answer_choice,
@@ -90,6 +92,11 @@ class User < ActiveRecord::Base
 
      current_user_match_num, current_user_friend_num, current_user_denom,
      other_match_num, other_friend_num, other_denom = 0, 0, 0, 0, 0,  0
+
+     if [common_responses, current_acceptables, other_acceptables].any? { |obj| obj.length == 0}
+       return {match_percent: 0, friend_percent: 0}
+     end
+
 
      common_responses.each do |common_response|
        importance_to_current_user = self.acceptable_responses

@@ -1,6 +1,7 @@
 
 
-Username: <%= @profile.user.username %>
+Username: <%= @profile.user.username %><br>
+<%= @profile.city %>
 <br>
 
 <% percentages = current_user.calculate_percentages(@profile.user) %>
