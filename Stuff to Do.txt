@@ -1,7 +1,6 @@
 REQUIRED:
--Edit Responses (checkboxes hard as fucc)
+-Now need
 -Figure out how to have different CSS for different views
-
 
 -Do "CSs measurements.txt" whenever bored
 -put mixes on computer
@@ -28,6 +27,8 @@ When tired  - add more CSS.
 TUESDAY
 -Installed on Heroku
 -Inbox/Sent now done.
+-Edit Response now works. Pain in the ass complex nested form!
+-Fixed bug where every message in inbox was sent. Fonud out that someitmes is converrted to "T" string. OY!
 
 
 

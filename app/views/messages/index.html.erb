@@ -1,6 +1,6 @@
 <% @messages.each do |message| %>
 <p>
-<b>Message with <%= message.recipient_username %>: </b><div font-style="<%= "italics" if message.is_sent %>"><%= message.body %></div>
+<b>Message with <%= message.recipient_username %>: </b><%= message.body %> <%= "(Sent by me)" if message.is_sent == "t" %>
 <br>
 <%= message.sent_date %><br>
 </p>
