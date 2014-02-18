@@ -1,9 +1,17 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :find_response, :is_unacceptable?
 
   private
+
+  def find_response(question_id, responses)
+    responses.find { |response| response.question_id == question_id }
+  end
+
+  def is_unacceptable?(response, acceptable_responses)
+    acceptable_responses.none? { |acceptable_resp| acceptable_resp.answer_id == response.answer_id}
+  end
 
   def current_user
     return nil unless session[:session_token]

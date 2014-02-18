@@ -1,0 +1,13 @@
+
+
+<% @answered_questions.each do |question| %>
+<p>
+<%= question.question_text %>
+<br>
+<%= question.answer_text %>
+<%= link_to "Edit response", question_edit_answer_url(question.question_id) %>
+</p>
+<% end %>
+
+@answered_questions = Response.find_by_sql ["
+  SELECT questions.text AS question_text, responses.id AS response_id, answers.text AS answer_text

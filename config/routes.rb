@@ -15,10 +15,13 @@ Flirtatiously::Application.routes.draw do
 
   resources :messages, only: [:index, :destroy]
 
-  resources :questions, only: [:show, :create] do
+  resources :questions, only: [:show, :create, :index] do
     post "answer"
+    get "edit_answer"
+    put "update_answer"
   end
 
+  resources :responses, only: [:create, :update, :edit]
   #resources :likes, only: [:index, :destroy]
 
   root to: 'sessions#new'

@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
 
   def index
-    @messages = current_user.messages
+    @messages = Message.includes(:message_headers).where("message_headers.user_id = 1")
   end
 
   def new

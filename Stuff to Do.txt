@@ -1,11 +1,38 @@
--Link up to user/profile.
+REQUIRED:
+-Edit Responses (checkboxes hard as fucc)
+
+Put user + profile creation as transaction.
+Answer random question -- if done, say no more questions!
 
 -Display questions answered/matches with others.
+-Calculate match/percentages
+-Required_current_user
+-requires_you_own
+-Notifications on new messages
+
+
+AFTER:
+-Inbox/sent
+Status / post one. / newsfeed.
+Search Prefs
+Zip code.
+
+
+BIG PART:
+make WYSWIG editor for profile.
+
+LATER:
+-Add validations.
+-Live chat.
+-Ethnicity box.
+
+
 -Calculate matches/percentages
 -Pop up question answer. -- random question that isnt answer.
 
 -Write RSpec tests for all models
 -Live chat
+
 
 
 QUEASTIONS

@@ -17,3 +17,22 @@
 <!-- @responses = Response.find_by_sql ["
 
   SELECT other_answer_choices.text AS other_answer, cur_user_answer_choices.text AS cur_user_answer, questions.text AS question_text -->
+
+
+
+  <% @responses.each do |response| %>
+
+  <p>
+  <b><%= response.question_text %></b><br>
+
+  <% if response.current_user_answer_text.nil? %>
+  <%= link_to "Please answer this question to see their response.", question_url(response.question_id) %>
+  fdsfds
+  <% else %>
+  Their answer: <%= response.other_user_answer_text %><br>
+  Your answer: <%= response.current_user_answer_text %>
+  <% end %>
+  </p>
+
+
+  <% end %>
