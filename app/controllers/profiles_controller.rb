@@ -51,6 +51,8 @@ class ProfilesController < ApplicationController
 
     @other_user_acceptables = Question.get_acceptable_responses(other_user_id)
 
+    @match_info = current_user.calculate_percentages(@profile.user)
+
     # @other_user_acceptable_responses = get_acceptable_responses(@profile.user.id)
 #     @responses = get_responses(@profile.user.id)
 

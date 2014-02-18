@@ -3,6 +3,10 @@
 Username: <%= @profile.user.username %>
 <br>
 
+<%= current_user. calculate_percentages(@profile.user) %>
+
+<br>
+
 <% ["sex", "sexual_orientation", "body_type", "smokes", "drinks", "drugs", "religion", "sign", "education", "job", "offspring", "pets", "description", "likes"].each do |descriptor| %>
 
 <%= descriptor.capitalize %>: <%= (@profile[descriptor].nil?) ? "--" : @profile[descriptor] %><br>
