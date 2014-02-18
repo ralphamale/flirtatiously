@@ -32,6 +32,7 @@
 
   </header>
   <content>
+    <%= flash[:errors] if flash[:errors] %> <%= flash[:success] if flash[:success] %>
 <%= yield %>
 </content>
 

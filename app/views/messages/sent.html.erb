@@ -1,0 +1,12 @@
+<h1>Sent Messages</h1>
+<hr>
+<%= @sent_messages.each do |sent_message| %>
+
+<p>
+Recipient: <%= link_to sent_message.recipient_username, profile_url(User.find(sent_message.recipient_id).profile.id) %><br>
+From: You<br>
+Sent: <%= sent_message.sent_date %><br>
+Body: <i><%= sent_message.body %></i>
+</p>
+
+<% end %>

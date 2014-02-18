@@ -34,7 +34,7 @@ class ProfilesController < ApplicationController
   end
 
   def index
-    @profiles = Profile.all
+    @profiles = Profile.where("id != ?", current_user.profile.id)
   end
 
   def show

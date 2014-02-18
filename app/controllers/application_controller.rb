@@ -40,6 +40,16 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_url unless logged_in?
   end
 
+  def require_not_self!
+    # fail
+    #
+    # if params[:controller] == "messages" && params[:user_id] == current_user.id
+    #   #redirect to
+    # elsif
+    #
+    # redirect_to profiles_url unless logged_in?
+  end
+
   def require_no_current_user!
     redirect_to user_url(current_user) if logged_in?
   end

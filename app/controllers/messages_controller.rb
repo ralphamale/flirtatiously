@@ -1,7 +1,9 @@
 class MessagesController < ApplicationController
   before_filter :require_current_user!
+  before_filter :require_not_self!, only: [:conversation, :new, :create]
+
   def index
-    @messages = Message.joins(:message_headers).where("message_headers.user_id = 1")
+    @messages = Message.joins("INNER JOIN message_headers ON messages.id = message_headers.message_id INNER JOIN users ON message_headers.other_id = users.id").select("message_headers.other_id AS recipient_id, users.username AS recipient_username, messages.body AS body, messages.created_at AS sent_date, message_headers.is_sent AS is_sent").where("message_headers.user_id = ?", current_user.id).order("messages.created_at DESC")
     #includes user?
     #if it says its not read, now set it to is_read
     # if its is_sent last, then italics.
@@ -13,8 +15,6 @@ class MessagesController < ApplicationController
     #draft.
 
     #display time it was sent.
-
-
 
     #messages.body #messages.oither
   end
@@ -39,7 +39,16 @@ class MessagesController < ApplicationController
     end
   end
 
+  def sent
+
+
+    @sent_messages = Message.joins("INNER JOIN message_headers ON messages.id = message_headers.message_id INNER JOIN users ON message_headers.other_id = users.id").select("message_headers.other_id AS recipient_id, users.username AS recipient_username, messages.body AS body, messages.created_at AS sent_date").where("message_headers.is_sent = true AND message_headers.user_id = ?", current_user.id).order("messages.created_at DESC")
+
+    # SELECT * FROM table1 ORDER BY id DESC LIMIT 3
+  end
+
   def conversation
+    #whenever u show, u wanna mark IS READ.
     user_id = current_user.id
     other_id = params[:user_id]
     @other_username = User.find(other_id).username

@@ -1,0 +1,71 @@
+user_container
+padding-top: 10px
+
+class="person"
+margin: 0px, 0px, 15px, 14px
+width: 239 px
+15px margin betwen all of them
+height: 475 px
+position: relative
+-webkit-border-radius: 15 px
+box-shadow: 0 2px 2px rgba(0,0,0,0.1)
+
+
+
+bottom-area
+background color  #ECEFF3;
+display: block
+height: 105px
+width: 239 px
+
+
+text in block
+200px
+line-height 18 px
+display : block
+
+
+div container for browse-page
+display: block
+margin-top 25px
+
+margin-bottom 40px
+
+
+footer
+height - 100px
+45px padding-top
+40px bottom
+
+
+secondary nav bar for filters
+67 px height
+display: block
+padding top - 7px
+#eceff3 background color
+
+
+nav bar secondary
+height: 100px
+display: block
+border-bottom: 1px solid #ECECEC
+
+primary
+positive: relative
+dispaly block
+
+smaller menu
+menu .inside {
+margin: 0 px autp;'
+width: 1000px
+doay block
+height: 25px
+margin-bottom 0px
+margin-left 160.5
+marginr-giht 160.5
+margin-top 10px
+position - fixed
+top- 26px
+
+
+}

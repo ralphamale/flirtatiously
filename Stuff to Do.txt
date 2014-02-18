@@ -1,21 +1,42 @@
 REQUIRED:
 -Edit Responses (checkboxes hard as fucc)
 -Install on Heroku
-inbox/sent
 -Figure out how to have different CSS for different views
 
 
+-Do "CSs measurements.txt" whenever bored
+-put mixes on computer
+-wheres my amazon?
+
+Ask TAs:
+Where to hit enters and shit to not fuck up code.
+-Heroku Setup
+
 Tuesday first off:
+NEED TO FINISH BEFORE DOING VALIDATIONS: (one fancy col), edit responses, inbox/sent,
+
 -Install on Heroku
 -Make sure can't talk to self, can't see themselves in online profile.
 -new messages shows message history, at least 5 messages.
-
 -Have main bar at top of page, but smaller one after its there.
 -Have bar at the bottom
 
+When tired  - add more CSS.
+
+-start incorporating about.me
+Thursday
+-Add Picture uplaoding after they teach how to.
+-Validations on models... since should be done with basic functinoaltiy.
+-Pagify
+-PLAN WYSWIG EDITOR
+
+-Check the old JS/Rails stuff in order to see if there's anything more to be done.
+-Make some seed data that'll just get created period.
 
 AFTER:
 -Display how many unread messages there are.
+-SEarch how to limit by 1 for each unique entry thats the latest.
+
 
 Controller/views: update_answer, ne question, create question, destroy profile.
 Status / post one. / newsfeed.
@@ -54,11 +75,10 @@ MONDAY FINISH;
 -Calculate match/percentages - HOLY F- THIS WAS FRUSTRATRTING
 Put user + profile creation as transaction.
 Random question pop up
-
-
-
+-CSS stylings
 -Calculate matches/percentages
--Pop up question answer. -- random question that isnt answer.
+
+
 
 -Write RSpec tests for all models
 -Live chat

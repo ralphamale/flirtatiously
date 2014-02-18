@@ -1,30 +1,50 @@
-<form action="<%= question_update_answer_url(@question.id) %>" method="post">
+
+
+<% question_id = @answer_choices.first.question_id %>
+<form action="<%= question_update_answer_url(question_id) %>" method="post">
   <input type="hidden" name="_method" value="PUT">
-<% @question.text %>
 
-<% answer_choices = @question.answer_choices %>
+  <%= auth_token_input %>
 
-<% answer_choices.each do |answer_choice| %>
-<label><input type="radio" name="response[answer_choice_id]" value="<%= answer_choice.id %>"
-  <%= "checked" if answer_choice.id == @response.answer_choice_id %>>
-  <%= answer_choice.text %>
+
+
+  <% question_text = @answer_choices.first.question_text %>
+<%= question_text %>
+
+<% @answer_choices.each do |answer_choice| %>
+<label><input type="radio" name="response[answer_choice_id]" value="<%= answer_choice.answer_choice_id %>"
+  <%= "checked" if (answer_choice.answer_choice_id.to_i == @response.answer_choice_id.to_i) %>>
+  <%= answer_choice.answer_choice_text %>
 </label><br>
 
 <% end %>
 
+
+<br>
 What you prefer on match:
 <br>
-<% answer_choices.each_with_index do |answer_choice, index| %>
-<input type="checkbox" name="acceptable_response[<%= index %>][answer_choice_id]" value="<%= answer_choice.id %>"><%= answer_choice.text%></label><br>
+<% @answer_choices.each_with_index do |answer_choice, index| %>
+<input type="checkbox" name="acceptable_response[answer_choice_ids][]" value="<%= answer_choice.answer_choice_id %>" <%= "checked" if @acceptable_responses.any? {|a_r| a_r.answer_choice_id.to_i == answer_choice.answer_choice_id.to_i} %>>
+
+<%= answer_choice.answer_choice_text%></label><br>
 
 <% end %>
 
+<br>
+<br>
+Importance<br>
 
-<label><input type="radio" name="all_acceptable_response[importance]" value="0">Irrelevant</label><br>
-<label><input type="radio" name="all_acceptable_response[importance]" value="1">A little important</label><br>
-<label><input type="radio" name="all_acceptable_response[importance]" value="10">Important</label><br>
-<label><input type="radio" name="all_acceptable_response[importance]" value="50">Very important</label><br>
-<label><input type="radio" name="all_acceptable_response[importance]" value="250">Mandatory</label><br>
+<% importance = @acceptable_responses.first.importance %>
+
+<label><input type="radio" name="all_acceptable_response[importance]" value="0" <%= "checked" if importance == 0 %>>Irrelevant</label><br>
+<label><input type="radio" name="all_acceptable_response[importance]" value="1" <%= "checked" if importance == 1 %>>A little important</label><br>
+<label><input type="radio" name="all_acceptable_response[importance]" value="10" <%= "checked" if importance == 10 %>>Important</label><br>
+<label><input type="radio" name="all_acceptable_response[importance]" value="50" <%= "checked" if importance == 50 %>>Very important</label><br>
+<label><input type="radio" name="all_acceptable_response[importance]" value="250" <%= "checked" if importance == 250 %>>Mandatory</label><br>
+
+
+
 
 
 <input type="submit" value="Edit your response">
+</form>

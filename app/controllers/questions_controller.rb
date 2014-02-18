@@ -22,16 +22,20 @@ class QuestionsController < ApplicationController
   end
 
   def edit_answer
-    @question = Question.find(params[:question_id])
+    question_id = params[:question_id]
+    @answer_choices = Question.joins(:answer_choices).select("questions.id AS question_id, questions.text AS question_text, answer_choices.id AS answer_choice_id, answer_choices.text AS answer_choice_text").where("questions.id = ?", question_id)
 
-    @response = current_user.responses.find { |response| response.question_id == params[:question_id].to_i}
+    @response = current_user.responses.where(:question_id => question_id).first
+    @acceptable_responses = current_user.acceptable_responses.where(:question_id => question_id)
 
-    @acceptable_response
 
   end
 
   def update_answer
-
+    @question = 6;
+    fail
+    @answer = 5
+    dick = 5
   end
 
   def show

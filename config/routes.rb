@@ -13,7 +13,9 @@ Flirtatiously::Application.routes.draw do
 
   resources :profiles, except: [:new]
 
-  resources :messages, only: [:index, :destroy]
+  resources :messages, only: [:index, :destroy] do
+    get 'sent', on: :collection
+  end
 
   resources :questions, only: [:show, :create, :index] do
     post "answer"
@@ -24,5 +26,5 @@ Flirtatiously::Application.routes.draw do
   resources :responses, only: [:create, :update, :edit]
   #resources :likes, only: [:index, :destroy]
 
-  root to: 'sessions#new'
+  root to: 'profiles#new'
 end
