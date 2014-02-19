@@ -21,7 +21,7 @@ TONIGHT
   -views for all.
 -Search criteria.
 -install on Homebrew.
-
+-Prepare resume for tomorrow. // Dress up for tomorrow.
 -Status messages /  news feed
 
 pg-search

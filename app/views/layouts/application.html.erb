@@ -34,9 +34,16 @@
     </nav>
 
   </header>
-  <content>
+  <content class="group">
     <%= flash[:errors] if flash[:errors] %> <%= flash[:success] if flash[:success] %>
-<%= yield %>
+
+    <div class="left-col-content">
+      <%= yield %>
+    </div>
+
+
+    <div class="right-col"><div class="right-col-block">I <br>am<br> some<br> content.</div></div>
+
 </content>
 
 </body>

@@ -71,8 +71,30 @@ content {
   margin: 0 auto;
   display: block;
   width: 1000px;
+
+}
+
+.left-col-content {
+  width: 655px;
+  margin-top: 20px;
+  float: left;
   background-color: white;
 }
+
+.right-col {
+  width: 310px;
+  margin-top: 20px;
+  float: right;
+
+}
+
+.right-col-block {
+  width: 290px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+}
+
 
 footer {
 
