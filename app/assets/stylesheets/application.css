@@ -21,6 +21,44 @@ html, body, header, nav, h1, ul, li {
   font-family: sans-serif;
 }
 
+ul.profiles-list {
+  list-style: none;
+
+
+  border-radius: 10px;
+
+}
+
+ul.profiles-list > li {
+  width: 230px;
+  height: 300px;
+  background-color: white;
+  padding-bottom: 10px;
+  float: left;
+  margin: 5px;
+
+  border-radius: 5px;
+}
+
+ul.profiles-list > li > img {
+  display: block;
+  height: 230px;
+  width: 230px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-bottom: 5px;
+}
+
+ul.profiles-list  a {
+  text-decoration: none;
+  font-size: 28px;
+}
+
+.profile-content {
+  margin-left: 5px;
+}
+
+
 .group:after {
   clear: both;
   content: "";
@@ -46,6 +84,7 @@ a {
 
 
 
+
 .main-top a {
   display: block;
   padding: 25px;
@@ -53,11 +92,16 @@ a {
   float: left;
 }
 
+.main-top input {
+  float: right;
+}
+
 .main-top img {
   margin: auto 0;
   padding-top: 5px;
   display: block;
   float: left;
+
 }
 
 

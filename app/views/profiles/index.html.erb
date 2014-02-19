@@ -24,7 +24,7 @@
   <option value="Everyone" <%= "selected" if @user_filter.sex == "Everyone" %>>Everyone</option>
   <option value="Male" <%= "selected" if @user_filter.sex == "Male" %>>Male</option>
   <option value="Female" <%= "selected" if @user_filter.sex == "Female" %>>Female</option>
-  </select> | <input type="text" name="user_filter[zip_code]" value="<%= @user_filter.distance %>"> miles away
+  </select> | <input type="text" name="user_filter[distance]" value="<%= @user_filter.distance %>"> miles away
 
 
   <input type="submit" value="Refresh">
@@ -33,16 +33,42 @@
 
 <h3> Profiles </h3>
 
-<% @profiles.each do |profile| %>
-<%= image_tag(profile.big_photo.url) if profile.big_photo.exists? %><br>
-
-	<%= link_to profile.user.username, profile_url(profile) %><br>
-  <%= age(profile.birthday) %> years old<br>
-  <% percentages = current_user.calculate_percentages(profile.user) %>
-  <%= print_percentages(percentages) %><br>
-  <%= profile.city %><br>
+<ul class="profiles-list group">
+  <% @profiles.each do |profile| %>
+  <li><%= image_tag(profile.big_photo.url) if profile.big_photo.exists? %>
 
 
-  <br>
-  <br>
-<% end %>
+    <div class="profile-content">
+  	<%= link_to profile.user.username, profile_url(profile) %><br>
+    <%= age(profile.birthday) %> · <%= profile.city %><br>
+
+    <% percentages = current_user.calculate_percentages(profile.user) %>
+    <%= print_percentages(percentages) %><br>
+  </div>
+
+  </li>
+
+  <li>
+    fdsadf</li>
+
+    <li>
+      fdsadf</li>
+
+      <li>
+        fdsadf</li>
+
+        <li>
+          fdsadf</li>
+
+          <li>
+            fdsadf</li>
+
+            <li>
+              fdsadf</li>
+
+              <li>fdsdfs</li>
+  <% end %>
+</ul>
+
+
+

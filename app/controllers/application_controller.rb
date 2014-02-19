@@ -46,15 +46,12 @@ class ApplicationController < ActionController::Base
   end
 
   def require_not_current_users_page!
-
     if params[:controller] == "messages" && params[:user_id].to_i == current_user.id
       flash[:errors] = "Cant message yourself"
       redirect_to profiles_url
     elsif params[:controller] == "profiles" && params[:id].to_i == current_user.profile.id
       redirect_to edit_profile_url(params[:id])
     end
-
-
   end
 
   def require_no_current_user!

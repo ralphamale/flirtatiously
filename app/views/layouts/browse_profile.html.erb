@@ -37,16 +37,10 @@
   <content class="group">
     <%= flash[:errors] if flash[:errors] %> <%= flash[:success] if flash[:success] %>
 
-    <div class="left-col-content">
       <%= yield %>
-    </div>
 
 
-    <div class="right-col"><div class="right-col-block">
 
-      <%= yield :right_col %>
-
-    </div></div>
 
 </content>
 

@@ -53,11 +53,13 @@ class Profile < ActiveRecord::Base
     current_user = User.find(12)
     filter = current_user.user_filter
 
+    #put those extra filters in for non-default e.g. filter.sex == "Everyone"
     results = Profile.where("id != ?", current_user.profile.id)
 
-    unless filter.sex.nil?
+    unless filter.sex.nil? || filter.sex == "Everyone"
       results = results.where(:sex => filter.sex)
     end
+
 
     unless filter.beg_age.nil? && filter.end_age.nil?
       start_date =
@@ -69,7 +71,7 @@ class Profile < ActiveRecord::Base
       results = results.where(:birthday => end_date..start_date)
     end
 
-    unless filter.sexual_orientation.nil?
+    unless filter.sexual_orientation.nil? || filter.sexual_orientation == "All"
       results = results.where(:sexual_orientation => filter.sexual_orientation)
     end
 
@@ -78,9 +80,7 @@ class Profile < ActiveRecord::Base
       results.reject! do |result|
         current_user.profile.distance_to(result) > filter.distance
       end
-
     end
-
 
     return results
   end

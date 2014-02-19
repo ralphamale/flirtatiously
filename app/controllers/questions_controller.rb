@@ -103,8 +103,6 @@ class QuestionsController < ApplicationController
           raise "invalid" unless @response.valid? && @acceptable_responses.all? { |obj| obj.valid? }
         end
       rescue
-        # because we "soft" saved @user and @addresses we now
-        # have access to all of the validation errors
         flash[:errors] = "Error answering the question"
         redirect_to profiles_url
       else

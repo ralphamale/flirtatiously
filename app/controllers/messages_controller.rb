@@ -40,11 +40,7 @@ class MessagesController < ApplicationController
   end
 
   def sent
-
-
     @sent_messages = Message.joins("INNER JOIN message_headers ON messages.id = message_headers.message_id INNER JOIN users ON message_headers.other_id = users.id").select("message_headers.other_id AS recipient_id, users.username AS recipient_username, messages.body AS body, messages.created_at AS sent_date").where("message_headers.is_sent = true AND message_headers.user_id = ?", current_user.id).order("messages.created_at DESC")
-
-    # SELECT * FROM table1 ORDER BY id DESC LIMIT 3
   end
 
   def conversation
@@ -69,13 +65,6 @@ class MessagesController < ApplicationController
   end
 
   private
-
-  #  id         :integer          not null, primary key
-  #  user_id    :integer
-  #  other_id   :integer
-  #  message_id :integer
-  #  is_sent    :boolean
-  #  is_read    :boolean          default(FALSE)
 
   def header_params(user_id, other_id)
     user_header = {

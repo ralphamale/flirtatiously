@@ -1,6 +1,7 @@
+<% content_for :right_col do %>
 
-<%= image_tag(@profile.big_photo.url) if @profile.big_photo.exists? %><br>
-
+<%= image_tag(@profile.big_photo.url) if @profile.big_photo.exists? %>
+<% end %>
 Username: <%= @profile.user.username %><br>
 <%= age(@profile.birthday) %> years old | <%= @profile.city %>
 <br>
@@ -58,44 +59,12 @@ Your response: <%= current_user_response.answer_text %><b> <%= "UNACCEPTABLE" if
 
 <% end %>
 
-<!-- is_unacceptable?(response, acceptable_responses) -->
 <p>
 
 <% end %>
 
 
-<!-- @current_user_responses = Question.get_responses(current_user.id)
-
-@current_user_acceptables = Question.get_acceptable_responses(current_user.id)
-
-@other_user_responses = Question.get_responses(other_user_id)
-
-@other_user_acceptables = Question.get_acceptable_responses(other_user_id) -->
-
-<!-- def self.get_responses(user_id)
-  return Question.joins("INNER JOIN answer_choices ON questions.id = answer_choices.question_id INNER JOIN responses ON answer_choices.id = responses.answer_choice_id").select("questions.id AS question_id, questions.text AS question_text, answer_choices.id AS answer_id, answer_choices.text AS answer_text").where("responses.user_id = ?", user_id)
-
-
-  # Question.joins("LEFT OUTER JOIN responses ON responses.question_id = questions.id LEFT OUTER JOIN acceptable_responses ON responses.question_id = acceptable_responses.question_id").select("questions.id AS question_id, questions.text AS question_text, answers.id AS answer_id, answers.text AS answer_text").where("responses.user_id = ?", user_id)
-  #
-
-
-end
-
-def self.get_acceptable_responses(user_id)
-  return Question.joins("JOIN answer_choices ON questions.id = answer_choices.question_id INNER JOIN acceptable_responses ON acceptable_responses.answer_choice_id = answer_choices.id").select("questions.id AS question_id, acceptable_responses.answer_choice_id AS answer_id, acceptable_responses.importance AS importance").where("acceptable_responses.user_id = ?", user_id)
-
-end -->
-
 
 
 <br>
-
-
-<!-- questions.id AS question_id,
-    questions.text AS question_text,
-    other_user_answer_choices.text AS other_user_answer_text,
-    other_user_answer_choices.id AS other_user_answer_id,
-    current_user_answer_choices.text AS current_user_answer_text,
-    current_user_answer_choices.id AS current_user_answer_id -->
 

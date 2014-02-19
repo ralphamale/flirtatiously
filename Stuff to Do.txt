@@ -37,15 +37,21 @@ clean up github
 -Finish preliminary CSS.
   -style forms.
   -views for all.
--Search criteria.
 -install on Homebrew.
 -Status messages /  news feed
-pg-search
+
+
+Today
+-Worked on applying to jbos
+
+-Implemented Search
+
+
 
 TO DO
--Store multiple photos (with flag on main one)
+-Implement view
+-Then can start implementing individual profiles.
 
-Zip Code -- leading zeroes problem/
 
 -Go through CSS guide and then use that to help with form.
 -Have bar at the bottom
@@ -80,6 +86,10 @@ NOT IMPORTANT SHIT TO DO:
 
 
 
+#yell if beg age less than end age.
+#how to clear filter.distance?
+add rest of search terms?
+How about for ethnicity, with checkbox?
 
 Thursday
 -Refactor some shit.
@@ -94,8 +104,10 @@ omniauth
 
 ~~~~~~~~~~~~~
 
-
+-Store multiple photos (with flag on main one)
 WEEKEND
+Prepare for CSS.
+Zip Code -- leading zeroes problem/
 
 Important: Each time you migrate your database or change it, you must also update the test database by calling rake db:test:prepare.
 
