@@ -35,6 +35,11 @@ class ProfilesController < ApplicationController
 
   def index
     @profiles = Profile.where("id != ?", current_user.profile.id)
+    #### ADD SEARCH CRITERIA HERE ######
+
+
+
+    @user_filter = current_user.user_filter
   end
 
   def show

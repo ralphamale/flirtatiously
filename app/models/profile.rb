@@ -29,12 +29,16 @@
 #
 
 class Profile < ActiveRecord::Base
-  attr_accessible :description, :drugs, :sex, :sexual_orientation, :user_id, :height, :body_type, :diet, :smokes, :drinks, :religion, :sign, :education, :job, :offspring, :pets, :likes, :zip_code, :latitude, :longitude, :city
+  attr_accessible :description, :drugs, :sex, :sexual_orientation, :user_id, :height, :body_type, :diet, :smokes, :drinks, :religion, :sign, :education, :job, :offspring, :pets, :likes, :zip_code, :latitude, :longitude, :city, :birthday, :big_photo
 
   validates :zip_code, presence: true
-
+  validates :zip_code, numericality: true
+  validates :zip_code, length: { is: 5 }
   belongs_to :user, inverse_of: :profile,
   foreign_key: :user_id
+
+  has_attached_file :big_photo
+  validates_attachment_content_type :big_photo, :content_type => /\Aimage\/.*\Z/
 
   geocoded_by :zip_code
   reverse_geocoded_by :latitude, :longitude do |obj, results|

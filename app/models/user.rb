@@ -56,6 +56,9 @@ class User < ActiveRecord::Base
    class_name: "User",
    foreign_key: :liker_id
 
+   has_one :user_filter, inverse_of: :user, dependent: :destroy,
+   foreign_key: :user_id
+
    belongs_to :likee,
    class_name: "User",
    foreign_key: :likee_id

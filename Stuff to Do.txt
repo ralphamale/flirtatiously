@@ -15,7 +15,23 @@ WHAT DO I DO IF I DONT REALLY HAVE ANYTHING TO TEST IN MODELS?
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+TONIGHT
+-Finish preliminary CSS.
+  -style forms.
+  -views for all.
+-Search criteria.
+-install on Homebrew.
+
+-Status messages /  news feed
+
+pg-search
+
+
+
 TO DO
+-Store multiple photos (with flag on main one)
+
+Zip Code -- leading zeroes problem/
 
 -Go through CSS guide and then use that to help with form.
 -Have bar at the bottom
@@ -24,6 +40,7 @@ When tired  - add more CSS.
   -Have main bar at top of page, but smaller one after its there.
 -start incorporating about.me
 
+Make logo clickable.
 
 
 
@@ -61,6 +78,9 @@ Thursday
 omniauth
 
 
+~~~~~~~~~~~~~
+
+
 WEEKEND
 
 Important: Each time you migrate your database or change it, you must also update the test database by calling rake db:test:prepare.
@@ -92,6 +112,7 @@ before_Filter on talking to self, goign to their own online profile.
 -Fixed bug where every message in inbox was sent. Fonud out that someitmes is converrted to "T" string. OY!
 pretty print
 -GEocoding AWESOME.
+Show Age.
 
 SHIT I LEARNED:
 -if no CSRF token, will start fuckning up

@@ -1,7 +1,8 @@
 
+<%= image_tag(@profile.big_photo.url) if @profile.big_photo.exists? %><br>
 
 Username: <%= @profile.user.username %><br>
-<%= @profile.city %>
+<%= age(@profile.birthday) %> years old | <%= @profile.city %>
 <br>
 
 <% percentages = current_user.calculate_percentages(@profile.user) %>

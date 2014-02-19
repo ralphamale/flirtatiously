@@ -1,9 +1,46 @@
+<h3> Search </h3>
 
+<form action="<%= user_filter_url %>" method="post">
+  <%= auth_token_input %>
+  <input type="hidden" name="_method" value="put">
+
+  <input type="text" name="user_filter[beg_age]" value="<%= @user_filter.beg_age %>">
+
+  to
+
+  <input type="text" name="user_filter[end_age]" value="<%= @user_filter.end_age %>">
+
+  years old |
+
+  <select name="user_filter[sexual_orientation]">
+    <option value="Straight" <%= "selected" if @user_filter.sexual_orientation == "Straight" %>>Straight</option>
+    <option value="Gay" <%= "selected" if @user_filter.sexual_orientation == "Gay" %>>Gay</option>
+    <option value="Bisexual" <%= "selected" if @user_filter.sexual_orientation == "Bisexual" %>>Bisexual</option>
+    <option value="All" <%= "selected" if @user_filter.sexual_orientation == "All" %>>All</option>
+  </select>
+
+
+  <select name="user_filter[sex]" >
+  <option value="Everyone" <%= "selected" if @user_filter.sex == "Everyone" %>>Everyone</option>
+  <option value="Male" <%= "selected" if @user_filter.sex == "Male" %>>Male</option>
+  <option value="Female" <%= "selected" if @user_filter.sex == "Female" %>>Female</option>
+  </select> | <input type="text" name="user_filter[zip_code]" value="<%= @user_filter.distance %>"> miles away
+
+
+  <input type="submit" value="Refresh">
+
+</form>
+
+<h3> Profiles </h3>
 
 <% @profiles.each do |profile| %>
-	<%= link_to profile.user.username, profile_url(profile) %>
+<%= image_tag(profile.big_photo.url) if profile.big_photo.exists? %><br>
+
+	<%= link_to profile.user.username, profile_url(profile) %><br>
+  <%= age(profile.birthday) %><br>
   <% percentages = current_user.calculate_percentages(profile.user) %>
-  <%= print_percentages(percentages) %>
+  <%= print_percentages(percentages) %><br>
+  <%= profile.city %><br>
 
 
   <br>

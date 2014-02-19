@@ -39,6 +39,8 @@ How important is this to you?
 
 <h1> Answered Questions</h1>
 
+<%= "You have not answered any questions." if @answered_questions.length == 0 %>
+
 <% @answered_questions.each do |question| %>
 <p>
 <%= question.question_text %>

@@ -1,3 +1,5 @@
+<%= "You have not received any messages yet" if @messages.length == 0 %>
+
 <% @messages.each do |message| %>
 <p>
 <b>Message with <%= message.recipient_username %>: </b><%= message.body %> <%= "(Sent by me)" if message.is_sent == "t" %>

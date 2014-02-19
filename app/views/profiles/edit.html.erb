@@ -1,6 +1,6 @@
 <h1> Your profile </h1>
 
-<form action="<%= profile_url(@profile.id) %>" method="post">
+<form action="<%= profile_url(@profile.id) %>" enctype="multipart/form-data" method="post">
   <%= auth_token_input %>
   <input type="hidden" name="_method" value="PUT">
 
@@ -11,6 +11,15 @@
     <%= @profile.city %>
 
     <br>
+
+    Big Photo
+    <input type="file" name="profile[big_photo]">
+    <br>
+
+    <label>
+      Birthday
+      <input name="profile[birthday]" type="date" value="<%= @profile.birthday %>"> <%= age(@profile.birthday) %>
+    <label><br>
 
   <label>Height
     <input type="text" name="profile[height]" value="<%= @profile.height %>">

@@ -1,9 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user, :logged_in?, :find_response, :is_unacceptable?
+  helper_method :current_user, :logged_in?, :find_response, :is_unacceptable?, :age
 
   private
+
+  def age(dob)
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
 
   def find_response(question_id, responses)
     responses.find { |response| response.question_id == question_id }

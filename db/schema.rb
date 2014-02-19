@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140218203046) do
+ActiveRecord::Schema.define(:version => 20140219005715) do
 
   create_table "acceptable_responses", :force => true do |t|
     t.integer  "user_id"
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(:version => 20140218203046) do
     t.string   "sexual_orientation"
     t.string   "drugs"
     t.text     "description"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.string   "height"
     t.string   "body_type"
     t.string   "diet"
@@ -101,6 +101,11 @@ ActiveRecord::Schema.define(:version => 20140218203046) do
     t.float    "longitude"
     t.integer  "zip_code"
     t.string   "city"
+    t.date     "birthday",               :null => false
+    t.string   "big_photo_file_name"
+    t.string   "big_photo_content_type"
+    t.integer  "big_photo_file_size"
+    t.datetime "big_photo_updated_at"
   end
 
   add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id"
@@ -136,12 +141,13 @@ ActiveRecord::Schema.define(:version => 20140218203046) do
 
   create_table "user_filters", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "beg_age"
-    t.integer  "end_age"
-    t.string   "sex"
-    t.string   "sexual_orientation"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.integer  "beg_age",            :default => 18
+    t.integer  "end_age",            :default => 99
+    t.string   "sex",                :default => "Everyone"
+    t.string   "sexual_orientation", :default => "All"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.integer  "distance",           :default => 6969
   end
 
   add_index "user_filters", ["user_id"], :name => "index_user_filters_on_user_id"

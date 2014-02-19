@@ -11,11 +11,12 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     begin
       @user.transaction do
-        @user.save!
-        @user.build_profile.save!
+        @user.build_user_filter
+        @user.build_profile(params[:profile])
+        @user.save
       end
       log_in(@user)
-      redirect_to profiles_url
+      redirect_to edit_profile_url(@user.profile)
     rescue ActiveRecord::RecordInvalid => invalid
       flash.now[:errors] = @user.errors.full_messages
       render :new

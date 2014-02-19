@@ -14,4 +14,7 @@
 
 class UserFilter < ActiveRecord::Base
   attr_accessible :beg_age, :end_age, :sex, :sexual_orientation, :user_id
+
+  belongs_to :user, inverse_of: :user_filter,
+  foreign_key: :user_id
 end

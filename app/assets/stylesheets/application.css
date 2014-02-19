@@ -53,6 +53,13 @@ a {
   float: left;
 }
 
+.main-top img {
+  margin: auto 0;
+  padding-top: 5px;
+  display: block;
+  float: left;
+}
+
 
 body {
   background-color: #F7F8FA;
