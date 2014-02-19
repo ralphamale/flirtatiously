@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140219005715) do
+ActiveRecord::Schema.define(:version => 20140219191527) do
 
   create_table "acceptable_responses", :force => true do |t|
     t.integer  "user_id"
@@ -141,13 +141,13 @@ ActiveRecord::Schema.define(:version => 20140219005715) do
 
   create_table "user_filters", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "beg_age",            :default => 18
-    t.integer  "end_age",            :default => 99
-    t.string   "sex",                :default => "Everyone"
-    t.string   "sexual_orientation", :default => "All"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-    t.integer  "distance",           :default => 6969
+    t.integer  "beg_age"
+    t.integer  "end_age"
+    t.string   "sex"
+    t.string   "sexual_orientation"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "distance"
   end
 
   add_index "user_filters", ["user_id"], :name => "index_user_filters_on_user_id"

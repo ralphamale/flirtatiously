@@ -15,18 +15,32 @@ WHAT DO I DO IF I DONT REALLY HAVE ANYTHING TO TEST IN MODELS?
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TONIGHT
+Yesterday
+Simone and Jared
+
+
+
+
+Plan of Attack
+
+4 PM:
+-Print out working code.
+PRint resume.
+Clean up Github.
+Write Personal statement for LinekdIn and STackOverflow and resume.
+-Ask Jonathan for advice later on job fair.
+
+Today
+Do CSS stylings.
+clean up github
+
 -Finish preliminary CSS.
   -style forms.
   -views for all.
 -Search criteria.
 -install on Homebrew.
--Prepare resume for tomorrow. // Dress up for tomorrow.
 -Status messages /  news feed
-
 pg-search
-
-
 
 TO DO
 -Store multiple photos (with flag on main one)
@@ -113,6 +127,8 @@ before_Filter on talking to self, goign to their own online profile.
 pretty print
 -GEocoding AWESOME.
 Show Age.
+-Ask about l8
+
 
 SHIT I LEARNED:
 -if no CSRF token, will start fuckning up
@@ -122,6 +138,7 @@ SHIT I LEARNED:
 
 SUPERFLUOUS:
 inverse_of?
+LULU SECOND PROJECT
 Reverse geocode
 Uniqueness validators: can't like the same person twice.
 
