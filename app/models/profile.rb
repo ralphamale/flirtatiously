@@ -53,7 +53,7 @@ class Profile < ActiveRecord::Base
     current_user = User.find(12)
     filter = current_user.user_filter
 
-    results = Profile
+    results = Profile.where("id != ?", current_user.profile.id)
 
     unless filter.sex.nil?
       results = results.where(:sex => filter.sex)
@@ -72,6 +72,15 @@ class Profile < ActiveRecord::Base
     unless filter.sexual_orientation.nil?
       results = results.where(:sexual_orientation => filter.sexual_orientation)
     end
+
+    #if filter.distance
+    unless filter.distance.nil?
+      results.reject! do |result|
+        current_user.profile.distance_to(result) > filter.distance
+      end
+
+    end
+
 
     return results
   end
