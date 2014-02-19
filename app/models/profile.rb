@@ -49,28 +49,31 @@ class Profile < ActiveRecord::Base
   end
   after_validation :geocode, :reverse_geocode
 
-  # Custom Handling of Detailed Reverse Geocoding Results
-  #
-  # Given a Place model with known latitude/longitude coordinates, automatically fetch address components and store in separate attributes:
+  def self.apply_filters
+    current_user = User.find(12)
+    filter = current_user.user_filter
 
-  # # app/models/place.rb
-  # reverse_geocoded_by :lat, :lon do |obj,results|
-  #   if geo = results.first
-  #     obj.city    = geo.city
-  #     obj.zipcode = geo.postal_code
-  #     obj.country = geo.country_code
-  #   end
-  # end
-  # after_validation :reverse_geocode
-  # Forward and Reverse Geocoding on Same Model
-  #
-  # Given a Place model, objects of which sometimes have a street address and sometimes have coordinates, automatically fetch and fill in whatever's missing, based on what's provided:
-  #
-  # # app/models/place.rb
-  # geocoded_by :address
-  # reverse_geocoded_by :latitude, :longitude
-  # after_validation :geocode, :reverse_geocode
+    results = Profile
 
+    unless filter.sex.nil?
+      results = results.where(:sex => filter.sex)
+    end
 
+    unless filter.beg_age.nil? && filter.end_age.nil?
+      start_date =
+      ((filter.beg_age.nil?) ? 18 : filter.beg_age).years.ago
+
+      end_date =
+      ((filter.end_age.nil?) ? 99 : filter.end_age).years.ago
+
+      results = results.where(:birthday => end_date..start_date)
+    end
+
+    unless filter.sexual_orientation.nil?
+      results = results.where(:sexual_orientation => filter.sexual_orientation)
+    end
+
+    return results
+  end
 
 end
