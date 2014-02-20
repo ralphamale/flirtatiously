@@ -2,7 +2,7 @@
 
 <% @messages.each do |message| %>
 <p>
-<b>Message with <%= message.recipient_username %>: </b><%= message.body %> <%= "(Sent by me)" if message.is_sent == "t" %>
+<b><a href="<%= conversation_user_messages_url(message.recipient_id) %>">Message with <%= message.recipient_username %></a>: </b><%= message.body %> <%= "(Sent by me)" if message.is_sent == "t" %>
 <br>
 <%= message.sent_date %><br>
 

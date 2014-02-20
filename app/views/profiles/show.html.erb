@@ -2,7 +2,15 @@
 
 <%= image_tag(@profile.big_photo.url) if @profile.big_photo.exists? %>
 <% end %>
-Username: <%= @profile.user.username %><br>
+
+
+
+
+
+
+
+
+<h1 class="username"><%= @profile.user.username %></h1>
 <%= age(@profile.birthday) %> years old | <%= @profile.city %>
 <br>
 

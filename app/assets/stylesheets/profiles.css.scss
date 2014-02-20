@@ -1,3 +1,25 @@
 // Place all the styles related to the Profiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.main-profile-container {
+  width: 655px;
+  margin-top: 20px;
+  padding: 30px 20px 20px 20px;
+  float: left;
+  background-color: white;
+}
+
+h1.username {
+  font-size: 80px;
+  font-weight: bold;
+  color: #F18A73;
+}
+
+.match-percentage {
+
+}
+
+img.icons {
+
+}

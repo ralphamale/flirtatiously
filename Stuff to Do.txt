@@ -28,14 +28,22 @@ THURSDAY THINGS TO DO:
 -Draggable/Editable Toolbox for profile thats minimizable. Can change to make profile static as seen.
 -Tinder flip is better than Status Message.
 -2 second feedback after clicking.
--Edit the question right on the page.
 -Pagify
+-mock tumblr's scheme for use.
+-buttons from about me.
+
 (Seed data, Model tests)
 
   -If no X or Y of box, put it in middle.
   If there is, set offset thru interpolation.
 
   If current user, then have this javascript
+
+
+
+DONE:
+Edit question right on page.
+-Message on page.
 
 
 
@@ -130,6 +138,8 @@ omniauth
 
 -Store multiple photos (with flag on main one)
 WEEKEND
+-Make avatar clickable in profile.
+-Gradients for match percentages.
 Prepare for CSS.
 Zip Code -- leading zeroes problem/
 
