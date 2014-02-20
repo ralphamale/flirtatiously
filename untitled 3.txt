@@ -1,0 +1,27 @@
+<script>
+$(document).ready(function() {
+
+  $('button.submit-message').click(function(event) {
+    $('.send-message').toggleClass("unhide");
+  });
+
+
+  $( ".message" ).click(function(event) {
+    event.preventDefault();
+    alert("Hi");
+    $('.send-message').toggleClass("unhide");
+  });
+
+
+});
+</script>
+
+    <script>
+    $( "#draggable" ).draggable({
+      containment: $('content'),
+      stop: function(event, ui) {
+        console.log(event);
+        console.log(ui);
+      }
+    });
+    </script>

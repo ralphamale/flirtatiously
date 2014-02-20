@@ -5,6 +5,9 @@ gem 'annotate'
 gem 'figaro'
 gem "paperclip"
 gem "aws-sdk"
+gem 'jquery-ui-rails'
+gem 'backbone-on-rails'
+
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

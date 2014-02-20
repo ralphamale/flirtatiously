@@ -15,8 +15,6 @@ class Response < ActiveRecord::Base
   validates :question_id, uniqueness: { scope: :user_id,
     message: "can only answer question once" }
 
-
-
   belongs_to :question,
   foreign_key: :question_id
 
@@ -25,7 +23,5 @@ class Response < ActiveRecord::Base
 
   belongs_to :user, inverse_of: :responses,
   foreign_key: :user_id
-
-
 
 end

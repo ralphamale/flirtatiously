@@ -143,3 +143,46 @@ content {
 footer {
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.unhide > .send-message {
+  display: block;
+  background-color: lightpink;
+
+}
+
+.send-message {
+  display: none;
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 520px;
+  height: 240px;
+  padding: 10px;
+  z-index: 20;
+}
+
+#screen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #000;
+}
+
+.send-message > textarea {
+  display: block;
+  width: 520px;
+  height: 200px;
+}

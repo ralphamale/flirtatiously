@@ -75,7 +75,7 @@ class Profile < ActiveRecord::Base
       results = results.where(:sexual_orientation => filter.sexual_orientation)
     end
 
-    #if filter.distance
+
     unless filter.distance.nil?
       results.reject! do |result|
         current_user.profile.distance_to(result) > filter.distance

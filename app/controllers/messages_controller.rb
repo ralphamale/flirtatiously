@@ -24,18 +24,36 @@ class MessagesController < ApplicationController
   end
 
   def create
+    #current_user.messages.new()
+
     @message = Message.new(params[:message])
-    other_id = params[:user_id]
+    other_id = params[:user_id].to_i
     user_id = current_user.id
 
-    @message.message_headers
-      .new(header_params(user_id, other_id))
+    puts user_id
+    puts other_id
+    puts @message.valid?
+    debugger
 
+    puts "before message header declaration"
+    puts header_params(user_id, other_id)
+    @mh = @message.message_headers.new(header_params(user_id, other_id))
+    puts @mh[0]
+      puts @mh[0].valid?
+      puts @mh[1]
+      puts @mh[1].valid?
+
+      puts "after valid before save"
     if @message.save
-      redirect_to conversation_user_messages_url(params[:user_id])
+
+      respond_to do |format|
+        format.html { redirect_to conversation_user_messages_url(params[:user_id]) }
+        format.json { render :json => @message }
+      end
+
+
     else
-      flash.now[:errors] = @message.errors.full_messages
-      render :new
+      render :json => @message.errors.full_messages
     end
   end
 

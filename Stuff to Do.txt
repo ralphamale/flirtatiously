@@ -15,24 +15,12 @@ WHAT DO I DO IF I DONT REALLY HAVE ANYTHING TO TEST IN MODELS?
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Yesterday
-Simone and Jared
-
-
-
-
-Plan of Attack
 
 4 PM:
--Print out working code.
-PRint resume.
-Clean up Github.
-Write Personal statement for LinekdIn and STackOverflow and resume.
--Ask Jonathan for advice later on job fair.
+
 
 Today
 Do CSS stylings.
-clean up github
 
 -Finish preliminary CSS.
   -style forms.
@@ -46,7 +34,29 @@ Today
 
 -Implemented Search
 
+Backbone:
+  -Your edit page, which is like the show page, except with a draggable. Maybe case it in, so that when its your current user page, its
 
+  -Click on your actual element in order to edit it. Then save persists.
+
+  Swipe left/swipe right with carousel
+  -Message right on page, jsut pops up.
+  -Ask question right on page.
+  -Search doesnt re-render page.
+  -Edit question just by clciking on it.
+  -Toolbar window.
+
+
+CSS
+-Styling
+  -Opacity on bar? DEpends on how to implement background
+
+  -Forms
+Rails Left
+-Pagify
+-Omniauth
+-Status messages
+-Couple of more search options.
 
 TO DO
 -Implement view
@@ -94,7 +104,7 @@ How about for ethnicity, with checkbox?
 Thursday
 -Refactor some shit.
 -Add Picture uplaoding after they teach how to.
--Pagify
+
 -PLAN WYSWIG EDITOR
 
 -Check the old JS/Rails stuff in order to see if there's anything more to be done.
@@ -203,6 +213,11 @@ jquery UI: draggable/sortable
 -Write RSpec tests for all models
 -Live chat
 
+
+AFTER THIS WEEK:
+
+\Write Personal statement for LinekdIn and STackOverflow and resume.
+-Ask Jonathan for advice later on job fair.
 
 
 QUEASTIONS

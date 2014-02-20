@@ -36,6 +36,11 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
+    backbone-on-rails (1.1.0.0)
+      eco
+      ejs
+      jquery-rails
+      rails (>= 3.1)
     bcrypt-ruby (3.0.1)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -72,6 +77,12 @@ GEM
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.3)
     diff-lcs (1.2.5)
+    eco (1.0.0)
+      coffee-script
+      eco-source
+      execjs
+    eco-source (1.1.0.rc.1)
+    ejs (1.1.1)
     erubis (2.7.0)
     execjs (2.0.2)
     ffi (1.9.3)
@@ -95,6 +106,8 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.1.2)
+      railties (>= 3.1.0)
     json (1.8.1)
     listen (2.4.0)
       celluloid (>= 0.15.2)
@@ -196,6 +209,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   aws-sdk
+  backbone-on-rails
   bcrypt-ruby
   better_errors
   binding_of_caller
@@ -206,6 +220,7 @@ DEPENDENCIES
   geocoder
   guard-rspec
   jquery-rails
+  jquery-ui-rails
   paperclip
   pg
   rails (= 3.2.15)

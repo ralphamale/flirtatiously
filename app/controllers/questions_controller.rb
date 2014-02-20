@@ -32,18 +32,13 @@ class QuestionsController < ApplicationController
   end
 
   def update_answer
-    #put in transaction.
     question_id = params[:question_id]
     responses = current_user.responses.where(question_id: question_id)
     @response = responses.first
 
     begin
       @response.transaction do
-
-
         # if responses.length is 0, raise error. otherwise, take first.
-
-
         @response.update_attributes(params[:response])
 
         prev_acceptables = current_user.acceptable_responses.where(question_id: question_id)
@@ -58,7 +53,6 @@ class QuestionsController < ApplicationController
         new_answer_choice_ids_to_add.each do |answer_choice_id|
           AcceptableResponse.create({user_id: current_user.id, answer_choice_id: answer_choice_id, importance: new_importance, question_id: question_id})
         end
-
 
         AcceptableResponse.destroy_all(:id => ar_ids_to_delete)
         prev_acceptables.delete_if { |ar| ar_ids_to_delete.include?(ar.id)}
@@ -83,9 +77,7 @@ class QuestionsController < ApplicationController
   def answer
       begin
         ActiveRecord::Base.transaction do
-
           @response = current_user.responses.new(params[:response]);
-
 
           acceptable_response_attrs = params[:acceptable_response].values.each do |attrs|
             attrs[:importance] = params[:all_acceptable_response][:importance]
@@ -93,13 +85,10 @@ class QuestionsController < ApplicationController
           end
 
           @acceptable_responses = current_user.acceptable_responses.new(params[:acceptable_response].values)
-
           @response.save
           @acceptable_responses.each do |acceptable_response|
             acceptable_response.save
           end
-
-
           raise "invalid" unless @response.valid? && @acceptable_responses.all? { |obj| obj.valid? }
         end
       rescue

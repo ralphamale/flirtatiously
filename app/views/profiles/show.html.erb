@@ -60,11 +60,393 @@ Your response: <%= current_user_response.answer_text %><b> <%= "UNACCEPTABLE" if
 <% end %>
 
 <p>
-
 <% end %>
 
 
 
 
+<div class="hide-container">
+
+<form class="send-message">
+  <%= auth_token_input %>
+  <textarea name="message[body]">Type some stuff here</textarea>
+  <input type="submit" class="submit-message" value="Submit or close">
+
+</form>
+
+</div>
+
+<div class="message"><input type="submit" value="open"></div>
+$$$$$
 <br>
 
+
+<script>
+$(document).ready(function() {
+
+  $('.send-message').on('submit',function(event) {
+    event.preventDefault();
+
+    var formData = $(this).serializeJSON();
+    console.log("<%= user_messages_url(@profile.user.id) %>");
+    console.log("Right before ajax call");
+    console.log(formData);
+    console.log(this);
+    $.ajax({
+            url: "<%= user_messages_url(@profile.user.id) %>", //will cause trouble?
+            type: "POST",
+            data: formData,
+            dataType: "json",
+            success: function (response) {
+              console.log(response);
+              console.log("Your callback here!");
+              $('.hide-container').toggleClass("unhide");
+            },
+            error: function(response) {
+              console.log("error");
+              console.log(response);
+            }
+          });
+
+
+
+  });
+
+
+  $( ".message" ).click(function(event) {
+    event.preventDefault();
+    $('.hide-container').toggleClass("unhide");
+  });
+
+
+});
+</script>
+
+
+
+<script>
+$( ".send-message" ).draggable({
+  containment: $('content'),
+  stop: function(event, ui) {
+    console.log(event);
+    console.log(ui);
+  }
+});
+</script>
+
+dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>dfsf
+<br>
+<br>
+<br>
