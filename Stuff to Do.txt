@@ -19,6 +19,30 @@ WHAT DO I DO IF I DONT REALLY HAVE ANYTHING TO TEST IN MODELS?
 4 PM:
 
 
+-Ask Jonathan how to make game
+-display 3 random
+-pick guys / girls or both
+3
+blinky with keys.
+can drag and drop via jquery ui
+or
+
+
+Find out what your ranking is.
+"Unlock if you can do it."
+
+to find out where your firends are, u have to display where u are.
+FABLE, MABLE, KABLE
+can take down only after 7 days.
+
+share with friends.
+
+"I'm XXX% F'ABLE. WHAT ARE U?"
+http://manuel.kiessling.net/2012/04/02/tutorial-developing-html5-canvas-games-for-facebook-with-javascript-part-1/
+
+---
+
+
 Today
 Do CSS stylings.
 
@@ -40,11 +64,15 @@ Backbone:
   -Click on your actual element in order to edit it. Then save persists.
 
   Swipe left/swipe right with carousel
-  -Message right on page, jsut pops up.
+    -change to save.
   -Ask question right on page.
   -Search doesnt re-render page.
   -Edit question just by clciking on it.
   -Toolbar window.
+
+  -Make it so there is 2 second feedback after clicking.
+
+-Add signifier that it has been sent by rendering different view.
 
 
 CSS
@@ -95,7 +123,7 @@ NOT IMPORTANT SHIT TO DO:
 -wheres my amazon?
 
 
-
+http://devandpencil.herokuapp.com/blog/2013/08/11/rails-validates-presence-of-boolean-not-what-you-think/
 #yell if beg age less than end age.
 #how to clear filter.distance?
 add rest of search terms?

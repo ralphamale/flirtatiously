@@ -7,7 +7,8 @@ gem "paperclip"
 gem "aws-sdk"
 gem 'jquery-ui-rails'
 gem 'backbone-on-rails'
-
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
