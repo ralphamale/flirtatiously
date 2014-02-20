@@ -33,7 +33,6 @@ class MessagesController < ApplicationController
     puts user_id
     puts other_id
     puts @message.valid?
-    debugger
 
     puts "before message header declaration"
     puts header_params(user_id, other_id)

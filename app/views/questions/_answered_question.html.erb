@@ -1,0 +1,24 @@
+
+<% @answered_questions.each do |question| %>
+  <div class="question-container">
+    <%= question.question_text %>
+    <br>
+    <div class="response-show">
+      <%= question.answer_text %> | <a href="#" class="show-edit">Edit</a>
+    </div>
+
+    <div class="response-edit">
+      <form class="response-edit-form">
+        <!-- question_id = @answer_choices.first.question_id -->
+        <!--  what the URL will be: question_update_answer_url(question_id) -->
+        <%= auth_token_input %>
+        <input type="hidden" name="_method" value="PUT">
+
+
+      </form>
+
+    </div>
+
+
+</div>
+<% end %>

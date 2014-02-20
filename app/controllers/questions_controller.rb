@@ -23,7 +23,24 @@ class QuestionsController < ApplicationController
 
   def edit_answer
     question_id = params[:question_id]
+    #includes is eagerly fetching.
+    #joins(:answer_choices).includes(:answer_choices) questions.text, answer_choices.id, answer_choices.text  //
+
+    @question = Question.joins(:answer_choices)
+                        .includes(answer_choices: [:responses])
+                        .where(:id => question_id)
+                        .where("responses.user_id = ?", current_user.id)
+                        .first
+
+    @question.answer_choices.each do |answer_choice|
+      answer_choice.responses.first #check to see if exist.
+
+    end
+
     @answer_choices = Question.joins(:answer_choices).select("questions.id AS question_id, questions.text AS question_text, answer_choices.id AS answer_choice_id, answer_choices.text AS answer_choice_text").where("questions.id = ?", question_id)
+    #each answer choice has many responses.
+    #includes responses with answer choices
+    #responses.where(:user_id => current_user.id)
 
     @response = current_user.responses.where(:question_id => question_id).first
     @acceptable_responses = current_user.acceptable_responses.where(:question_id => question_id)
@@ -35,6 +52,7 @@ class QuestionsController < ApplicationController
     question_id = params[:question_id]
     responses = current_user.responses.where(question_id: question_id)
     @response = responses.first
+
 
     begin
       @response.transaction do
@@ -61,7 +79,10 @@ class QuestionsController < ApplicationController
           ar.update_attributes(importance: new_importance)
         end
       end
-      redirect_to profiles_url
+      respond_to do |format|
+        format.html { redirect_to profiles_url }
+        format.json { render :json => AnswerChoice.find(params[:response][:answer_choice_id]) }
+      end
     rescue ActiveRecord::RecordInvalid => invalid
       flash[:errors] = "Could not update response."
       redirect_to profiles_url

@@ -17,31 +17,29 @@ WHAT DO I DO IF I DONT REALLY HAVE ANYTHING TO TEST IN MODELS?
 
 
 4 PM:
-
-
--Ask Jonathan how to make game
--display 3 random
--pick guys / girls or both
-3
-blinky with keys.
-can drag and drop via jquery ui
-or
-
-
-Find out what your ranking is.
-"Unlock if you can do it."
-
-to find out where your firends are, u have to display where u are.
-FABLE, MABLE, KABLE
-can take down only after 7 days.
-
-share with friends.
-
-"I'm XXX% F'ABLE. WHAT ARE U?"
-http://manuel.kiessling.net/2012/04/02/tutorial-developing-html5-canvas-games-for-facebook-with-javascript-part-1/
-
+-Ask Jonathan how to make game, how to integrate photos into here.
+-Where to put Backbone?
+-Where to add tests if not really models?
+-How can I download photos?
 ---
+THURSDAY THINGS TO DO:
+-Finish Omniauth
+-Make edit profile page clickable to edit.
+-Draggable/Editable Toolbox for profile thats minimizable. Can change to make profile static as seen.
+-Tinder flip is better than Status Message.
+-2 second feedback after clicking.
+-Edit the question right on the page.
+-Pagify
+(Seed data, Model tests)
 
+  -If no X or Y of box, put it in middle.
+  If there is, set offset thru interpolation.
+
+  If current user, then have this javascript
+
+
+
+-Pusher could be to get new status messages
 
 Today
 Do CSS stylings.
@@ -51,7 +49,6 @@ Do CSS stylings.
   -views for all.
 -install on Homebrew.
 -Status messages /  news feed
-
 
 Today
 -Worked on applying to jbos
@@ -78,9 +75,11 @@ Backbone:
 CSS
 -Styling
   -Opacity on bar? DEpends on how to implement background
-
   -Forms
-Rails Left
+
+
+
+WHAT'S LEFT ON RAILS:
 -Pagify
 -Omniauth
 -Status messages
@@ -99,19 +98,6 @@ When tired  - add more CSS.
 -start incorporating about.me
 
 Make logo clickable.
-
-
-
-BY MID DAY: START CSS
--Layout and positioning
-http://guides.rubyonrails.org/layouts_and_rendering.html
-The rails guide on layouts is a good place to start. Look at Section 3 - Structuring Layouts
-
-There are several ways to use a different layout but one of the easiest is to simply add a file with the same name as your controller in the layouts/ folder. So if your controller is PostsController then adding a layouts/post.html.haml would cause rails to use that layout. If no such layout is found, and no other layouts are specified, rails will use the default of layouts/application.html.haml
-
-
-
--multiple CSS files. rough or no?
 
 -how to make things like italiczed and red? would i just have to wrap it in a DIV tag with a class name and then addclass?
 
@@ -165,26 +151,8 @@ calculate percentages
 find by credentials
 
 
-
-
-~_~_~__~_ TUESDAY ALREADY DONE~_~_~__~
--Installed on Heroku
--Does clicking on message do anything? Should take to conversation page/ not just  "New"
--Inbox/Sent now done.
-before_Filter on talking to self, goign to their own online profile.
--Edit Response now works. Pain in the ass complex nested form!
--Fixed bug where every message in inbox was sent. Fonud out that someitmes is converrted to "T" string. OY!
-pretty print
--GEocoding AWESOME.
-Show Age.
--Ask about l8
-
-
 SHIT I LEARNED:
 -if no CSRF token, will start fuckning up
-
-
-
 
 SUPERFLUOUS:
 inverse_of?
