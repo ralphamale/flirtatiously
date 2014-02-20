@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140219191527) do
+ActiveRecord::Schema.define(:version => 20140220194759) do
 
   create_table "acceptable_responses", :force => true do |t|
     t.integer  "user_id"
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20140219191527) do
     t.string   "session_token"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "uid"
   end
 
   add_index "users", ["username"], :name => "index_users_on_username"

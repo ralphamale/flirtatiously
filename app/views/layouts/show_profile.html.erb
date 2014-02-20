@@ -47,17 +47,20 @@
   </header>
   <content class="group">
     <%= flash[:errors] if flash[:errors] %> <%= flash[:success] if flash[:success] %>
+    <div class="">
+      <%= image_tag(@profile.big_photo.url, :class => "big-ass-photo") if @profile.big_photo.exists? %>
 
+    </div>
     <div class="main-profile-container">
       <%= yield %>
     </div>
 
-
+<!--
     <div class="right-col"><div class="right-col-block">
 
       <%= yield :right_col %>
 
-    </div></div>
+    </div></div> -->
 
 </content>
 

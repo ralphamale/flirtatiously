@@ -69,7 +69,7 @@ header {
   background-color: white;
   button-color: #E1F9EB;
   border-bottom: 5px solid #DEDFE1;
-  margin-bottom: 25px;
+
 }
 
 header > .main-top {
@@ -114,20 +114,21 @@ body {
 content {
   margin: 0 auto;
   display: block;
+  position: relative;
   width: 1000px;
 
 }
 
 .left-col-content {
   width: 655px;
-  margin-top: 20px;
+  margin-top: 50px;
   float: left;
   background-color: white;
 }
 
 .right-col {
   width: 310px;
-  margin-top: 20px;
+  margin-top: 50px;
   float: right;
 
 }

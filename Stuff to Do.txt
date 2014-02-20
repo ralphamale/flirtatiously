@@ -15,15 +15,33 @@ WHAT DO I DO IF I DONT REALLY HAVE ANYTHING TO TEST IN MODELS?
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+id
+name
+first_name
+last_name
+link
+username
+gender
+locale
+age_range
+user_birthday
+email
+user_Photos
+image_siez to get image URL in auth hash <--- can just do later
+
+info_fields
+
+
 
 4 PM:
 -Ask Jonathan how to make game, how to integrate photos into here.
 -Where to put Backbone?
 -Where to add tests if not really models?
 -How can I download photos?
+-Want to use same profile page for both.
+
 ---
 THURSDAY THINGS TO DO:
--Finish Omniauth
 -Make edit profile page clickable to edit.
 -Draggable/Editable Toolbox for profile thats minimizable. Can change to make profile static as seen.
 -Tinder flip is better than Status Message.
@@ -39,12 +57,13 @@ THURSDAY THINGS TO DO:
 
   If current user, then have this javascript
 
+Nav bar to its own partial
 
 
 DONE:
 Edit question right on page.
 -Message on page.
-
+Omnniauth
 
 
 -Pusher could be to get new status messages
@@ -97,6 +116,7 @@ TO DO
 -Implement view
 -Then can start implementing individual profiles.
 
+-When logging in by Facebook, autofills forms for you. Also make a "Complete registration" form for after.
 
 -Go through CSS guide and then use that to help with form.
 -Have bar at the bottom

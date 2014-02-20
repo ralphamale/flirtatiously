@@ -1,29 +1,28 @@
 <% content_for :right_col do %>
+<!-- replacement for draggggable bar -->
 
-<%= image_tag(@profile.big_photo.url) if @profile.big_photo.exists? %>
 <% end %>
 
+<h1 class="username">
+  <%= @profile.user.username %>
+</h1>
 
-
-
-
-
-
-
-<h1 class="username"><%= @profile.user.username %></h1>
-<%= age(@profile.birthday) %> years old | <%= @profile.city %>
+<%= age(@profile.birthday) %> years old | <%= @profile["sex"] %> | <%= @profile.city %>
 <br>
 
 <% percentages = current_user.calculate_percentages(@profile.user) %>
 
+<!-- hide if current user -->
 <%= print_percentages(percentages) %>
 
 <br>
 
-<% ["sex", "sexual_orientation", "body_type", "smokes", "drinks", "drugs", "religion", "sign", "education", "job", "offspring", "pets", "description", "likes"].each do |descriptor| %>
+<%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if @profile.big_photo.exists? %> <%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if @profile.big_photo.exists? %>
+<br>
+
+<% ["sexual_orientation", "body_type", "smokes", "drinks", "drugs", "religion", "sign", "education", "job", "offspring", "pets", "likes"].each do |descriptor| %>
 
 <%= descriptor.capitalize %>: <%= (@profile[descriptor].nil?) ? "--" : @profile[descriptor] %><br>
-
 
 <% end %>
 
@@ -44,6 +43,8 @@
 <div class="message"><input type="submit" value="MESSAGE A BROTHA"></div>
 
 <br>
+
+<%= @profile.description %>
 
 <h3>Questions:</h3>
 

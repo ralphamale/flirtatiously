@@ -31,9 +31,9 @@
 class Profile < ActiveRecord::Base
   attr_accessible :description, :drugs, :sex, :sexual_orientation, :user_id, :height, :body_type, :diet, :smokes, :drinks, :religion, :sign, :education, :job, :offspring, :pets, :likes, :zip_code, :latitude, :longitude, :city, :birthday, :big_photo
 
-  validates :zip_code, presence: true
-  validates :zip_code, numericality: true
-  validates :zip_code, length: { is: 5 }
+  #validates :zip_code, presence: true
+  #validates :zip_code, numericality: true
+  #validates :zip_code, length: { is: 5 }
   belongs_to :user, inverse_of: :profile,
   foreign_key: :user_id
 

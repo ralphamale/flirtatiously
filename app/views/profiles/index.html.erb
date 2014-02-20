@@ -35,7 +35,7 @@
 
 <ul class="profiles-list group">
   <% @profiles.each do |profile| %>
-  <li><%= image_tag(profile.big_photo.url) if profile.big_photo.exists? %>
+  <li><%= image_tag(profile.big_photo.url, height: '100%', width: '100%') if profile.big_photo.exists? %>
 
 
     <div class="profile-content">
