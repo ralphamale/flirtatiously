@@ -52,7 +52,7 @@ class Profile < ActiveRecord::Base
   def self.apply_filters
     current_user = User.find(12)
     filter = current_user.user_filter
-
+    return Profile.all if filter.nil?
     #put those extra filters in for non-default e.g. filter.sex == "Everyone"
     results = Profile.where("id != ?", current_user.profile.id)
 

@@ -37,7 +37,6 @@
   <% @profiles.each do |profile| %>
   <li><%= image_tag(profile.big_photo.url, height: '100%', width: '100%') if profile.big_photo.exists? %>
 
-
     <div class="profile-content">
   	<%= link_to profile.user.username, profile_url(profile) %><br>
     <%= age(profile.birthday) %> · <%= profile.city %><br>
@@ -47,26 +46,6 @@
   </div>
 
   </li>
-
-  <li>
-    fdsadf</li>
-
-    <li>
-      fdsadf</li>
-
-      <li>
-        fdsadf</li>
-
-        <li>
-          fdsadf</li>
-
-          <li>
-            fdsadf</li>
-
-            <li>
-              fdsadf</li>
-
-              <li>fdsdfs</li>
   <% end %>
 </ul>
 
