@@ -23,7 +23,7 @@
     sexual_orientation: "#{["Straight",
       "Gay",
       "Bisexual"].sample}",
-      :big_photo => File.open(File.join(::Rails.root, "/assets/images/#{rand(1..3)}.jpg")),
+      :big_photo => File.open(File.join(::Rails.root, "/assets/#{rand(1..3)}.jpg")),
       birthday: "#{2014-18-i}-12-01",
       zip_code: rand(10001..11500),
       body_type: "#{["Curvy",
