@@ -22,18 +22,9 @@
 <br>
 <%# height later %>
 
-<table class="profile-stats">
-<% ["body_type", "smokes", "drugs", "religion"].each do |descriptor| %>
 
-<tr>
-  <th><%= descriptor.gsub(/_/," ").capitalize %></th>
-  <td> <%= (@profile[descriptor].nil?) ? "--" : @profile[descriptor] %></td>
-</tr>
 
-<% end %>
-</table>
 
-<%= @profile["likes"] %>
 
 <% unless @is_current_user_profile %>
 <% if current_user.likes?(@profile.user) %>
@@ -50,17 +41,42 @@
 <% end %>
 <% end %>
 
-<br>
 
-
-
-<br>
-
+<h2>Bio</h2>
 <div class="profile-field">
   <span class="editable" name="profile[description]">
     <%= @profile.description %>fdsfds
   </span>
 </div>
+
+
+<h2>Loves</h2>
+
+<%= @profile["likes"] %>
+
+
+<h2> Details</h2>
+<table class="profile-stats">
+<% ["body_type", "smokes", "drugs", "religion"].each do |descriptor| %>
+
+<tr>
+  <th><%= descriptor.gsub(/_/," ").capitalize %></th>
+  <td> <%= (@profile[descriptor].nil?) ? "--" : @profile[descriptor] %></td>
+</tr>
+
+<% end %>
+</table>
+
+
+
+
+
+
+
+
+
+
+
 
 <% if @is_current_user_profile %>
 <script>
@@ -171,10 +187,10 @@ $( ".send-message" ).draggable({
 
 
 
-<h3>Questions:</h3>
+<h2>Questions:</h2>
 
 <% if @is_current_user_profile %>
-
+Need to do for current user!!
 
 
 

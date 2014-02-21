@@ -50,6 +50,16 @@ Sort by match
 
 
 BEFORE 4:
+Bodty type, smokes, drugs, religion
+
+In profile: edit Sex, location via IP or zip code, birthday.
+Big Photo
+-Edit options in line!
+-Put Questions on profile page.
+-Make tabs.
+
+
+
 -Refactor that Questions get.
 Style Form
 -Move Navbar into partial
@@ -59,7 +69,11 @@ Add question to profile.
 
 Sort by %.
 
+After:
+Add Tags
 
+
+AFTER: Add the fields inside the inputs.
 
 Friday:
 Add Pagination
@@ -141,6 +155,8 @@ WHAT'S LEFT ON RAILS:
 -Couple of more search options.
 
 TO DO
+-add restraints so cant add negative, beg age bigger than end age. so it cant even save that.
+-Bar depending on match %.
 -Implement view
 -Then can start implementing individual profiles.
 
