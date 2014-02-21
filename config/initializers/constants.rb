@@ -5,6 +5,8 @@ SEXUAL_ORIENTATION = {
   "4" => "Anything I can get"
 }
 
+
+
 BODY_TYPE = {
   "1" => "Swole",
   "2" => "Average",
