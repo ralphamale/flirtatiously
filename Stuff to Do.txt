@@ -41,21 +41,40 @@ Sort by match
 
 -How can I download photos?
 -Want to use same profile page for both.
+-Crop image to square.
 
 -Grabbing
 -To maximum height but not more.
 
 ---
+
+
+BEFORE 4:
+-Refactor that Questions get.
+Style Form
+-Move Navbar into partial
+Add question to profile.
+-buttons from about me.
+-X button on send messsage.
+
+Sort by %.
+
+
+
+Friday:
+Add Pagination
+-"His" / "Her" translation
+-Style unacceptable answers as red.
+
 THURSDAY THINGS TO DO:
--Add Paginate
 -Make edit profile page clickable to edit.
 -Draggable/Editable Toolbox for profile thats minimizable. Can change to make profile static as seen.
 -Tinder flip is better than Status Message w/ carousel
 -2 second feedback after clicking.
--Pagify
+
 -mock tumblr's scheme for use.
--buttons from about me.
--X button on send messsage.
+
+
 
 Checkbox on save. X on not.
 

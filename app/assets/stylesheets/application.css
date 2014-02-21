@@ -21,6 +21,16 @@ html, body, header, nav, h1, ul, li {
   font-family: sans-serif;
 }
 
+.profile-stats {
+  margin: 0 auto;
+}
+
+.profile-stats th {
+  font-weight: bold;
+  text-align: left;
+  padding-right: 40px;
+}
+
 ul.profiles-list {
   list-style: none;
 

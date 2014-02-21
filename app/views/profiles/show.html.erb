@@ -9,7 +9,7 @@
   <%= @profile.user.username %>
 </h1>
 
-<%= age(@profile.birthday) %> years old | <%= @profile["sex"] %> | <%= @profile.city %>
+<%= age(@profile.birthday) %> years old | <%= "#{@profile["sexual_orientation"]} " %><%= @profile["sex"] %> | <%= @profile.city %>
 <br>
 
 <% unless @is_current_user_profile %>
@@ -20,12 +20,20 @@
 
 <%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if @profile.big_photo.exists? %> <%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if @profile.big_photo.exists? %>
 <br>
+<%# height later %>
 
-<% ["sexual_orientation", "body_type", "smokes", "drinks", "drugs", "religion", "sign", "education", "job", "offspring", "pets", "likes"].each do |descriptor| %>
+<table class="profile-stats">
+<% ["body_type", "smokes", "drugs", "religion"].each do |descriptor| %>
 
-<%= descriptor.capitalize %>: <%= (@profile[descriptor].nil?) ? "--" : @profile[descriptor] %><br>
+<tr>
+  <th><%= descriptor.gsub(/_/," ").capitalize %></th>
+  <td> <%= (@profile[descriptor].nil?) ? "--" : @profile[descriptor] %></td>
+</tr>
 
 <% end %>
+</table>
+
+<%= @profile["likes"] %>
 
 <% unless @is_current_user_profile %>
 <% if current_user.likes?(@profile.user) %>
@@ -187,8 +195,14 @@ Answer question <%= other_response.question_id %> to see their answer.
 
 <% else %>
 
-His/her response: <%= other_response.answer_text%> <b><%= "UNACCEPTABLE" if is_unacceptable?(other_response, @current_user_acceptables) %></b>
-Your response: <%= current_user_response.answer_text %><b> <%= "UNACCEPTABLE" if is_unacceptable?(current_user_response, @other_user_acceptables) %></b><% end %>
+
+<%= (@profile["sex"] == "Male") ? "His" : "Her" %> response: <span class="<%= "unacceptable-resp" if is_unacceptable?(other_response, @current_user_acceptables) %>"><%= other_response.answer_text%> </span>
+<br>
+Your response:
+
+<span class="<%= "unacceptable-resp" if is_unacceptable?(current_user_response, @other_user_acceptables) %>"><%= current_user_response.answer_text %></span>
+
+<% end %>
 
 <% end %>
 
