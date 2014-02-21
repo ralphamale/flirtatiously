@@ -6,6 +6,7 @@ gem 'figaro'
 gem "paperclip"
 gem "aws-sdk"
 gem 'jquery-ui-rails'
+gem 'kaminari'
 gem 'backbone-on-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'

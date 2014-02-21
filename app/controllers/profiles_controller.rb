@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
 
   def index
     @user_filter = current_user.user_filter
-    @profiles = Profile.apply_filters
+    @profiles = Profile.apply_filters.page(params[:page])
     render layout: "browse_profile"
   end
 
@@ -52,6 +52,8 @@ class ProfilesController < ApplicationController
   def show
     @profile = Profile.find(params[:id])
     other_user_id = @profile.user.id
+
+    @is_current_user_profile = is_current_user_profile?(@profile)
 
     @current_user_responses = Question.get_responses(current_user.id)
     @current_user_acceptables = Question.get_acceptable_responses(current_user.id)

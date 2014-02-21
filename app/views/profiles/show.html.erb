@@ -3,7 +3,6 @@
 
 <% end %>
 
-<% is_current_user_profile = (@profile.id == current_user.profile.id) %>
 <!-- yield head -->
 
 <h1 class="username">
@@ -13,7 +12,7 @@
 <%= age(@profile.birthday) %> years old | <%= @profile["sex"] %> | <%= @profile.city %>
 <br>
 
-<% unless is_current_user_profile %>
+<% unless @is_current_user_profile %>
   <% percentages = current_user.calculate_percentages(@profile.user) %>
   <%= print_percentages(percentages) %>
   <% end %>
@@ -28,7 +27,7 @@
 
 <% end %>
 
-<% unless is_current_user_profile %>
+<% unless @is_current_user_profile %>
 <% if current_user.likes?(@profile.user) %>
 	<% if @profile.user.likes?(current_user) %>
 	<b> You guys both like each other!</b>
@@ -55,7 +54,7 @@
   </span>
 </div>
 
-
+<% if @is_current_user_profile %>
 <script>
 $(document).ready(function() {
   $('.profile-field').on('click', '.editable', function(event) {
@@ -99,45 +98,7 @@ $(document).ready(function() {
 });
 
 </script>
-
-<h3>Questions:</h3>
-
-<%= "This person has not answered any questions." if @other_user_responses.length == 0 %>
-
-<% @other_user_responses.each do |other_response| %>
-<p>
-<%= other_response.question_text %><br>
-
-<% current_user_response = find_response(other_response.question_id, @current_user_responses) %>
-
-<% if current_user_response.nil? %>
-
-Answer question <%= other_response.question_id %> to see their answer.
-
 <% else %>
-
-His/her response: <%= other_response.answer_text%> <b><%= "UNACCEPTABLE" if is_unacceptable?(other_response, @current_user_acceptables) %></b>
-Your response: <%= current_user_response.answer_text %><b> <%= "UNACCEPTABLE" if is_unacceptable?(current_user_response, @other_user_acceptables) %></b>
-
-<% end %>
-
-<p>
-<% end %>
-
-<div class="hide-container">
-
-<form class="send-message">
-  <%= auth_token_input %>
-  <textarea name="message[body]">Type some stuff here</textarea>
-  <input type="submit" class="submit-message" value="Submit or close">
-
-</form>
-
-</div>
-
-<br>
-
-
 <script>
 $(document).ready(function() {
 
@@ -179,8 +140,6 @@ $(document).ready(function() {
 });
 </script>
 
-
-
 <script>
 $( ".send-message" ).draggable({
   containment: $('content'),
@@ -190,3 +149,63 @@ $( ".send-message" ).draggable({
   }
 });
 </script>
+
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+<h3>Questions:</h3>
+
+<% if @is_current_user_profile %>
+
+
+
+
+
+<% else %>
+
+<%= "This person has not answered any questions." if @other_user_responses.length == 0 %>
+
+<% @other_user_responses.each do |other_response| %>
+<p>
+<%= other_response.question_text %><br>
+
+<% current_user_response = find_response(other_response.question_id, @current_user_responses) %>
+
+<% if current_user_response.nil? %>
+
+Answer question <%= other_response.question_id %> to see their answer.
+
+<% else %>
+
+His/her response: <%= other_response.answer_text%> <b><%= "UNACCEPTABLE" if is_unacceptable?(other_response, @current_user_acceptables) %></b>
+Your response: <%= current_user_response.answer_text %><b> <%= "UNACCEPTABLE" if is_unacceptable?(current_user_response, @other_user_acceptables) %></b><% end %>
+
+<% end %>
+
+<% end %>
+
+<div class="hide-container">
+
+<form class="send-message">
+  <%= auth_token_input %>
+  <textarea name="message[body]">Type some stuff here</textarea>
+  <input type="submit" class="submit-message" value="Submit or close">
+
+</form>
+
+</div>
+
+<br>
+
+
+

@@ -114,6 +114,9 @@ GEM
     json (1.8.1)
     jwt (0.1.11)
       multi_json (>= 1.5)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     listen (2.4.0)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -244,6 +247,7 @@ DEPENDENCIES
   guard-rspec
   jquery-rails
   jquery-ui-rails
+  kaminari
   omniauth
   omniauth-facebook
   paperclip

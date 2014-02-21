@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
 
       if user
         log_in(user)
-        redirect_to edit_profile_url(user.profile)
+        redirect_to profiles_url
       end
 
       unless user
@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
             user.save
           end
           log_in(user)
-          redirect_to edit_profile_url(user.profile)
+          redirect_to profiles_url
         rescue ActiveRecord::RecordInvalid => invalid
           flash.now[:errors] = @user.errors.full_messages
           render :new

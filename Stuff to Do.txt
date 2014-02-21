@@ -33,6 +33,8 @@ info_fields
 
 
 4 PM:
+Sort by match
+
 -Ask Jonathan how to make game, how to integrate photos into here.
 -Where to put Backbone?
 -Where to add tests if not really models?

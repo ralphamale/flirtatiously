@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def is_current_user_profile?(profile)
+    profile.id == current_user.profile.id
+  end
+
   def age(dob)
     now = Time.now.utc.to_date
     now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)

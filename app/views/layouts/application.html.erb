@@ -24,7 +24,7 @@
     <nav class="main-top group">
       <%= image_tag "logo.png" %>
       <% if logged_in? %>
-      Glad to see you back, <%= current_user.username %>!
+      Hi <%= current_user.username %>!
 
       <%= link_to "Browse", profiles_url %>
 
@@ -48,7 +48,7 @@
   </header>
   <content class="group">
 
-    <div id="draggable">Drag me</div>
+
 
 
 
