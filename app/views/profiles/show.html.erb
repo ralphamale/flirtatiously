@@ -3,6 +3,9 @@
 
 <% end %>
 
+<% is_current_user_profile = (@profile.id == current_user.profile.id) %>
+<!-- yield head -->
+
 <h1 class="username">
   <%= @profile.user.username %>
 </h1>
@@ -10,11 +13,10 @@
 <%= age(@profile.birthday) %> years old | <%= @profile["sex"] %> | <%= @profile.city %>
 <br>
 
-<% percentages = current_user.calculate_percentages(@profile.user) %>
-
-<!-- hide if current user -->
-<%= print_percentages(percentages) %>
-
+<% unless is_current_user_profile %>
+  <% percentages = current_user.calculate_percentages(@profile.user) %>
+  <%= print_percentages(percentages) %>
+  <% end %>
 <br>
 
 <%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if @profile.big_photo.exists? %> <%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if @profile.big_photo.exists? %>
@@ -26,6 +28,7 @@
 
 <% end %>
 
+<% unless is_current_user_profile %>
 <% if current_user.likes?(@profile.user) %>
 	<% if @profile.user.likes?(current_user) %>
 	<b> You guys both like each other!</b>
@@ -34,22 +37,72 @@
 	<% end %>
 <% else %>
 <br>
-<%= button_to "Like User", like_user_url(@profile.user_id), method: :post %>
+<%= button_to "Like User", like_user_url(@profile.user_id), {method: :post} %>
 
+<div class=""><input type="submit" class="message" value="MESSAGE A BROTHA"></div>
+<% end %>
 <% end %>
 
 <br>
 
-<div class="message"><input type="submit" value="MESSAGE A BROTHA"></div>
+
 
 <br>
 
-<%= @profile.description %>
+<div class="profile-field">
+  <span class="editable" name="profile[description]">
+    <%= @profile.description %>fdsfds
+  </span>
+</div>
+
+
+<script>
+$(document).ready(function() {
+  $('.profile-field').on('click', '.editable', function(event) {
+    var $text = $(event.currentTarget);
+
+    var $profileField = $(event.target).closest('.profile-field')
+
+
+    var inputValue = $text.html();
+    var inputName = $text.attr("name");
+
+    $profileField.html("<textarea class=\"editing\" name=\"" + inputName + "\">" + inputValue + "</textarea>");
+  });
+
+  $('.profile-field').on('blur', '.editing', function(event) {
+    var $inputField = $(this);
+    var $profileField = $(this).closest('.profile-field');
+    var paramsName = $(this).attr("name");
+    var paramsValue = $(this).val();
+
+    var formData = $(this).serializeJSON();
+    console.log(formData);
+    var $that = $(this);
+    $.ajax({
+            url: "<%= profile_url(@profile.id) %>", //will cause trouble?
+            type: "PUT",
+            data: formData,
+            dataType: "json",
+            success: function (response) {
+              console.log($profileField);
+              console.log($that);
+              console.log(response);
+              console.log("Your callback here!");
+              $profileField.html("<span class=\"editable\" name=\"" + $that.attr("name") + "\">" + $that.val() + "</span>");
+            },
+            error: function(response) {
+              console.log("error");
+            }
+          });
+  });
+});
+
+</script>
 
 <h3>Questions:</h3>
 
 <%= "This person has not answered any questions." if @other_user_responses.length == 0 %>
-
 
 <% @other_user_responses.each do |other_response| %>
 <p>
@@ -71,9 +124,6 @@ Your response: <%= current_user_response.answer_text %><b> <%= "UNACCEPTABLE" if
 <p>
 <% end %>
 
-
-
-
 <div class="hide-container">
 
 <form class="send-message">
@@ -84,8 +134,6 @@ Your response: <%= current_user_response.answer_text %><b> <%= "UNACCEPTABLE" if
 </form>
 
 </div>
-
-
 
 <br>
 

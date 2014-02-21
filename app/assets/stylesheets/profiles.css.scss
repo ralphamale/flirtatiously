@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.hidden-from-self {
+  display: none;
+}
+
 .main-profile-container {
   width: 538px;
   margin-top: 45px;

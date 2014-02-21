@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :require_logged_in!
-  before_filter :require_not_current_users_page!, only: [:show]
+  #before_filter :require_not_current_users_page!, only: [:show]
   layout "show_profile", only: [:show, :edit]
 
   def index
@@ -35,9 +35,15 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
 
     if @profile.update_attributes(params[:profile])
-      redirect_to profile_url(params[:id])
+      respond_to do |format|
+        format.html { redirect_to profile_url(params[:id]) }
+        format.json { render :json => @profile }
+      end
     else
-      render :json => @profile.errors.full_messages
+      respond_to do |format|
+        format.html { render :json => @profile.errors.full_messages }
+        format.json { render :json => @profile.errors.full_messages }
+      end
     end
   end
 
