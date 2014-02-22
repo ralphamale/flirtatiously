@@ -7,7 +7,7 @@
   Username: <b><%= current_user.username %></b><br>
 
   <label>Zip code
-    <input type="text" name="profile[zip_code]" value="<%= @profile.zip_code%>"></label>
+    <input type="text" name="profile[zip_code]" value="<%= @profile.zip_code %>"></label>
     <%= @profile.city %>
 
     <br>
@@ -19,7 +19,7 @@
     <label>
       Birthday
       <input name="profile[birthday]" type="date" value="<%= @profile.birthday %>"> <%= age(@profile.birthday) %>
-    <label><br>
+    </label><br>
 
   <label>Height
     <input type="text" name="profile[height]" value="<%= @profile.height %>">

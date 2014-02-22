@@ -6,6 +6,23 @@
   display: none;
 }
 
+.owner-can-modify {
+  display: inline;
+}
+
+.form-input {
+  display: none;
+}
+
+.modifying > .owner-can-modify {
+  display: none;
+}
+
+.modifying > .form-input {
+  display: inline-block;
+}
+
+
 .unacceptable-resp {
   font-weight: bold;
   color: red;

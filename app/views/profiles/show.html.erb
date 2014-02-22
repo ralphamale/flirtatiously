@@ -9,10 +9,101 @@
   <%= @profile.user.username %>
 </h1>
 
+<h2>
+  <% if @is_current_user_profile %>
+  You are in your OWN profile. Can edit.
+  <% else %>
+  You CANNOT edit someone else's profile.
+  <% end %>
+</h2>
+fdsfadsfsf
 <%= age(@profile.birthday) %>  |
+
+
 <%= PROFILE_DETAILS["sexual_orientation"][@profile["sexual_orientation"]] %>
-<%= @profile["sex"] %> |
-<%= @profile.city %>
+
+<div class="profile-field">
+  <span class="owner-can-modify" name="sex">
+    <%= @profile["sex"] %>
+  </span>
+  <select class="form-input" name="profile[sex]">
+    <option disabled selected>Choose New</option>
+     <% PROFILE_DETAILS["sex"].each do |k, v| %>
+       <option
+         value="<%= k %>">
+           <%= v %>
+       </option>
+     <% end %>
+  </select>
+</div>
+
+
+<script>
+$(document).ready(function() {
+  $('.profile-field').on('click', '.selectable-value', function(event) {
+    var $profileText = $(event.currentTarget);
+    var $profileField = $(event.target).closest('.profile-field');
+    $profileField.addClass("making-selection");
+  });
+
+  $('.profile-field').on('blur', '.selecting', function(e) {
+    var $inputField = $(this);
+    var $profileField = $(this).closest('.profile-field');
+    var paramsName = $(this).attr("name");
+    var paramsValue = $(this).val();
+    var replacingText =
+      this.options[e.target.selectedIndex].text;
+
+    if (replacingText != "Choose new") {
+    var formData = $(this).serializeJSON();
+    var $that = $(this);
+
+    $.ajax({
+            url: "<%= profile_url(@profile.id) %>", //will cause trouble?
+            type: "PUT",
+            data: formData,
+            dataType: "json",
+            success: function (response) {
+              var $profileText = $that.siblings('.selectable-value');
+
+              //change value of inside span.
+              $profileText.html(replacingText);
+              $profileField
+                .removeClass("making-selection");
+            },
+            error: function(response) {
+              console.log("error");
+            }
+          });
+
+        } else {
+          $profileField
+            .removeClass("making-selection");
+        }
+
+
+
+
+    //if not disabled!
+    //var $profileText = $(event.currentTarget);
+    //var $profileField = $(event.target).closest('.profile-field');
+    //$profileField.toggleClass("making-selection");
+
+
+
+
+  });
+
+
+});
+</script>
+
+
+ |
+
+
+<div class="profile-field"><span name="city"><%= @profile.city %>
+  but modifying zip code.
 <br>
 
 <% unless @is_current_user_profile %>
@@ -54,9 +145,10 @@
 
 <h2>Bio</h2>
 <div class="profile-field">
-  <span class="editable" name="profile[description]">
+  <span class="owner-can-modify" name="description">
     <%= @profile.description %>
   </span>
+  <textarea class="form-input" name="profile[description]"></textarea>
 </div>
 
 <h2>Loves</h2>
@@ -68,60 +160,96 @@
   <% TABULAR_DETAILS.keys.each do |key| %>
   <tr>
     <th><%= key.gsub(/_/," ").capitalize %></th>
-    <td><%=
-      unless @profile[key].nil?
+    <td>
+    <div class="profile-field">
+    <span class="owner-can-modify" name="<%= key %>">
+      <%= unless @profile[key].nil?
         PROFILE_DETAILS[key][@profile[key]]
       else
         "-" end %>
+        </span>
+        <select class="form-input" name="profile[<%= key %>]">
+        <option disabled selected>Choose new</option>
+        <% PROFILE_DETAILS[key].each do |k, v| %>
+          <option
+            value="<%= k %>">
+              <%= v %>
+          </option>
+        <% end %>
+
+
+        </select>
+        </div>
     </td>
   </tr>
   <% end %>
 </table>
 
+
+
+
 <% if @is_current_user_profile %>
-<script>
+<script type="text/javascript">
 $(document).ready(function() {
-  $('.profile-field').on('click', '.editable', function(event) {
-    var $text = $(event.currentTarget);
-
-    var $profileField = $(event.target).closest('.profile-field')
-
-
-    var inputValue = $text.html();
-    var inputName = $text.attr("name");
-
-    $profileField.html("<textarea class=\"editing\" name=\"" + inputName + "\">" + inputValue + "</textarea>");
-  });
-
-  $('.profile-field').on('blur', '.editing', function(event) {
-    var $inputField = $(this);
+  $('.profile-field').on('click', '.owner-can-modify', function(e) {
+    var $profileText = $(this);
     var $profileField = $(this).closest('.profile-field');
-    var paramsName = $(this).attr("name");
-    var paramsValue = $(this).val();
+    var $input = $profileField.find('.form-input')
 
-    var formData = $(this).serializeJSON();
-    console.log(formData);
-    var $that = $(this);
-    $.ajax({
-            url: "<%= profile_url(@profile.id) %>", //will cause trouble?
-            type: "PUT",
-            data: formData,
-            dataType: "json",
-            success: function (response) {
-              console.log($profileField);
-              console.log($that);
-              console.log(response);
-              console.log("Your callback here!");
-              $profileField.html("<span class=\"editable\" name=\"" + $that.attr("name") + "\">" + $that.val() + "</span>");
-            },
-            error: function(response) {
-              console.log("error");
-            }
-          });
+    if ($input.is('textarea')) {
+      $input.html($(this).html());
+    };
+    //regular text input too.
+    $profileField.addClass('modifying');
   });
-});
 
+  //set name in there!
+  $('.profile-field').on('blur', '.form-input', function(e) {
+    var $input = $(this);
+    var $profileField = $input.closest('.profile-field');
+    var $profileText = $profileField.find('.owner-can-modify');
+    var formData = $(this).serializeJSON();
+
+    var newValue;
+    if ($input.is('select')) {
+      newValue = this.options[e.target.selectedIndex].text;
+
+      if (newValue === "Choose new") {
+        $profileField.removeClass('modifying');
+        return;
+      };
+
+    } else {
+      newValue = $input.val();
+    };
+    // var newValue = $(this).;
+
+    //if its not a select with text Choose New
+    $.ajax({
+      url: "<%= profile_url(@profile.id) %>",
+      type: "PUT",
+      data: formData,
+      dataType: "json",
+      success: function(r) {
+        alert("Great!");
+        $profileText.html(newValue);
+        $profileField.removeClass('modifying');
+      },
+      error: function(r) {
+        alert("Error");
+      }
+    });
+
+
+  });
+
+});
 </script>
+
+
+
+
+
 <% else %>
 <script>
 $(document).ready(function() {

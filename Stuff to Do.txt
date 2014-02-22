@@ -3,11 +3,19 @@ Ask TAs:
 WHAT DO I DO IF I DONT REALLY HAVE ANYTHING TO TEST IN MODELS?
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~_~_~_~_~_~_~_~_~_~_~~_~_~_~_~_~_~_
 Most important:
-1. Fix database for "1", "2", "3" ~ change to integer?
-  1a. Edit page inline.
+1. Edit the information: birthday, username, email, birthday, location, custom one -- have secret one for email. (if current user, say you can edit this heading! question in current user. refactor Answer(includes answer choices).
+  -username
+  -jquery-file-upload?
+  If I refactor out the biography, I will be able to use just one jQuery method.
+  -if you havent answered, you should be able to click and answer it.
+
+  http://stackoverflow.com/questions/11860721/how-to-handle-onchange-event-on-input-type-file-in-jquery
+
 2. Tinder
 3. Status Messages
 4. Tabs
@@ -24,12 +32,35 @@ FEATURE (MOST IMPORTANT TO LEAST IMPORTANT)
 -Other photos.
 -Move Photo, Move Block <--- just use paperclip and thumbnail.
 -Height
+-email
 -Sent box.
 -Advanced search?
 -How to do notifications? + Unread messages.
+-add CSRF token to my forms?
+
+
+SUNDAY: DO ALL CSS. STUDY ASS OFF.
+
+EDITABLE
+
+--
+<label>
+  <input type="text" name="profile[zip_code]" value="<%= @profile.zip_code%>"></label>
+
+  Big Photo
+  <input type="file" name="profile[big_photo]">
+  <br>
+
+
+  <label>
+    Birthday
+    <input name="profile[birthday]" type="date" value="<%= @profile.birthday %>"> <%= age(@profile.birthday) %>
+  <label><br>
+--
+
 
 JAVASCRIPT FEATURE
--Edit Sex, Location via IP/zip code, birthday on profile page.
+-Edit Location via IP/zip code, birthday on profile page.
 -Tabs with stuff
 -Visual feedback after sending message or editing photo.
 -Edit Images on profile.
@@ -38,7 +69,9 @@ JAVASCRIPT FEATURE
 -Clear search filters.
 
 CSS / Styling / Refactor
--Image should not overflow on page.
+Add avatars to messages. add icon for if you were the last one to answer.
+-Noun Projects Nav bar + their triangle thing is really cool.
+
 -Move Navbar into partial
 -add X button on 'send message'
 -Style forms
@@ -50,6 +83,12 @@ CSS / Styling / Refactor
 -bar at the bottom.
 -Logo is clickable to newsfeed.
 -X button on message.
+
+
+RALPH in big letters.
+-My picture behind it.
+Nav bar at top.
+
 
 
 BUG FIX
@@ -154,3 +193,56 @@ SUPERFLUOUS:
 
 
 LATER:
+
+
+
+noun project; their scrollbar
+their form
+
+Browse
+http://thenounproject.com/term/cloud-search/27948/
+
+message hearts
+http://thenounproject.com/term/sext/29263/
+SEXT a bbunch of them
+
+Log out
+
+"Submit" - that checkbox would be good for next to thing.
+
+Download button http://thenounproject.com/term/sext/29263/
+
+
+Chat
+Setttings: http://thenounproject.com/term/settings/11801/
+http://thenounproject.com/search/?q=love%20letter
+
+Inbox
+Send message
+Delete button
+http://thenounproject.com/term/delete/5665/
+
+YES
+http://thenounproject.com/term/heart/4454/
+http://thenounproject.com/term/heart/30666/
+
+magnifying glass for search
+"question mark'
+"
+
+thumbs down
+http://thenounproject.com/term/no/2799/
+http://thenounproject.com/term/block-user/8461/
+http://thenounproject.com/term/thumbs-down/28004/
+X - close http://thenounproject.com/term/close/26894/
+
+THeir logins creen is super cool
+https://thenounproject.com/accounts/login/?next=/upload/
+
+So is this splash screen
+http://thenounproject.com/upload/
+
+This websites sign up form looks so cool
+http://thenounproject.com/ralphamale/settings/basics/
+
+http://iconmonstr.com/?s=heart
