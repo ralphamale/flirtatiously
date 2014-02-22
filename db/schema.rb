@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140222015510) do
+ActiveRecord::Schema.define(:version => 20140222204221) do
 
   create_table "acceptable_responses", :force => true do |t|
     t.integer  "user_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20140222015510) do
     t.boolean  "is_mutual"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "likes"
   end
 
   add_index "likes", ["likee_id"], :name => "index_likes_on_likee_id"
@@ -90,17 +91,8 @@ ActiveRecord::Schema.define(:version => 20140222015510) do
     t.string   "diet"
     t.integer  "smokes"
     t.string   "drinks"
-<<<<<<< Local Changes
-<<<<<<< Local Changes
-    t.string   "religion"
-    t.string   "sign",
-=======
     t.integer  "religion"
-=======
-    t.integer  "religion"
->>>>>>> External Changes
     t.string   "sign"
->>>>>>> External Changes
     t.string   "education"
     t.string   "job"
     t.string   "offspring"
@@ -125,6 +117,20 @@ ActiveRecord::Schema.define(:version => 20140222015510) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "rater_id"
+    t.integer  "ratee_id"
+    t.boolean  "likes"
+    t.boolean  "is_mutual"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "ratings", ["ratee_id", "rater_id"], :name => "index_ratings_on_ratee_id_and_rater_id", :unique => true
+  add_index "ratings", ["ratee_id"], :name => "index_ratings_on_ratee_id"
+  add_index "ratings", ["rater_id", "rater_id"], :name => "index_ratings_on_rater_id_and_rater_id", :unique => true
+  add_index "ratings", ["rater_id"], :name => "index_ratings_on_rater_id"
 
   create_table "responses", :force => true do |t|
     t.integer  "user_id"

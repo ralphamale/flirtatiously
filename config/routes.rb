@@ -1,8 +1,5 @@
 Flirtatiously::Application.routes.draw do
   resources :users, except: [:index, :show] do
-
-
-
     resources :messages, only: [:new, :create] do
       get 'conversation', on: :collection
     end
@@ -11,6 +8,8 @@ Flirtatiously::Application.routes.draw do
       post "like"
     end
   end
+
+  resources :ratings, only: [:create]
 
   resource :user_filter, only: [:update]
   resource :session, only: [:new, :create, :destroy]

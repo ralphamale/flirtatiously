@@ -36,32 +36,24 @@ class User < ActiveRecord::Base
 
   has_many :messages, through: :message_headers, source: :message
 
-  has_many :sent_likes, dependent: :destroy,
-  class_name: "Like",
-  foreign_key: :liker_id
+  has_many :sent_ratings,
+  class_name: "Rating",
+  foreign_key: :rater_id
 
-  has_many :liked_users,
-  through: :sent_likes,
-  source: :likee
+  has_many :received_ratings,
+  class_name: "Rating",
+  foreign_key: :ratee_id
 
-  has_many :received_likes,
-  class_name: "Like",
-  foreign_key: :likee_id
+  has_many :rated_users,
+  through: :sent_ratings,
+  source: :ratee
 
-  has_many :likers,
-  through: :received_likes,
-  source: :received_likes
-
-  belongs_to :liker,
-   class_name: "User",
-   foreign_key: :liker_id
+  has_many :rating_users,
+  through: :received_ratings,
+  source: :rater
 
    has_one :user_filter, inverse_of: :user, dependent: :destroy,
    foreign_key: :user_id
-
-   belongs_to :likee,
-   class_name: "User",
-   foreign_key: :likee_id
 
    has_many :responses, inverse_of: :user, dependent: :destroy,
    foreign_key: :user_id

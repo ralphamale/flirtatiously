@@ -8,17 +8,14 @@ WHAT DO I DO IF I DONT REALLY HAVE ANYTHING TO TEST IN MODELS?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~_~_~_~_~_~_~_~_~_~_~~_~_~_~_~_~_~_
 Most important:
-1. Edit the information: birthday, username, email, birthday, location, custom one -- have secret one for email. (if current user, say you can edit this heading! question in current user. refactor Answer(includes answer choices).
-  -username
-  -jquery-file-upload?
-  If I refactor out the biography, I will be able to use just one jQuery method.
-  -if you havent answered, you should be able to click and answer it.
 
-  http://stackoverflow.com/questions/11860721/how-to-handle-onchange-event-on-input-type-file-in-jquery
+heading! question in current user. refactor Answer(includes answer choices). http://stackoverflow.com/questions/11860721/how-to-handle-onchange-event-on-input-type-file-in-jquery
 
 2. Tinder
 3. Status Messages
 4. Tabs
+5. Jquery-file-upload
+These are both for user: -username / email left / custom field.
 -"Complete registration page" for FB user and otherwise.
 
 FEATURE (MOST IMPORTANT TO LEAST IMPORTANT)
@@ -48,13 +45,13 @@ EDITABLE
   <input type="text" name="profile[zip_code]" value="<%= @profile.zip_code%>"></label>
 
   Big Photo
-  <input type="file" name="profile[big_photo]">
+
   <br>
 
 
   <label>
     Birthday
-    <input name="profile[birthday]" type="date" value="<%= @profile.birthday %>"> <%= age(@profile.birthday) %>
+
   <label><br>
 --
 

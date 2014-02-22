@@ -16,19 +16,31 @@
   You CANNOT edit someone else's profile.
   <% end %>
 </h2>
-fdsfadsfsf
-<%= age(@profile.birthday) %>  |
+<div class="profile-field">
+  <span class="owner-can-modify" id="age">
+    <%= age(@profile.birthday) %>
+  </span>
+  <input type="date"
+    class="form-input"
+      name="profile[birthday]"
+        value="<%= @profile.birthday %>">
+</div>
+  |
 
 
-<%= PROFILE_DETAILS["sexual_orientation"][@profile["sexual_orientation"]] %>
+  <br>
+  |
+
+
+
 
 <div class="profile-field">
-  <span class="owner-can-modify" name="sex">
-    <%= @profile["sex"] %>
+  <span class="owner-can-modify">
+    <%= PROFILE_DETAILS["sexual_orientation"][@profile["sexual_orientation"]] %>
   </span>
-  <select class="form-input" name="profile[sex]">
+  <select class="form-input" name="profile[sexual_orientation]">
     <option disabled selected>Choose New</option>
-     <% PROFILE_DETAILS["sex"].each do |k, v| %>
+     <% PROFILE_DETAILS["sexual_orientation"].each do |k, v| %>
        <option
          value="<%= k %>">
            <%= v %>
@@ -38,72 +50,38 @@ fdsfadsfsf
 </div>
 
 
-<script>
-$(document).ready(function() {
-  $('.profile-field').on('click', '.selectable-value', function(event) {
-    var $profileText = $(event.currentTarget);
-    var $profileField = $(event.target).closest('.profile-field');
-    $profileField.addClass("making-selection");
-  });
-
-  $('.profile-field').on('blur', '.selecting', function(e) {
-    var $inputField = $(this);
-    var $profileField = $(this).closest('.profile-field');
-    var paramsName = $(this).attr("name");
-    var paramsValue = $(this).val();
-    var replacingText =
-      this.options[e.target.selectedIndex].text;
-
-    if (replacingText != "Choose new") {
-    var formData = $(this).serializeJSON();
-    var $that = $(this);
-
-    $.ajax({
-            url: "<%= profile_url(@profile.id) %>", //will cause trouble?
-            type: "PUT",
-            data: formData,
-            dataType: "json",
-            success: function (response) {
-              var $profileText = $that.siblings('.selectable-value');
-
-              //change value of inside span.
-              $profileText.html(replacingText);
-              $profileField
-                .removeClass("making-selection");
-            },
-            error: function(response) {
-              console.log("error");
-            }
-          });
-
-        } else {
-          $profileField
-            .removeClass("making-selection");
-        }
+<div class="profile-field">
+  <span class="owner-can-modify" id="sex">
+    <%= @profile["sex"] %>
+  </span>
+  <select class="form-input" name="profile[sex]">
+    <option disabled selected>Choose New</option>
+     <% PROFILE_DETAILS["sex"].each do |k, _| %>
+       <option
+         value="<%= k %>">
+           <%= k %>
+       </option>
+     <% end %>
+  </select>
+</div>
 
 
 
-
-    //if not disabled!
-    //var $profileText = $(event.currentTarget);
-    //var $profileField = $(event.target).closest('.profile-field');
-    //$profileField.toggleClass("making-selection");
-
-
-
-
-  });
-
-
-});
-</script>
 
 
  |
 
+ <div class="profile-field">
+   <span class="owner-can-modify" id="city">
+     <%= @profile.city %>
+   </span>
+   <input type="text"
+     class="form-input"
+       name="profile[zip_code]"
+         value="<%= @profile.zip_code %>">
+ </div>
 
-<div class="profile-field"><span name="city"><%= @profile.city %>
-  but modifying zip code.
+
 <br>
 
 <% unless @is_current_user_profile %>
@@ -145,7 +123,7 @@ $(document).ready(function() {
 
 <h2>Bio</h2>
 <div class="profile-field">
-  <span class="owner-can-modify" name="description">
+  <span class="owner-can-modify" id="description">
     <%= @profile.description %>
   </span>
   <textarea class="form-input" name="profile[description]"></textarea>
@@ -162,7 +140,7 @@ $(document).ready(function() {
     <th><%= key.gsub(/_/," ").capitalize %></th>
     <td>
     <div class="profile-field">
-    <span class="owner-can-modify" name="<%= key %>">
+    <span class="owner-can-modify" id="<%= key %>">
       <%= unless @profile[key].nil?
         PROFILE_DETAILS[key][@profile[key]]
       else
@@ -190,6 +168,15 @@ $(document).ready(function() {
 
 <% if @is_current_user_profile %>
 <script type="text/javascript">
+
+function calculateAge(birthdayString) {
+  var birthdate = new Date(birthdayString);
+  var cur = new Date();
+  var diff = cur-birthdate; // This is the difference in milliseconds
+  var age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
+  return age;
+};
+
 $(document).ready(function() {
   $('.profile-field').on('click', '.owner-can-modify', function(e) {
     var $profileText = $(this);
@@ -231,6 +218,11 @@ $(document).ready(function() {
       data: formData,
       dataType: "json",
       success: function(r) {
+        if ($profileText.is('#age')) {
+          newValue = calculateAge(r.birthday);
+        } else if ($profileText.is('#city')) {
+          newValue = r["city"] //because we change zip.
+        }
         alert("Great!");
         $profileText.html(newValue);
         $profileField.removeClass('modifying');

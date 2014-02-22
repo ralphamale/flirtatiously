@@ -8,7 +8,6 @@ $(document).ready(function() {
     if ($input.is('textarea')) {
       $input.html($(this).html());
     };
-    //regular text input too.
     $profileField.addClass('modifying');
   });
   //set name in there!
@@ -16,7 +15,7 @@ $(document).ready(function() {
     var $input = $(this);
     var $profileField = $input.closest('.profile-field');
     var $profileText = $profileField.find('.owner-can-modify');
-    var formData = $(this).serializeJSON();
+    var formData = $input.serializeJSON(); // i changed from $(this)
 
     var newValue;
     if ($input.is('select')) {
@@ -33,9 +32,15 @@ $(document).ready(function() {
             data: formData,
             dataType: "json",
             success: function(r) {
+              if ($profileText.is('#age')) {
+                newValue; //calculate birthday
+              } else if ($profileText.is('#city')) {
+                newValue = r["city"] //because we change zip.
+              }
               alert("Great!");
               $profileText.html(newValue);
               $profileField.removeClass('modifying');
+              //add visual feedback.
             },
             error: function(r) {
               alert("Error");
@@ -44,8 +49,5 @@ $(document).ready(function() {
 
 
 });
-
-
-
 //when doing feedback ,if the textarea hasnt changed since the text. dont do shit!
 </script>
