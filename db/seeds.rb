@@ -1,3 +1,4 @@
+#encoding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -15,51 +16,22 @@
 "GirlNextDoor#{i}"].sample}",
   password: "password"})
   test_unit.save!
+require File.dirname(__FILE__) + '/../config/initializers/constants'
 
   test_unit.build_user_filter.save!
 
   test_profile = Profile.new({
     user_id: test_unit.id,
-    sexual_orientation: "#{["Straight",
-      "Gay",
-      "Bisexual"].sample}",
+    sexual_orientation: rand(0..3),
       :big_photo => File.open(File.join(::Rails.root, "/public/#{rand(1..3)}.jpg")),
       birthday: "#{2014-18-i}-12-01",
-      zip_code: rand(10001..11500),
-      body_type: "#{["Curvy",
-      "Thin",
-      "Jacked",
-      "Used Up"].sample}",
-      smokes: "#{["Yes",
-      "No",
-      "When drinking",
-      "Not cigarettes"].sample}",
-      drinks: "#{["Desperately",
-      "Social",
-      "Rarely",
-      "Prohibitionist"].sample}",
-      drugs: "#{["They solve all my problems.",
-      "Occasionally",
-      "Rarely",
-      "No"].sample}",
-      religion: "#{["Atheist",
-      "Christian",
-      "Jewish",
-      ""].sample}",
-      sign: "#{["Sagittarius",
-      "Cancer",
-      "Libra",
-      "Leo"].sample}",
-      education: "#{["Graduate school",
-      "College",
-      "High school",
-      "Never completed high school"].sample}",
-      offspring: "#{["Has kids",
-      "No kids"].sample}",
-      pets: "#{["Cats",
-      "Dogs",
-      "Cats and dogs",
-      "No"].sample}",
+      zip_code: [10003, 33071,
+        11204, 11206, 10023,
+        10001, 33063, 12518, 14604].sample,
+      body_type: rand(0..4),
+      smokes: rand(0..3),
+      drugs: rand(0..3),
+      religion: rand(0..6),
       likes: "#{["I love everything!",
       "To hang and have a great time",
       "Anything not big corporations!",
@@ -72,9 +44,9 @@
 
 
   if test_unit.username.include?("Girl")
-    test_profile.sex = "Female"
+    test_profile.sex = "F"
   else
-    test_profile.sex = "Male"
+    test_profile.sex = "M"
   end
 
   test_profile.save!

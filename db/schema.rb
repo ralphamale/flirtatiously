@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140220194759) do
+ActiveRecord::Schema.define(:version => 20140222015510) do
 
   create_table "acceptable_responses", :force => true do |t|
     t.integer  "user_id"
@@ -80,18 +80,27 @@ ActiveRecord::Schema.define(:version => 20140220194759) do
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
     t.string   "sex"
-    t.string   "sexual_orientation"
-    t.string   "drugs"
+    t.integer  "sexual_orientation"
+    t.integer  "drugs"
     t.text     "description"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
     t.string   "height"
-    t.string   "body_type"
+    t.integer  "body_type"
     t.string   "diet"
-    t.string   "smokes"
+    t.integer  "smokes"
     t.string   "drinks"
+<<<<<<< Local Changes
+<<<<<<< Local Changes
     t.string   "religion"
+    t.string   "sign",
+=======
+    t.integer  "religion"
+=======
+    t.integer  "religion"
+>>>>>>> External Changes
     t.string   "sign"
+>>>>>>> External Changes
     t.string   "education"
     t.string   "job"
     t.string   "offspring"
@@ -144,7 +153,7 @@ ActiveRecord::Schema.define(:version => 20140220194759) do
     t.integer  "beg_age"
     t.integer  "end_age"
     t.string   "sex"
-    t.string   "sexual_orientation"
+    t.integer  "sexual_orientation"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "distance"

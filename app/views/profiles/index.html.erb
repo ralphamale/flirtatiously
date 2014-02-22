@@ -13,17 +13,25 @@
   years old |
 
   <select name="user_filter[sexual_orientation]">
-    <option value="Straight" <%= "selected" if @user_filter.sexual_orientation == "Straight" %>>Straight</option>
-    <option value="Gay" <%= "selected" if @user_filter.sexual_orientation == "Gay" %>>Gay</option>
-    <option value="Bisexual" <%= "selected" if @user_filter.sexual_orientation == "Bisexual" %>>Bisexual</option>
-    <option value="All" <%= "selected" if @user_filter.sexual_orientation == "All" %>>All</option>
+
+    <% PROFILE_DETAILS["sexual_orientation"].each do |k, v| %>
+  <option value="<%= k %>" <%= "selected" if @user_filter.sexual_orientation == k %>><%= v %></option>
+
+    <% end %>
+    <option value="-1" <%= "selected" if @user_filter.sexual_orientation == "-1" %>>All</option>
   </select>
 
 
   <select name="user_filter[sex]" >
-  <option value="Everyone" <%= "selected" if @user_filter.sex == "Everyone" %>>Everyone</option>
-  <option value="Male" <%= "selected" if @user_filter.sex == "Male" %>>Male</option>
-  <option value="Female" <%= "selected" if @user_filter.sex == "Female" %>>Female</option>
+
+
+  <% PROFILE_DETAILS["sex"].each do |k, v| %>
+  <option value="<%= k %>" <%= "selected" if @user_filter.sex == k %>><%= v %></option>
+
+  <% end %>
+
+  <option value="-1" <%= "selected" if @user_filter.sex == "-1" %>>Everyone</option>
+
   </select> | <input type="text" name="user_filter[distance]" value="<%= @user_filter.distance %>"> miles away
 
 

@@ -1,98 +1,114 @@
 Ask TAs:
--when googlign problems, do u go for the solution or understandin gin the realworld?
-
-Where to hit enters and shit to not fuck up code.
-
-params[:user_id]
--how come sometimes shit returns to_s but someitmes to-i? => params alwys S, activerecord always I.
-
--draggable, how to save?
--text editor.. how to implement?
 
 WHAT DO I DO IF I DONT REALLY HAVE ANYTHING TO TEST IN MODELS?
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-id
-name
-first_name
-last_name
-link
-username
-gender
-locale
-age_range
-user_birthday
-email
-user_Photos
-image_siez to get image URL in auth hash <--- can just do later
+Most important:
+1. Fix database for "1", "2", "3" ~ change to integer?
+  1a. Edit page inline.
+2. Tinder
+3. Status Messages
+4. Tabs
+-"Complete registration page" for FB user and otherwise.
 
-info_fields
+FEATURE (MOST IMPORTANT TO LEAST IMPORTANT)
+-Edit profile inline. (J) ~~~ maybe fix the "1" "2" "3" thing.
+-Swipe. (R) -- with getting u ur swipes first. and then  ~ Likes and Liked_By? == grab from filter... whether the users like it.
+-Status message (R)
 
+-Grab Facebook photo. Autobuilds what it can from your profile. Then redirects
+-Move your questions over to your profile page.
+-Thumbnails / Custom Thumbnail
+-Other photos.
+-Move Photo, Move Block <--- just use paperclip and thumbnail.
+-Height
+-Sent box.
+-Advanced search?
+-How to do notifications? + Unread messages.
 
+JAVASCRIPT FEATURE
+-Edit Sex, Location via IP/zip code, birthday on profile page.
+-Tabs with stuff
+-Visual feedback after sending message or editing photo.
+-Edit Images on profile.
+-Thumbnail that pops up into real image
+-Mini bar that is opaque? -- like on DMS
+-Clear search filters.
 
-4 PM:
-Sort by match
-
--Ask Jonathan how to make game, how to integrate photos into here.
--Where to put Backbone?
--Where to add tests if not really models?
-
--How can I download photos?
--Want to use same profile page for both.
--Crop image to square.
-
--Grabbing
--To maximum height but not more.
-
----
-
-
-BEFORE 4:
-Bodty type, smokes, drugs, religion
-
-In profile: edit Sex, location via IP or zip code, birthday.
-Big Photo
--Edit options in line!
--Put Questions on profile page.
--Make tabs.
-
-
-
--Refactor that Questions get.
-Style Form
+CSS / Styling / Refactor
+-Image should not overflow on page.
 -Move Navbar into partial
-Add question to profile.
--buttons from about me.
--X button on send messsage.
+-add X button on 'send message'
+-Style forms
 
-Sort by %.
+-Buttons from About Me / Tumblr. // Styling with pre-filled shit.
+-Icons and sprites
+-EDIT block with Photo upload, Colors, Fonts, Other Settings.
+-make inbox pretty.
+-bar at the bottom.
+-Logo is clickable to newsfeed.
+-X button on message.
 
-After:
-Add Tags
+
+BUG FIX
+-Will it coax you to answer the question if you have not answered?
+-Inclusion validations.
+-Add validations through model and stuff.
+-Flash success.
+-Delete extra controller actions.
+-Crop image to square.
+-Validations on search. DOes not save bad ones.
+-Validations on profile fields.
+-Validations on username
+dependent:destory on porfile, detail, photo, response
+-Delete unused profile tags.
+-Leading zeroes problem
+-Destroy your profile.
+-polaceholder on input fields / none fields.
+
+Refactor
+get_responses, get_acceptable_responses
+calculate-percentages, find_by_credentails
 
 
-AFTER: Add the fields inside the inputs.
+
+
+EXTRA EXTRA
+-Geocoding for login.
+-Add email part.
+-Live chat.
+-Pretty print for date.
+-Tags
+-Displaying red/green/yellow based on match percentage
+-Custom header field.
+-clicking on percentage goes straight to question
+
+-Jack some themes from about.me for predefined labels
+-Pusher for status messages / chats?
+In questions: Youve answered X of her quns.
+-Sort questions
+-she cares, i care, ihavent answered, categories, (ethics, sex, religion, lifestyles, data, with explanation)
+-add explanation.
+-Action Mailer
+-Explanations
+
+SUNDAY: DO ALL OF CSS.
+So can prep for assessment.
+
+~~~~~~~~~~~~~~~~~~~~~~
+
+MONDAY:
+-FB game and Personal website. ask JOnathan for recommendations.
+
+
 
 Friday:
 Add Pagination
 -"His" / "Her" translation
 -Style unacceptable answers as red.
 
-THURSDAY THINGS TO DO:
--Make edit profile page clickable to edit.
--Draggable/Editable Toolbox for profile thats minimizable. Can change to make profile static as seen.
--Tinder flip is better than Status Message w/ carousel
--2 second feedback after clicking.
-
--mock tumblr's scheme for use.
-
-
-
-Checkbox on save. X on not.
-
-(Seed data, Model tests)
 
   -If no X or Y of box, put it in middle.
   If there is, set offset thru interpolation.
@@ -102,116 +118,25 @@ Checkbox on save. X on not.
 Nav bar to its own partial
 
 
-DONE:
-Edit question right on page.
--Message on page.
-Omnniauth
 
 
--Pusher could be to get new status messages
 
-Today
-Do CSS stylings.
-
--Finish preliminary CSS.
-  -style forms.
-  -views for all.
--install on Homebrew.
--Status messages /  news feed
 
 Today
 -Worked on applying to jbos
 
 -Implemented Search
 
-Backbone:
-  -Your edit page, which is like the show page, except with a draggable. Maybe case it in, so that when its your current user page, its
 
-  -Click on your actual element in order to edit it. Then save persists.
-
-  Swipe left/swipe right with carousel
-    -change to save.
-  -Ask question right on page.
-  -Search doesnt re-render page.
-  -Edit question just by clciking on it.
-  -Toolbar window.
-
-  -Make it so there is 2 second feedback after clicking.
-
--Add signifier that it has been sent by rendering different view.
-
-
-CSS
--Styling
-  -Opacity on bar? DEpends on how to implement background
-  -Forms
-
-
-
-WHAT'S LEFT ON RAILS:
--Pagify
--Omniauth
--Status messages
--Couple of more search options.
-
-TO DO
--add restraints so cant add negative, beg age bigger than end age. so it cant even save that.
--Bar depending on match %.
--Implement view
--Then can start implementing individual profiles.
-
--When logging in by Facebook, autofills forms for you. Also make a "Complete registration" form for after.
-
--Go through CSS guide and then use that to help with form.
--Have bar at the bottom
-
-When tired  - add more CSS.
-  -Have main bar at top of page, but smaller one after its there.
--start incorporating about.me
-
-Make logo clickable.
-
--how to make things like italiczed and red? would i just have to wrap it in a DIV tag with a class name and then addclass?
-
-
-NOT IMPORTANT SHIT TO DO:
--give only half.
--Do "CSs measurements.txt" whenever bored
--put mixes on computer
--wheres my amazon?
 
 
 http://devandpencil.herokuapp.com/blog/2013/08/11/rails-validates-presence-of-boolean-not-what-you-think/
-#yell if beg age less than end age.
-#how to clear filter.distance?
-add rest of search terms?
-How about for ethnicity, with checkbox?
 
-Thursday
--Refactor some shit.
--Add Picture uplaoding after they teach how to.
 
--PLAN WYSWIG EDITOR
-
--Check the old JS/Rails stuff in order to see if there's anything more to be done.
--Make some seed data that'll just get created period.
-omniauth
 
 
 ~~~~~~~~~~~~~
 
--Store multiple photos (with flag on main one)
-WEEKEND
--Make avatar clickable in profile.
--Gradients for match percentages.
-Prepare for CSS.
-Zip Code -- leading zeroes problem/
-
-Important: Each time you migrate your database or change it, you must also update the test database by calling rake db:test:prepare.
-
-Write RSpec tests for every model as you go. This is an easy win, and a huge boon for employment.
-
-Do I have test coverage for my models?
 
 QUESTION
 self.get_responses
@@ -225,143 +150,7 @@ calculate percentages
 find by credentials
 
 
-SHIT I LEARNED:
--if no CSRF token, will start fuckning up
-
 SUPERFLUOUS:
-inverse_of?
-LULU SECOND PROJECT
-Reverse geocode
-Uniqueness validators: can't like the same person twice.
 
--Add validations through model and shit.
-   use association name for presence validator.
-flash success.
--Destory action for user that deletes profile.
-Do I need to worry about create controller action for Profile?
--add email field / omniauth
--PRetty print for DATE
--Display how many unread messages there are.
--SEarch how to limit by 1 for each unique entry thats the latest.
-
-
-Controller/views: update_answer, ne question, create question, destroy profile.
-Status / post one. / newsfeed.
-Search Prefs: straight/gay/bi girls/guys, age range, range,
--should i delete the response controller?
-Zip code.
-
--notification on new messages.
--hover over profile to edit. like click on.
--paperclip
--
-
-BIG PART:
-make WYSWIG editor for profile. // ContentEdigatable and JQueryUI
 
 LATER:
--status messages.
-INCLUSION validation on stuff
--click to edit
-
--last online
-Answer random question -- if done, say no more questions!
--Add validations.
--Live chat.   / gem pusher
--Ethnicity box.
--Action_Mailer
--Omniauth
-In questions: You've answered X of her questions.
--Sort questions
--she cares, i care, ihavent answered, categories, (ethics, sex, religion, lifestyles, data, with explanation)
--add explanation.
-
-AJAX/Backbone / own API for consumption by Backbone
-jquery UI: draggable/sortable
-
-
--Write RSpec tests for all models
--Live chat
-
-
-AFTER THIS WEEK:
-
-\Write Personal statement for LinekdIn and STackOverflow and resume.
--Ask Jonathan for advice later on job fair.
-
-
-QUEASTIONS
--What is UJS?
-
--DMS menu + nav.
-
-
-
--Zip code.
--Picture upload with paperclip or filepicker.io
-Omniauth
-
-
-WHEN DONE:
-UI for editing pretty profiles
--Action Mailer for authenticiation
-
-
-
-answers - body : null, false
-
-
-add_index "conversations", ['low-user-id', 'high-user-id'
-]
-
-profile - details - user_id - nullfalse
-
-last_online
-
-
-user
-gender
-orientation
-birthday
-
-
-
-user prefs
-min_age
-max_age
-max_distance
-
-user
-zipcode - 33071
-
-order("created_at DESC") LIMIT 8
-
-
-module ApplicationHelper
-def nice_time(timestamp)
-   Time.at(timestamp).utc.strftime("%B %-d at %l:%M %P")
- end
-
-
-require_current_user!
-require_no_current_user
-
-require_correct_user
-
-
-dependent:destory on porfile, detail, photo, response
-
-
-validates the user details
-last_online from Time.now
-
-
-===
-
-min/max validations
-
-
-add explanation to responses
-
- add_index "responses", ["user_id", "question_id"],
-

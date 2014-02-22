@@ -5,7 +5,9 @@ class ProfilesController < ApplicationController
 
   def index
     @user_filter = current_user.user_filter
-    @profiles = Profile.apply_filters.page(params[:page])
+    current_user_pid = current_user.profile.id
+    @profiles = Profile.apply_filters(@user_filter, current_user)
+      .page(params[:page])
     render layout: "browse_profile"
   end
 

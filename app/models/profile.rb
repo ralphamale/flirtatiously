@@ -49,16 +49,17 @@ class Profile < ActiveRecord::Base
   end
   after_validation :geocode, :reverse_geocode
 
-  def self.apply_filters
-    current_user = User.find(12)
-    filter = current_user.user_filter
+  def self.apply_filters(filter, current_user)
+
+
     return Profile.all if filter.nil?
     #put those extra filters in for non-default e.g. filter.sex == "Everyone"
     results = Profile.where("id != ?", current_user.profile.id)
 
-    unless filter.sex.nil? || filter.sex == "Everyone"
+    unless filter.sex.nil? || filter.sex == -1
       results = results.where(:sex => filter.sex)
     end
+
 
 
     unless filter.beg_age.nil? && filter.end_age.nil?
@@ -71,7 +72,7 @@ class Profile < ActiveRecord::Base
       results = results.where(:birthday => end_date..start_date)
     end
 
-    unless filter.sexual_orientation.nil? || filter.sexual_orientation == "All"
+    unless filter.sexual_orientation.nil? || filter.sexual_orientation == -1
       results = results.where(:sexual_orientation => filter.sexual_orientation)
     end
 

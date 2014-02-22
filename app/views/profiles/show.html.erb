@@ -9,16 +9,22 @@
   <%= @profile.user.username %>
 </h1>
 
-<%= age(@profile.birthday) %> years old | <%= "#{@profile["sexual_orientation"]} " %><%= @profile["sex"] %> | <%= @profile.city %>
+<%= age(@profile.birthday) %>  |
+<%= PROFILE_DETAILS["sexual_orientation"][@profile["sexual_orientation"]] %>
+<%= @profile["sex"] %> |
+<%= @profile.city %>
 <br>
 
 <% unless @is_current_user_profile %>
   <% percentages = current_user.calculate_percentages(@profile.user) %>
   <%= print_percentages(percentages) %>
-  <% end %>
+<% end %>
 <br>
 
-<%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if @profile.big_photo.exists? %> <%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if @profile.big_photo.exists? %>
+<%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if @profile
+  .big_photo.exists? %>
+<%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if
+@profile.big_photo.exists? %>
 <br>
 <%# height later %>
 
@@ -27,56 +33,50 @@
 
 
 <% unless @is_current_user_profile %>
-<% if current_user.likes?(@profile.user) %>
-	<% if @profile.user.likes?(current_user) %>
-	<b> You guys both like each other!</b>
-	<% else %>
-	<b> You've liked this user already. Let's hope they like you back. </b>
-	<% end %>
-<% else %>
-<br>
-<%= button_to "Like User", like_user_url(@profile.user_id), {method: :post} %>
-
-<div class=""><input type="submit" class="message" value="MESSAGE A BROTHA"></div>
-<% end %>
+  <% if current_user.likes?(@profile.user) %>
+    	<% if @profile.user.likes?(current_user) %>
+      	<b> You guys both like each other!</b>
+    	<% else %>
+      	<b> You've liked this user already. Let's hope they like you back. </b>
+    	<% end %>
+  <% else %>
+    <br>
+    <%= button_to "Like User", like_user_url(@profile.user_id), {method: :post} %>
+    <div class="">
+      <input
+        type="submit"
+          class="message"
+            value="MESSAGE A BROTHA">
+    </div>
+  <% end %>
 <% end %>
 
 
 <h2>Bio</h2>
 <div class="profile-field">
   <span class="editable" name="profile[description]">
-    <%= @profile.description %>fdsfds
+    <%= @profile.description %>
   </span>
 </div>
-
 
 <h2>Loves</h2>
 
 <%= @profile["likes"] %>
 
-
 <h2> Details</h2>
 <table class="profile-stats">
-<% ["body_type", "smokes", "drugs", "religion"].each do |descriptor| %>
-
-<tr>
-  <th><%= descriptor.gsub(/_/," ").capitalize %></th>
-  <td> <%= (@profile[descriptor].nil?) ? "--" : @profile[descriptor] %></td>
-</tr>
-
-<% end %>
+  <% TABULAR_DETAILS.keys.each do |key| %>
+  <tr>
+    <th><%= key.gsub(/_/," ").capitalize %></th>
+    <td><%=
+      unless @profile[key].nil?
+        PROFILE_DETAILS[key][@profile[key]]
+      else
+        "-" end %>
+    </td>
+  </tr>
+  <% end %>
 </table>
-
-
-
-
-
-
-
-
-
-
-
 
 <% if @is_current_user_profile %>
 <script>
