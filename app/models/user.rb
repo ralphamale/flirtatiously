@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
   has_one :profile, inverse_of: :user, dependent: :destroy,
   foreign_key: :user_id
 
+  has_many :status_messages, inverse_of: :user, dependent: :destroy,
+  foreign_key: :user_id
+
+
   has_many :message_headers, dependent: :destroy,
   foreign_key: :user_id
 

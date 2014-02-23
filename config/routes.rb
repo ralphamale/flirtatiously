@@ -4,12 +4,12 @@ Flirtatiously::Application.routes.draw do
       get 'conversation', on: :collection
     end
 
-
-
     member do
       post "like"
     end
   end
+
+  resources :status_messages, only: [:index, :create, :delete]
 
   resources :ratings, only: [:create]
 

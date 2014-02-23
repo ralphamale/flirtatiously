@@ -11,15 +11,47 @@ Most important:
 
 heading! question in current user. refactor Answer(includes answer choices). http://stackoverflow.com/questions/11860721/how-to-handle-onchange-event-on-input-type-file-in-jquery
 
+BACK-END
+-Status updates.
+-Browse for Tinder filters out people in filter, and says no more matches if no one else to matchw ith.
+
+
+SUNDAY PRIORITY
+-Style forms
+-Apply new color scheme.
+-Refactor some at the end of day?
+
+Back-end
+bump "Answer question" to a always persisting popup.
+-Add create new status into its own box.
+-"Game On"
+-Sent box.
+
+Front-end
+-display quesitons on same page as profile.
+
+What do I want
+
+WYSWIG editor.
+
+
 
 Scroll fix: http://blog.crondesign.com/2009/09/scrollfix-remember-scroll-position-when.html
-
+1. FIXING THE QUESTIONS.
 2. Tinder
+  -browse people havent matched yet
+  -display screen if theres no one else to match with
+  -map keys.
+  -SORT If they are users that like u and is_mutual is NIL. Where is_mutual != false.. then others. Grab from your filters.
+  -notification module
+  -loading screen
 3. Status Messages
 4. Tabs
 5. Jquery-file-upload
 These are both for user: -username / email left / custom field.
 -"Complete registration page" for FB user and otherwise.
+
+-Comment on statuses.
 
 FEATURE (MOST IMPORTANT TO LEAST IMPORTANT)
 -Swipe. (R) -- with getting u ur swipes first. and then  ~ Likes and Liked_By? == grab from filter... whether the users like it.
@@ -225,6 +257,8 @@ YES
 http://thenounproject.com/term/heart/4454/
 http://thenounproject.com/term/heart/30666/
 
+Websites
+Include the attribution either on the page where the symbol is displayed, or in About or Credits pages.
 magnifying glass for search
 "question mark'
 "

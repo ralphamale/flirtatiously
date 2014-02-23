@@ -21,9 +21,15 @@ html, body, header, nav, h1, ul, li, h2 {
   font-family: sans-serif;
 }
 
+body {
+  font-size: 20px;
+  font-weight: "Light", "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+
 h2 {
   margin-top: 20px;
-  font-size: 40px;
+  font-size: 2.8em;
   font-weight: bold;
   color: #08AAC8;
   margin-bottom: 5px;

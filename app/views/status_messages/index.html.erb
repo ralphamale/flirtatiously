@@ -1,0 +1,33 @@
+<% content_for :right_col do %>
+<div class="status-image">
+
+</div>
+
+<textarea placeholder="Say hi to the world!"></textarea>
+
+<!-- expands when clicked -->
+<% end %>
+
+
+<% @status_messages.each do |status| %>
+  <ul class="status-messages">
+    <li class="status-message">
+      <div class="status-image">
+
+      </div>
+      <section class="status-content">
+        <a class="username" href="<%= profile_url(status.p_id) %>">
+          <%= status.username %>
+        </a>
+        <div class="status-body">
+          <%= status.body %>
+
+        </div>
+
+        <div class="status-timestamp">
+          <%= status.created_at %>
+        </div>
+      </section>
+    </li>
+  </ul>
+<% end %>

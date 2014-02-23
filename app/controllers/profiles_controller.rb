@@ -35,7 +35,7 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = current_user.profile
-    debugger
+
     if @profile.update_attributes(params[:profile])
       respond_to do |format|
         format.html { redirect_to profile_url(params[:id]) }
@@ -65,17 +65,6 @@ class ProfilesController < ApplicationController
     @match_info = current_user.calculate_percentages(@profile.user)
 
    @rating_status = Rating.status(current_user.id, @profile.user_id)
-
-   @dick = 5;
-
-
-    # def self.rating_status(uid)
- #      rating = Rating.where(:rater_id => current_user.id).where(:rating_id => uid).first
- #      if rating.nil?
- #        nil
- #      else
- #        rating.is_mutual
- #    end
 
   end
 
