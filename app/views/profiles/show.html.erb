@@ -28,10 +28,6 @@
   |
 
 
-  <br>
-  |
-
-
 
 
 <div class="profile-field">
@@ -82,7 +78,63 @@
  </div>
 
 
-<br>
+ <br>
+ <br>
+ <br>
+
+ <p>
+
+<% if @rating_status.nil? %>
+  <div class="ratings">
+    <h2> User is hot.</h2>
+
+    <% ["true", "false"].each do |text| %>
+      <form action="<%= ratings_url %>" method="post" class="rating-form">
+        <input type="hidden" name="rating[ratee_id]" value="<%= @profile.user_id %>">
+          <%= auth_token_input %>
+          <input type="hidden" name="rating[likes]" value="<%= text %>">
+          <input type="submit" value="<%= text %>">
+      </form>
+    <% end %>
+   </div>
+<% elsif @rating_status%>
+   You guys both like each other!
+<% else  %>
+   You have already rated this user.
+<% end %>
+
+ <script>
+ $(document).ready(function() {
+   $('.ratings').on('submit', 'form', function(e) {
+     e.preventDefault();
+     var formData = $(this).serializeJSON();
+
+     $.ajax({
+       url: "<%= ratings_url %>",
+       type: "POST",
+       data: formData,
+       dataType: "json",
+       success: function(r) {
+         if (r.is_mutual) {
+           //if its mutual, display a congrats screen.
+           //on keyboard strike of YES or NO. just display the symbol big and move.
+         } else {
+           //rating stored.
+         };
+         console.log("Yay");
+         console.log(r);
+       },
+       error: function(r) {
+         alert("Error");
+         console.log(r);
+       }
+     });
+
+   });
+ });
+
+ </script>
+ <br>
 
 <% unless @is_current_user_profile %>
   <% percentages = current_user.calculate_percentages(@profile.user) %>
@@ -102,13 +154,13 @@
 
 
 <% unless @is_current_user_profile %>
-  <% if current_user.likes?(@profile.user) %>
-    	<% if @profile.user.likes?(current_user) %>
-      	<b> You guys both like each other!</b>
-    	<% else %>
-      	<b> You've liked this user already. Let's hope they like you back. </b>
-    	<% end %>
-  <% else %>
+  <% #if current_user.likes?(@profile.user) %>
+    	<%# if @profile.user.likes?(current_user) %>
+      	<!-- <<b> You guys both like each other!</b>
+      <%# else %>
+        <b> You've liked this user already. Let's hope they like you back. </b>> -->
+    	<%# end %>
+  <% if true %>
     <br>
     <%= button_to "Like User", like_user_url(@profile.user_id), {method: :post} %>
     <div class="">

@@ -11,6 +11,9 @@ Most important:
 
 heading! question in current user. refactor Answer(includes answer choices). http://stackoverflow.com/questions/11860721/how-to-handle-onchange-event-on-input-type-file-in-jquery
 
+
+Scroll fix: http://blog.crondesign.com/2009/09/scrollfix-remember-scroll-position-when.html
+
 2. Tinder
 3. Status Messages
 4. Tabs
@@ -19,7 +22,6 @@ These are both for user: -username / email left / custom field.
 -"Complete registration page" for FB user and otherwise.
 
 FEATURE (MOST IMPORTANT TO LEAST IMPORTANT)
--Edit profile inline. (J) ~~~ maybe fix the "1" "2" "3" thing.
 -Swipe. (R) -- with getting u ur swipes first. and then  ~ Likes and Liked_By? == grab from filter... whether the users like it.
 -Status message (R)
 

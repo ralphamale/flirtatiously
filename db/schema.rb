@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140222204221) do
+ActiveRecord::Schema.define(:version => 20140222234053) do
 
   create_table "acceptable_responses", :force => true do |t|
     t.integer  "user_id"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(:version => 20140222204221) do
 
   add_index "ratings", ["ratee_id", "rater_id"], :name => "index_ratings_on_ratee_id_and_rater_id", :unique => true
   add_index "ratings", ["ratee_id"], :name => "index_ratings_on_ratee_id"
-  add_index "ratings", ["rater_id", "rater_id"], :name => "index_ratings_on_rater_id_and_rater_id", :unique => true
+  add_index "ratings", ["rater_id", "ratee_id"], :name => "index_ratings_on_rater_id_and_ratee_id", :unique => true
   add_index "ratings", ["rater_id"], :name => "index_ratings_on_rater_id"
 
   create_table "responses", :force => true do |t|

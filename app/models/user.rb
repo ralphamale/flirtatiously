@@ -38,11 +38,13 @@ class User < ActiveRecord::Base
 
   has_many :sent_ratings,
   class_name: "Rating",
-  foreign_key: :rater_id
+  foreign_key: :rater_id,
+  primary_key: :id
 
   has_many :received_ratings,
   class_name: "Rating",
-  foreign_key: :ratee_id
+  foreign_key: :ratee_id,
+  primary_key: :id
 
   has_many :rated_users,
   through: :sent_ratings,
@@ -65,13 +67,13 @@ class User < ActiveRecord::Base
    through: :responses,
    source: :question
 
-   def is_liked_by?(user)
-     self.likers.include?(user)
-   end
-
-   def likes?(user)
-     self.liked_users.include?(user)
-   end
+   # def is_liked_by?(user)
+   #   self.likers.include?(user)
+   # end
+   #
+   # def likes?(user)
+   #   self.liked_users.include?(user)
+   # end
 
    def calculate_percentages(other_user)
 

@@ -4,6 +4,8 @@ Flirtatiously::Application.routes.draw do
       get 'conversation', on: :collection
     end
 
+
+
     member do
       post "like"
     end
@@ -14,7 +16,9 @@ Flirtatiously::Application.routes.draw do
   resource :user_filter, only: [:update]
   resource :session, only: [:new, :create, :destroy]
 
-  resources :profiles, except: [:new]
+  resources :profiles, except: [:new] do
+
+  end
 
   resources :messages, only: [:index, :destroy] do
     get 'sent', on: :collection
