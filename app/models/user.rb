@@ -31,6 +31,15 @@ class User < ActiveRecord::Base
   foreign_key: :user_id
 
 
+  has_many :received_notifications,
+  class_name: "Notification",
+  foreign_key: :receiver_id
+
+  has_many :triggered_notifications,
+  class_name: "Notification",
+  foreign_key: :receiver_id
+
+
   has_many :message_headers, dependent: :destroy,
   foreign_key: :user_id
 
