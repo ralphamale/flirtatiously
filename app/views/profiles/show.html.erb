@@ -26,14 +26,14 @@
 <%= image_tag(@profile.big_photo.url, :class => "big-ass-photo") if @profile.big_photo.exists? %>
 </div>
 
-<div class="content-4-of-7" style="background-color: #fff">
+<div class="content-4of7" style="background-color: #fff">
 
 
   <h1 class="username">
     <%= @profile.user.username %>
   </h1>
 
-  <div class="profile-field">
+  <span class="profile-field">
     <span class="owner-can-modify" id="age">
       <%= age(@profile.birthday) %>
     </span>
@@ -41,9 +41,9 @@
       class="form-input"
         name="profile[birthday]"
           value="<%= @profile.birthday %>">
-  </div>
+  </span>
 
-  <div class="profile-field">
+  | <span class="profile-field">
     <span class="owner-can-modify">
       <%= PROFILE_DETAILS["sexual_orientation"][@profile["sexual_orientation"]] %>
     </span>
@@ -56,9 +56,9 @@
          </option>
        <% end %>
     </select>
-  </div>
+  </span>
 
-  <div class="profile-field">
+  | <span class="profile-field">
     <span class="owner-can-modify" id="sex">
       <%= @profile["sex"] %>
     </span>
@@ -71,16 +71,16 @@
          </option>
        <% end %>
     </select>
-  </div>
+  </span>
 
-  <div class="profile-field">
+  | <span class="profile-field">
     <span class="owner-can-modify" id="city">
       <%= @profile.city %>
      </span>
      <input type="text" class="form-input"
          name="profile[zip_code]"
            value="<%= @profile.zip_code %>">
-  </div>
+  </span>
 
    <br>
 

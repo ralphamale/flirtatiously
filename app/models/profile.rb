@@ -49,6 +49,25 @@ class Profile < ActiveRecord::Base
   end
   after_validation :geocode, :reverse_geocode
 
+
+  def self.get_random_unrated(current_user)
+
+    # unanswered_questions = Question.pluck(:id) - current_user.answered_questions.pluck(:id)
+#     random_id = unanswered_questions.sample
+#     @random_question = (random_id.nil?) ? nil : Question.find(random_id)
+#     @random_question
+    already_rated = u.sent_ratings.pluck(:ratee_id)
+
+    @user_filter = current_user.user_filter
+    current_user_pid = current_user.profile.id
+    @random_unmatched = Profile.apply_filters(@user_filter, current_user).where("profiles.user_id NOT IN ?", already_rated).offset(rand(Profile.count)).first
+
+    debugger
+
+    @random_unmatched
+
+  end
+
   def self.apply_filters(filter, current_user)
 
 

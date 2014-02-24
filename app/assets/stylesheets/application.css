@@ -27,17 +27,26 @@ html, body, header, nav, h1, ul, li, h2, button, input[type=text], select, texta
   margin: 0 auto;
 }
 
-input[type=text], input[type=password] {
-  display: block;
-  background: white;
-  max-height: 50px;
-  border-top: 1px solid #e3e3e3;
-  width: 100px;
+#answer-question {
+  display: none;
+  position: fixed !important;
+  top: 50px;
+  padding-top: 10px;
+  left: 25%;
+  margin-top: -50px;
+  margin-left: -50px;
+    background: #666;
+  width: 700px;
+  height: 700px;
+  padding: 10px;
+  z-index: 20;
 }
 
+#answer-question.is-unhidden {
+  display: block;
+}
 
-
-button, input[type=submit] {
+input[type=text], select, input[type=password], button, input[type=submit] {
 
   /*
   This is a full reset for a button,
@@ -61,6 +70,18 @@ button, input[type=submit] {
   color: inherit;
   font-family: 'NovecentowideBold',Arial,sans-serif
 }
+
+
+input[type=text], input[type=password] {
+  display: block;
+  background: white;
+  max-height: 50px;
+  border-top: 1px solid #e3e3e3;
+  width: 100px;
+}
+
+
+
 
 
 button, input[type=submit] {
@@ -222,13 +243,14 @@ header > .header-wrap {
 
   min-width: 1000px;
   max-width: 1468px;
+  margin: auto;
   width: 100%;
   height: auto;
    overflow: hidden;
   /*overlow hidden?*/
 }
 
-.content-3of7{
+.content-3of7 {
 
   float: left;
   min-width: 428px;
@@ -242,7 +264,8 @@ header > .header-wrap {
 
   float: left;
   min-width: 571px;
-  width: 57%;
+  width: 54%;
+  padding-left: 3%;
   padding-bottom: 100%;
   margin-bottom: -100%;
 
@@ -368,7 +391,7 @@ footer {
 
 h1.username {
   font-family: 'NovecentowideBold',Arial,sans-serif;
-  font-size: 140px; /*4.3em*/
+  font-size: 60px; /*4.3em*/
   line-height: 110px;
   font-weight: bold;
   color: #FF6633;

@@ -13,6 +13,14 @@ Browse Tinder. say nom ore matches if no one else to match with
 ~_~_~_~_~_~_~_~_~_~_~~_~_~_~_~_~_~_
 Most important:
 
+
+-Notifications
+
+-UJS status
+
+-What to do if no more questions?
+
+
 -make status update button.
 -Key bindings for like and dislike.
 When I send in a new Rating, takes me to another one if its positive. Otherwise, coax to send a message.
@@ -37,9 +45,6 @@ BACK-END
 
 
 SUNDAY PRIORITY
--Style forms
--Apply new color scheme.
--Refactor some at the end of day?
 
 Back-end
 bump "Answer question" to a always persisting popup.

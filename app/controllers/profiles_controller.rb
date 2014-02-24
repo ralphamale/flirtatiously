@@ -11,6 +11,16 @@ class ProfilesController < ApplicationController
     #render layout: "browse_profile"
   end
 
+  def random
+
+    @unmatched_profile = Profile.get_random_unrated(current_user)
+
+    if request.xhr?
+      render :json => @unmatched_profile
+    end
+  end
+
+
   def new
 
   end

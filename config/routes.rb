@@ -17,7 +17,7 @@ Flirtatiously::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   resources :profiles, except: [:new] do
-
+    get "random", on: :collection
   end
 
   resources :messages, only: [:index, :destroy] do
@@ -28,6 +28,7 @@ Flirtatiously::Application.routes.draw do
     post "answer"
     get "edit_answer"
     put "update_answer"
+    get "random", on: :collection
   end
 
 

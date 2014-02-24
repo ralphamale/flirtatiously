@@ -30,5 +30,13 @@ class Question < ActiveRecord::Base
     return Question.joins("JOIN answer_choices ON questions.id = answer_choices.question_id INNER JOIN acceptable_responses ON acceptable_responses.answer_choice_id = answer_choices.id").select("questions.id AS question_id, acceptable_responses.answer_choice_id AS answer_id, acceptable_responses.importance AS importance").where("acceptable_responses.user_id = ?", user_id)
 
   end
+
+  def self.get_random_unanswered(current_user)
+
+    unanswered_questions = Question.pluck(:id) - current_user.answered_questions.pluck(:id)
+    random_id = unanswered_questions.sample
+    @random_question = (random_id.nil?) ? nil : Question.find(random_id)
+    @random_question
+  end
 end
 

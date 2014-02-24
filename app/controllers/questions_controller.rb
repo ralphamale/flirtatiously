@@ -3,10 +3,7 @@ class QuestionsController < ApplicationController
 
 
   def index
-    unanswered_questions = Question.pluck(:id) - current_user.answered_questions.pluck(:id)
-
-    random_id = unanswered_questions.sample
-    @random_question = (random_id.nil?) ? nil : Question.find(random_id)
+    @random_question = Question.get_random_unanswered(current_user)
 
     @answered_questions = Response.find_by_sql ["
       SELECT questions.text AS question_text, responses.id AS response_id, answer_choices.text AS answer_text, questions.id AS question_id
@@ -19,6 +16,13 @@ class QuestionsController < ApplicationController
       WHERE responses.user_id = ?
       ", current_user.id]
 
+  end
+
+  def random
+    if request.xhr?
+      @new_question = Question.get_random_unanswered(current_user)
+      render partial: "answer_question", locals: {question: @new_question}
+    end
   end
 
   def edit_answer
@@ -116,7 +120,17 @@ class QuestionsController < ApplicationController
         flash[:errors] = "Error answering the question"
         redirect_to profiles_url
       else
-        redirect_to questions_url
+        if request.xhr?
+          @new_question = Question.get_random_unanswered(current_user)
+          if @new_question
+            render partial: "answer_question", locals: {question: @new_question}
+          else
+            render text: "No more questions."
+          end
+        else
+          redirect_to questions_url
+        end
+
       end
   end
 
