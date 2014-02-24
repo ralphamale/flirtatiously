@@ -55,7 +55,7 @@ class Profile < ActiveRecord::Base
 
     @user_filter = current_user.user_filter
     current_user_pid = current_user.profile.id
-    @random_unmatched = Profile.where("profiles.user_id NOT IN (?)", already_rated).apply_filters(@user_filter, current_user).sample
+    @random_unmatched = Profile.where("profiles.user_id NOT IN (?)", [-1].concat(already_rated)).apply_filters(@user_filter, current_user).sample
 
 
     @random_unmatched
@@ -64,7 +64,7 @@ class Profile < ActiveRecord::Base
 
   def self.apply_filters(filter, current_user)
 
-
+    debugger
     return Profile.all if filter.nil?
     #put those extra filters in for non-default e.g. filter.sex == "Everyone"
     results = Profile.where("id != ?", current_user.profile.id)

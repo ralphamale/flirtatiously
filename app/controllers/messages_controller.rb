@@ -47,7 +47,7 @@ class MessagesController < ApplicationController
         is_read: false,
         receiver_id: other_id,
         trigger_id: current_user.id,
-        type: 0
+        note_type: 0
         })
 
       puts "after valid before save"

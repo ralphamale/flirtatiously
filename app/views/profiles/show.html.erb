@@ -322,19 +322,27 @@
 <% else %>
 
   <% primary_responses.each do |resp| %>
+  <div class="question-container" data-id="<%= resp.question_id %>">
   <b>  <%= resp.question_text %></b><br>
 
     <% current_user_response =
      find_response(resp.question_id, @current_user_responses)
      %>
 
-     <% debugger %>
+
 
     <% if current_user_response.nil? %>
       Answer question <%= resp.question_id %>
       to see their answer.<br>
     <% else %>
-      Your response: <%= current_user_response.answer_text %><br>
+    <div class="response-show">
+      Your response: <a href="#" class="response-answer-text toggle-edit"><%= current_user_response.answer_text %></a><br>
+    </div>
+
+    <div class="response-edit">
+      <%= render partial: "edit_response", locals: {question: Question.includes([:answer_choices, :acceptable_responses]).where(:id => resp.question_id).first} %>
+    </div>
+
 
       <br>
       <% unless @is_current_user_profile %>
@@ -343,12 +351,48 @@
       <% end %>
 
     <% end %>
-
+  </div>
   <% end %>
 <% end %>
 
 
+<script>
+$('.question-container').on("click", '.toggle-edit', function(event) {
+  event.preventDefault();
+  var $trigger = $(this);
+  var $scope = $trigger.closest("div");
+  var $question = $scope.closest(".question-container");
+  $question.addClass("edit-on");
+});
 
+$('.response-edit').on("submit", "form", function(event) {
+  event.preventDefault();
+
+  var formData = $(this).serializeJSON();
+  var $question = $(this).closest('.question-container')
+  var question_id = $question.attr("data-id")
+
+  $.ajax({
+          url: "/questions/" + question_id + "/update_answer",
+          type: "PUT",
+          data: formData,
+          dataType: "json",
+          success: function (answer_choice) {
+            var $answerText = $question.children('.response-show').children('.response-answer-text')
+            $answerText.html(answer_choice.text);
+            $('.question-container').removeClass("edit-on");
+          },
+          error: function(response) {
+            console.log("error");
+            console.log(response);
+          }
+        });
+
+
+
+})
+
+</script>
 
 
 
