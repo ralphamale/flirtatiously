@@ -1,24 +1,23 @@
 <h1>Sign Up</h1>
 
-<form action="<%= users_url %>" method="post">
+
+
+<form action="<%= users_url %>" class="signup" method="post">
   <%= auth_token_input %>
+  <label for="Birthday">
+    <input name="profile[birthday]" type="date"></label>
 
-  <label>
-    Username
-    <input type="text" name="user[username]" value="<%= @user.username %>">
+  <label for="Username">
+    <input type="text" name="user[username]" value="<%= @user.username %>" placeholder="Username">
   </label>
 
-  <label>
-    Password
-    <input type="password" name="user[password]">
+  <label for="Password">
+    <input type="password" name="user[password]" placeholder="Password">
   </label>
 
-  <label>
-    Birthday
-    <input name="profile[birthday]" type="date">
-  <label>
-    Zip code
-    <input type="text" name="profile[zip_code]">
+
+  <label for="zip_code">
+    <input type="text" name="profile[zip_code]" placeholder="Zip Code">
   </label>
 
   <input type="submit" value="Sign Up">

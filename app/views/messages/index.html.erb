@@ -1,3 +1,23 @@
+<% content_for :secondary_header do %>
+  <h1 class="sec-header-text">
+    <a href="#">Kate Upton</a>
+  </h1>
+  <nav class="sec-left-nav">
+    <ul class="">
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Questions</a></li>
+    </ul>
+  </nav>
+
+  <nav class="sec-right-nav">
+    <ul class="group">
+      <li> <a href="#">Bee-Bop</a></li>
+    <li><a href="#">Message</a></li>
+  </ul>
+  </nav>
+
+<% end %>
+
 <%= "You have not received any messages yet" if @messages.length == 0 %>
 
 <% @messages.each do |message| %>

@@ -1,16 +1,16 @@
-<h3> Search </h3>
 
-<form action="<%= user_filter_url %>" method="post">
+<% content_for :secondary_header do %>
+<form action="<%= user_filter_url %>" method="post" class="search-bar">
   <%= auth_token_input %>
   <input type="hidden" name="_method" value="put">
 
   <input type="text" name="user_filter[beg_age]" value="<%= @user_filter.beg_age %>">
 
-  to
+  <span class="block-floated">to</span>
 
   <input type="text" name="user_filter[end_age]" value="<%= @user_filter.end_age %>">
 
-  years old |
+  <span class="block-floated">years old |</span>
 
   <select name="user_filter[sexual_orientation]">
 
@@ -32,12 +32,16 @@
 
   <option value="-1" <%= "selected" if @user_filter.sex == "-1" %>>Everyone</option>
 
-  </select> | <input type="text" name="user_filter[distance]" value="<%= @user_filter.distance %>"> miles away
+  </select> <input type="text" name="user_filter[distance]" value="<%= @user_filter.distance %>"><span class="block-floated"> miles away</span>
 
 
   <input type="submit" value="Refresh">
 
 </form>
+
+<% end %>
+
+
 
 <h3> Profiles </h3>
 

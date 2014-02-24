@@ -1,14 +1,14 @@
 class ProfilesController < ApplicationController
   before_filter :require_logged_in!
   #before_filter :require_not_current_users_page!, only: [:show]
-  layout "show_profile", only: [:show, :edit]
+  #layout "show_profile", only: [:show, :edit]
 
   def index
     @user_filter = current_user.user_filter
     current_user_pid = current_user.profile.id
     @profiles = Profile.apply_filters(@user_filter, current_user)
       .page(params[:page])
-    render layout: "browse_profile"
+    #render layout: "browse_profile"
   end
 
   def new

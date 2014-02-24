@@ -1,371 +1,290 @@
-<% content_for :right_col do %>
-<!-- replacement for draggggable bar -->
-
-<% end %>
-
 <!-- yield head -->
 
-<h1 class="username">
-  <%= @profile.user.username %>
-</h1>
-
-<h2>
-  <% if @is_current_user_profile %>
-  You are in your OWN profile. Can edit.
-  <% else %>
-  You CANNOT edit someone else's profile.
-  <% end %>
-</h2>
-<div class="profile-field">
-  <span class="owner-can-modify" id="age">
-    <%= age(@profile.birthday) %>
-  </span>
-  <input type="date"
-    class="form-input"
-      name="profile[birthday]"
-        value="<%= @profile.birthday %>">
-</div>
-  |
-
-
-
-
-<div class="profile-field">
-  <span class="owner-can-modify">
-    <%= PROFILE_DETAILS["sexual_orientation"][@profile["sexual_orientation"]] %>
-  </span>
-  <select class="form-input" name="profile[sexual_orientation]">
-    <option disabled selected>Choose New</option>
-     <% PROFILE_DETAILS["sexual_orientation"].each do |k, v| %>
-       <option
-         value="<%= k %>">
-           <%= v %>
-       </option>
-     <% end %>
-  </select>
+<div class="content-3of7">
+<%= image_tag(@profile.big_photo.url, :class => "big-ass-photo") if @profile.big_photo.exists? %>
 </div>
 
-
-<div class="profile-field">
-  <span class="owner-can-modify" id="sex">
-    <%= @profile["sex"] %>
-  </span>
-  <select class="form-input" name="profile[sex]">
-    <option disabled selected>Choose New</option>
-     <% PROFILE_DETAILS["sex"].each do |k, _| %>
-       <option
-         value="<%= k %>">
-           <%= k %>
-       </option>
-     <% end %>
-  </select>
-</div>
+<div class="content-4-of-7">
 
 
+  <h1 class="username">
+    <%= @profile.user.username %>
+  </h1>
+
+  <div class="profile-field">
+    <span class="owner-can-modify" id="age">
+      <%= age(@profile.birthday) %>
+    </span>
+    <input type="date"
+      class="form-input"
+        name="profile[birthday]"
+          value="<%= @profile.birthday %>">
+  </div>
+
+  <div class="profile-field">
+    <span class="owner-can-modify">
+      <%= PROFILE_DETAILS["sexual_orientation"][@profile["sexual_orientation"]] %>
+    </span>
+    <select class="form-input" name="profile[sexual_orientation]">
+      <option disabled selected>Choose New</option>
+       <% PROFILE_DETAILS["sexual_orientation"].each do |k, v| %>
+         <option
+           value="<%= k %>">
+             <%= v %>
+         </option>
+       <% end %>
+    </select>
+  </div>
+
+  <div class="profile-field">
+    <span class="owner-can-modify" id="sex">
+      <%= @profile["sex"] %>
+    </span>
+    <select class="form-input" name="profile[sex]">
+      <option disabled selected>Choose New</option>
+       <% PROFILE_DETAILS["sex"].each do |k, _| %>
+         <option
+           value="<%= k %>">
+             <%= k %>
+         </option>
+       <% end %>
+    </select>
+  </div>
+
+  <div class="profile-field">
+    <span class="owner-can-modify" id="city">
+      <%= @profile.city %>
+     </span>
+     <input type="text" class="form-input"
+         name="profile[zip_code]"
+           value="<%= @profile.zip_code %>">
+  </div>
 
 
+   <br>
 
- |
+  <% if @rating_status.nil? %>
+    <div class="ratings">
+      <h2> User is hot.</h2>
 
- <div class="profile-field">
-   <span class="owner-can-modify" id="city">
-     <%= @profile.city %>
-   </span>
-   <input type="text"
-     class="form-input"
-       name="profile[zip_code]"
-         value="<%= @profile.zip_code %>">
- </div>
-
-
- <br>
- <br>
- <br>
-
- <p>
-
-<% if @rating_status.nil? %>
-  <div class="ratings">
-    <h2> User is hot.</h2>
-
-    <% ["true", "false"].each do |text| %>
-      <form action="<%= ratings_url %>" method="post" class="rating-form">
-        <input type="hidden" name="rating[ratee_id]" value="<%= @profile.user_id %>">
-          <%= auth_token_input %>
-          <input type="hidden" name="rating[likes]" value="<%= text %>">
-          <input type="submit" value="<%= text %>">
-      </form>
-    <% end %>
-   </div>
-<% elsif @rating_status%>
-   You guys both like each other!
-<% else  %>
-   You have already rated this user.
-<% end %>
-
- <script>
- $(document).ready(function() {
-   $('.ratings').on('submit', 'form', function(e) {
-     e.preventDefault();
-     var formData = $(this).serializeJSON();
-
-     $.ajax({
-       url: "<%= ratings_url %>",
-       type: "POST",
-       data: formData,
-       dataType: "json",
-       success: function(r) {
-         if (r.is_mutual) {
-           //if its mutual, display a congrats screen.
-           //on keyboard strike of YES or NO. just display the symbol big and move.
-         } else {
-           //rating stored.
-         };
-         console.log("Yay");
-         console.log(r);
-       },
-       error: function(r) {
-         alert("Error");
-         console.log(r);
-       }
-     });
-
-   });
- });
-
- </script>
- <br>
-
-<% unless @is_current_user_profile %>
-  <% percentages = current_user.calculate_percentages(@profile.user) %>
-  <%= print_percentages(percentages) %>
-<% end %>
-<br>
-
-<%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if @profile
-  .big_photo.exists? %>
-<%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if
-@profile.big_photo.exists? %>
-<br>
-<%# height later %>
-
-
-
-
-
-<% unless @is_current_user_profile %>
-  <% #if current_user.likes?(@profile.user) %>
-    	<%# if @profile.user.likes?(current_user) %>
-      	<!-- <<b> You guys both like each other!</b>
-      <%# else %>
-        <b> You've liked this user already. Let's hope they like you back. </b>> -->
-    	<%# end %>
-  <% if true %>
-    <br>
-    <%= button_to "Like User", like_user_url(@profile.user_id), {method: :post} %>
-    <div class="">
-      <input
-        type="submit"
-          class="message"
-            value="MESSAGE A BROTHA">
+      <% ["true", "false"].each do |text| %>
+        <form action="<%= ratings_url %>" method="post" class="rating-form">
+          <input type="hidden" name="rating[ratee_id]" value="<%= @profile.user_id %>">
+            <%= auth_token_input %>
+            <input type="hidden" name="rating[likes]" value="<%= text %>">
+            <input type="submit" value="<%= text %>">
+        </form>
     </div>
+    <% end %>
+  <% elsif @rating_status %>
+     You guys both like each other!
+  <% else  %>
+     You have already rated this user.
   <% end %>
-<% end %>
+
+   <script>
+   $(document).ready(function() {
+     $('.ratings').on('submit', 'form', function(e) {
+       e.preventDefault();
+       var formData = $(this).serializeJSON();
+
+       $.ajax({
+         url: "<%= ratings_url %>",
+         type: "POST",
+         data: formData,
+         dataType: "json",
+         success: function(r) {
+           if (r.is_mutual) {
+             //if its mutual, display a congrats screen.
+             //on keyboard strike of YES or NO. just display the symbol big and move.
+           } else {
+             //rating stored.
+           };
+           console.log("Yay");
+           console.log(r);
+         },
+         error: function(r) {
+           alert("Error");
+           console.log(r);
+         }
+       });
+
+     });
+   });
+   </script>
 
 
-<h2>Bio</h2>
-<div class="profile-field">
-  <span class="owner-can-modify" id="description">
-    <%= @profile.description %>
-  </span>
-  <textarea class="form-input" name="profile[description]"></textarea>
-</div>
-
-<h2>Loves</h2>
-
-<%= @profile["likes"] %>
-
-<h2> Details</h2>
-<table class="profile-stats">
-  <% TABULAR_DETAILS.keys.each do |key| %>
-  <tr>
-    <th><%= key.gsub(/_/," ").capitalize %></th>
-    <td>
-    <div class="profile-field">
-    <span class="owner-can-modify" id="<%= key %>">
-      <%= unless @profile[key].nil?
-        PROFILE_DETAILS[key][@profile[key]]
-      else
-        "-" end %>
-        </span>
-        <select class="form-input" name="profile[<%= key %>]">
-        <option disabled selected>Choose new</option>
-        <% PROFILE_DETAILS[key].each do |k, v| %>
-          <option
-            value="<%= k %>">
-              <%= v %>
-          </option>
-        <% end %>
-
-
-        </select>
-        </div>
-    </td>
-  </tr>
+  <% unless @is_current_user_profile %>
+    <% percentages = current_user.calculate_percentages(@profile.user) %>
+    <%= print_percentages(percentages) %>
   <% end %>
-</table>
+  <br>
+
+  <%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if @profile
+    .big_photo.exists? %>
+  <%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if
+  @profile.big_photo.exists? %>
+  <br>
+
+
+  <h2>Bio</h2>
+  <div class="profile-field">
+    <span class="owner-can-modify" id="description">
+      <%= @profile.description %>
+    </span>
+    <textarea class="form-input" name="profile[description]"></textarea>
+  </div>
+
+  <h2>Loves</h2>
+  <%= @profile["likes"] %>
+
+  <h2> Details</h2>
+  <table class="profile-stats">
+    <% TABULAR_DETAILS.keys.each do |key| %>
+    <tr>
+      <th><%= key.gsub(/_/," ").capitalize %></th>
+      <td>
+      <div class="profile-field">
+      <span class="owner-can-modify" id="<%= key %>">
+        <%= unless @profile[key].nil?
+          PROFILE_DETAILS[key][@profile[key]]
+        else
+          "-" end %>
+          </span>
+          <select class="form-input" name="profile[<%= key %>]">
+          <option disabled selected>Choose new</option>
+          <% PROFILE_DETAILS[key].each do |k, v| %>
+            <option
+              value="<%= k %>">
+                <%= v %>
+            </option>
+          <% end %>
+          </select>
+      </div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
 
 
 
 
 <% if @is_current_user_profile %>
-<script type="text/javascript">
+  <script type="text/javascript">
+        function calculateAge(birthdayString) {
+          var birthdate = new Date(birthdayString);
+          var cur = new Date();
+          var diff = cur-birthdate; // This is the difference in milliseconds
+          var age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
+          return age;
+        };
+        $(document).ready(function() {
+          $('.profile-field').on('click', '.owner-can-modify', function(e) {
+            var $profileText = $(this);
+            var $profileField = $(this).closest('.profile-field');
+            var $input = $profileField.find('.form-input');
+            if ($input.is('textarea')) {
+              $input.html($(this).html());
+            };
+            //regular text input too.
+            $profileField.addClass('modifying');
+          });
+          $('.profile-field').on('blur', '.form-input', function(e) {
+          var $input = $(this);
+          var $profileField = $input.closest('.profile-field');
+          var $profileText = $profileField.find('.owner-can-modify');
+          var formData = $(this).serializeJSON();
 
-function calculateAge(birthdayString) {
-  var birthdate = new Date(birthdayString);
-  var cur = new Date();
-  var diff = cur-birthdate; // This is the difference in milliseconds
-  var age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
-  return age;
-};
+          var newValue;
+          if ($input.is('select')) {
+            newValue = this.options[e.target.selectedIndex].text;
+            if (newValue === "Choose new") {
+              $profileField.removeClass('modifying');
+              return;
+            };
+          } else {
+            newValue = $input.val();
+          };
+          // var newValue = $(this).;
 
-$(document).ready(function() {
-  $('.profile-field').on('click', '.owner-can-modify', function(e) {
-    var $profileText = $(this);
-    var $profileField = $(this).closest('.profile-field');
-    var $input = $profileField.find('.form-input')
+          //if its not a select with text Choose New
+          $.ajax({
+            url: "<%= profile_url(@profile.id) %>",
+            type: "PUT",
+            data: formData,
+            dataType: "json",
+            success: function(r) {
+              if ($profileText.is('#age')) {
+                newValue = calculateAge(r.birthday);
+              } else if ($profileText.is('#city')) {
+                newValue = r["city"] //because we change zip.
+              }
+              alert("Great!");
+              $profileText.html(newValue);
+              $profileField.removeClass('modifying');
+            },
+            error: function(r) {
+              alert("Error");
+            }
+          });
+          });
+        });
+  </script>
+<% else %>
+  <script>
+  $(document).ready(function() {
 
-    if ($input.is('textarea')) {
-      $input.html($(this).html());
-    };
-    //regular text input too.
-    $profileField.addClass('modifying');
-  });
+    $('.send-message').on('submit',function(event) {
+      event.preventDefault();
 
-  //set name in there!
-  $('.profile-field').on('blur', '.form-input', function(e) {
-    var $input = $(this);
-    var $profileField = $input.closest('.profile-field');
-    var $profileText = $profileField.find('.owner-can-modify');
-    var formData = $(this).serializeJSON();
+      var formData = $(this).serializeJSON();
+      console.log("<%= user_messages_url(@profile.user.id) %>");
+      console.log("Right before ajax call");
+      console.log(formData);
+      console.log(this);
+      $.ajax({
+              url: "<%= user_messages_url(@profile.user.id) %>", //will cause trouble?
+              type: "POST",
+              data: formData,
+              dataType: "json",
+              success: function (response) {
+                console.log(response);
+                console.log("Your callback here!");
+                $('.hide-container').toggleClass("unhide");
+              },
+              error: function(response) {
+                console.log("error");
+                console.log(response);
+              }
+            });
 
-    var newValue;
-    if ($input.is('select')) {
-      newValue = this.options[e.target.selectedIndex].text;
 
-      if (newValue === "Choose new") {
-        $profileField.removeClass('modifying');
-        return;
-      };
 
-    } else {
-      newValue = $input.val();
-    };
-    // var newValue = $(this).;
-
-    //if its not a select with text Choose New
-    $.ajax({
-      url: "<%= profile_url(@profile.id) %>",
-      type: "PUT",
-      data: formData,
-      dataType: "json",
-      success: function(r) {
-        if ($profileText.is('#age')) {
-          newValue = calculateAge(r.birthday);
-        } else if ($profileText.is('#city')) {
-          newValue = r["city"] //because we change zip.
-        }
-        alert("Great!");
-        $profileText.html(newValue);
-        $profileField.removeClass('modifying');
-      },
-      error: function(r) {
-        alert("Error");
-      }
     });
 
 
+    $( ".message" ).click(function(event) {
+      event.preventDefault();
+      $('.hide-container').toggleClass("unhide");
+    });
   });
+  </script>
 
-});
-</script>
-
-
-
-
-
-<% else %>
-<script>
-$(document).ready(function() {
-
-  $('.send-message').on('submit',function(event) {
-    event.preventDefault();
-
-    var formData = $(this).serializeJSON();
-    console.log("<%= user_messages_url(@profile.user.id) %>");
-    console.log("Right before ajax call");
-    console.log(formData);
-    console.log(this);
-    $.ajax({
-            url: "<%= user_messages_url(@profile.user.id) %>", //will cause trouble?
-            type: "POST",
-            data: formData,
-            dataType: "json",
-            success: function (response) {
-              console.log(response);
-              console.log("Your callback here!");
-              $('.hide-container').toggleClass("unhide");
-            },
-            error: function(response) {
-              console.log("error");
-              console.log(response);
-            }
-          });
-
-
-
+  <script>
+  $( ".send-message" ).draggable({
+    containment: $('content'),
+    stop: function(event, ui) {
+      console.log(event);
+      console.log(ui);
+    }
   });
-
-
-  $( ".message" ).click(function(event) {
-    event.preventDefault();
-    $('.hide-container').toggleClass("unhide");
-  });
-
-
-});
-</script>
-
-<script>
-$( ".send-message" ).draggable({
-  containment: $('content'),
-  stop: function(event, ui) {
-    console.log(event);
-    console.log(ui);
-  }
-});
-</script>
-
-
+  </script>
 <% end %>
-
-
-
-
-
-
-
-
-
-
 
 <h2>Questions:</h2>
 
 <% if @is_current_user_profile %>
-Need to do for current user!!
-
-
-
+  Need to do for current user!!
 
 <% else %>
 
@@ -409,5 +328,6 @@ Your response:
 
 <br>
 
+</div>
 
-
+<div style="clear: both;"></div>

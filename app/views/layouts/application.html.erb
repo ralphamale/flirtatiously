@@ -18,39 +18,34 @@
 
 </head>
 <body>
-  <header class="group">
-    <nav class="main-top group">
-      <%= image_tag "logo.png" %>
-      <% if logged_in? %>
+  <header class="header">
 
-
-      <%= link_to "Browse", profiles_url %>
-
-
-      <%= link_to "Your questions", questions_url %>
-
-      <%= link_to "Messages", messages_url %>
-
-      <%= link_to "#{current_user.username}", edit_profile_url(current_user.profile.id) %>
-      <%= button_to "Sign Out", session_url, method: :delete %>
-
-       <% link_to "Your Messages", messages_url %>
-
-      <% else %>
-      <%= link_to "Sign In", new_session_url %>
-      <%= link_to "Sign Up", new_user_url %>
-       <a href="/auth/facebook">Facebook Sign In</a>
-      <% end %>
-    </nav>
+        <%= render "shared/menu" %>
 
   </header>
-  <content class="group">
+
+  <header class="sec-header">
+    <div class="sec-header-wrapper group">
 
 
+<%= yield :secondary_header %>
+    </div>
 
 
+  </header>
 
+  <content>
     <%= flash[:errors] if flash[:errors] %> <%= flash[:success] if flash[:success] %>
+
+
+
+
+
+
+    <div class="content-wrap group">
+
+
+
 
     <div class="left-col-content">
       <%= yield %>
@@ -62,8 +57,11 @@
       <%= yield :right_col %>
 
     </div></div>
-
+  </div>
 </content>
+
+
+
 
 </body>
 </html>

@@ -12,28 +12,101 @@
  *= require_tree .
  */
 
-html, body, header, nav, h1, ul, li, h2 {
+html, body, header, nav, h1, ul, li, h2, button, input[type=text], select, textarea, input[type=password] {
   border: 0;
   margin: 0;
 
   padding: 0;
   font: inherit;
+  vertical-align: baseline;
   font-family: sans-serif;
 }
 
+.signup {
+  width: 400px;
+  margin: 0 auto;
+}
+
+input[type=text], input[type=password] {
+  display: block;
+  background: white;
+  max-height: 50px;
+  border-top: 1px solid #e3e3e3;
+  width: 100px;
+}
+
+
+
+button, input[type=submit] {
+
+  /*
+  This is a full reset for a button,
+  making it as plain as inline text.
+  From here you could move on to style
+  it as a regular link, or anything
+  your beautiful mind can dream up.
+  */
+
+  -webkit-appearance: none;
+  display: inline;
+  box-sizing: content-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  width: auto;
+  font: inherit;
+  vertical-align: baseline;
+  background: transparent;
+  color: inherit;
+  font-family: 'NovecentowideBold',Arial,sans-serif
+}
+
+
+button, input[type=submit] {
+  background: #FFFF33;
+  padding: 20px;
+}
+
+
+
+.signup input[type=text] {
+  display: block;
+  width: 100%;
+  padding: 20px;
+}
+
+.signup input[type=password] {
+  display: block;
+  width: 100%;
+  padding: 20px;
+}
+
+.signup input[type=submit] {
+  width: 100%;
+  color: black;
+  margin-top: 5px;
+}
+
+
+
+
+
+
+
+
 body {
   font-size: 20px;
+  background-color: #333;
+  color: #999;
   font-weight: "Light", "Helvetica Neue", "Helvetica", sans-serif;
 }
 
-
-h2 {
-  margin-top: 20px;
-  font-size: 2.8em;
-  font-weight: bold;
-  color: #08AAC8;
-  margin-bottom: 5px;
+.accent-white {
+  color: #FFF;
 }
+
+
 
 .profile-stats {
   margin: 0 auto;
@@ -45,96 +118,168 @@ h2 {
   padding-right: 40px;
 }
 
-ul.profiles-list {
+ul {
   list-style: none;
-
-
-  border-radius: 10px;
-
-}
-
-ul.profiles-list > li {
-  width: 230px;
-  height: 300px;
-  background-color: white;
-  padding-bottom: 10px;
-  float: left;
-  margin: 5px;
-
-  border-radius: 5px;
-}
-
-ul.profiles-list > li > img {
-  display: block;
-  height: 230px;
-  width: 230px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  margin-bottom: 5px;
-}
-
-ul.profiles-list  a {
-  text-decoration: none;
-  font-size: 28px;
-}
-
-.profile-content {
-  margin-left: 5px;
-}
-
-
-.group:after {
-  clear: both;
-  content: "";
-  display: block;
 }
 
 header {
-  background-color: white;
-  button-color: #E1F9EB;
-  border-bottom: 5px solid #DEDFE1;
-
+  background-color: #663399;
+  /* #663399 */
+  border-bottom: 1px solid black;
 }
 
-header > .main-top {
-  width: 1000px;
-  height: 60px;
-  margin: 0 auto;
+header > .header-wrap {
+  min-width: 1000px;
+  max-width: 1468px;
+  width: 100%;
+  height: 36px;
+  margin: auto;
 }
 
-a {
-  color: #00B5E4;
+.header a {
+  color: #fff;
 }
 
-
-
-
-.main-top a {
-  display: block;
-  padding: 25px;
-  margin-left: 10px;
+.header-logo {
   float: left;
 }
 
-.main-top input {
+.header-logo > a {
+  display: block;
+}
+
+.header-logo > a: hover {
+  background: yellow;
+}
+
+.header-nav {
   float: right;
 }
 
-.main-top img {
-  margin: auto 0;
-  padding-top: 5px;
-  display: block;
+.header-nav > ul > li {
+  position: relative;
   float: left;
+}
+
+.header-nav > ul > li > a {
+  display: block;
+  padding: 5px 40px 5px 5px;
+  text-decoration: none;
+}
+
+.header-nav > ul > li > a:hover {
+  background-color: orange;
+}
+
+.sec-header {
+  background: #333;
+  border: 0;
+  /*background-color: blue;*/ /* debug */
+}
+
+.sec-header a {
+  color: #FFF;
+}
+
+.sec-header-wrapper {
+  min-width: 1000px;
+  max-width: 1468px;
+  width: 100%;
+  min-height: 36px;
+  margin: auto;
+}
+
+.sec-header-text {
+  float: left;
+}
+
+.sec-header-text a {
+  display: block;
 
 }
 
-
-body {
-  background-color: #F7F8FA;
-  text-color: #373737;
-  accent-color-blue: #08AAC8;
+.sec-left-nav > ul > li {
+  float: left;
 }
 
+.sec-right-nav {
+  float: right;
+}
+.sec-right-nav > ul > li {
+  position: relative;
+  float: left;
+}
+
+.sec-header-wrapper a {
+  display: block;
+  color: red;
+  padding: 5px 40px 5px 5px;
+  text-decoration: none;
+}
+
+.content-wrap {
+
+  min-width: 1000px;
+  max-width: 1468px;
+  width: 100%;
+  height: auto;
+  /* overflow: hidden; */
+  /*overlow hidden?*/
+}
+
+.content-3of7{
+
+  float: left;
+  min-width: 428px;
+  width: 43%;
+
+  padding-bottom: 100%;
+  margin-bottom: -100%;
+}
+
+.content-4of7 {
+
+  float: left;
+  min-width: 571px;
+  width: 57%;
+/*  padding-bottom: 100%;
+  margin-bottom: -100%;
+*/
+}
+
+.content-1of7 {
+  float: right;
+  min-width: 142px;
+  width: 15%;
+}
+
+.content-2of7 {
+  float: right;
+  min-width: 285px;
+  width: 28%;
+}
+
+
+.unhide > .send-message {
+  display: block;
+  background-color: lightpink;
+
+}
+
+.send-message { /*** maybe can refactor later? ***/
+  display: none;
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 520px;
+  height: 240px;
+  padding: 10px;
+  z-index: 20;
+}
+
+/***********
 content {
   margin: 0 auto;
   display: block;
@@ -170,24 +315,6 @@ footer {
 }
 
 
-.unhide > .send-message {
-  display: block;
-  background-color: lightpink;
-
-}
-
-.send-message {
-  display: none;
-  position: fixed !important;
-  top: 50%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -50px;
-  width: 520px;
-  height: 240px;
-  padding: 10px;
-  z-index: 20;
-}
 
 #screen {
   position: absolute;
@@ -201,3 +328,172 @@ footer {
   width: 520px;
   height: 200px;
 }
+
+****/
+
+
+
+
+
+
+
+
+
+
+
+h1.username {
+  font-family: 'NovecentowideBold',Arial,sans-serif;
+  font-size: 140px; /*4.3em*/
+  line-height: 110px;
+  font-weight: bold;
+  color: #FF6633;
+  /** #FF420B **/
+}
+
+
+
+ul.profiles-list {
+  list-style: none;
+
+  border-radius: 10px;
+
+}
+
+ul.profiles-list > li {
+  width: 230px;
+  height: 300px;
+  background-color: white;
+  padding-bottom: 10px;
+  float: left;
+  margin: 5px;
+
+  border-radius: 5px;
+}
+
+ul.profiles-list > li > img {
+  display: block;
+  height: 230px;
+  width: 230px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-bottom: 5px;
+}
+
+ul.profiles-list  a {
+  text-decoration: none;
+  font-size: 28px;
+}
+
+.profile-content {
+  margin-left: 5px;
+}
+
+.big-ass-photo {
+  z-index: -1;
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+}
+
+
+.group:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+
+input[type=radio], input[type=checkbox] {
+  display:none;
+  margin:10px;
+}
+
+input[type=radio] + label, input[type=checkbox] + label {
+  display: inline-block;
+  margin: -2px;
+
+  padding: 20px 50px;
+    width: 100%;
+  background-color: blue;
+  border-color: #ddd;
+}
+
+
+.question-container label:hover {
+  background: orange;
+}
+
+input[type=radio]:checked + label {
+  background-image: none;
+  background-color: #d0d0d0;
+}
+
+input[type=checkbox]:checked + label {
+  background-color: #d0d0d0;
+}
+
+.question-container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.imp-pick > label {
+  display: block;
+  float: left;
+  text-align: center;
+  width: 20%;
+}
+.question-importance > div {
+   clear: left;
+ }
+
+.search-bar {
+  min-width: 1000px;
+  max-width: 1468px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.search-bar * {
+  margin: auto 0;
+}
+
+.search-bar > input[type=text], select {
+  margin: 0 10px;
+  display: inline-block;
+  background: transparent;
+  border: 0;
+  color: white;
+  font-weight: 700;
+  border-bottom: 1px solid grey;
+  text-align: center;
+  width: 110px;
+}
+
+.search-bar > .block-floated {
+  padding: 0 10px;
+}
+
+.search-bar > input[type=submit] {
+  margin-left: 100px;
+  display: inline-block;
+  color: white;
+  background-color: #FF6633;
+  padding: 0px 30px;
+}
+
+.search-bar * {
+
+  float: left;
+}
+
+.block-floated {
+  display: block;
+  float: left;
+}
+
+
+/** ANSWER QUESTIONS QUESTIONS ANSWER RESPONSES  **/

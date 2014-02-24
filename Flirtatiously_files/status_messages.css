@@ -1,0 +1,60 @@
+/* line 5, ../../app/assets/stylesheets/status_messages.css.scss */
+.status-image {
+  padding: 0;
+  margin: 0px 28px 15px 28px;
+  border-right: 2px solidgrey;
+  width: 80px;
+  height: 80px;
+  background-color: magenta;
+  display: block;
+  float: left;
+}
+
+/* line 16, ../../app/assets/stylesheets/status_messages.css.scss */
+ul, li {
+  list-style: none;
+}
+
+/* line 20, ../../app/assets/stylesheets/status_messages.css.scss */
+.username {
+  font-weight: 900;
+  font-size: 18px;
+}
+
+/* line 26, ../../app/assets/stylesheets/status_messages.css.scss */
+.status-messages {
+  display: block;
+}
+
+/* line 31, ../../app/assets/stylesheets/status_messages.css.scss */
+.update-status {
+  border: 0;
+  height: 25px;
+  font: inherit;
+  border-bottom: 1px solid grey;
+}
+
+/* line 38, ../../app/assets/stylesheets/status_messages.css.scss */
+.status-content {
+  display: block;
+  padding-bottom: 10px;
+  width: 475px;
+  margin: 0px 00px 20px 20px;
+  float: left;
+}
+
+/* line 48, ../../app/assets/stylesheets/status_messages.css.scss */
+.status-content > .status-body {
+  display: block;
+  margin-top: 25px;
+  font-size: 16px;
+  border-bottom: 2px dotted red;
+}
+
+/* line 55, ../../app/assets/stylesheets/status_messages.css.scss */
+.status-content > .status-timestamp {
+  font-size: 14px;
+  font-style: italic;
+  display: inline-block;
+  color: #ccced3;
+}

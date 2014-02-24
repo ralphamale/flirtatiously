@@ -1,16 +1,16 @@
 <h1>Sign In</h1>
 
-<form action="<%= session_url%>" method="post">
+<form action="<%= session_url%>" class="signup" method="post">
   <%= auth_token_input %>
 
   <label>
-    Username
-    <input type="text" name="user[username]">
+
+    <input type="text" name="user[username]" placeholder="Username">
   </label>
 
   <label>
-    Password
-    <input type="password" name="user[password]">
+
+    <input type="password" name="user[password]" placeholder="Password">
   </label>
 
   <input type="submit" value="Sign In">
