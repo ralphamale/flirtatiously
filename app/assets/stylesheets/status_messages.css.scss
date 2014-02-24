@@ -2,16 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.status-image {
-  padding: 0;
-  margin: 0px 28px 15px 28px;
-  border-right: 2px solidgrey;
-  width: 100px;
-  height: 100px;
-  background-color: magenta;
-  display: block;
-  float: left;
-}
 
 ul, li {
   list-style: none;
@@ -23,14 +13,22 @@ ul, li {
 
 }
 
-.status-messages {
 
-  display: block;
+.update-status-message {
+  background-color: #FFF;
 }
 
-.status-message {
-  background-color: #FFF;
+.update-status-message > textarea {
+  float: left;
+  height: 90px;
+  width: 300px;
+  padding: 5px;
+}
+
+.update-status-message > input[type=submit] {
   display: block;
+  width: 100%;
+  text-align: center;
 }
 
 .update-status {
@@ -40,24 +38,16 @@ ul, li {
   border-bottom: 1px solid grey;
 }
 
-.status-content {
 
-  display: block;
 
-  padding-bottom: 10px;
-  width: 475px;
-  margin: 0px 00px 20px 20px;
-  float: left;
-}
-
-.status-content > .status-body {
+.object-content > .status-body {
   display: block;
   margin-top: 25px;
   font-size: 16px;
-  border-bottom: 2px dotted red;
+  border-bottom: 2px dotted lightgrey;
 }
 
-.status-content > .status-timestamp {
+.object-content > .status-timestamp {
   font-size: 14px;
   font-style: italic;
   display: inline-block;

@@ -32,25 +32,35 @@
 
 
 
+
+
+<div class="content-4-of-7 ">
+  <%= "You have not received any messages yet" if @messages.length == 0 %>
+
+  <% @messages.each do |message| %>
+
+  <ul class="objects-list">
+    <li class="object-item group">
+      <div class="object-avatar">
+
+      </div>
+      <section class="object-content">
+        <a class="username" href="<%= conversation_user_messages_url(message.recipient_id) %>"><%= message.recipient_username %></a>
+        <div class="status-body">
+          <%= message.body %> <%= "(Sent by me)" if message.is_sent == "t" %>
+
+        </div>
+
+        <div class="status-timestamp">
+          <%= message.sent_date %>
+        </div>
+      </section>
+    </li>
+  </ul>
+  <% end %>
+</div>
+
 <div class="content-3of7">
 Inbox<br>
 Sent
 </div>
-
-<div class="content-4-of-7">
-  <%= "You have not received any messages yet" if @messages.length == 0 %>
-
-  <% @messages.each do |message| %>
-  <p>
-  <b><a href="<%= conversation_user_messages_url(message.recipient_id) %>">Message with <%= message.recipient_username %></a>: </b><%= message.body %> <%= "(Sent by me)" if message.is_sent == "t" %>
-  <br>
-  <%= message.sent_date %><br>
-
-  </p>
-
-
-
-
-  <% end %>
-</div>
-

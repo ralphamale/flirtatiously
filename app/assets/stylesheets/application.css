@@ -408,23 +408,23 @@ ul.profiles-list > li > img {
 
 ul.profiles-list  a {
   text-decoration: none;
-  font-size: 24px;
-  opacity: 1;
+  font-size: 1.25em;
+
 }
 
 .profile-content {
   margin-left: 0px;
   z-index: 3;
-  opacity: .5;
+
   width: 225px;
   padding-left: 5px;
   padding-bottom: 5px;
   position: absolute;
   left: 0px;
   bottom: 0px;
-  background-color: rgba(255,255,255,.9)
-  color: #FFF;
-  fontw-eight: bold;
+  background-color: rgba(255,255,255,.4);
+  color: #000;
+  font-weight: bold;
   font-size: .5em;
 }
 
@@ -532,6 +532,47 @@ input[type=checkbox]:checked + label {
 
 .block-floated {
   display: block;
+  float: left;
+}
+
+
+.object-avatar {
+  padding: 0;
+
+  border-right: 2px solidgrey;
+  width: 100px;
+  height: 100px;
+  background-color: magenta;
+  display: block;
+  float: left;
+}
+
+.object-list {
+
+  display: block;
+}
+
+.object-item {
+  background-color: #FFF;
+  display: block;
+  width: 80%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+
+.create-pm > input[type=submit] {
+  width: 77%;
+  margin-top: 2px;
+  background-color: blue;
+}
+
+.object-content {
+
+  display: block;
+
+  width: 475px;
+  margin: 0px 0px 0px 20px;
   float: left;
 }
 

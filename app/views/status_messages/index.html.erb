@@ -1,38 +1,46 @@
 <div class="content-4of7">
 
 <% @status_messages.each do |status| %>
-  <ul class="status-messages">
-    <li class="status-message">
-      <div class="status-image">
+<ul class="objects-list">
+
+
+
+
+
+
+  <li class="object-item group">
+    <div class="object-avatar">
+
+    </div>
+    <section class="object-content">
+      <a class="username" href="<%= profile_url(status.p_id) %>">
+        <%= status.username %>
+      </a>
+      <div class="status-body">
+        <%= status.body %>
 
       </div>
-      <section class="status-content">
-        <a class="username" href="<%= profile_url(status.p_id) %>">
-          <%= status.username %>
-        </a>
-        <div class="status-body">
-          <%= status.body %>
 
-        </div>
-
-        <div class="status-timestamp">
-          <%= status.created_at %>
-        </div>
-      </section>
-    </li>
-  </ul>
+      <div class="status-timestamp">
+        <%= status.created_at %>
+      </div>
+    </section>
+  </li>
+</ul>
 <% end %>
 
 </div>
 <div class="content-1of7">
 </div>
 <div class="content-2of7">
-  <div class="status-image">
+  <div class="update-status-message">
+    <div class="object-avatar">
 
+    </div>
+
+    <textarea placeholder="Say hi to the world!" class="group"></textarea>
+    <input type="submit" value="I want to scream and shout!">
   </div>
-
-  <textarea placeholder="Say hi to the world!"></textarea>
-
   <!-- expands when clicked -->
 </div>
 

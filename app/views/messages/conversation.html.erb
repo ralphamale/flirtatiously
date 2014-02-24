@@ -1,11 +1,34 @@
-<h1> Conversation with <%= @other_username %></h1>
+<div class="content-4of7">
+  <h1> Conversation with <%= @other_username %></h1>
+  <% @messages.each do |message| %>
 
-<% @messages.each do |message| %>
-<% author = message.is_sent? ? current_user.username : @other_username %>
 
-<b><%= author %></b>: <%= message.body %>
-<br>
 
-<% end %>
+  <ul class="objects-list">
 
-<%= render "form", user_id: params[:user_id] %>
+    <li class="object-item group">
+      <div class="object-avatar">
+
+      </div>
+      <section class="object-content">
+
+          <a class="username" href="#"><% author = message.is_sent? ? current_user.username : @other_username %>
+        </a>
+        <div class="status-body">
+          <b><%= author %></b>: <%= message.body %>
+
+        </div>
+
+        <div class="status-timestamp">
+          <%#= status.created_at %>
+        </div>
+      </section>
+    </li>
+  </ul>
+
+  <% end %>
+
+      <%= render "form", user_id: params[:user_id] %>
+
+
+</div>

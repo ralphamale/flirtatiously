@@ -3,11 +3,31 @@ Ask TAs:
 WHAT DO I DO IF I DONT REALLY HAVE ANYTHING TO TEST IN MODELS?
 
 
-
+TECHNICAL
+Status Updates
+Key toggle for yes or no
+Browse Tinder. say nom ore matches if no one else to match with
+  -if hate, redirect to someoen else.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~_~_~_~_~_~_~_~_~_~_~~_~_~_~_~_~_~_
 Most important:
+
+-make status update button.
+-Key bindings for like and dislike.
+When I send in a new Rating, takes me to another one if its positive. Otherwise, coax to send a message.
+-Notification model?
+  -UJS
+  -Backbone
+
+
+ASK JONATHAN FOR HELP ON HOW TO FIX LAYOUT! and also if photo should stay positioned.
+fixing clear menus
+-Date Picker.
+-Fix Draggable submit.
+
+
+
 
 heading! question in current user. refactor Answer(includes answer choices). http://stackoverflow.com/questions/11860721/how-to-handle-onchange-event-on-input-type-file-in-jquery
 

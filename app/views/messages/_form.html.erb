@@ -1,10 +1,24 @@
-<form action="<%= user_messages_url(user_id) %>" method="post">
+<form action="<%= user_messages_url(user_id) %>"
+  class="create-pm" method="post">
+<li class="object-item group">
+  <div class="object-avatar">
 
-  <%= auth_token_input %>
+  </div>
 
-  <label>Body
-    <textarea name="message[body]"></textarea>
-  </label>
+  <section class="object-content">
 
-  <input type="submit" value="Send message">
+      <%= auth_token_input %>
+      <label>
+        <textarea name="message[body]"
+          placeholder="Spit some game!">
+        </textarea>
+      </label>
+    </section>
+
+
+</li>
+<input type="submit" value="Send message">
 </form>
+
+
+
