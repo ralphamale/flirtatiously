@@ -6,8 +6,8 @@
   padding: 0;
   margin: 0px 28px 15px 28px;
   border-right: 2px solidgrey;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   background-color: magenta;
   display: block;
   float: left;
@@ -25,6 +25,11 @@ ul, li {
 
 .status-messages {
 
+  display: block;
+}
+
+.status-message {
+  background-color: #FFF;
   display: block;
 }
 

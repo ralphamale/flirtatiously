@@ -1,10 +1,32 @@
+<% content_for :secondary_header do %>
+  <h1 class="sec-header-text">
+    <a href="#"><%= @profile.user.username %></a>
+  </h1>
+  <nav class="sec-left-nav">
+    <ul class="">
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Questions</a></li>
+    </ul>
+  </nav>
+
+  <nav class="sec-right-nav">
+    <ul class="group">
+      <li> <a href="#">LIKE</a></li>
+      <li> <a href="#">DISLIKE</a></li>
+    <li><a href="#" class="message">Message</a></li>
+  </ul>
+  </nav>
+
+
+<% end %>
+
 <!-- yield head -->
 
 <div class="content-3of7">
 <%= image_tag(@profile.big_photo.url, :class => "big-ass-photo") if @profile.big_photo.exists? %>
 </div>
 
-<div class="content-4-of-7">
+<div class="content-4-of-7" style="background-color: #fff">
 
 
   <h1 class="username">
@@ -60,7 +82,6 @@
            value="<%= @profile.zip_code %>">
   </div>
 
-
    <br>
 
   <% if @rating_status.nil? %>
@@ -74,8 +95,9 @@
             <input type="hidden" name="rating[likes]" value="<%= text %>">
             <input type="submit" value="<%= text %>">
         </form>
-    </div>
+
     <% end %>
+        </div>
   <% elsif @rating_status %>
      You guys both like each other!
   <% else  %>
@@ -329,5 +351,3 @@ Your response:
 <br>
 
 </div>
-
-<div style="clear: both;"></div>

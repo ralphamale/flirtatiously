@@ -43,13 +43,13 @@
 
 
 
-<h3> Profiles </h3>
+<h1 class="page-title"> Profiles </h1>
 
 <ul class="profiles-list group">
   <%= paginate @profiles %>
 
   <% @profiles.each do |profile| %>
-  <li><%= image_tag(profile.big_photo.url, class: 'profile-avatar', height: '100%', width: '100%') if profile.big_photo.exists? %>
+  <li>
 
     <div class="profile-content">
   	<%= link_to profile.user.username, profile_url(profile) %><br>
@@ -58,6 +58,10 @@
     <% percentages = current_user.calculate_percentages(profile.user) %>
     <%= print_percentages(percentages) %><br>
   </div>
+
+    <%= image_tag(profile.big_photo.url, class: 'profile-avatar', height: '100%', width: '100%') if profile.big_photo.exists? %>
+
+
 
   </li>
   <% end %>

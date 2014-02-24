@@ -18,18 +18,39 @@
 
 <% end %>
 
-<%= "You have not received any messages yet" if @messages.length == 0 %>
-
-<% @messages.each do |message| %>
-<p>
-<b><a href="<%= conversation_user_messages_url(message.recipient_id) %>">Message with <%= message.recipient_username %></a>: </b><%= message.body %> <%= "(Sent by me)" if message.is_sent == "t" %>
-<br>
-<%= message.sent_date %><br>
-
-</p>
+<%# fdsfasifoadsiojaiofjasdiofaijsofsaoifaosifjiosdasiofdiosfajsiofdsijofajosdifsajiof %>
 
 
 
 
-<% end %>
+
+
+
+
+
+
+
+
+
+<div class="content-3of7">
+Inbox<br>
+Sent
+</div>
+
+<div class="content-4-of-7">
+  <%= "You have not received any messages yet" if @messages.length == 0 %>
+
+  <% @messages.each do |message| %>
+  <p>
+  <b><a href="<%= conversation_user_messages_url(message.recipient_id) %>">Message with <%= message.recipient_username %></a>: </b><%= message.body %> <%= "(Sent by me)" if message.is_sent == "t" %>
+  <br>
+  <%= message.sent_date %><br>
+
+  </p>
+
+
+
+
+  <% end %>
+</div>
 

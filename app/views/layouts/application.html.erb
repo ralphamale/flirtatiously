@@ -6,62 +6,31 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-  <style>
-  #draggable {
-    width: 100px;
-    height: 100px;
-    background: #ccc;
-  }
-  </style>
-
-
-</head>
-<body>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <style>
+    #draggable {
+      width: 100px;
+      height: 100px;
+      background: #ccc;
+    }
+    </style>
+  </head>
+  <body>
   <header class="header">
-
-        <%= render "shared/menu" %>
-
+    <%= render "shared/menu" %>
   </header>
 
   <header class="sec-header">
     <div class="sec-header-wrapper group">
-
-
-<%= yield :secondary_header %>
+      <%= yield :secondary_header %>
     </div>
-
-
   </header>
 
   <content>
     <%= flash[:errors] if flash[:errors] %> <%= flash[:success] if flash[:success] %>
-
-
-
-
-
-
     <div class="content-wrap group">
-
-
-
-
-    <div class="left-col-content">
       <%= yield %>
     </div>
-
-
-    <div class="right-col"><div class="right-col-block">
-
-      <%= yield :right_col %>
-
-    </div></div>
-  </div>
-</content>
-
-
-
-
-</body>
+  </content>
+  </body>
 </html>

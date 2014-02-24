@@ -1,7 +1,6 @@
 class RatingsController < ApplicationController
 
   def create
-    debugger
     @rating = Rating.new(params[:rating])
     @rating.rater_id = current_user.id
 

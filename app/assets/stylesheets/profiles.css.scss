@@ -42,15 +42,7 @@ img.profile-avatar {
 
 
 
-.big-ass-photo {
-  //z-index: -1;
-  //display: block;
-  //position: absolute;
-  //width: 100%;
-  //height: 100%;
-  //left: 25%;
-  //top: 0;
-}
+
 
 .photo-thumbnail {
   width: 64px;
@@ -63,4 +55,17 @@ img.profile-avatar {
 
 img.icons {
 
+}
+
+.hide-container {
+  width: 500px;
+}
+.hide-container > textarea {
+  display: block;
+  width: 100%;
+}
+
+.hide-container > input[type=submit] {
+  display: block;
+  width: 100%;
 }
