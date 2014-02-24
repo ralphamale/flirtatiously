@@ -13,13 +13,17 @@ Browse Tinder. say nom ore matches if no one else to match with
 ~_~_~_~_~_~_~_~_~_~_~~_~_~_~_~_~_~_
 Most important:
 
-1) Refactor Questions --> Tabs.
+  -fix let change answer. fix let change username. everything u register with, ushould be able to change.
+
   -maybe at first. dont let you change your answers.
 2) Notifications
 ^TWO MAIN THINGS I WANT THEM TO HELP WITH
   -display amount of notifications.
 3) UJS status
   -"Users I have liked"
+  -Bug where if i dip
+4) Upload multiple files is gonna be last main feature I implement.
+
 
 Afterwards:
 Datepicker

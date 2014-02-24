@@ -224,6 +224,10 @@ header > .header-wrap {
   float: left;
 }
 
+.sec-left-nav > ul > li > a {
+  display: block;
+}
+
 .sec-right-nav {
   float: right;
 }
@@ -627,5 +631,39 @@ input[type=checkbox]:checked + label {
 }
 
 .edit-on > .response-edit {
+  display: block;
+}
+
+
+.bio-view {
+
+}
+
+.questions-view {
+  display: none;
+}
+
+.show-questions > .bio-view {
+  display: none;
+}
+
+.show-questions > .questions-view {
+  display: block;
+}
+
+
+.default-displayed {
+
+}
+
+.default-hidden {
+  display: none;
+}
+
+.toggle-hide > .default-displayed {
+  display: none;
+}
+
+.toggle-hide > .default-hidden {
   display: block;
 }

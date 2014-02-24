@@ -1,11 +1,14 @@
+
+
+
 <% content_for :secondary_header do %>
   <h1 class="sec-header-text">
     <a href="#"><%= @profile.user.username %></a>
   </h1>
   <nav class="sec-left-nav">
-    <ul class="">
-      <li><a href="#">Profile</a></li>
-      <li><a href="#">Questions</a></li>
+    <ul class="toggle-view-menu">
+      <li class="default-hidden" style="background-color: yellow"><a href="#" style="color: red">Display Profile</a></li>
+      <li class="default-displayed" style="background-color: yellow"><a href="#" style="color: red">Display Questions</a></li>
     </ul>
   </nav>
 
@@ -17,6 +20,16 @@
   </ul>
   </nav>
 
+  <script>
+  $(document).ready(function() {
+    $('.toggle-view-menu').on('click', function(e) {
+      $(this).toggleClass('toggle-hide');
+      $('.profile-view').toggleClass('show-questions');
+    });
+  });
+
+  </script>
+
 
 <% end %>
 
@@ -26,7 +39,7 @@
 <%= image_tag(@profile.big_photo.url, :class => "big-ass-photo") if @profile.big_photo.exists? %>
 </div>
 
-<div class="content-4of7" style="background-color: #fff">
+<div class="content-4of7 profile-view" style="background-color: #fff">
 
 
   <h1 class="username">
@@ -148,19 +161,7 @@
   @profile.big_photo.exists? %>
   <br>
 
-
-  <h2>Bio</h2>
-  <div class="profile-field">
-    <span class="owner-can-modify" id="description">
-      <%= @profile.description %>
-    </span>
-    <textarea class="form-input" name="profile[description]"></textarea>
-  </div>
-
-  <h2>Loves</h2>
-  <%= @profile["likes"] %>
-
-  <h2> Details</h2>
+<div class="bio-view">
   <table class="profile-stats">
     <% TABULAR_DETAILS.keys.each do |key| %>
     <tr>
@@ -189,6 +190,20 @@
   </table>
 
 
+
+  <h2>Bio</h2>
+  <div class="profile-field">
+    <span class="owner-can-modify" id="description">
+      <%= @profile.description %>
+    </span>
+    <textarea class="form-input" name="profile[description]"></textarea>
+  </div>
+
+  <h2>Loves</h2>
+  <%= @profile["likes"] %>
+
+
+</div>
 
 
 <% if @is_current_user_profile %>
@@ -303,7 +318,7 @@
   </script>
 <% end %>
 
-<h2>Questions:</h2>
+<div class="questions-view">
 
 <%# probably need to reference the question-id in the data attribute! %>
 
@@ -354,6 +369,8 @@
   </div>
   <% end %>
 <% end %>
+
+</div>
 
 
 <script>
