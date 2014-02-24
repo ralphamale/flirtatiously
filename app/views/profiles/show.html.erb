@@ -119,8 +119,8 @@
            if (r.is_mutual) {
              //if its mutual, display a congrats screen.
              //on keyboard strike of YES or NO. just display the symbol big and move.
-           } else {
-             //rating stored.
+           } else if (r.likes === false) {
+             window.location = '<%= random_profiles_url %>';
            };
            console.log("Yay");
            console.log(r);
@@ -305,37 +305,55 @@
 
 <h2>Questions:</h2>
 
-<% if @is_current_user_profile %>
-  Need to do for current user!!
+<%# probably need to reference the question-id in the data attribute! %>
 
+<%
+  if @is_current_user_profile
+    primary_responses = @current_user_responses
+    empty_message = "You have not answered any questions"
+  else
+    primary_responses = @other_user_responses
+    empty_message = "The user has not answered any questions"
+  end
+%>
+
+<% if primary_responses.length == 0 %>
+  <%= empty_message %>
 <% else %>
 
-<%= "This person has not answered any questions." if @other_user_responses.length == 0 %>
+  <% primary_responses.each do |resp| %>
+  <b>  <%= resp.question_text %></b><br>
 
-<% @other_user_responses.each do |other_response| %>
-<p>
-<%= other_response.question_text %><br>
+    <% current_user_response =
+     find_response(resp.question_id, @current_user_responses)
+     %>
 
-<% current_user_response = find_response(other_response.question_id, @current_user_responses) %>
+     <% debugger %>
 
-<% if current_user_response.nil? %>
+    <% if current_user_response.nil? %>
+      Answer question <%= resp.question_id %>
+      to see their answer.<br>
+    <% else %>
+      Your response: <%= current_user_response.answer_text %><br>
 
-Answer question <%= other_response.question_id %> to see their answer.
+      <br>
+      <% unless @is_current_user_profile %>
+        His/her response: <%= resp.answer_text %><br>
 
-<% else %>
+      <% end %>
 
+    <% end %>
 
-<%= (@profile["sex"] == "Male") ? "His" : "Her" %> response: <span class="<%= "unacceptable-resp" if is_unacceptable?(other_response, @current_user_acceptables) %>"><%= other_response.answer_text%> </span>
-<br>
-Your response:
-
-<span class="<%= "unacceptable-resp" if is_unacceptable?(current_user_response, @other_user_acceptables) %>"><%= current_user_response.answer_text %></span>
-
+  <% end %>
 <% end %>
 
-<% end %>
 
-<% end %>
+
+
+
+
+
+
 
 <div class="hide-container">
 

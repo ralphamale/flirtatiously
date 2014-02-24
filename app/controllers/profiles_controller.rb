@@ -12,12 +12,8 @@ class ProfilesController < ApplicationController
   end
 
   def random
-
-    @unmatched_profile = Profile.get_random_unrated(current_user)
-
-    if request.xhr?
-      render :json => @unmatched_profile
-    end
+    @profile = Profile.get_random_unrated(current_user)
+    redirect_to profile_url(@profile)
   end
 
 
@@ -63,6 +59,31 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
+
+    show_profile_helper
+
+   #  other_user_id = @profile.user.id
+   #
+   #  @is_current_user_profile = is_current_user_profile?(@profile)
+   #
+   #  @current_user_responses = Question.get_responses(current_user.id)
+   #  @current_user_acceptables = Question.get_acceptable_responses(current_user.id)
+   #  @other_user_responses = Question.get_responses(other_user_id)
+   #  @other_user_acceptables = Question.get_acceptable_responses(other_user_id)
+   #
+   #  @match_info = current_user.calculate_percentages(@profile.user)
+   #
+   # @rating_status = Rating.status(current_user.id, @profile.user_id)
+
+  end
+
+  def destroy
+
+  end
+
+  private
+
+  def show_profile_helper
     other_user_id = @profile.user.id
 
     @is_current_user_profile = is_current_user_profile?(@profile)
@@ -75,11 +96,6 @@ class ProfilesController < ApplicationController
     @match_info = current_user.calculate_percentages(@profile.user)
 
    @rating_status = Rating.status(current_user.id, @profile.user_id)
-
-  end
-
-  def destroy
-
   end
 
 end

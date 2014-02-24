@@ -12,6 +12,8 @@
   <% if logged_in? %>
     <li><%= link_to "Browse", profiles_url %></li>
     <li><a href="<%= random_questions_url %>" id="random-question-popup" data-remote="true">Quiz yourself!</a></li>
+
+    <li><%= link_to "Random Match", random_profiles_url %></li>
     <li><%= link_to "Your questions", questions_url %></li>
 
     <li><%= link_to "Messages", messages_url %></li>

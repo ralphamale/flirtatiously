@@ -15,7 +15,7 @@
 <% else %>
 
   <% primary_responses.each do |resp| %>
-    <%= other_response.question_text %><br>
+    <%= resp.question_text %><br>
 
     <% current_user_response =
      find_response(resp.question_id, @current_user_responses)

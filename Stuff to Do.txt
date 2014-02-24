@@ -13,13 +13,19 @@ Browse Tinder. say nom ore matches if no one else to match with
 ~_~_~_~_~_~_~_~_~_~_~~_~_~_~_~_~_~_
 Most important:
 
+1) Refactor Questions --> Tabs.
+  -maybe at first. dont let you change your answers.
+2) Notifications
+^TWO MAIN THINGS I WANT THEM TO HELP WITH
+  -display amount of notifications.
+3) UJS status
+  -"Users I have liked"
 
--Notifications
-
--UJS status
+Afterwards:
+Datepicker
+Key binder
 
 -What to do if no more questions?
-
 
 -make status update button.
 -Key bindings for like and dislike.
@@ -53,13 +59,10 @@ bump "Answer question" to a always persisting popup.
 -Sent box.
 
 Front-end
--display quesitons on same page as profile.
-
-What do I want
 
 WYSWIG editor.
 
-
+  -Sent messages
 
 Scroll fix: http://blog.crondesign.com/2009/09/scrollfix-remember-scroll-position-when.html
 1. FIXING THE QUESTIONS.
@@ -94,8 +97,6 @@ FEATURE (MOST IMPORTANT TO LEAST IMPORTANT)
 -How to do notifications? + Unread messages.
 -add CSRF token to my forms?
 
-
-SUNDAY: DO ALL CSS. STUDY ASS OFF.
 
 EDITABLE
 

@@ -42,6 +42,14 @@ class MessagesController < ApplicationController
       puts @mh[1]
       puts @mh[1].valid?
 
+
+      @notification = Notification.create!({
+        is_read: false,
+        receiver_id: other_id,
+        trigger_id: current_user.id,
+        type: 0
+        })
+
       puts "after valid before save"
     if @message.save
 

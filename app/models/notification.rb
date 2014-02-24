@@ -9,5 +9,4 @@ class Notification < ActiveRecord::Base
   class_name: "User",
   foreign_key: :trigger_id
 
-
 end
