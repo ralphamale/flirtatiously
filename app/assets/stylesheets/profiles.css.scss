@@ -10,8 +10,16 @@
   display: inline;
 }
 
-.form-input {
+
+.profile-edit-form {
+  display: inline-block;
+}
+
+
+.profile-field > .form-input {
   display: none;
+  border: 1px solid blue;
+  color: black;
 }
 
 .modifying > .owner-can-modify {
@@ -20,6 +28,11 @@
 
 .modifying > .form-input {
   display: inline-block;
+}
+
+textarea.form-input {
+  width: 450px;
+  height: 100px;
 }
 
 

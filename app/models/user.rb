@@ -162,5 +162,9 @@ class User < ActiveRecord::Base
     self.session_token
   end
 
+  def new_notifications
+    Notification.where(:receiver_id => self.id).where(:is_read => false)
+  end
+
 
 end

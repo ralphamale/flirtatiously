@@ -41,6 +41,12 @@
 
 <div class="content-4of7 profile-view" style="background-color: #fff">
 
+  <% if @is_current_user_profile %>
+  <span style="background-color: yellow"> You are viewing your own profile. You can click on highlighted fields to edit them. These will not be seen by the general public!</span>
+
+  <% end %>
+
+
 
   <h1 class="username">
     <%= @profile.user.username %>
@@ -256,7 +262,7 @@
               } else if ($profileText.is('#city')) {
                 newValue = r["city"] //because we change zip.
               }
-              alert("Great!");
+              console.log("Profile updated");
               $profileText.html(newValue);
               $profileField.removeClass('modifying');
             },
@@ -308,7 +314,7 @@
   </script>
 
   <script>
-  $( ".send-message" ).draggable({
+  $( ".hide-container" ).draggable({
     containment: $('content'),
     stop: function(event, ui) {
       console.log(event);
@@ -419,8 +425,8 @@ $('.response-edit').on("submit", "form", function(event) {
 <div class="hide-container">
 
 <form class="send-message">
-  <%= auth_token_input %>
-  <textarea name="message[body]">Type some stuff here</textarea>
+  <%= auth_token_input %>fdsafsdsafsd
+  <textarea name="message[body]" style="color: black">Type some stuff here</textarea>
   <input type="submit" class="submit-message" value="Submit or close">
 
 </form>

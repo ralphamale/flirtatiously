@@ -16,7 +16,6 @@ class ProfilesController < ApplicationController
     redirect_to profile_url(@profile)
   end
 
-
   def new
 
   end

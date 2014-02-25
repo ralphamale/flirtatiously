@@ -1,11 +1,9 @@
 Ask TAs:
 
-WHAT DO I DO IF I DONT REALLY HAVE ANYTHING TO TEST IN MODELS?
-
-
 TECHNICAL
 Status Updates
 Key toggle for yes or no
+
 Browse Tinder. say nom ore matches if no one else to match with
   -if hate, redirect to someoen else.
 
@@ -13,21 +11,23 @@ Browse Tinder. say nom ore matches if no one else to match with
 ~_~_~_~_~_~_~_~_~_~_~~_~_~_~_~_~_~_
 Most important:
 
-  -fix let change answer. fix let change username. everything u register with, ushould be able to change.
-
-  -maybe at first. dont let you change your answers.
-2) Notifications
+  1) fix let change answer. fix let change username. everything u register with, ushould be able to change.
+2) Notifications - let them actually pop up!
 ^TWO MAIN THINGS I WANT THEM TO HELP WITH
   -display amount of notifications.
 3) UJS status
   -"Users I have liked"
   -Bug where if i dip
-4) Upload multiple files is gonna be last main feature I implement.
+4) Upload multiple photos + flag for the one that's default is gonna be last main feature I implement.
 
 
 Afterwards:
 Datepicker
 Key binder
+
+-paginate questions
+-make scrollable menu.
+-infinite scroll with help from example.
 
 -What to do if no more questions?
 

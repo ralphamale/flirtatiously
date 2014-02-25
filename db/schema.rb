@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140224191306) do
+ActiveRecord::Schema.define(:version => 20140224224628) do
 
   create_table "acceptable_responses", :force => true do |t|
     t.integer  "user_id"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(:version => 20140224191306) do
   create_table "notifications", :force => true do |t|
     t.integer  "receiver_id"
     t.integer  "trigger_id"
-    t.integer  "type"
+    t.integer  "status_type"
     t.boolean  "is_read"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

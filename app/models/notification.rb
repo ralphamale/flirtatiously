@@ -1,5 +1,5 @@
 class Notification < ActiveRecord::Base
-  attr_accessible :is_read, :receiver_id, :trigger_id, :type
+  attr_accessible :is_read, :receiver_id, :trigger_id, :status_type
 
   belongs_to :receiver,
   class_name: "User",

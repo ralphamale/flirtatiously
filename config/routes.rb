@@ -9,6 +9,10 @@ Flirtatiously::Application.routes.draw do
     end
   end
 
+  resources :notifications, only: [:index] do
+    put "read", on: :collection
+  end
+
   resources :status_messages, only: [:index, :create, :delete]
 
   resources :ratings, only: [:create]

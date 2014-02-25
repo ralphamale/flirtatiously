@@ -1,0 +1,23 @@
+<% new_notes = current_user.fetch_new_notifications %>
+<% triggering_user = note.triggering_user %>
+<span class="notifications"><%= new_notes.count %></span>
+
+<% new_notes.each do |note| %>
+<li>
+
+<a href="<%= profile_url(triggering_user.profile) %>"><%= triggering_user.username %></a>
+
+<% if note.status_type == 0 %>
+  has matched with you. <a href="<%=
+  profile_url(triggering_user.profile) %>">
+  View their profile!</a>
+<% else %>
+has sent you a <a href="<%= conversation_user_messages_url(note.trigger_id)%>">message</a>.
+
+<% end %>
+
+</li>
+<% end %>
+
+
+

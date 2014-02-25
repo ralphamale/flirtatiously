@@ -22,30 +22,6 @@ html, body, header, nav, h1, ul, li, h2, button, input[type=text], select, texta
   font-family: sans-serif;
 }
 
-.signup {
-  width: 400px;
-  margin: 0 auto;
-}
-
-#answer-question {
-  display: none;
-  position: fixed !important;
-  top: 50px;
-  padding-top: 10px;
-  left: 25%;
-  margin-top: -50px;
-  margin-left: -50px;
-    background: #666;
-  width: 700px;
-  height: 700px;
-  padding: 10px;
-  z-index: 20;
-}
-
-#answer-question.is-unhidden {
-  display: block;
-}
-
 input[type=text], select, input[type=password], button, input[type=submit] {
 
   /*
@@ -71,9 +47,35 @@ input[type=text], select, input[type=password], button, input[type=submit] {
   font-family: 'NovecentowideBold',Arial,sans-serif
 }
 
+.signup {
+  width: 400px;
+  margin: 0 auto;
+}
+
+#answer-question {
+  display: none;
+  position: fixed !important;
+  top: 50px;
+  padding-top: 10px;
+  left: 25%;
+  margin-top: -50px;
+  margin-left: -50px;
+    background: #666;
+  width: 700px;
+  height: 700px;
+  padding: 10px;
+  z-index: 20;
+}
+
+#answer-question.is-unhidden {
+  display: block;
+}
+
+
+
 
 input[type=text], input[type=password] {
-  display: block;
+  /*display: block;*/
   background: white;
   max-height: 50px;
   border-top: 1px solid #e3e3e3;
@@ -664,6 +666,28 @@ input[type=checkbox]:checked + label {
   display: none;
 }
 
-.toggle-hide > .default-hidden {
+.toggle-hide > .default-hidden { /* for display profile/questions */
   display: block;
+}
+
+.toggle-hide > .header-nav-drop-down {
+  display: block;
+
+
+}
+
+.header-nav-drop-down {
+  display: none;
+  position: absolute;
+  left: -3px;
+  z-index: 10;
+  border: 3px solid #333;
+  background: #fff;
+  width: 300px;
+}
+
+.header-nav-drop-down > li > a {
+  display: block;
+  color: #333;
+  padding: 5px 10px;
 }
