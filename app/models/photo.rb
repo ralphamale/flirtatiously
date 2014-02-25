@@ -2,8 +2,9 @@ class Photo < ActiveRecord::Base
 
   attr_accessible :file, :profile_id
 
-  has_attached_file :file, :styles => {:featured => "420", :browse => "230x230#", :avatar => "100x100#", :thumb => "30x30#"}
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  has_attached_file :file, :styles => {:featured => "840x>", :browse => "460x460#", :avatar => "200x200#", :thumb => "60x60#"}
+  #doubled for retina display.
+  validates_attachment_content_type :file, :content_type => /\Aimage\/.*\Z/
 
 
 
