@@ -9,6 +9,8 @@ Flirtatiously::Application.routes.draw do
     end
   end
 
+  resources :photos, only: [:new, :create, :destroy]
+
   resources :notifications, only: [:index] do
     put "read", on: :collection
   end

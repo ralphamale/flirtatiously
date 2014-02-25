@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140225142320) do
+ActiveRecord::Schema.define(:version => 20140225190714) do
 
   create_table "acceptable_responses", :force => true do |t|
     t.integer  "user_id"
@@ -78,6 +78,16 @@ ActiveRecord::Schema.define(:version => 20140225142320) do
   end
 
   add_index "notifications", ["receiver_id"], :name => "index_notifications_on_receiver_id"
+
+  create_table "photos", :force => true do |t|
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "profile_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
 
   create_table "profile_views", :force => true do |t|
     t.integer  "viewer_id"
