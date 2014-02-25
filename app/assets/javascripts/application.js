@@ -17,4 +17,5 @@
 //= require jquery.ui.sortable
 //= require jquery.ui.slider
 //= require jquery.ui.datepicker
+//= require jquery-fileupload
 //= require jquery.serializeJSON.min

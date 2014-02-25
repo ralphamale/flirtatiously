@@ -3,6 +3,7 @@ ruby '1.9.3'
 gem 'rails', '3.2.15'
 gem 'annotate'
 gem 'figaro'
+gem "jquery-fileupload-rails"
 gem "paperclip"
 gem "aws-sdk"
 gem 'jquery-ui-rails'

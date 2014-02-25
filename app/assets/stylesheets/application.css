@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require jquery.fileupload-ui
  */
 
 html, body, header, nav, h1, ul, li, h2, button, input[type=text], select, textarea, input[type=password] {
