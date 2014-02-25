@@ -49,6 +49,8 @@ class Profile < ActiveRecord::Base
   end
   after_validation :geocode, :reverse_geocode
 
+  has_many :photos
+
 
   def self.get_random_unrated(current_user)
     already_rated = current_user.sent_ratings.pluck(:ratee_id)
