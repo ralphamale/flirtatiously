@@ -12,10 +12,11 @@
 
 class User < ActiveRecord::Base
   attr_reader :password
-  attr_accessible :password_digest, :session_token, :username, :password, :answer_choice_ids, :uid
+  attr_accessible :password_digest, :session_token, :username, :password, :answer_choice_ids, :uid, :email
 
   validates :username, presence: true #:password_digest,
   validates :username, uniqueness: true
+  #validates email is unique.
   #validates :password, length: { minimum: 6, allow_nil: true }
   #validates :password_digest, presence: { message: "Password cannot be blank." } #now that we can oauth.
   #ensure token

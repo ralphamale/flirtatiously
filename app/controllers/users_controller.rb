@@ -30,6 +30,25 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = current_user
+
+
+    params[:user].delete(:password) if params[:user][:password].blank?
+
+    if @user.update_attributes(params[:user])
+      debugger
+      if request.xhr?
+        render json: @user
+      else
+        render json: @user.errors
+      end
+    else
+      if request.xhr?
+
+      else
+
+      end
+    end
 
   end
 

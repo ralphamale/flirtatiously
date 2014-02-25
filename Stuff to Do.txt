@@ -101,6 +101,9 @@ FEATURE (MOST IMPORTANT TO LEAST IMPORTANT)
 -How to do notifications? + Unread messages.
 -add CSRF token to my forms?
 
+Not important:
+Change Username
+
 
 EDITABLE
 
