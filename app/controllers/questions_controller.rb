@@ -83,13 +83,16 @@ class QuestionsController < ApplicationController
           ar.update_attributes(importance: new_importance)
         end
       end
-      respond_to do |format|
-        format.html { redirect_to profiles_url }
-        format.json { render :json => AnswerChoice.find(params[:response][:answer_choice_id]) }
+      if request.xhr?
+        render partial: "update_confirmation", locals: {question_text: Question.find(question_id).text, answer_text: AnswerChoice.find(params[:response][:answer_choice_id]).text}
+      else
+        render json: "WTF"
       end
     rescue ActiveRecord::RecordInvalid => invalid
+      debugger
       flash[:errors] = "Could not update response."
-      redirect_to profiles_url
+      render json: "ERROR COULD NOT UPDATE"
+      #redirect_to profiles_url
     end
 
   end

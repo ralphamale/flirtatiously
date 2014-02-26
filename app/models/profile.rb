@@ -64,6 +64,14 @@ class Profile < ActiveRecord::Base
 
   end
 
+  def self.suggest_six
+    #spits out six random users to check out
+
+    profiles = Profile.apply_filters(@user_filter, current_user)
+    profiles.sample(6)
+
+  end
+
   def self.apply_filters(filter, current_user)
 
 

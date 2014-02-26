@@ -1,20 +1,31 @@
 Ask TAs:
 
+-Hide the box that appears.
+
+
+MAKE SURE ALL MODALS ARE WORKING BEFORE THE DAY IS OVER!!
+  -For inside profile
+  -For inline editing
+
+  -Only show hover and edit action / editable questions if suer
+
+-Tweak the uploader.
+
 TECHNICAL
 Shoudl just refactor everything..
-Inline deiting of forms.
-The toggle for importance
 
 -Menu on the side.
 -Ad
 
--Scrolable menu... after figuring out how to vertically align things
+-Require email in signup
 
 
 -Change settings
 Prefill some shit for your Facebook form
 -Scrolling for questinos
 -Fix datepicker
+
+Flash on arrival!
 
 -Check out these users.
 

@@ -141,10 +141,13 @@ $(document).ready(function() {
     $('#modal-container').html(data);
     window.modal.show();
   });
+  //from #answer-question
+  $('#modal-container').on('ajax:success', function(event, data) {
 
-  $('#answer-question').on('ajax:success', function(event, data) {
-    console.log("YAY");
-    $('#modal-container').html(data);
+    if ($(event.target).is('form#answer-question-form')) {
+      console.log("YAY");
+      $('#modal-container').html(data);
+    }
   });
 
   $(".modal").on("click", function(event){

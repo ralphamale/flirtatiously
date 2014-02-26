@@ -342,7 +342,13 @@
 
     $( ".message" ).click(function(event) {
       event.preventDefault();
-      $('#modal-container').html($('.send-message-html').html());
+
+      var msgTemplateFn = _.template($('#send-message-template').html());
+
+      var msgForm = msgTemplateFn();
+
+
+      $('#modal-container').html(msgForm);
       window.modal.show();
 
     });
@@ -352,7 +358,7 @@
 
 
   <div style="display: none" class="send-message-html">
-    <form class="send-message"><%= auth_token_input %><textarea name="message[body]" style="color: black">Type some stuff here</textarea><input type="submit" class="submit-message" value="Submit or close"></form>
+    <form class="send-message"><%= auth_token_input %><textarea name="message[body]" style="color: black" placeholder="Type some stuff here"></textarea><input type="submit" class="submit-message" value="Submit or close"></form>
 
   </div>
 
@@ -433,50 +439,63 @@ $('.mini-question-container').on("click", '.toggle-edit', function(event) {
   $question.addClass("edit-on");
 });
 
-$('.response-edit').on("submit", "form", function(event) {
-  event.preventDefault();
 
-  var formData = $(this).serializeJSON();
-  var $question = $(this).closest('.mini-question-container')
-  var question_id = $question.attr("data-id")
-
-  $.ajax({
-          url: "/questions/" + question_id + "/update_answer",
-          type: "PUT",
-          data: formData,
-          dataType: "json",
-          success: function (answer_choice) {
-            var $answerText = $question.children('.response-show').children('.response-answer-text')
-            $answerText.html(answer_choice.text);
-            $('.mini-question-container').removeClass("edit-on");
-          },
-          error: function(response) {
-            console.log("error");
-            console.log(response);
-          }
-        });
+$('.response-edit').on('ajax:success', function(e,d) {
+  $(this).html(d);
+});
 
 
 
-})
+// $('.response-edit').on("submit", "form", function(event) {
+//   event.preventDefault();
+//
+//   var formData = $(this).serializeJSON();
+//   var $question = $(this).closest('.mini-question-container')
+//   var question_id = $question.attr("data-id")
+//
+//   $.ajax({
+//           url: "/questions/" + question_id + "/update_answer",
+//           type: "PUT",
+//           data: formData,
+//           dataType: "json",
+//           success: function (answer_choice) {
+//             var $answerText = $question.children('.response-show').children('.response-answer-text')
+//             $answerText.html(answer_choice.text);
+//             $('.mini-question-container').removeClass("edit-on");
+//           },
+//           error: function(response) {
+//             console.log("error");
+//             console.log(response);
+//           }
+//         });
+//
+//
+//
+// })
 
 </script>
 
 
+  <script type="text/template" id="send-message-template">
+    <div class="hide-container">
+
+    <form class="send-message">
+      <%= auth_token_input %>
+      <textarea name="message[body]" style="color: black" placeholder="Type some stuff here"></textarea>
+      <input type="submit" class="submit-message" value="Submit or close">
+
+    </form>
+
+    </div>
+
+
+
+  </script>
 
 
 
 
-<div class="hide-container">
 
-<form class="send-message">
-  <%= auth_token_input %>
-  <textarea name="message[body]" style="color: black">Type some stuff here</textarea>
-  <input type="submit" class="submit-message" value="Submit or close">
-
-</form>
-
-</div>
 
 <br>
 

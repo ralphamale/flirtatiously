@@ -546,27 +546,6 @@ span.browse-percentages {
 
 
 
-.question-container label:hover {
-  background: orange;
-  cursor: pointer;
-}
-
-input[type=radio]:checked + label {
-  background-image: none;
-  background-color: #d0d0d0;
-}
-
-input[type=checkbox]:checked + label {
-  background-color: #d0d0d0;
-}
-
-.question-container {
-  width: 500px;
-  margin: 0 auto;
-}
-
-
-
 .search-bar {
   min-width: 1000px;
   max-width: 1468px;
@@ -620,7 +599,6 @@ input[type=checkbox]:checked + label {
   border-right: 2px solidgrey;
   width: 100px;
   height: 100px;
-  background-color: magenta;
   display: block;
   float: left;
 }
@@ -657,17 +635,8 @@ input[type=checkbox]:checked + label {
 
 /** ANSWER QUESTIONS QUESTIONS ANSWER RESPONSES  **/
 
-
-
-
-
-
-
 /**** QUESTIONS ***/
 
-.question-container {
-
-}
 
 .response-show {
   display: block;
@@ -721,8 +690,6 @@ input[type=checkbox]:checked + label {
 
 .toggle-hide > .header-nav-drop-down {
   display: block;
-
-
 }
 
 .header-nav-drop-down {
@@ -741,71 +708,155 @@ input[type=checkbox]:checked + label {
   padding: 5px 10px;
 }
 
-.mini-question-container label:hover {
-  background: orange;
+.answer-choices > input {
+  display: none;
+
 }
 
-.mini-question-container {
-  width: 100%;
+.answer-choices > label {
   display: block;
-  margin: 0 auto;
-}
-
-
-.mini-question-container label {
-
-}
-
-
-.question-container input[type=radio], .question-container input[type=checkbox] {
-  display:none;
-  margin:10px;
-}
-
-.question-container input[type=radio] + label, .question-container input[type=checkbox] + label {
-  display: inline-block;
-  margin: -2px;
-
-  padding: 0px 0px;
-    width: 20px;
-  background-color: blue;
-  border-color: #ddd;
-}
-
-
-.question-importance * {
-}
-
-.question-container > .question-importance label {
-
-  display: inline-block;
+  background-color: #999999;
   text-align: center;
-  width: 20px;
-  padding: 0;
+}
+
+.answer-choices > label:hover {
+  cursor: pointer;
+  background-color: #333;
+  color: #FFF;
+  font-weight: bold;
+}
+
+
+
+.answer-choices > input[type=checkbox]:checked + label, .answer-choices > input[type=radio]:checked + label {
+  background-color: #663399;
+  font-weight: bold;
+  color: #FFF;
+
+}
+
+.importances > input {
+  display: none;
+}
+
+.importances label {
   display: block;
+  box-sizing: border-box;
+  width: 20%;
+  height: 40px;
+  line-height: 40px;
   float: left;
-  height: 20px;
+  text-align: center;
+
 }
 
-#imp0 {
-
- background-color: #666;
+.importances label span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
 
-#imp1 {
-  background-color: #ffff00;
+
+
+.importances  label:hover {
+  cursor: pointer;
+  background-color: orange;
+  border: 5px solid black;
+  font-weight: bold;
 }
 
-#imp10 {
-  background-color: #ff9900;
+.answer-choices.big-choice label {
+  padding: 8px;
 }
 
-#imp50 {
-  background-color: #ff6633;
+.answer-choices.big-choice label span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
 
-#imp250 {
-  background-color: #cc0000;
+.answer-choices, .importances {
+  margin-bottom: 25px;
+  margin-top: 5px;
 }
+
+
+.imp1 + label {
+  background-color: rgba(102, 102, 102, .6);
+  }
+.imp2 + label {
+  background-color: rgba(255, 255, 0, .6);
+  }
+.imp3 + label {
+  background-color: rgba(255, 153, 0, .6);
+  }
+.imp4 + label {
+  background-color: rgba(255, 102, 51, .6);
+  }
+.imp5 + label {
+  background-color: rgba(204, 0, 0, .6);
+  }
+
+  .imp1 + label:hover {
+    background-color: rgba(102, 102, 102, .8);
+    font-weight: bold;
+    }
+  .imp2 + label:hover {
+    background-color: rgba(255, 255, 0, .8);
+    font-weight: bold;
+    }
+  .imp3 + label:hover {
+    background-color: rgba(255, 153, 0, .8);
+    font-weight: bold;
+    }
+  .imp4 + label:hover {
+    background-color: rgba(255, 102, 51, .8);
+    font-weight: bold;
+    }
+  .imp5 + label:hover {
+    background-color: rgba(204, 0, 0, .8);
+    font-weight: bold;
+    }
+
+
+    .imp1:checked + label {
+      background-color: rgba(102, 102, 102, 1);
+      border: 5px solid black;
+      font-weight: bold;
+      }
+    .imp2:checked + label {
+      background-color: rgba(255, 255, 0, 1);
+      border: 5px solid black;
+      font-weight: bold;
+      }
+    .imp3:checked + label {
+      background-color: rgba(255, 153, 0, 1);
+      border: 5px solid black;
+      font-weight: bold;
+      }
+    .imp4:checked + label {
+      background-color: rgba(255, 102, 51, 1);
+      border: 5px solid black;
+      font-weight: bold;
+      }
+
+      input.question-submit {
+        display: block;
+        width: 60%;
+        height: 45px;
+        padding: 8px;
+        margin: auto;
+
+        font-weight: bold;
+        background-color: #FF6633;
+        border: 1px solid black;
+      }
+
+    .imp5:checked + label {
+      background-color: rgba(204, 0, 0, 1);
+      border: 5px solid black;
+      font-weight: bold;
+      }
+
 
 
