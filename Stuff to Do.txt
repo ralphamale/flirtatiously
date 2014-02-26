@@ -1,11 +1,7 @@
-Ask TAs:
-
--Hide the box that appears.
 
 
 MAKE SURE ALL MODALS ARE WORKING BEFORE THE DAY IS OVER!!
   -For inside profile
-  -For inline editing
 
   -Only show hover and edit action / editable questions if suer
 
@@ -18,7 +14,13 @@ Shoudl just refactor everything..
 -Ad
 
 -Require email in signup
+  -do not let up without one.
+  -facebook
 
+
+Friday
+actionmailer
+-Can do the quote and custom prompt thing.
 
 -Change settings
 Prefill some shit for your Facebook form
@@ -41,6 +43,8 @@ hover over editable. visual feedback
 search scroll
 multipage setup
 buttons/sprites
+  -You can't message yourself or liek yourself!
+  -Put 2nd nav bars everyhwere or remove them!
 
 
 Make modals loook pretty:
