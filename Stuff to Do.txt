@@ -316,3 +316,19 @@ This websites sign up form looks so cool
 http://thenounproject.com/ralphamale/settings/basics/
 
 http://iconmonstr.com/?s=heart
+
+
+figure out how this works
+
+$('ul.thumbnails').append(picTemplateFn({opts:
+                                      {src: '<%= photo.file.url %>',
+                                       errors: <%= photo.invalid? %>,
+                                       token: '<%= photo.token %>'}
+                                    }));
+
+      <!-- input html  type="hidden" class="pic_token" name="pics[<%#%= timeStamp %>][token]" value="<%#%= opts.token %>" ->
+
+      token: '<%= @profile.photos[0].token %>'
+
+      <%= Pic::ACCEPTED_TYPES.to_sentence(last_word_connector: ' or ') %>
+      under <%= Pic::MAX_SIZE / 1.megabyte %>Mb in size.
