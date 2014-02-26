@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       end
     else
       if request.xhr?
-
+        render json: @user
       else
 
       end

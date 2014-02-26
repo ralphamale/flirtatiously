@@ -1,7 +1,5 @@
 MAKE SURE ALL MODALS ARE WORKING BEFORE THE DAY IS OVER!!
   -For inside profile
-  -Only show hover and edit action / editable questions if user
-
 
 -Move settings to separate modal.
 
