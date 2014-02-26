@@ -41,13 +41,92 @@
   </nav>
 </div>
 
-<div id="answer-question">
-</div>
+<section class="modal">
+   <article class="modal-box">
+     <span class="modal-close-button">&times;</span>
+
+     <!-- This is where you should insert your modal content -->
+     <div id="modal-container">
+
+
+       </div>
+
+
+     </div>
+   </article>
+ </section>
+
+
+ <style>
+ .has-active-modal .modal {
+   display: block;
+ }
+
+ .modal {
+   display: none;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 200;
+ }
+
+ .modal:before {
+   content: "";
+   display: block;
+   position: fixed;
+   width: 100%;
+   height: 100%;
+   background: rgba(0,0,0,0.5);
+ }
+
+ .modal-box {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+
+   width: 400px;
+   min-height: 200px;
+
+   padding: 30px;
+
+   margin-top: -200px;
+   margin-left: -230px;
+
+   background: #fff;
+ }
+
+ .modal-close-button {
+   position: absolute;
+   display: block;
+   top: 0;
+   right: 10px;
+   font-size: 40px;
+   line-height: 1.0;
+   font-weight: bold;
+   color: #999;
+   cursor: pointer;
+ }
+
+ .modal-close-button:hover {
+   color: #000;
+ }
+ </style>
+
+
 
 <script>
 $(document).ready(function() {
 
-
+  window.modal = {
+    show: function(){
+      $("body").addClass("has-active-modal");
+    },
+    hide: function(){
+      $("body").removeClass("has-active-modal");
+    }
+  };
 
   $('#menu-notifications').on('ajax:success', function(event, data) {
     $('#notifications-block').toggleClass("toggle-hide");
@@ -59,13 +138,24 @@ $(document).ready(function() {
 
   $('#random-question-popup').on('ajax:success', function(event, data) {
 
-    $('#answer-question').html(data);
-    $('#answer-question').addClass('is-unhidden');
+    $('#modal-container').html(data);
+    window.modal.show();
   });
 
   $('#answer-question').on('ajax:success', function(event, data) {
     console.log("YAY");
-    $('#answer-question').html(data);
+    $('#modal-container').html(data);
+  });
+
+  $(".modal").on("click", function(event){
+
+    $target = $(event.target);
+    console.log($target);
+
+    if($target.is(".modal") || $target.is(".modal-close-button")){
+      event.preventDefault();
+      window.modal.hide();
+    }
   });
 
 });

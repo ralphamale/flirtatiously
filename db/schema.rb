@@ -180,10 +180,10 @@ ActiveRecord::Schema.define(:version => 20140225190714) do
     t.integer  "beg_age"
     t.integer  "end_age"
     t.string   "sex"
-    t.integer  "sexual_orientation"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "distance"
+    t.integer  "sexual_orientation"
   end
 
   add_index "user_filters", ["user_id"], :name => "index_user_filters_on_user_id"

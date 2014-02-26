@@ -1,4 +1,5 @@
 class StatusMessagesController < ApplicationController
+  before_filter :require_logged_in!
 
   def index
     @status_messages = StatusMessage

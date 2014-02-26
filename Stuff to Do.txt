@@ -1,29 +1,61 @@
 Ask TAs:
 
 TECHNICAL
-Status Updates
-Key toggle for yes or no
+Shoudl just refactor everything..
+Inline deiting of forms.
+The toggle for importance
 
-Browse Tinder. say nom ore matches if no one else to match with
-  -if hate, redirect to someoen else.
+-Menu on the side.
+-Ad
+
+-Scrolable menu... after figuring out how to vertically align things
+
+
+-Change settings
+Prefill some shit for your Facebook form
+-Scrolling for questinos
+-Fix datepicker
+
+-Check out these users.
+
+"Users I've liked"
+"To/From" sprite.
+Key toggle for yes or no
+require_info
+JS for forms
+Flash errors if cant accept image
+new notification
+hover over editable. visual feedback
+-"Loading" for next
+search scroll
+multipage setup
+buttons/sprites
+
+
+Make modals loook pretty:
+-Quiz
+-Message box.
+
+Flash/messages to add:
+No more matches for Tinder..
+No one matches your criteria
+Error with beginning age/end age.
+You have no messages.
+"No more questions."
+"You guys both like each other!"
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~_~_~_~_~_~_~_~_~_~_~~_~_~_~_~_~_~_
 Most important:
 
 1) fix let change answer.
-3) UJS status
-  -"Users I have liked"
   -Bug where if i dip
-4) flag for the one that's default is gonna be last main feature I implement. // or hover. whatever's easier.
 -Form for facebook should pre-fill shit in
   -continuing registration for facebook
 
 MODALS:
   -answer question
   -Change User settings
-  -
-
 
 Afterwards:
 Datepicker
@@ -35,16 +67,8 @@ Key binder
 
 -What to do if no more questions?
 
--make status update button.
 -Key bindings for like and dislike.
-When I send in a new Rating, takes me to another one if its positive. Otherwise, coax to send a message.
--Notification model?
-  -UJS
-  -Backbone
 
-
-ASK JONATHAN FOR HELP ON HOW TO FIX LAYOUT! and also if photo should stay positioned.
-fixing clear menus
 -Date Picker.
 -Fix Draggable submit.
 
@@ -53,37 +77,19 @@ fixing clear menus
 
 heading! question in current user. refactor Answer(includes answer choices). http://stackoverflow.com/questions/11860721/how-to-handle-onchange-event-on-input-type-file-in-jquery
 
-BACK-END
--Status updates.
--Browse for Tinder filters out people in filter, and says no more matches if no one else to matchw ith.
-
 
 SUNDAY PRIORITY
 
 Back-end
 bump "Answer question" to a always persisting popup.
--Add create new status into its own box.
 -"Game On"
--Sent box.
-
-Front-end
-
-WYSWIG editor.
-
-  -Sent messages
 
 Scroll fix: http://blog.crondesign.com/2009/09/scrollfix-remember-scroll-position-when.html
 1. FIXING THE QUESTIONS.
 2. Tinder
-  -browse people havent matched yet
-  -display screen if theres no one else to match with
-  -map keys.
   -SORT If they are users that like u and is_mutual is NIL. Where is_mutual != false.. then others. Grab from your filters.
-  -notification module
   -loading screen
-3. Status Messages
-4. Tabs
-5. Jquery-file-upload
+
 These are both for user: -username / email left / custom field.
 -"Complete registration page" for FB user and otherwise.
 
@@ -289,10 +295,6 @@ Inbox
 Send message
 Delete button
 http://thenounproject.com/term/delete/5665/
-
-YES
-http://thenounproject.com/term/heart/4454/
-http://thenounproject.com/term/heart/30666/
 
 Websites
 Include the attribution either on the page where the symbol is displayed, or in About or Credits pages.

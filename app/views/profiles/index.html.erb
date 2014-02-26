@@ -59,7 +59,7 @@
     <%= print_percentages(percentages) %></span>
   </div>
 
-    <%= image_tag(profile.big_photo.url, class: 'profile-avatar', height: '100%', width: '100%') if profile.big_photo.exists? %>
+    <%= image_tag(profile.photos.sample.file.url(:browse), class: 'profile-avatar', height: '100%', width: '100%') unless profile.photos.blank? %>
 
 
 

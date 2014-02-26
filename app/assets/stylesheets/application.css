@@ -13,6 +13,15 @@
  *= require jquery.fileupload-ui
  */
 
+.fixed-at-top {
+  position: fixed;
+  top: 0;
+  z-index: 500;
+  left: 50%;
+  opacity: .9;
+  margin-left: -500px;
+}
+
 html, body, header, nav, h1, ul, li, h2, button, input[type=text], select, textarea, input[type=password] {
   border: 0;
   margin: 0;
@@ -332,29 +341,24 @@ header > .header-wrap {
 
 .send-message > textarea {
   display: block;
-  width: 500px;
+  width: 100%;
   height: 160px;
 }
 
 .send-message > input[type=submit] {
   display: block;
   margin-top:10px;
-  width: 460px;
+  width: 80%;
 }
 
+.send-message-html > form.send-message * {
+  display: none;
+}
 
 .send-message { /*** maybe can refactor later? ***/
-  display: none;
-  position: fixed !important;
-  top: 50%;
-  padding-top: 10px;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -50px;
-    background: #666;
-  width: 500px;
-  height: 240px;
-  padding: 10px;
+  width: 100%;
+  height: 100%;
+
   z-index: 20;
 }
 
@@ -539,20 +543,7 @@ span.browse-percentages {
 }
 
 
-input[type=radio], input[type=checkbox] {
-  display:none;
-  margin:10px;
-}
 
-input[type=radio] + label, input[type=checkbox] + label {
-  display: inline-block;
-  margin: -2px;
-
-  padding: 20px 50px;
-    width: 100%;
-  background-color: blue;
-  border-color: #ddd;
-}
 
 
 .question-container label:hover {
@@ -574,15 +565,7 @@ input[type=checkbox]:checked + label {
   margin: 0 auto;
 }
 
-.imp-pick > label {
-  display: block;
-  float: left;
-  text-align: center;
-  width: 20%;
-}
-.question-importance > label {
-  float: left;
-}
+
 
 .search-bar {
   min-width: 1000px;
@@ -774,70 +757,55 @@ input[type=checkbox]:checked + label {
 }
 
 
-#imp0 {
- width: 20px;
- padding: 0;
- display: block;
- float: left;
- height: 20px;
- background-color: #FFF;
+.question-container input[type=radio], .question-container input[type=checkbox] {
+  display:none;
+  margin:10px;
 }
 
-#imp1 {
+.question-container input[type=radio] + label, .question-container input[type=checkbox] + label {
+  display: inline-block;
+  margin: -2px;
+
+  padding: 0px 0px;
+    width: 20px;
+  background-color: blue;
+  border-color: #ddd;
+}
+
+
+.question-importance * {
+}
+
+.question-container > .question-importance label {
+
+  display: inline-block;
+  text-align: center;
   width: 20px;
   padding: 0;
   display: block;
   float: left;
   height: 20px;
+}
+
+#imp0 {
+
+ background-color: #666;
+}
+
+#imp1 {
   background-color: #ffff00;
 }
 
 #imp10 {
-  width: 20px;
-  padding: 0;
-  display: block;
-  float: left;
-  height: 20px;
   background-color: #ff9900;
 }
 
 #imp50 {
-  width: 20px;
-  padding: 0;
-  display: block;
-  float: left;
-  height: 20px;
   background-color: #ff6633;
 }
 
 #imp250 {
-  width: 20px;
-  padding: 0;
-  display: block;
-  float: left;
-  height: 20px;
   background-color: #cc0000;
 }
-
-
-#imp250:checked + label  {
-  background-color: black;
-  }
-
-#imp50:checked + label  {
-  background-color: black;
-  }
-
-#imp10:checked + label  {
-  background-color: black;
-  }
-
-#imp1:checked + label  {
-  background-color: black;
-  }
-
-#imp0:checked + label  {
-  background-color: black;
-  }
 
 

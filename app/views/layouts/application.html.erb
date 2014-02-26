@@ -26,6 +26,25 @@
     </div>
   </header>
 
+
+  <script>
+  $('document').ready(function() {
+    $(window).bind('scroll', function () {
+        if ($(window).scrollTop() > 60) {
+            $('.sec-header').addClass('fixed-at-top');
+        } else {
+            $('.sec-header').removeClass('fixed-at-top');
+        }
+    });
+  });
+
+
+
+  </script>
+
+
+
+
   <content>
     <%= flash[:errors] if flash[:errors] %> <%= flash[:success] if flash[:success] %>
     <div class="content-wrap group">

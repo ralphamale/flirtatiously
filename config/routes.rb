@@ -15,7 +15,7 @@ Flirtatiously::Application.routes.draw do
     put "read", on: :collection
   end
 
-  resources :status_messages, only: [:index, :create, :delete]
+  resources :status_messages, only: [:index, :create, :delete, :new]
 
   resources :ratings, only: [:create]
 

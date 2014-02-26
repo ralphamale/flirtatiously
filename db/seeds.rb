@@ -11,9 +11,9 @@
 
 
 
-(1..150).each do |i|
+(1..5).each do |i|
   test_unit = User.new({username: "#{["StudMuffin#{i}",
-"GirlNextDoor#{i}"].sample}",
+"GirlNextDoor#{i}", "BigBoi#{i}"].sample}",
   password: "password"})
   test_unit.save!
 require File.dirname(__FILE__) + '/../config/initializers/constants'
@@ -22,9 +22,8 @@ require File.dirname(__FILE__) + '/../config/initializers/constants'
 
   test_profile = Profile.new({
     user_id: test_unit.id,
+    birthday: "#{2014-18-i}-12-01",
     sexual_orientation: rand(0..3),
-      :big_photo => File.open(File.join(::Rails.root, "/public/#{rand(1..3)}.jpg")),
-      birthday: "#{2014-18-i}-12-01",
       zip_code: [10003, 33071,
         11204, 11206, 10023,
         10001, 33063, 12518, 14604].sample,
@@ -135,3 +134,9 @@ end
   })
 
   demo.build_user_filter.save!
+
+  User.all.each do |user|
+    profile_id = user.profile.id
+    Photo.create(file: File.open(File.join(::Rails.root, "/public/#{rand(1..2)}.jpg")), profile_id: profile_id)
+    Photo.create(file: File.open(File.join(::Rails.root, "/public/3.jpg")), profile_id: profile_id)
+  end
