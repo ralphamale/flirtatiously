@@ -31,6 +31,9 @@ class User < ActiveRecord::Base
   has_many :status_messages, inverse_of: :user, dependent: :destroy,
   foreign_key: :user_id
 
+  has_many :photos, through: :profile, source: :photos
+
+
 
   has_many :received_notifications,
   class_name: "Notification",

@@ -8,12 +8,12 @@
   <%= auth_token_input %>
 
   <% question.answer_choices.each do |answer_choice| %>
-    <label>
-      <input type="radio"
-        name="response[answer_choice_id]"
+
+      <input type="radio" id="<%= answer_choice.id %>"
+              name="response[answer_choice_id]"
           value="<%= answer_choice.id %>"
   <%= "checked" if (answer_choice.id.to_i == response.answer_choice_id.to_i) %>>
-  <%= answer_choice.text %>
+  <label for="<%= answer_choice.id %>"><%= answer_choice.text %>
 </label><br>
 
   <% end %>
@@ -23,9 +23,9 @@
   What you prefer on match:
   <br>
   <% question.answer_choices.each_with_index do |answer_choice, index| %>
-  <input type="checkbox" name="acceptable_response[answer_choice_ids][]" value="<%= answer_choice.id %>" <%= "checked" if acceptable_responses.any? {|a_r| a_r.answer_choice_id.to_i == answer_choice.id.to_i} %>>
+  <input type="checkbox" id="<%= "ar#{index}" %>" name="acceptable_response[answer_choice_ids][]" value="<%= answer_choice.id %>" <%= "checked" if acceptable_responses.any? {|a_r| a_r.answer_choice_id.to_i == answer_choice.id.to_i} %>>
 
-  <%= answer_choice.text%>
+  <label for="<%= "ar#{index}" %>"><%= answer_choice.text%>
 </label>
 <br>
 

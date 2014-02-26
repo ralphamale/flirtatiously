@@ -42,5 +42,5 @@ Flirtatiously::Application.routes.draw do
   resources :responses, only: [:create, :update, :edit]
   #resources :likes, only: [:index, :destroy]
   get '/auth/:provider/callback', to: 'sessions#create'
-  root to: 'profiles#new'
+  root to: 'status_messages#index'
 end

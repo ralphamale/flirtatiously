@@ -13,7 +13,42 @@
   </nav>
 
   <nav class="sec-right-nav">
-    <ul class="group">
+    <ul class="group enlargement-links">
+
+      <% unless current_user.profile == @profile %>
+        <% unless @profile.photos.blank? %>
+        <% @profile.photos.each do |photo| %>
+        <li>
+          <a href="#" class="enlarge-photo" data-url="<%= photo.file.url(:featured) %>"><img src="<%= photo.file.url(:thumb) %>"></a>
+        </li>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <script>
+      $(document).ready(function() {
+        $('.enlargement-links').on('click', '.enlarge-photo', function(e) {
+          e.preventDefault();
+
+          console.log("Hello moto");
+          var src = $(this).attr("data-url")
+          $('.featured-photo > img').attr("src",src);
+
+
+        });
+
+      });
+
+
+      </script>
+
+
+
+
+
+
+
+
       <li> <a href="#">LIKE</a></li>
       <li> <a href="#">DISLIKE</a></li>
     <li><a href="#" class="message">Message</a></li>
@@ -35,11 +70,13 @@
 
 <!-- yield head -->
 
-<div class="content-3of7">
-<%= image_tag(@profile.big_photo.url, :class => "big-ass-photo") if @profile.big_photo.exists? %>
+<div class="content-half">
+
+  <%= render partial: "profile_photos", locals: {profile: @profile} %>
+
 </div>
 
-<div class="content-4of7 profile-view" style="background-color: #fff">
+<div class="content-half profile-view" style="background-color: #fff">
 
   <% if @is_current_user_profile %>
   <span style="background-color: yellow"> You are viewing your own profile. You can click on highlighted fields to edit them. These will not be seen by the general public!</span>
@@ -159,14 +196,10 @@
 
   <% unless @is_current_user_profile %>
     <% percentages = current_user.calculate_percentages(@profile.user) %>
-    <%= print_percentages(percentages) %>
+    <h2 class="percentages"><%= print_percentages(percentages) %></h2>
   <% end %>
   <br>
 
-  <%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if @profile
-    .big_photo.exists? %>
-  <%= image_tag(@profile.big_photo.url, :class => "photo-thumbnail") if
-  @profile.big_photo.exists? %>
   <br>
 
 <div class="bio-view">
@@ -199,7 +232,7 @@
 
 
 
-  <h2>Bio</h2>
+  <h3>Bio</h3>
   <div class="profile-field">
     <span class="owner-can-modify" id="description">
       <%= @profile.description %>
@@ -207,7 +240,7 @@
     <textarea class="form-input" name="profile[description]"></textarea>
   </div>
 
-  <h2>Loves</h2>
+  <h3>Loves</h3>
   <%= @profile["likes"] %>
 
 
@@ -345,7 +378,7 @@
 <% else %>
 
   <% primary_responses.each do |resp| %>
-  <div class="question-container" data-id="<%= resp.question_id %>">
+  <div class="mini-question-container" data-id="<%= resp.question_id %>">
   <b>  <%= resp.question_text %></b><br>
 
     <% current_user_response =
@@ -382,11 +415,11 @@
 
 
 <script>
-$('.question-container').on("click", '.toggle-edit', function(event) {
+$('.mini-question-container').on("click", '.toggle-edit', function(event) {
   event.preventDefault();
   var $trigger = $(this);
   var $scope = $trigger.closest("div");
-  var $question = $scope.closest(".question-container");
+  var $question = $scope.closest(".mini-question-container");
   $question.addClass("edit-on");
 });
 
@@ -394,7 +427,7 @@ $('.response-edit').on("submit", "form", function(event) {
   event.preventDefault();
 
   var formData = $(this).serializeJSON();
-  var $question = $(this).closest('.question-container')
+  var $question = $(this).closest('.mini-question-container')
   var question_id = $question.attr("data-id")
 
   $.ajax({
@@ -405,7 +438,7 @@ $('.response-edit').on("submit", "form", function(event) {
           success: function (answer_choice) {
             var $answerText = $question.children('.response-show').children('.response-answer-text')
             $answerText.html(answer_choice.text);
-            $('.question-container').removeClass("edit-on");
+            $('.mini-question-container').removeClass("edit-on");
           },
           error: function(response) {
             console.log("error");

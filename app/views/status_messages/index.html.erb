@@ -1,33 +1,10 @@
 <div class="content-4of7">
 
-<% @status_messages.each do |status| %>
-<ul class="objects-list">
 
-
-
-
-
-
-  <li class="object-item group">
-    <div class="object-avatar">
-
-    </div>
-    <section class="object-content">
-      <a class="username" href="<%= profile_url(status.p_id) %>">
-        <%= status.username %>
-      </a>
-      <div class="status-body">
-        <%= status.body %>
-
-      </div>
-
-      <div class="status-timestamp">
-        <%= status.created_at %>
-      </div>
-    </section>
-  </li>
+<ul class="objects-list" id="status-msg-list">
+  <%= render partial: "status_message", collection: @status_messages%>
 </ul>
-<% end %>
+
 
 </div>
 <div class="content-1of7">
@@ -37,11 +14,20 @@
     <div class="object-avatar">
 
     </div>
-
-    <textarea placeholder="Say hi to the world!" class="group"></textarea>
+    <form action="<%= status_messages_url %>" method="post" data-remote="true" id="post-status-form">
+    <textarea placeholder="Say hi to the world!" class="group" name="status_message[body]"></textarea>
     <input type="submit" value="I want to scream and shout!">
+  </form>
   </div>
   <!-- expands when clicked -->
 </div>
 
+<script>
 
+  $('#post-status-form').on('ajax:success', function(e,d) {
+    $('#status-msg-list').html(d);
+    $("#post-status-form textarea").val("");
+    /* Put flash success here */
+  });
+
+</script>

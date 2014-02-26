@@ -53,11 +53,10 @@
   <li>
 
     <div class="profile-content">
-  	<%= link_to profile.user.username, profile_url(profile) %><br>
-    <%= age(profile.birthday) %> · <%= profile.city %><br>
+  	<%= link_to profile.user.username, profile_url(profile) %>  ·  <%= age(profile.birthday) %> · <%= profile.city %><br>
 
-    <% percentages = current_user.calculate_percentages(profile.user) %>
-    <%= print_percentages(percentages) %><br>
+    <span class="browse-percentages"><% percentages = current_user.calculate_percentages(profile.user) %>
+    <%= print_percentages(percentages) %></span>
   </div>
 
     <%= image_tag(profile.big_photo.url, class: 'profile-avatar', height: '100%', width: '100%') if profile.big_photo.exists? %>
@@ -67,5 +66,6 @@
   </li>
   <% end %>
 </ul>
+
 
 

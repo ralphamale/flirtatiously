@@ -10,27 +10,27 @@
 <ul class="group">
 
   <% if logged_in? %>
-    <li><%= link_to "Browse", profiles_url %></li>
+    <li><%= link_to "Bro", profiles_url %></li>
     <li><a href="<%= random_questions_url %>" id="random-question-popup" data-remote="true">Quiz yourself!</a></li>
 
-    <li><%= link_to "RanMatch", random_profiles_url %></li>
-    <li><%= link_to "old ?", questions_url %></li>
+    <li><%= link_to "Ran", random_profiles_url %></li>
+    <li><%= link_to "?", questions_url %></li>
 
     <li><%= link_to "Msg", messages_url %></li>
 
-    <li><%= link_to "#{current_user.username}", edit_profile_url(current_user.profile.id) %></li>
+    <li><%= link_to "U", profile_url(current_user.profile.id) %></li>
 
     <li id="notifications-block"><%= link_to current_user.new_notifications.count, read_notifications_url, remote: true, method: :put, id: "menu-notifications" %>
       <ul class="header-nav-drop-down">
         <%= render partial: "shared/notifications_menu", locals: {notes: current_user.new_notifications} %>
-        <li><a href="#">See all notifications</a></li>
+        <li><a href="<%= notifications_url %>">See all notifications</a></li>
       </ul>
   <!-- a href="#" id="menu-notifications" --></a></li>
 
 
  <%#= link_to 'Kill Flea', [flea.dog, flea], :confirm => 'Sure?', :method => :delete %>
     <li><% link_to "Your Messages", messages_url %></li>
-<li><%= link_to "Sign Out", session_url, method: :delete %></li>
+<li><%= link_to "Off", session_url, method: :delete %></li>
   <% else %>
     <li><%= link_to "Sign In", new_session_url %></li>
     <li><%= link_to "Sign Up", new_user_url %></li>

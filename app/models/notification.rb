@@ -9,4 +9,12 @@ class Notification < ActiveRecord::Base
   class_name: "User",
   foreign_key: :trigger_id
 
+  has_many :triggerer_photos,
+  through: :triggering_user,
+  source: :photos
+
+  has_one :triggering_profile,
+  through: :triggering_user,
+  source: :profile
+
 end

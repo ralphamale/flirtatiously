@@ -90,7 +90,8 @@ div.image-file-input-wrapper .remove { /** this ist he square to remove. if its 
   z-index: 5;
 }
 
-div.image-file-input-wrapper > .progress {
+div.image-file-input-wrapper > .progress { /* hidden at first until .busy (uploading) */
+
   position: absolute;
   width: 100%;
   height: 100%;
@@ -108,8 +109,72 @@ div.image-file-input-wrapper.busy > .progress {
   display: block;
 }
 
+div.image-file-input-wrapper > img.spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+div.image-file-input-wrapper.prepping > img.spinner {
+  display: block;
+}
 
 
+ul.thumbs .progress {
+  line-height: 50px;
+}
+
+.main-pic .progress {
+  font-size: 30px;
+  line-height: 300px;
+  } /* this is for the progress texts */
+
+  div.image-file-input-wrapper > .errors {
+    list-style: square;
+    font-size: 13px;
+    display: none;
+    position: absolute;
+    left: 20%;
+    bottom: 58px;
+    width: 215px;
+    border: 2px solid red;
+    padding: 8px;
+    background: white;
+    z-index: 6;
+  }
+
+  .errors > .remove {
+    z-index: 7;
+  }
+
+  .main-pic div.image-file-input-wrapper > .errors {
+    top: -110px;
+    bottom: inherit;
+  }
+
+  .errors > .triangle {
+    position: absolute;
+    bottom: -20px;
+    left: 10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid red;
+  }
+
+  div.image-file-input-wrapper.errors > .errors {
+    display: block;
+  }
+
+  ul.thumbs > li > div {
+    display: block;
+  }
+
+  /* check out viewports afterward */
 
 </style>
 
@@ -156,8 +221,9 @@ Loko at how he stores diff sizes!
   <script>
   $(document).ready(function() {
     var picTemplateFn = _.template($('#image-file-input-wrapper').html());
-
+    // do it for each of the pics. start with the main one
     $('div.main-pic').html(
+      //should do it so if its not current_user page, wont even see the file input so no change!
       <% if @listing.pics[0] %>
       picTemplateFn({opts:
                       {src: '<%= @listing.pics[0].file.url %>',
@@ -190,45 +256,47 @@ Loko at how he stores diff sizes!
 
     <% thumbs = @listing.pics[1..-1] %>
     <% thumbs && thumbs.each do |pic| %>
+    //will i need ul.thumbs?
     $('ul.thumbs').append(picTemplateFn({opts:
                                           {src: '<%= pic.file.url %>',
                                            errors: <%= pic.invalid? %>,
                                            token: '<%= pic.token %>'}
                                         }));
     <% end %>
+    //no matter what, display picWrap. tahts just an empty one!
     var picWrap = picTemplateFn({opts:
-                                  {empty: true,
+                                  {empty: true, // so doesnt display x button
                                    src: '<%=asset_path "camera_icon.png" %>'}
                                 });
     $('ul.thumbs').append(picWrap);
 
     $('ul.thumbs').on('change', 'input.pic_file', function(event) {
-      readUrl(this);
+      readUrl(this); //probably auto-uploads!
       ensureLastEmptyPic();
     });
 
     $('ul.thumbs').on('click', 'span.remove', function() {
-      $(this).parents('li').remove();
+      $(this).parents('li').remove(); // clicking that button will remove the li parents
     });
 
     function readUrl(input) {
-      if (input.files && input.files[0]) {
+      if (input.files && input.files[0]) { //for multiple files.
         var file = input.files[0]
         var $fileInput = $(input);
 
         if ( validateImageSize(file) && validateImageType(file) ) {
-          $fileInput.parent().removeClass('errors');
-          $fileInput.parent().addClass('busy');
+          $fileInput.parent().removeClass('errors'); //just in case already uploaded
+          $fileInput.parent().addClass('busy'); //to show progress.
           $fileInput.siblings('.progress').html('0%')
-          $fileInput.siblings('.remove').show();
+          $fileInput.siblings('.remove').show(); //to set the background to black. to begin animation.
 
 
           var reader = new FileReader();
           reader.onload = function(e) {
-            var picData = e.target.result;
+            var picData = e.target.result; //the binary data that is returned.
 
-            postAttachment(picData, $fileInput);
-            $(input).siblings('img.car-pic').attr('src', picData);
+            postAttachment(picData, $fileInput); //check out what this does.
+            $(input).siblings('img.car-pic').attr('src', picData); //attach the src of the picdata returned. so theres a thumb that uploads.
           };
           reader.onerror = function(e) {
             $fileInput.parent().addClass('errors');
@@ -238,7 +306,7 @@ Loko at how he stores diff sizes!
           };
 
 
-          reader.readAsDataURL(input.files[0]);
+          reader.readAsDataURL(input.files[0]); //reads the URL of the first files.
         }
         else {
           $fileInput.parent().addClass('errors');
@@ -261,7 +329,7 @@ Loko at how he stores diff sizes!
     function postAttachment(picData, $fileInput) {
       $.ajax({
         method: 'POST',
-        enctype: 'multipart/form-data',
+        enctype: 'multipart/form-data', //important!
         url: "<%= pics_url %>",
         data: {pic_data: picData},
         xhr: function () {
@@ -274,6 +342,7 @@ Loko at how he stores diff sizes!
         },
         success: function(data) {
           $fileInput.siblings('input.pic_token').val(data['token']);
+          //because he's just going to save it! but i dont need that.
         },
         error: function(xhr) {
           $fileInput.parent().addClass('errors');

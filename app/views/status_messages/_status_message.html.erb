@@ -1,0 +1,17 @@
+<li class="object-item group">
+  <div class="object-avatar">
+  </div>
+  <section class="object-content">
+    <a class="username" href="<%= profile_url(status_message.user.profile.id) %>">
+      <%= status_message.user.username %>
+    </a>
+    <div class="status-body">
+      <%= status_message.body %>
+
+    </div>
+
+    <div class="status-timestamp">
+      <%= status_message.created_at %>
+    </div>
+  </section>
+</li>

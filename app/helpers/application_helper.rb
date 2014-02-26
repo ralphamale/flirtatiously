@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def print_percentages(percentages)
-    "<font class=\"match\">#{percentages[:match_percent]}% match</font>, <font class=\"friend\">#{percentages[:friend_percent]}% friends</font>".html_safe
+    "<span class=\"match\">#{percentages[:match_percent]}% match</span>, <span class=\"friend\">#{percentages[:friend_percent]}% friends</span>".html_safe
   end
 
 end

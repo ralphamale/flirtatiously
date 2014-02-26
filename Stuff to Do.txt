@@ -15,7 +15,7 @@ Most important:
 3) UJS status
   -"Users I have liked"
   -Bug where if i dip
-4) Upload multiple photos + flag for the one that's default is gonna be last main feature I implement.
+4) flag for the one that's default is gonna be last main feature I implement. // or hover. whatever's easier.
 -Form for facebook should pre-fill shit in
   -continuing registration for facebook
 
@@ -107,7 +107,7 @@ FEATURE (MOST IMPORTANT TO LEAST IMPORTANT)
 
 Not important:
 Change Username
-
+-Being able to edit photos. Just do something with the source id and on success callback of iupload.
 
 EDITABLE
 
