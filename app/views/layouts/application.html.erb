@@ -51,5 +51,24 @@
       <%= yield %>
     </div>
   </content>
+
+
+  <script>
+    key('[', function(){
+      $(document).ready(function() {
+        $('#ratings-false').submit();
+      });
+
+
+    });
+    key(']', function(){
+      $(document).ready(function() {
+        $('#ratings-true').submit();
+      });
+
+    });
+  </script>
+
+
   </body>
 </html>

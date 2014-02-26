@@ -1,22 +1,42 @@
-
-
 MAKE SURE ALL MODALS ARE WORKING BEFORE THE DAY IS OVER!!
   -For inside profile
+  -Only show hover and edit action / editable questions if user
 
-  -Only show hover and edit action / editable questions if suer
 
+-Move settings to separate modal.
+
+-NO HOVER IF IN OTHER PEOPLES PROFILE!
+
+-Tinder floats to the top. // maybe when do keybindings, do swappy?
+  -grayed out buttons if already did... maybe show which one was selected?
+
+-Match screen!
 -Tweak the uploader.
+
+
+
+
+
+
+
+
+
+
+
+
 
 TECHNICAL
 Shoudl just refactor everything..
 
--Menu on the side.
+-Menu on the side (with users u should check out)
 -Ad
 
 -Require email in signup
   -do not let up without one.
   -facebook
 
+-Hover should have certain visual feedback./
+-Fix weird spacing on questions.
 
 Friday
 actionmailer
