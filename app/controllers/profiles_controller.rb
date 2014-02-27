@@ -8,6 +8,11 @@ class ProfilesController < ApplicationController
     current_user_pid = current_user.profile.id
     @profiles = Profile.apply_filters(@user_filter, current_user)
       .page(params[:page])
+
+    if @profiles.blank?
+      flash[:errors] = "No more users with your search criteria. Displaying everyone."
+      @profiles = Profile.page(params[:page])
+    end
     #render layout: "browse_profile"
   end
 
