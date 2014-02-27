@@ -1,7 +1,6 @@
 class RatingsController < ApplicationController
 
   def create
-    # need to make this into a
     @rating = Rating.new(params[:rating])
     @rating.rater_id = current_user.id
 
@@ -21,7 +20,7 @@ class RatingsController < ApplicationController
           is_read: false,
           receiver_id: ratee_id,
           trigger_id: current_user.id,
-          note_type: 0
+          status_type: 0
           })
       end
     end

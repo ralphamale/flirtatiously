@@ -26,6 +26,19 @@
       <% end %>
 
       <script>
+
+      function displayComposeMessage() {
+        var msgTemplateFn = _.template($('#send-message-template').html());
+
+        var msgForm = msgTemplateFn();
+
+
+        $('#modal-container').html(msgForm);
+        window.modal.show();
+
+      };
+
+
       $(document).ready(function() {
         $('.enlargement-links').on('click', '.enlarge-photo', function(e) {
           e.preventDefault();
@@ -205,13 +218,14 @@
          dataType: "json",
          success: function(r) {
            if (r.is_mutual) {
-             //if its mutual, display a congrats screen.
-             //on keyboard strike of YES or NO. just display the symbol big and move.
+             alert("Got here");
+             $('#modal-container').html($('#mutual-match-template').html());
+             window.modal.show();
            } else if (r.likes === false) {
              window.location = '<%= random_profiles_url %>';
+           } else {
+             window.location = '<%= random_profiles_url %>'; //placeholder for later diff action.
            };
-           console.log("Yay");
-           console.log(r);
          },
          error: function(r) {
            alert("Error");
@@ -220,6 +234,22 @@
        });
 
      });
+   });
+   </script>
+
+   <script type="text/template" id="mutual-match-template">
+
+   <h2> You have a new match!</h2>
+
+   That means <%= @profile.user.username %> also likes you!
+   They will receive a notification. Meanwhile, you can <a href="#" class="match-send-message">send them a message</a> or <a href="<%= random_profiles_url %>">keep playing</a>!
+
+   </script>
+
+   <script>
+   $('#modal-container').on('click', '.match-send-message', function(e) {
+     e.preventDefault();
+     displayComposeMessage();
    });
    </script>
 
@@ -372,16 +402,12 @@
     });
 
 
+
     $( ".message" ).click(function(event) {
       event.preventDefault();
 
-      var msgTemplateFn = _.template($('#send-message-template').html());
+      displayComposeMessage();
 
-      var msgForm = msgTemplateFn();
-
-
-      $('#modal-container').html(msgForm);
-      window.modal.show();
 
     });
   });

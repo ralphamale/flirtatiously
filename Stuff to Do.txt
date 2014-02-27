@@ -1,27 +1,24 @@
-MAKE SURE ALL MODALS ARE WORKING BEFORE THE DAY IS OVER!!
-  -For inside profile
+-Messages stopped working.
 
--Move settings to separate modal.
+-The thing on the right, with the suggested users. HTat doesn't work
+Fix that and messaging
+Add some fucking sprites.
+-Signup Form
 
--NO HOVER IF IN OTHER PEOPLES PROFILE!
+Flashes
 
--Tinder floats to the top. // maybe when do keybindings, do swappy?
+Validations on Beginnign Age
+Facebook SIgn In
+
+Sprites
+
+
+
+ // maybe when do keybindings, do swappy?
   -grayed out buttons if already did... maybe show which one was selected?
 
 -Match screen!
 -Tweak the uploader.
-
-
-
-
-
-
-
-
-
-
-
-
 
 TECHNICAL
 Shoudl just refactor everything..

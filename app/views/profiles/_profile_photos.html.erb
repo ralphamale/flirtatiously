@@ -193,7 +193,7 @@ ul.thumbnails .progress {
       <% if !profile.photos.blank? %>
         <img src="<%= profile.photos.sample.file.url(:featured) %>"> <!-- maybe dont need this referenced -->
       <% else %>
-      <img src="<%= asset_path "img_placeholder.png" %>">
+      <img src="">
       <% end %>
       <% end %>
     </div>

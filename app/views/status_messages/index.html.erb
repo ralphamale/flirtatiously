@@ -1,5 +1,10 @@
 <div class="content-4of7">
 
+  <% if @status_messages.blank? %>
+
+  There are no status messages to display.
+
+  <% end %>
 
 <ul class="objects-list" id="status-msg-list">
   <%= render partial: "status_message", collection: @status_messages%>

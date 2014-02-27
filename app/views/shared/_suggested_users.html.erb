@@ -1,7 +1,14 @@
-<% profiles = Profile.suggest_six %>
+<% profiles = Profile.suggest_six(current_user) %>
 
 <% profiles.each do |profile| %>
-profile.photos.
+<img src="<%= profile.photos.blank? ?
 
+
+
+asset_path("img_placeholder.png")
+>
+ :
+
+  profile.photos.sample.file.url(:thumb) %>">
 
 <% end %>

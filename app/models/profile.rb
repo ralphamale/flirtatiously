@@ -53,18 +53,21 @@ class Profile < ActiveRecord::Base
 
 
   def self.get_random_unrated(current_user)
+    liking_current_users = User.joins("INNER JOIN ratings ON users.id = ratings.rater_id").where("ratings.is_mutual IS NULL AND ratings.ratee_id = ?", current_user.id)
+
+    return liking_current_users.sample.profile unless liking_current_users.blank?
+
     already_rated = current_user.sent_ratings.pluck(:ratee_id)
 
     @user_filter = current_user.user_filter
     current_user_pid = current_user.profile.id
     @random_unmatched = Profile.where("profiles.user_id NOT IN (?)", [-1].concat(already_rated)).apply_filters(@user_filter, current_user).sample
 
-
     @random_unmatched
 
   end
 
-  def self.suggest_six
+  def self.suggest_six(current_user)
     #spits out six random users to check out
 
     profiles = Profile.apply_filters(@user_filter, current_user)
