@@ -75,10 +75,17 @@
         window.modal.show();
       });
 
+      $('#modal-container').on('ajax:error', function(e,d) {
+        alert("There is error");
+      });
+
+
+
       $('#modal-container').on('ajax:success', function(e,d) {
         if ($(e.target).is('form.change-settings')) {
           window.modal.hide();
         };
+
       });
 
       </script>
@@ -89,6 +96,30 @@
       <li> <a href="#">LIKE</a></li>
       <li> <a href="#">DISLIKE</a></li>
     <li><a href="#" class="message">Message</a></li>
+
+    <script>
+
+    $('#modal-container').on('ajax:error', function(e,d) {
+      alert("There is error");
+    });
+
+
+
+    $('#modal-container').on('ajax:success', function(e,d) {
+
+      if ($(e.target).is('form.send-message')) {
+        window.modal.hide();
+        alert("Message successfully sent");
+      };
+
+
+    });
+
+
+    </script>
+
+
+
     <% end %>
   </ul>
   </nav>
@@ -373,33 +404,7 @@
   <script>
   $(document).ready(function() {
 
-    $('.send-message').on('submit',function(event) {
-      event.preventDefault();
 
-      var formData = $(this).serializeJSON();
-      console.log("<%= user_messages_url(@profile.user.id) %>");
-      console.log("Right before ajax call");
-      console.log(formData);
-      console.log(this);
-      $.ajax({
-              url: "<%= user_messages_url(@profile.user.id) %>", //will cause trouble?
-              type: "POST",
-              data: formData,
-              dataType: "json",
-              success: function (response) {
-                console.log(response);
-                console.log("Your callback here!");
-                window.modal.hide();
-              },
-              error: function(response) {
-                console.log("error");
-                console.log(response);
-              }
-            });
-
-
-
-    });
 
 
 
@@ -417,10 +422,7 @@
 
 
 
-  <div style="display: none" class="send-message-html">
-    <form class="send-message"><%= auth_token_input %><textarea name="message[body]" style="color: black" placeholder="Type some stuff here"></textarea><input type="submit" class="submit-message" value="Submit or close"></form>
 
-  </div>
 
 
 
@@ -548,10 +550,10 @@ $('.response-edit').on('ajax:success', function(e,d) {
   <script type="text/template" id="send-message-template">
     <div class="hide-container">
 
-    <form class="send-message">
+    <form class="send-message" action="<%= user_messages_url(@profile.user.id) %>" method="post" data-remote="true">
       <%= auth_token_input %>
       <textarea name="message[body]" style="color: black" placeholder="Type some stuff here"></textarea>
-      <input type="submit" class="submit-message" value="Submit or close">
+      <input type="submit" class="submit-message" value="Submit">
 
     </form>
 

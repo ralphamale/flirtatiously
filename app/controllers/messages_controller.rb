@@ -47,15 +47,16 @@ class MessagesController < ApplicationController
         is_read: false,
         receiver_id: other_id,
         trigger_id: current_user.id,
-        note_type: 0
+        status_type: 1
         })
 
       puts "after valid before save"
     if @message.save
 
-      respond_to do |format|
-        format.html { redirect_to conversation_user_messages_url(params[:user_id]) }
-        format.json { render :json => @message }
+      if request.xhr?
+        render json: @message
+      else
+        render json: @message.errors
       end
 
 

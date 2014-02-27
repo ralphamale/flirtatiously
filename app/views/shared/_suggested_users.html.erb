@@ -1,14 +1,16 @@
+<div class="suggested-users">
+  <h3>Near you: </h3>
 <% profiles = Profile.suggest_six(current_user) %>
 
 <% profiles.each do |profile| %>
-<img src="<%= profile.photos.blank? ?
-
-
-
-asset_path("img_placeholder.png")
->
- :
-
-  profile.photos.sample.file.url(:thumb) %>">
+<img src="<%=
+if !profile.photos || profile.photos.blank?
+  asset_path("img_placeholder.png")
+else
+  profile.photos.sample.file.url(:avatar)
+end
+ %>" width="45%" height="auto">
 
 <% end %>
+
+</div>

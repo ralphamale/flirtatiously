@@ -1,9 +1,12 @@
 -Messages stopped working.
-
 -The thing on the right, with the suggested users. HTat doesn't work
 Fix that and messaging
+
+~~~~
+
 Add some fucking sprites.
 -Signup Form
+  -need email
 
 Flashes
 

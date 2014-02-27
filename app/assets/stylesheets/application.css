@@ -692,6 +692,18 @@ span.browse-percentages {
   display: block;
 }
 
+
+.suggested-users {
+  margin-top: 10px;
+  background-color: #FFF;
+  padding: 0px 10px 10px 10px;
+  text-align: center;
+}
+
+
+
+
+
 .header-nav-drop-down {
   display: none;
   position: absolute;
@@ -857,6 +869,4 @@ span.browse-percentages {
       border: 5px solid black;
       font-weight: bold;
       }
-
-
 
