@@ -1,6 +1,8 @@
+<% profiles = Profile.suggest_six(current_user) %>
+
+<% unless profiles.blank? %>
 <div class="suggested-users group" align="center">
   <h3>Near You </h3>
-<% profiles = Profile.suggest_six(current_user) %>
 
 <% profiles.each do |profile| %>
 <div class="object-avatar" style="float: left; width: 30%; height: auto; padding: 2px; margin: auto">
@@ -11,3 +13,4 @@
 
 </div>
 
+<% end %>

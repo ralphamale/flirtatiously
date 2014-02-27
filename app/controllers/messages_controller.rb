@@ -53,6 +53,7 @@ class MessagesController < ApplicationController
       puts "after valid before save"
     if @message.save
 
+
       if request.xhr?
         render json: @message
       else
@@ -69,6 +70,8 @@ class MessagesController < ApplicationController
     @sent_messages = Message.joins("INNER JOIN message_headers ON messages.id = message_headers.message_id INNER JOIN users ON message_headers.other_id = users.id").select("message_headers.other_id AS recipient_id, users.username AS recipient_username, messages.body AS body, messages.created_at AS sent_date").where("message_headers.is_sent = true AND message_headers.user_id = ?", current_user.id).order("messages.created_at DESC")
   end
 
+
+  # messages.created_at AS sent_date
   def conversation
     #whenever u show, u wanna mark IS READ.
     user_id = current_user.id
@@ -77,7 +80,7 @@ class MessagesController < ApplicationController
     @other_username = User.find(other_id).username
 
     @messages = MessageHeader.find_by_sql ["
-      SELECT message_headers.is_sent, messages.body
+      SELECT message_headers.is_sent, messages.body, messages.created_at AS sent_date
       FROM message_headers JOIN messages
       ON message_headers.message_id = messages.id
       WHERE user_id = ? AND other_id = ?
