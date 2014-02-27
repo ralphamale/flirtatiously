@@ -93,8 +93,25 @@
       <% end %>
 
       <% else %>
-      <li> <a href="#">LIKE</a></li>
-      <li> <a href="#">DISLIKE</a></li>
+      <% if @rating_status.nil? %>
+        <% unless @is_current_user_profile %>
+         <li> <div class="ratings">
+
+            <% ["true", "false"].each do |text| %>
+              <form action="<%= ratings_url %>" id="ratings-<%= text %>" method="post" class="rating-form" style="display: inline-block">
+                <input type="hidden" name="rating[ratee_id]" value="<%= @profile.user_id %>">
+                  <%= auth_token_input %>
+                  <input type="hidden" name="rating[likes]" value="<%= text %>">
+                  <input type="submit"  style="display: inline-block" value="<%= text %>">
+              </form>
+            <% end %>
+          </div></li>
+        <% end %>
+      <% elsif @rating_status %>
+         <li><a href="#">You guys both like each other!</a></li>
+      <% else  %>
+         <li><a href="#">You have already rated this user.</a></li>
+      <% end %>
     <li><a href="#" class="message">Message</a></li>
 
     <script>
@@ -146,18 +163,9 @@
 </div>
 
 <div class="content-half profile-view" style="background-color: #fff">
-
-
-
-
   <script type="text/template" id="change-settings-template">
-
-  <%= render partial: "change_settings" %>
-
-
+    <%= render partial: "change_settings" %>
   </script>
-
-
 
   <h1 class="username">
     <%= @profile.user.username %>
@@ -175,7 +183,9 @@
 
   | <span class="profile-field">
     <span class="<%= "owner-can-modify" if @is_current_user_profile %>">
-      <%= PROFILE_DETAILS["sexual_orientation"][@profile["sexual_orientation"]] %>
+      <% sex_orient = PROFILE_DETAILS["sexual_orientation"][@profile["sexual_orientation"]] %>
+      <%= display_detail(sex_orient, "Sexual Orientation", @is_current_user_profile) %>
+
     </span>
     <select class="form-input" name="profile[sexual_orientation]">
       <option disabled selected>Choose New</option>
@@ -190,7 +200,9 @@
 
   | <span class="profile-field">
     <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="sex">
-      <%= @profile["sex"] %>
+
+      <%= display_detail(@profile["sex"], "Sex", @is_current_user_profile) %>
+
     </span>
     <select class="form-input" name="profile[sex]">
       <option disabled selected>Choose New</option>
@@ -205,7 +217,8 @@
 
   | <span class="profile-field">
     <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="city">
-      <%= @profile.city %>
+      <%= display_detail(@profile.city, "Zip Code", @is_current_user_profile) %>
+
      </span>
      <input type="text" class="form-input"
          name="profile[zip_code]"
@@ -214,27 +227,7 @@
 
    <br>
 
-  <% if @rating_status.nil? %>
 
-  <% unless @is_current_user_profile %>
-    <div class="ratings">
-
-      <% ["true", "false"].each do |text| %>
-        <form action="<%= ratings_url %>" id="ratings-<%= text %>" method="post" class="rating-form" style="display: inline-block">
-          <input type="hidden" name="rating[ratee_id]" value="<%= @profile.user_id %>">
-            <%= auth_token_input %>
-            <input type="hidden" name="rating[likes]" value="<%= text %>">
-            <input type="submit"  style="display: inline-block" value="<%= text %>">
-        </form>
-
-    <% end %>
-        </div>
-        <% end %>
-  <% elsif @rating_status %>
-     You guys both like each other!
-  <% else  %>
-     You have already rated this user.
-  <% end %>
 
    <script>
    $(document).ready(function() {
@@ -301,10 +294,10 @@
       <td>
       <div class="profile-field">
       <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="<%= key %>">
-        <%= unless @profile[key].nil?
-          PROFILE_DETAILS[key][@profile[key]]
-        else
-          "-" end %>
+        <% detail = PROFILE_DETAILS[key][@profile[key]] %>
+        <%= display_detail(detail, "Detail", @is_current_user_profile) %>
+
+
           </span>
           <select class="form-input" name="profile[<%= key %>]">
           <option disabled selected>Choose new</option>
@@ -326,13 +319,18 @@
   <h3>Bio</h3>
   <div class="profile-field">
     <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="description">
-      <%= @profile.description %>
+
+
+      <%= display_detail(@profile.description, "Essay", @is_current_user_profile) %>
+
     </span>
     <textarea class="form-input" name="profile[description]"></textarea>
   </div>
 
   <h3>Loves</h3>
-  <%= @profile["likes"] %>
+
+  <%= display_detail(@profile.description, "Essay", @is_current_user_profile) %>
+
 
 
 </div>
@@ -353,7 +351,7 @@
             var $profileText = $(this);
             var $profileField = $(this).closest('.profile-field');
             var $input = $profileField.find('.form-input');
-            if ($input.is('textarea')) {
+            if ($input.is('textarea') && !$(this).has('.profile-placeholder')) {
               $input.html($(this).html());
             };
             //regular text input too.

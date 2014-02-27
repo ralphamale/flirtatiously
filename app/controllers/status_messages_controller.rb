@@ -16,7 +16,7 @@ class StatusMessagesController < ApplicationController
     @status_message = current_user.status_messages.new(params[:status_message])
 
     if current_user.save
-      render :partial => @status_message, layout: false
+      render :json => @status_message
     else
       flash.now[:errors] = "Status unsuccessfully created."
       redirect_to profiles_url

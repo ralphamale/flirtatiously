@@ -142,11 +142,23 @@ $(document).ready(function() {
     window.modal.show();
   });
   //from #answer-question
+
+
+  $('#modal-container').on('ajax:send', '#answer-question-form', function(e) {
+    $('#answer-question-form').html('Submitting!');
+  });
+
+
   $('#modal-container').on('ajax:success', function(event, data) {
 
     if ($(event.target).is('form#answer-question-form')) {
-      console.log("YAY");
-      $('#modal-container').html(data);
+      $('#modal-container').html("Question submitted!");
+      setTimeout(
+        function()
+        {
+          $('#modal-container').html(data);
+        }, 1500);
+
     }
   });
 

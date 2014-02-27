@@ -1,15 +1,13 @@
-Ask
+
+ASK
 --how to have things pop up on key bindings.
---Notices as popups.
---Status messages, show a specific thing if its the root they're visitign.
+--Notices as popups. (line 147)
 --Pictuers for tomorrow.
 --How to make a function happen with clicking a link.
 
 -key bindings real quick
 
 After that, start looking at jonathans feedback
-
--Do questions work now?
 
 Polishing
 
@@ -18,20 +16,16 @@ TEST EVERYTHING BEFORE TODAY.
 -Fix toolbar
 
 
+LATER: Try to pass in a clean element from the "Create" function so its easy to put it in a function.
+
 ----------
 
 MEGA:
--If no users to display, dont have that thing pop up!!!
->>>>>>When sending message in "Conversation", should not give u json object.
 
 -Toolbars on
 
 Avatar stuff:
 -Display avatar and shit too.
--Avatar in messages.
-=Avatar in Conversation should be clicking to conversation
-
-
 
 -Center dropdown menu
 -Move notifications to right side.

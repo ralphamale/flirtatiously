@@ -126,6 +126,7 @@ class QuestionsController < ApplicationController
         if request.xhr?
           @new_question = Question.get_random_unanswered(current_user)
           if @new_question
+            sleep(2);
             render partial: "answer_question", locals: {question: @new_question}
           else
             render text: "No more questions."

@@ -29,12 +29,35 @@
   <!-- expands when clicked -->
 </div>
 
+<script type="text/template" id="new-status-wrapper">
+  <li class="object-item group">
+    <div class="object-avatar">
+      <%= display_photo(current_user.profile, :avatar) %>
+    </div>
+    <section class="object-content">
+      <a class="username" href="#">
+        <%= current_user.username %>
+      </a>
+      <div class="status-body">
+        <%%= status.body %>
+
+      </div>
+
+      <div class="status-timestamp">
+        Now
+      </div>
+    </section>
+  </li>
+</script>
+
+
 <script>
 
   $('#post-status-form').on('ajax:success', function(e,d) {
-    $('#status-msg-list').html(d);
-    $("#post-status-form textarea").val("");
-    /* Put flash success here */
+    var newStatusFn = _.template($('#new-status-wrapper').html());
+
+    $('.objects-list').prepend(newStatusFn({status: d}))
+    $('.update-status-message textarea').val('');
   });
 
 </script>
