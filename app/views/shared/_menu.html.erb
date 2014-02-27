@@ -2,7 +2,7 @@
 <div class="header-wrap group">
 
   <h1 class="header-logo">
-    <a href="#">Ralph-Date</a>
+    <a href="<%= status_messages_url %>">Ralph-Date</a>
   </h1>
 
   <nav class="header-nav">
@@ -10,6 +10,7 @@
 <ul class="group">
 
   <% if logged_in? %>
+  <li><%= link_to "Home", status_messages_url %></li>
     <li><%= link_to "Bro", profiles_url %></li>
     <li><a href="<%= random_questions_url %>" id="random-question-popup" data-remote="true">Quiz</a></li>
 
