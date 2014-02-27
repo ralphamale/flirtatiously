@@ -19,24 +19,23 @@ TEST EVERYTHING BEFORE TODAY.
 -Fix toolbar
 
 
-
-
--Add suggested users everywhere.
-
 ----------
 
 MEGA:
--When sending message in "Conversation", should not give u json object.
+-If no users to display, dont have that thing pop up!!!
+>>>>>>When sending message in "Conversation", should not give u json object.
+
+-Toolbars on
+
+Avatar stuff:
 -Display avatar and shit too.
 -Avatar in messages.
--Remove stray menu from message.
 =Avatar in Conversation should be clicking to conversation
+
 
 
 -Center dropdown menu
 -Move notifications to right side.
-
-
 -Add other menu to "Messages INbox" - "In conversation'"
 
 
@@ -61,7 +60,7 @@ Unuglify
 
 PRETTYIFY:
 "No messages / conversation / notification" to display should be pretty.
-
+-Make not aligned right in Profile and in Columns for Messages INbox.
 
 Walkthrough
 -Need splash: says sign in with facebook possible.
@@ -103,6 +102,7 @@ USER FILTER:
 
 STATUS MESSAGE PAGE:
 -Display avatar on "Say something"
+-Make the other thing white if theres none to display.
 
 BROWSE:
 -Show default if there are none.
@@ -121,6 +121,8 @@ POLISH:
 Badge
 
 Friday:
+-General beautifyment
+
   -Flash messages to acknowledge saves
   It is very important when demoing your app that when you do actions, like save, befriend, delete, modify, etc. something visually happens on the page to acknowledge the action. This is important user feedback and is crucial for any serious web app.
   Add flash messages to acknowledge saves, etc.
@@ -153,6 +155,9 @@ Saturday
 
 
 ~~~~
+
+AFTER:
+-Make it so can delete messages...
 
 Add some fucking sprites.
 

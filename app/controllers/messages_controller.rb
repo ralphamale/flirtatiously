@@ -73,6 +73,7 @@ class MessagesController < ApplicationController
     #whenever u show, u wanna mark IS READ.
     user_id = current_user.id
     other_id = params[:user_id]
+    @other_user = User.find(other_id)
     @other_username = User.find(other_id).username
 
     @messages = MessageHeader.find_by_sql ["

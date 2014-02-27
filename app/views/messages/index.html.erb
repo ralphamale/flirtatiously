@@ -1,6 +1,6 @@
 
 
-<div class="content-4-of-7 ">
+<div class="content-4of7 ">
   <%= "You have not received any messages yet" if @messages.length == 0 %>
 
   <% @messages.each do |message| %>
@@ -8,7 +8,8 @@
   <ul class="objects-list">
     <li class="object-item group">
       <div class="object-avatar">
-
+        <% profile = User.find(message.recipient_id).profile %>
+        <a href="<%= conversation_user_messages_url(message.recipient_id) %>"><%= display_photo(profile, :avatar) %></a>
       </div>
       <section class="object-content">
         <a class="username" href="<%= conversation_user_messages_url(message.recipient_id) %>"><%= message.recipient_username %></a>
@@ -26,6 +27,6 @@
   <% end %>
 </div>
 
-<div class="content-3of7">
-
+<div class="content-2of7">
+<%= render partial: "shared/suggested_users" %>
 </div>

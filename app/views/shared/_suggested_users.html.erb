@@ -1,16 +1,13 @@
-<div class="suggested-users">
+<div class="suggested-users group" align="center">
   <h3>Near You </h3>
 <% profiles = Profile.suggest_six(current_user) %>
 
 <% profiles.each do |profile| %>
-<img src="<%=
-if !profile.photos || profile.photos.blank?
-  asset_path("img_placeholder.png")
-else
-  profile.photos.sample.file.url(:avatar)
-end
- %>" width="45%" height="auto">
+<div class="object-avatar" style="float: left; width: 30%; height: auto; padding: 2px; margin: auto">
+<a href="<%= profile_url(profile) %>"><%= display_photo(profile, :avatar) %> </a>
+</div>
 
 <% end %>
 
 </div>
+

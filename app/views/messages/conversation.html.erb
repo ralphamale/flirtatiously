@@ -1,5 +1,6 @@
 <div class="content-4of7">
-  <h1> Conversation with <%= @other_username %></h1>
+
+    <% profile = Profile.find_by_user_id(@other_user) %>
   <% @messages.each do |message| %>
 
 
@@ -8,7 +9,7 @@
 
     <li class="object-item group">
       <div class="object-avatar">
-
+        <a href="<%= profile_url(profile) %>"><%= display_photo(profile, :avatar) %></a>
       </div>
       <section class="object-content">
 
@@ -31,4 +32,8 @@
       <%= render "form", user_id: params[:user_id] %>
 
 
+</div>
+
+<div class="content-2of7">
+  <%= render partial: "shared/suggested_users" %>
 </div>

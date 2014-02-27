@@ -69,7 +69,7 @@ class Profile < ActiveRecord::Base
 
   def self.suggest_six(current_user)
     #spits out six random users to check out
-    profiles = Profile.apply_filters(@user_filter, current_user)
+    profiles = Profile.apply_filters(current_user.user_filter, current_user)
     profiles.sample(6)
 
   end
