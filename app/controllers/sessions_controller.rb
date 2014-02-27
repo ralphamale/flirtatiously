@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 
       if user
         log_in(user)
-        redirect_to profiles_url
+        redirect_to status_messages_url
       else
         flash[:errors] = "Could not log you in"
         render :new
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
 
       if user
         log_in(user)
-        redirect_to profiles_url
+        redirect_to status_messages_url
       end
 
       unless user

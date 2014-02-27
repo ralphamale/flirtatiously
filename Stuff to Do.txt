@@ -1,15 +1,160 @@
+Ask
+--how to have things pop up on key bindings.
+--Notices as popups.
+--Status messages, show a specific thing if its the root they're visitign.
+--Pictuers for tomorrow.
+--How to make a function happen with clicking a link.
+
 -key bindings real quick
-~~~~~
 
 After that, start looking at jonathans feedback
 
+-Do questions work now?
+
+
+Polishing
+
+TEST EVERYTHING BEFORE TODAY.
+
+-Fix toolbar
+
+
+
+
+-Add suggested users everywhere.
+
+----------
+
+MEGA:
+-When sending message in "Conversation", should not give u json object.
+-Display avatar and shit too.
+-Avatar in messages.
+-Remove stray menu from message.
+=Avatar in Conversation should be clicking to conversation
+
+
+-Center dropdown menu
+-Move notifications to right side.
+
+
+-Add other menu to "Messages INbox" - "In conversation'"
+
+
+-Not Null for other form.... need to fix with JS?
+-Datepicker
+"You have no photos. Please upload some!"
+"You must anwer this question to play more!"
+-Hyperlinks separate color
+-Visual acknowledgement of in-line edit.
+Polish uploader
+-Quote / Custom prompt if have time.
+  -If nothign there, have placeholder text so they can click on it.
+-Settings: make it loook nicer. Have DELETE button.
+
+MESSAGE BOX:
+-Have a sprite for if u submitted it!
+
+IN CONVERSATION:
+Unuglify
+-Show last 5.
+-Pretty print for 18 days ago.
+
+PRETTYIFY:
+"No messages / conversation / notification" to display should be pretty.
+
+
+Walkthrough
+-Need splash: says sign in with facebook possible.
+-Sign in with Facebook, then it will fill in some shit for u.
+-On first signin, it will display some shit for u to complete your profile.
+-Will walk you through app. Maybe with icons?
+
+
+-Placeholder text for blank profiles (on ralfy)
+  -Says "Please upload a photo!"
+-Settings icon
+
+LOGGING INA GAIN
+-Welcome back on "Status Page!"
+-Delete cg69 or make a better test account
+-if the profile is blank.. Fucking make a profile!!!!
+-White text for "There are no status messages to display"
+
+
+YOUR PROFILE:
+X for delete button.
+
+OTHER PROFILE:
+-Display questions correctly. Weird spacing.
+-Shows grayed out if you have already liked this user!
+-Does not display "Like/dislike" anymore if u cant do it.
+-Match percentages make look nicer.
+-Custom headline/prompt.
+-Move so button is only in MENU for like/dislike
+-Display blank image if its blank.
+-If you go on a page again and you guys both like each other, then its going to say something!!
+-Move buttons to the top.
+
+
+
+USER FILTER:
+-Fix search so that if u NULL something, it'll save it.
+-If theres errors, just return everyone!
+
+STATUS MESSAGE PAGE:
+-Display avatar on "Say something"
+
+BROWSE:
+-Show default if there are none.
+-Show blank image if there is no image!!
+-"No users fit your criteria." if index is blank!
+
+
+TINDER
+-First time: SHow "YES" or "NO" display screen.
+
+
+POLISH:
+-Sprites
+-links make not loko like shit.
+
+Badge
+
+Friday:
+  -Flash messages to acknowledge saves
+  It is very important when demoing your app that when you do actions, like save, befriend, delete, modify, etc. something visually happens on the page to acknowledge the action. This is important user feedback and is crucial for any serious web app.
+  Add flash messages to acknowledge saves, etc.
+  Have buttons to fill out complex forms while demoing (with nice seed data)
+  Have a guest account (or two, if you need both to demo)
+
+  --Check list. Guest account
+  --Seed data
+  --Make sure push to heroku works
+  --Splash page.
+  Style :hover actions of input, buttons and links, to show you can click on things. More visual feedback!
+  Style your input, textarea and button tags (use the same size font, color, etc. as the rest of your app, else they stick out like a sore thumb)
+
+  Add helpful tips of a sentence here and there on the spot in your app to guide the user through your app. This makes your implemented features extra obvious.
+
+  Write a killer README covering concept, features, technologies and a bunch of future todos (even if it's unlikely you'll ever do it, it shows that you have thought about better ways to implement features, etc.)
+"Don't Make Me Think" by Steve Krug.
+
+Logo for web site.
+
+
+Saturday
+-Refactor.
+-Match algoirthm
+-Test coverage
+-Move controller methods to model methods.
+-Validations
+
+-Move all of JS into different files.
 
 
 ~~~~
 
 Add some fucking sprites.
--Signup Form
-  -need email
 
 Flashes
 

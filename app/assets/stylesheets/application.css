@@ -609,6 +609,10 @@ span.browse-percentages {
   float: left;
 }
 
+.object-avatar > img {
+  display: block;
+}
+
 .object-list {
 
   display: block;
@@ -633,7 +637,7 @@ span.browse-percentages {
 
   display: block;
 
-  width: 475px;
+  width: 300px;
   margin: 0px 0px 0px 20px;
   float: left;
 }

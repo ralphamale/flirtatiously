@@ -1,9 +1,12 @@
 <li class="object-item group">
+  <% profile = Profile.find(status_message.p_id) %>
   <div class="object-avatar">
+
+    <img src="<%= profile.photos.first.file.url(:avatar) %>" height="100%" width="100%">
   </div>
   <section class="object-content">
-    <a class="username" href="<%= profile_url(status_message.user.profile.id) %>">
-      <%= status_message.user.username %>
+    <a class="username" href="<%= profile_url(profile) %>">
+      <%= status_message.username %>
     </a>
     <div class="status-body">
       <%= status_message.body %>

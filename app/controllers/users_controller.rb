@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         @user.save
       end
       log_in(@user)
-      redirect_to profiles_url
+      redirect_to profile_url(@user.profile)
     rescue ActiveRecord::RecordInvalid => invalid
       flash.now[:errors] = @user.errors.full_messages
       render :new
@@ -31,12 +31,10 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-
-
     params[:user].delete(:password) if params[:user][:password].blank?
 
     if @user.update_attributes(params[:user])
-      debugger
+
       if request.xhr?
         render json: @user
       else

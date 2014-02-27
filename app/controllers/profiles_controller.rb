@@ -11,9 +11,14 @@ class ProfilesController < ApplicationController
     #render layout: "browse_profile"
   end
 
-  def random
+  def random #shows only random ones that havent been matched yet and are in current user's filters
     @profile = Profile.get_random_unrated(current_user)
-    redirect_to profile_url(@profile)
+    if @profile
+      redirect_to profile_url(@profile)
+    else
+      flash[:errors] = "There are no other non-matched user. Please expand your user filter or try again later."
+      redirect_to profiles_url
+    end
   end
 
   def new
