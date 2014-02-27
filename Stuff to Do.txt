@@ -1,6 +1,9 @@
--Messages stopped working.
--The thing on the right, with the suggested users. HTat doesn't work
-Fix that and messaging
+-key bindings real quick
+~~~~~
+
+After that, start looking at jonathans feedback
+
+
 
 ~~~~
 
