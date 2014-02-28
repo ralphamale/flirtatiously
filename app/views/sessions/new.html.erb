@@ -1,7 +1,28 @@
-<h1>Sign In</h1>
+<% content_for :head do %>
 
-<form action="<%= session_url%>" class="signup" method="post">
-  <%= auth_token_input %>
+<style>
+
+body.splash {
+  background-image: image-url("splash_bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0% 55px;
+}
+
+</style>
+
+<% end %>
+<div  class="splash">
+
+
+<div style="width: 1000px; margin: 0 auto">
+<h1 class="username" style="text-align: right; margin-bottom: 60px; font-size: 64px">OKCupid + Tinder<br>= Ralph-Date</h1>
+<%= auth_token_input %>
+
+
+
+<form action="<%= session_url%>" class="signup" method="post" style="margin-right: 30px">
+
 
   <label>
 
@@ -15,3 +36,5 @@
 
   <input type="submit" value="Sign In">
 </form>
+</div>
+</div>

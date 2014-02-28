@@ -5,9 +5,11 @@
   <h3>Near You </h3>
 
 <% profiles.each do |profile| %>
-<div class="object-avatar" style="float: left; width: 30%; height: auto; padding: 2px; margin: auto">
-<a href="<%= profile_url(profile) %>"><%= display_photo(profile, :avatar) %> </a>
+<div class="object-avatar" style="float: left; width: 91px; height: auto; padding-left: 2px; padding-right: 2px; padding-bottom: 2px; margin: auto">
+<a href="<%= profile_url(profile) %>"><%= display_photo(profile, :avatar) %></a>
 </div>
+
+
 
 <% end %>
 

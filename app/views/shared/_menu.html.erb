@@ -2,7 +2,7 @@
 <div class="header-wrap group">
 
   <h1 class="header-logo">
-    <a href="<%= status_messages_url %>">Ralph-Date</a>
+    <a href="<%= status_messages_url %>" style="padding-top: 20px; padding-bottom: 20px">Ralph-Date</a>
   </h1>
 
   <nav class="header-nav">
@@ -11,14 +11,14 @@
 
   <% if logged_in? %>
   <li><%= link_to "Home", status_messages_url %></li>
-    <li><%= link_to "Bro", profiles_url %></li>
-    <li><a href="<%= random_questions_url %>" id="random-question-popup" data-remote="true">Quiz</a></li>
+    <li><%= link_to "Browse", profiles_url %></li>
+    <li><a href="<%= random_questions_url %>" id="random-question-popup" data-remote="true">Questions</a></li>
 
-    <li><%= link_to "Ran", random_profiles_url %></li>
+    <li><%= link_to "Tinder", random_profiles_url %></li>
 
-    <li><%= link_to "Msg", messages_url %></li>
+    <li><%= link_to "Messages", messages_url %></li>
 
-    <li><%= link_to "U", profile_url(current_user.profile.id) %></li>
+    <li><%= link_to "Your Profile", profile_url(current_user.profile.id) %></li>
 
     <li id="notifications-block"><%= link_to current_user.new_notifications.count, read_notifications_url, remote: true, method: :put, id: "menu-notifications" %>
       <ul class="header-nav-drop-down">
@@ -30,7 +30,7 @@
 
  <%#= link_to 'Kill Flea', [flea.dog, flea], :confirm => 'Sure?', :method => :delete %>
     <li><% link_to "Your Messages", messages_url %></li>
-<li><%= link_to "Off", session_url, method: :delete %></li>
+<li><%= link_to "Log Out", session_url, method: :delete %></li>
   <% else %>
     <li><%= link_to "Sign In", new_session_url %></li>
     <li><%= link_to "Sign Up", new_user_url %></li>
@@ -91,7 +91,7 @@
 
    padding: 30px;
 
-   margin-top: -200px;
+   margin-top: -300px;
    margin-left: -230px;
 
    background: #fff;

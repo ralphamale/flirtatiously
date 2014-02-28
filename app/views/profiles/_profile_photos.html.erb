@@ -78,7 +78,7 @@ div.image-file-input-wrapper .remove { /** this ist he square to remove. if its 
   height: 10px;
   top: -5px;
   right: -5px;
-  background: black;
+  background: red;
   z-index: 5;
 }
 
@@ -101,7 +101,7 @@ div.image-file-input-wrapper > .progress { /* hidden at first until .busy (uploa
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.7);
-  color: red;
+  color: #FFF;
   text-align: center;
   display: none;
   z-index: 3;
@@ -441,7 +441,8 @@ $(document).ready(function() {
   function liftProgressVeil ($bar, percent, duration, cb) {
     $bar.html('' + percent + '%' );
     var height = '' + (100 - percent) + '%';
-    $bar.animate({height: height}, {duration: duration, complete: cb});
+    var opacity = percent/100;
+    $bar.animate({width: height}, {duration: duration, complete: cb});
   };
 
   function setUploadIcon() {

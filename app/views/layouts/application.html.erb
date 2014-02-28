@@ -6,6 +6,9 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
+
+<%= yield :head %>
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     <style>
     #draggable {
@@ -20,11 +23,13 @@
     <%= render "shared/menu" %>
   </header>
 
+  <% if content_for?(:secondary_header) %>
   <header class="sec-header">
     <div class="sec-header-wrapper group">
       <%= yield :secondary_header %>
     </div>
   </header>
+  <% end %>
 
 
   <script>
@@ -45,10 +50,10 @@
 
 
 
-  <content>
+  <content class="">
 
     <% if flash[:errors] %>
-      <div class="flash">
+      <div class="flash sig-message">
         <%= flash[:errors] %>
       </div>
     <% end %>

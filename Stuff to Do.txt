@@ -3,13 +3,11 @@ QUESTIONS:
   -display thing on profile to fill it out!
   -how to make demo walkthrough/
 
-
 -Banner on messages index
 
 ASK
 --how to have things pop up on key bindings.
 
---Pictuers for tomorrow.
 --How to make a function happen with clicking a link.
 
 -key bindings real quick
@@ -37,9 +35,16 @@ Tomorrow:
 
 ----------
 
+Fix other nav bar photos.
+
+
+-Seed Data
+  -Statuses
+
+
+
 MEGA:
 -Datepicker for edit.
-
 X for delete button.
 
 -Sprites (have example in notifications/new or status_messages/new)

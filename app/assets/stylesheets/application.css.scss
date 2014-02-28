@@ -13,6 +13,19 @@
  *= require jquery.fileupload-ui
  */
 
+.sec-header button.change-settings {
+  padding: 10px;
+}
+
+.sec-header .profile-switch {
+  padding: 14px;
+}
+
+.enlarge-photo {
+  height: 50px;
+  width: 50px;
+}
+
 .flash {
   background-color: #FFF;
   padding: 16px;
@@ -20,48 +33,17 @@
   text-align: center;
 
   max-width: 952px;
-  margin: 24px auto;
+  margin: 0 auto;
 
 }
+
+.sig-message {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
 .mini-question-container {
   margin-bottom: 16px;
-}
-
-#like-button {
-  background: image-url("heart.png") no-repeat center 3px;
-  background-size: 40px 40px;
-}
-
-#dislike-button {
-  background: image-url("dislike-button.png") no-repeat center 3px;
-  background-size: 40px 40px;
-}
-
-
-
-
-i#message-button {
-  content: image-url("message-button.png") no-repeat center 3px;
-  background-size: 40px 40px;
-}
-
-
-
-.sec-nav-button {
-  display: block;
-  float: left;
-  border: 0;
-  width: 75px;
-  height: 70px;
-  padding: 50px 30px 5px 10px;
-  color: white;
-  margin: 0 auto;
-  text-align: center;
-  font-size: 10px;
-}
-
-.sec-nav-button:hover {
-  color: orange;
 }
 
 
@@ -297,7 +279,7 @@ header > .header-wrap {
 
 .header-nav > ul > li > a {
   display: block;
-  padding: 5px 40px 5px 5px;
+  padding: 19px 25px 19px 5px;
   text-decoration: none;
 }
 
@@ -311,7 +293,10 @@ header > .header-wrap {
   /*background-color: blue;*/ /* debug */
 }
 
-
+ul.enlargement-links > li > a > img {
+  width: 50px;
+  height: 50px;
+}
 
 .sec-header a {
   color: #FFF;
@@ -321,7 +306,7 @@ header > .header-wrap {
   width: 1000px;
 /*  max-width: 1468px;*/
 /*  width: 100%;*/
-  height: 50px;
+  height: 60px;
   margin: auto;
 }
 
@@ -357,22 +342,49 @@ header > .header-wrap {
   text-decoration: none;
 }
 
+
+
 .content-wrap {
 
   width: 1000px;
 /*  max-width: 1468px;*/
-  margin: auto;
+  margin: 24px auto;
 /*  width: 100%;*/
   height: auto;
    overflow: hidden;
   /*overlow hidden?*/
 }
 
+
+
+
+.splash {
+  background-image: image-url("splash_bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0% 0%;
+  min-height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  left: 0;
+}
+
 .content-half {
   float: left;
+  //padding: 16px;
+  width: 484px;
+}
+
+.left-half {
+  padding-right: 16px;
+}
+
+.profile-view {
   padding: 16px;
   width: 468px;
 }
+
 
 
 .content-3of7 {
@@ -417,14 +429,22 @@ header > .header-wrap {
 
 .send-message > textarea {
   display: block;
-  width: 100%;
+  margin-top: 15px;
+  outline: 0;
+  border: 1px solid grey;
+  width: 380px;
+  padding: 10px;
   height: 160px;
 }
 
 .send-message > input[type=submit] {
   display: block;
-  margin-top:10px;
-  width: 80%;
+  margin-top:20px;
+  width: 100%;
+  padding-left: 0;
+  color: black;
+  padding-right: 0;
+  background-color: #FF6633;
 }
 
 .send-message-html > form.send-message * {
@@ -618,16 +638,13 @@ span.browse-percentages {
   display: block;
 }
 
-
-
-
-
 .search-bar {
   min-width: 1000px;
   max-width: 1468px;
   width: 100%;
   margin: 0 auto;
   padding: 5px;
+  padding-top: 20px;
 }
 
 .search-bar * {
@@ -643,7 +660,7 @@ span.browse-percentages {
   font-weight: 700;
   border-bottom: 1px solid grey;
   text-align: center;
-  width: 110px;
+  width: 90px;
 }
 
 .search-bar > .block-floated {
@@ -698,11 +715,17 @@ span.browse-percentages {
   margin-bottom: 24px;
 }
 
+form.create-pm textarea {
+  width: 300px;
+
+}
 
 .create-pm > input[type=submit] {
-  width: 77%;
+  width: 450px;
+  margin-left: 8px;
   margin-top: 2px;
-  background-color: blue;
+  color: black;
+  background-color: #FF6633;
 }
 
 .object-content {
@@ -776,10 +799,11 @@ span.browse-percentages {
 
 
 .suggested-users {
-  margin-top: 10px;
+
   background-color: #FFF;
-  padding: 0;
+  padding-top: 0px;
   text-align: center;
+  padding-bottom: 5px;
 }
 
 
@@ -952,3 +976,68 @@ span.browse-percentages {
       font-weight: bold;
       }
 
+      #like-button {
+        background: image-url("heart.png") no-repeat 0 0;
+      }
+
+      #dislike-button {
+        background: image-url("reject.png") no-repeat 0 0;
+      }
+
+
+      input.sec-nav-button {
+        padding: 0;
+        cursor: pointer;
+        display: block;
+        float: left;
+        border: 0;
+        width: 50px;
+        height: 0px;
+        padding-top: 50px;
+        padding-left: 5px;
+        padding-right: 5px;
+        overflow: hidden;
+      }
+
+      #like-button:hover {
+        background-position: 0 -50px;
+      }
+
+      #dislike-button:hover {
+        background-position: 0 -50px;
+      }
+
+
+.suggested-users > h3 {
+ margin-top: 0;
+ padding-top: 5px;
+}
+
+.update-status-message > form > textarea  {
+  width: 265px;
+  padding: 10px;
+  outline: 0;
+}
+
+.update-status-message > form > input[type=submit] {
+  width: 285px;
+  padding: 0;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  text-align: center;
+}
+
+
+div#modal-container a {
+  color: #663399;
+}
+
+.swipe {
+  position: absolute;
+  height: 400px;
+  width: 400px;
+  top: 50%;
+  left: 50%;
+  margin-left: -200px;
+  margin-top: -200px;
+}

@@ -5,8 +5,8 @@
 
   <nav class="sec-left-nav">
     <ul class="toggle-view-menu">
-      <li class="default-hidden" style="background-color: yellow"><a href="#" style="color: red">Display Profile</a></li>
-      <li class="default-displayed" style="background-color: yellow"><a href="#" style="color: red">Display Questions</a></li>
+      <li class="default-hidden" style="background-color: yellow"><a href="#" style="color: red" class="profile-switch">Display Profile</a></li>
+      <li class="default-displayed" style="background-color: yellow"><a href="#" style="color: red" class="profile-switch">Display Questions</a></li>
     </ul>
   </nav>
 
@@ -100,7 +100,7 @@
                 <input type="hidden" name="rating[ratee_id]" value="<%= @profile.user_id %>">
                   <%= auth_token_input %>
                   <input type="hidden" name="rating[likes]" value="<%= text %>">
-                  <input type="submit"  style="display: inline-block" value="<%= text %>">
+                  <input type="submit"  class="sec-nav-button" id ="<%= text == "true" ? "like-button" : "dislike-button" %>" value="<%= text %>">
               </form>
             <% end %>
           </div></li>
@@ -161,7 +161,7 @@
 
 <!-- yield head -->
 
-<div class="content-half">
+<div class="content-half left-half" style="padding-top: 0 px">
 
   <%= render partial: "profile_photos", locals: {profile: @profile} %>
 
@@ -247,7 +247,6 @@
          dataType: "json",
          success: function(r) {
            if (r.is_mutual) {
-             alert("Got here");
              $('#modal-container').html($('#mutual-match-template').html());
              window.modal.show();
            } else if (r.likes === false) {
@@ -352,10 +351,9 @@
     <textarea class="form-input" name="profile[description]"></textarea>
   </div>
 
-  <h3>Loves</h3>
+<%#   <h3>Loves</h3> %>
 
-  <%= display_detail(@profile.description, "Essay", @is_current_user_profile) %>
-
+  <%#= display_detail(@profile.description, "Essay", @is_current_user_profile) %>
 
 
 </div>
