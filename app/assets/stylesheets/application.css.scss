@@ -37,23 +37,32 @@
   background-size: 40px 40px;
 }
 
-#message-button {
-  background: image-url("message-button.png") no-repeat center 3px;
+
+
+
+i#message-button {
+  content: image-url("message-button.png") no-repeat center 3px;
   background-size: 40px 40px;
 }
 
 
 
 .sec-nav-button {
-  display: inline-block;
+  display: block;
+  float: left;
   border: 0;
-  width: 65px;
-  padding: 50px 10px 0px 10px;
+  width: 75px;
+  height: 70px;
+  padding: 50px 30px 5px 10px;
   color: white;
+  margin: 0 auto;
   text-align: center;
   font-size: 10px;
 }
 
+.sec-nav-button:hover {
+  color: orange;
+}
 
 
 

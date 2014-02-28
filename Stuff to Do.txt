@@ -38,7 +38,7 @@ Tomorrow:
 ----------
 
 MEGA:
-
+-Datepicker for edit.
 
 X for delete button.
 
