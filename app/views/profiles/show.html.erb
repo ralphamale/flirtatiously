@@ -251,9 +251,11 @@
              window.modal.show();
            } else if (r.likes === false) {
 
-             $('#modal-container').html("<img src='<%= asset_path "heart.png" %>' height='100%' width='100%'>");
+            $('body').append("<img src='<%= asset_path "giant-dislike.png" %>' class='swipe'>")
 
-             window.modal.show();
+             // $('#modal-container').html("<img src='<%= asset_path "heart.png" %>' height='100%' width='100%'>");
+
+             // window.modal.show();
 
              setTimeout(
                function()
@@ -262,9 +264,10 @@
                }, 1500);
 
            } else {
+             $('body').append("<img src='<%= asset_path "giant-like.png" %>' class='swipe'>")
 
-             $('#modal-container').html("<img src='<%= asset_path "smiley.png" %>' height='100%' width='100%'>");
-             window.modal.show();
+             // $('#modal-container').html("<img src='<%= asset_path "smiley.png" %>' height='100%' width='100%'>");
+             // window.modal.show();
 
              setTimeout(
                function()
@@ -287,9 +290,9 @@
 
    <script type="text/template" id="mutual-match-template">
 
-   <h2> You have a new match!</h2>
-
-   That means <%= @profile.user.username %> also likes you!
+   <h2> <%= @profile.user.username %> also likes you!</h2>
+   <img src="<%= asset_path "giant-mutual.png" %>" width="300px" height="300px">
+   <br>
    They will receive a notification. Meanwhile, you can <a href="#" class="match-send-message">send them a message</a> or <a href="<%= random_profiles_url %>">keep playing</a>!
 
    </script>

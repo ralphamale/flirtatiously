@@ -1033,6 +1033,7 @@ div#modal-container a {
 }
 
 .swipe {
+  display: block;
   position: absolute;
   height: 400px;
   width: 400px;
@@ -1040,4 +1041,5 @@ div#modal-container a {
   left: 50%;
   margin-left: -200px;
   margin-top: -200px;
+  opacity: .5;
 }
