@@ -1,8 +1,12 @@
 
 
 <div class="content-4of7 ">
-  <%= "You have not received any messages yet" if @messages.length == 0 %>
 
+  <% if @messages.length == 0 %>
+  <div class="flash">
+  You have not received any messages yet.
+</div>
+<% end %>
   <%# @messages.each do |message| %>
 
   <ul class="objects-list">

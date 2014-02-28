@@ -188,20 +188,36 @@ ul.thumbnails .progress {
 <%##################################################%>
 <%##################################################%>
   <section class="photos">
+
+
+
     <div class="featured-photo">
       <% unless current_user.profile == profile %>
       <% if !profile.photos.blank? %>
         <img src="<%= profile.photos.sample.file.url(:featured) %>"> <!-- maybe dont need this referenced -->
       <% else %>
+
+
       <img src="<%= asset_path "img_placeholder.png" %>">
       <% end %>
+
+
       <% end %>
     </div>
 
 
     <ul class="thumbnails">
 
+
+<% if current_user.profile == profile && profile.photos.blank? %>
+      <div class="flash">
+        Uploading photos increase your chance of success.
+      </div>
+      <% end %>
     </ul>
+
+
+
 
   </section>
 

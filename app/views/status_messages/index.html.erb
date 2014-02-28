@@ -1,9 +1,10 @@
 <div class="content-4of7">
 
+
   <% if @status_messages.blank? %>
-
+  <div class="flash">
   There are no status messages to display.
-
+</div>
   <% end %>
 
 <ul class="objects-list" id="status-msg-list">
@@ -15,9 +16,6 @@
 
 <div class="content-2of7">
   <div class="update-status-message">
-    <div class="object-avatar">
-
-    </div>
     <form action="<%= status_messages_url %>" method="post" data-remote="true" id="post-status-form">
     <textarea placeholder="Say hi to the world!" class="group" name="status_message[body]"></textarea>
     <input type="submit" value="I want to scream and shout!">
@@ -25,8 +23,6 @@
   </div>
 
   <%= render partial: "shared/suggested_users" %>
-
-  <!-- expands when clicked -->
 </div>
 
 <script type="text/template" id="new-status-wrapper">

@@ -46,7 +46,14 @@
 
 
   <content>
-    <%= flash[:errors] if flash[:errors] %> <%= flash[:success] if flash[:success] %>
+
+    <% if flash[:errors] %>
+      <div class="flash">
+        <%= flash[:errors] %>
+      </div>
+    <% end %>
+
+
     <div class="content-wrap group">
       <%= yield %>
     </div>

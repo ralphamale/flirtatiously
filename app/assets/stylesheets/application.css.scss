@@ -13,6 +13,58 @@
  *= require jquery.fileupload-ui
  */
 
+.flash {
+  background-color: #FFF;
+  padding: 16px;
+  margin-top: 16px;
+  text-align: center;
+
+  max-width: 952px;
+  margin: 24px auto;
+
+}
+.mini-question-container {
+  margin-bottom: 16px;
+}
+
+#like-button {
+  background: image-url("heart.png") no-repeat center 3px;
+  background-size: 40px 40px;
+}
+
+#dislike-button {
+  background: image-url("dislike-button.png") no-repeat center 3px;
+  background-size: 40px 40px;
+}
+
+#message-button {
+  background: image-url("message-button.png") no-repeat center 3px;
+  background-size: 40px 40px;
+}
+
+
+
+.sec-nav-button {
+  display: inline-block;
+  border: 0;
+  width: 65px;
+  padding: 50px 10px 0px 10px;
+  color: white;
+  text-align: center;
+  font-size: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .profile-placeholder {
   color: red;
   font-weight: bold;
@@ -41,7 +93,7 @@ html, body, header, nav, h1, ul, li, h2, button, input[type=text], input[type=em
 a {
   font-weight: bold;
   text-decoration: none;
-  color: #FFFF66;
+  color: #663399;
   cursor: pointer;
 }
 
@@ -52,6 +104,9 @@ span.owner-can-modify {
 span.owner-can-modify:hover {
   color: blue;
 }
+
+
+
 
 
 select {
@@ -218,7 +273,7 @@ header > .header-wrap {
   display: block;
 }
 
-.header-logo > a: hover {
+.header-logo > a:hover {
   background: yellow;
 }
 
@@ -627,9 +682,11 @@ span.browse-percentages {
 .object-item {
   background-color: #FFF;
   display: block;
+  padding: 16px;
+
   width: 80%;
   margin-left: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 24px;
 }
 
 

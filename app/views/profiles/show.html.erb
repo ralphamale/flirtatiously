@@ -2,9 +2,7 @@
 
 
 <% content_for :secondary_header do %>
-  <h1 class="sec-header-text">
-    <a href="#"><%= @profile.user.username %></a>
-  </h1>
+
   <nav class="sec-left-nav">
     <ul class="toggle-view-menu">
       <li class="default-hidden" style="background-color: yellow"><a href="#" style="color: red">Display Profile</a></li>
@@ -65,7 +63,7 @@
 
       <% if @is_current_user_profile %>
 
-      <button class="change-settings">Change Settings</button>
+      <li><button class="change-settings">Change Settings</button></li>
 
       <script>
       $('button.change-settings').click(function(e) {
@@ -120,13 +118,20 @@
       alert("There is error");
     });
 
-
+    $('#modal-container').on('ajax:send', '.send-message', function(e) {
+      $('.send-message').html('Sending!!');
+    });
 
     $('#modal-container').on('ajax:success', function(e,d) {
 
       if ($(e.target).is('form.send-message')) {
-        window.modal.hide();
-        alert("Message successfully sent");
+        $('#modal-container').html("Sent");
+        setTimeout(
+          function()
+          {
+            window.modal.hide();
+          }, 2000);
+
       };
 
 
@@ -246,9 +251,29 @@
              $('#modal-container').html($('#mutual-match-template').html());
              window.modal.show();
            } else if (r.likes === false) {
-             window.location = '<%= random_profiles_url %>';
+
+             $('#modal-container').html("<img src='<%= asset_path "heart.png" %>' height='100%' width='100%'>");
+
+             window.modal.show();
+
+             setTimeout(
+               function()
+               {
+                 window.location = '<%= random_profiles_url %>';
+               }, 1500);
+
            } else {
-             window.location = '<%= random_profiles_url %>'; //placeholder for later diff action.
+
+             $('#modal-container').html("<img src='<%= asset_path "smiley.png" %>' height='100%' width='100%'>");
+             window.modal.show();
+
+             setTimeout(
+               function()
+               {
+                 window.location = '<%= random_profiles_url %>'; //placeholder for later diff action.
+               }, 1500);
+
+
            };
          },
          error: function(r) {
@@ -463,9 +488,8 @@
 
 
 
-    <% if current_user_response.nil? %>
-      Answer question <%= resp.question_id %>
-      to see their answer.<br>
+    <% if current_user_response.nil? %> <%#= resp.question_id %>
+      <i>Answer this question to see.</i><br>
     <% else %>
     <div class="response-show">
       Your response:
@@ -473,7 +497,7 @@
       <% if @is_current_user_profile %>
       <a href="#" class="response-answer-text <%= "toggle-edit" %>">
         <% end %>
-        <%= current_user_response.answer_text %>
+        <span class="<%= "unacceptable-resp" if is_unacceptable?(current_user_response, @other_user_acceptables) && !@is_current_user_profile %>"><%= current_user_response.answer_text %></span>
         <% if @is_current_user_profile %>
       </a>
       <% end %>
@@ -484,10 +508,8 @@
       <%= render partial: "edit_response", locals: {question: Question.includes([:answer_choices, :acceptable_responses]).where(:id => resp.question_id).first} %>
     </div>
 
-
-      <br>
       <% unless @is_current_user_profile %>
-        His/her response: <%= resp.answer_text %><br>
+        <%= (@profile["sex"] == "M") ? "His" : "Her" %> response: <span class="<%= "unacceptable-resp" if is_unacceptable?(resp, @current_user_acceptables) %>"><%= resp.answer_text %></span>
 
       <% end %>
 

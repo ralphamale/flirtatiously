@@ -1,7 +1,14 @@
+QUESTIONS:
+-ON FIRST SIGN IN
+  -display thing on profile to fill it out!
+  -how to make demo walkthrough/
+
+
+-Banner on messages index
 
 ASK
 --how to have things pop up on key bindings.
---Notices as popups. (line 147)
+
 --Pictuers for tomorrow.
 --How to make a function happen with clicking a link.
 
@@ -18,34 +25,60 @@ TEST EVERYTHING BEFORE TODAY.
 
 LATER: Try to pass in a clean element from the "Create" function so its easy to put it in a function.
 
+
+
+
+Tomorrow:
+-even spacing for profiles.
+-Make demo account
+-Seed data mybe.
+-Why is the profile off-center?
+
+
 ----------
 
 MEGA:
 
--Toolbars on
 
-Avatar stuff:
--Display avatar and shit too.
+X for delete button.
+
+-Sprites (have example in notifications/new or status_messages/new)
+  -Nudge notifications down after make sprite.
+
+-Fix datepicker
+-Tweak the uploader.
+hover over editable. visual feedback // make more obvious u can do this.
+-If profile apply filter returns nothing, Just give back all of them! / If it errors too.
+
+-When posting something. It'll be gone in a couple of seconds (conversatino, status message) ~ Have Orange sprite for it.
 
 -Center dropdown menu
--Move notifications to right side.
--Add other menu to "Messages INbox" - "In conversation'"
-
 
 -Not Null for other form.... need to fix with JS?
 -Datepicker
-"You have no photos. Please upload some!"
-"You must anwer this question to play more!"
+
 -Hyperlinks separate color
 -Visual acknowledgement of in-line edit.
 Polish uploader
--Quote / Custom prompt if have time.
-  -If nothign there, have placeholder text so they can click on it.
 -Settings: make it loook nicer. Have DELETE button.
+-Fix all those boxes so they're spaced out more easily.
+-Timestamp not l
 
-MESSAGE BOX:
--Have a sprite for if u submitted it!
+(Signup)
 
+-only have script running ONLY on Show Profile page and Profile Index page.
+-Show
+-Pagination font?
+
+-Walk you through! <--- FIRST TIME.
+  -"You have no photos. Please upload some!"
+
+-Fix it so it takes up full width and there is just a thing to the right. Maybe have a class for left and right so it floats as such.
+
+  Add helpful tips of a sentence here and there on the spot in your app to guide the user through your app. This makes your implemented features extra obvious.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 IN CONVERSATION:
 Unuglify
 -Show last 5.
@@ -74,11 +107,10 @@ LOGGING INA GAIN
 
 
 YOUR PROFILE:
-X for delete button.
+
 
 OTHER PROFILE:
--Display questions correctly. Weird spacing.
--Shows grayed out if you have already liked this user!
+Shows grayed out if you have already liked this user!
 -Does not display "Like/dislike" anymore if u cant do it.
 -Match percentages make look nicer.
 -Custom headline/prompt.
@@ -86,8 +118,6 @@ OTHER PROFILE:
 -Display blank image if its blank.
 -If you go on a page again and you guys both like each other, then its going to say something!!
 -Move buttons to the top.
-
-
 
 USER FILTER:
 -Fix search so that if u NULL something, it'll save it.
@@ -115,10 +145,8 @@ Badge
 
 Friday:
 -General beautifyment
+-Your message has been posted. For messages and status. Will disappear in two seconds.
 
-  -Flash messages to acknowledge saves
-  It is very important when demoing your app that when you do actions, like save, befriend, delete, modify, etc. something visually happens on the page to acknowledge the action. This is important user feedback and is crucial for any serious web app.
-  Add flash messages to acknowledge saves, etc.
   Have buttons to fill out complex forms while demoing (with nice seed data)
   Have a guest account (or two, if you need both to demo)
 
@@ -129,7 +157,6 @@ Friday:
   Style :hover actions of input, buttons and links, to show you can click on things. More visual feedback!
   Style your input, textarea and button tags (use the same size font, color, etc. as the rest of your app, else they stick out like a sore thumb)
 
-  Add helpful tips of a sentence here and there on the spot in your app to guide the user through your app. This makes your implemented features extra obvious.
 
   Write a killer README covering concept, features, technologies and a bunch of future todos (even if it's unlikely you'll ever do it, it shows that you have thought about better ways to implement features, etc.)
 "Don't Make Me Think" by Steve Krug.
@@ -167,7 +194,6 @@ Sprites
   -grayed out buttons if already did... maybe show which one was selected?
 
 -Match screen!
--Tweak the uploader.
 
 TECHNICAL
 Shoudl just refactor everything..
@@ -189,7 +215,6 @@ actionmailer
 -Change settings
 Prefill some shit for your Facebook form
 -Scrolling for questinos
--Fix datepicker
 
 Flash on arrival!
 
@@ -202,7 +227,6 @@ require_info
 JS for forms
 Flash errors if cant accept image
 new notification
-hover over editable. visual feedback
 -"Loading" for next
 search scroll
 multipage setup
