@@ -2,15 +2,12 @@
 
 section.photos {
   display: block;
-  width: 100%; /* change later */
-  /*border: 6px solid gold;*/
+  width: 100%;
   float: left;
-
 }
 
 section.photos > div.featured-photo {
   width: 100%;
-  /*border-bottom: 1px solid gold;*/
 }
 
 .featured-photo > img {
@@ -22,7 +19,6 @@ section.photos > div.featured-photo {
 section.photos > ul.thumbnails {
   list-style: none;
   display: block;
-  /* margin */
 }
 
 ul.thumbnails > li {
@@ -33,7 +29,6 @@ ul.thumbnails > li {
   height: 50px;
 }
 
-/* images just expand to container */
 ul.thumbnails > li > img {
   width: 100%;
   height: 100%;
@@ -43,8 +38,6 @@ div.image-file-input-wrapper {
   width: 100%;
   height: auto;
   position: relative;
-
-  /*sandwiched between every image. id probably have this just turn on with current_user*/
 }
 
 div.image-file-input-wrapper > img {
@@ -57,7 +50,7 @@ ul.thumbnails div.image-file-input-wrapper > img {
   height: 50px;
 }
 
-div.image-file-input-wrapper > input[type="file"] { /* its clear */
+div.image-file-input-wrapper > input[type="file"] {
   position: absolute;
   display: block;
   width: 100%;
@@ -71,7 +64,7 @@ div.image-file-input-wrapper > input[type="file"]:hover {
  cursor: pointer;
 }
 
-div.image-file-input-wrapper .remove { /** this ist he square to remove. if its not there, then we do display: none in-line */
+div.image-file-input-wrapper .remove {
   position: absolute;
   display: block;
   width: 10px;
@@ -82,7 +75,7 @@ div.image-file-input-wrapper .remove { /** this ist he square to remove. if its 
   z-index: 5;
 }
 
-div.image-file-input-wrapper .feature { /** this ist he square to remove. if its not there, then we do display: none in-line */
+div.image-file-input-wrapper .feature {
   position: absolute;
   display: block;
   width: 10px;
@@ -93,7 +86,7 @@ div.image-file-input-wrapper .feature { /** this ist he square to remove. if its
   z-index: 5;
 }
 
-div.image-file-input-wrapper > .progress { /* hidden at first until .busy (uploading) */
+div.image-file-input-wrapper > .progress {
 
   position: absolute;
   width: 100%;
@@ -134,7 +127,7 @@ ul.thumbnails .progress {
 .featured-photo .progress {
   font-size: 30px;
   line-height: 300px;
-  } /* this is for the progress texts */
+}
 
   div.image-file-input-wrapper > .errors {
     list-style: square;
@@ -185,8 +178,6 @@ ul.thumbnails .progress {
 
 </style>
 
-<%##################################################%>
-<%##################################################%>
   <section class="photos">
 
 
@@ -194,7 +185,7 @@ ul.thumbnails .progress {
     <div class="featured-photo">
       <% unless current_user.profile == profile %>
       <% if !profile.photos.blank? %>
-        <img src="<%= profile.photos.sample.file.url(:featured) %>"> <!-- maybe dont need this referenced -->
+        <img src="<%= profile.photos.sample.file.url(:featured) %>">
       <% else %>
 
 
@@ -220,8 +211,6 @@ ul.thumbnails .progress {
 
 
   </section>
-
-  <%# content-3of7 we will be in this container.%>
 
 
 
@@ -266,15 +255,9 @@ ul.thumbnails .progress {
     <%%= (!opts.main) ? '</li>' : '' %>
 </script>
 
-<!-- major props to tduek -->
 <script>
 $(document).ready(function() {
   var picTemplateFn = _.template($('#image-file-input-wrapper').html());
-  //call using @profile.photos!!!!!
-    //call using @profile.photos!!!!!
-      //call using @profile.photos!!!!!
-        //call using @profile.photos!!!!!
-  //get the template made.
   $('.featured-photo').html(
 
     <% if profile.photos[0] %>
@@ -291,9 +274,7 @@ $(document).ready(function() {
                        src:    '<%= asset_path "img_placeholder.png" %>'}
                     })
     <% end %>
-    //put shit into featured-photo. the big slot.
-    //if theres nothing there, put the blank wrapper!
-  ); // img_placeholder
+  );
 
 
   $('.featured-photo').on('change','input.photo_file', function() {
