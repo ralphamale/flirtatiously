@@ -1,23 +1,32 @@
 # Concept
+Ralph-Date is OKCupid meets Tinder.
 
+Users answer questions by providing the following: 1) Their response 2) How they would like others to answer and 3) how important the question is to them. Match percentages are then produced.
+
+Users can also browse profiles Tinder-style, where users "Like" or "Dislike" profiles one-by-one. If two users like each other, they are notified!
 
 #Features
 
--Omniauth
--Hand-rolled auth implementation
--Scrollbar stays fixed if scroll down on user profile browse.
--OKCupid,v Tinder
-AJAX and UJS
+-This OKCupid and Tinder hybrid clone calculates match percentages between users by examining 1) the user's answers to personality questions 2) how the user would like others to answer and 3) how important the question is to the user
+-Hand-built AJAX photo uploader
+-Hand-built search filter to narrow down Browse page, Tinder matches, and "Users Near You"
+-Notification system to inform users when they are being messaged or if they have a mutual like
+-UJS and AJAX to edit profiles, post status messages, message in-profile and in-conversation, and answer question for more responsiveness
+
+Other notable:
+-Hand-built authentication with BCrypt
+-Omniauth for Facebook (pending)
+-Scrollbar fixed when scrolling down too much from browse or show profile.
 
 #Technologies
-Omniauth Gem, Ruby on Rails, JS,UJS
+Ruby on Rails, JavaScript, UJS / AJAX, Omniauth, Geocoder
 
 
 # TODO
 
-#LOOK AT STUFF_TO_DO.TEXT
-
 ## Very Important
+  -Fix the multiple choices in profile.
+
   -Guest accounts that self-destruct
     -Have stuff already filled out. And say it's in-line editing.
     -Demo pictures with Flickr creative commons
@@ -30,6 +39,8 @@ Omniauth Gem, Ruby on Rails, JS,UJS
     -user filter "NULL" should make sure it clears the db col.
   -Seed Data with real-life data.
     -Status messages
+    -Add real questions
+
   -Model Tests
   -Check the font for pagination.
   -Pingdom
@@ -51,6 +62,7 @@ Omniauth Gem, Ruby on Rails, JS,UJS
 
 ## Important
   -"Complete registration" for those who log in with Facebook
+  -Fix box in messaging so it takes up full %.
   -Nav bar photos for show profile, be uniform
   -X button to delete photos.
   -Datepicker for in-line profile editing.
