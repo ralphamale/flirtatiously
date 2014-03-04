@@ -1,6 +1,0 @@
-response[answer_choice_id]
-
-acceptable_response[answer_choice_ids][]"
-
-
-"all_acceptable_response[importance]"
