@@ -21,7 +21,6 @@ Other notable:
 #Technologies
 Ruby on Rails, JavaScript, UJS / AJAX, Omniauth, Geocoder
 
-
 # TODO
 
 ## Very Important
