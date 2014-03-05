@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
   helper_method :current_user, :logged_in?, :find_response, :is_unacceptable?, :age
 
   private
@@ -11,7 +10,8 @@ class ApplicationController < ActionController::Base
 
   def age(dob)
     now = Time.now.utc.to_date
-    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+    now.year - dob.year - ((now.month > dob.month || \
+    (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
   def find_response(question_id, responses)
@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
   end
 
   def is_unacceptable?(response, acceptable_responses)
-    acceptable_responses.none? { |acceptable_resp| acceptable_resp.answer_id == response.answer_id}
+    acceptable_responses.none? { |acceptable_resp|
+      acceptable_resp.answer_id == response.answer_id}
   end
 
   def current_user
@@ -51,7 +52,7 @@ class ApplicationController < ActionController::Base
 
   def require_not_current_users_page!
     if params[:controller] == "messages" && params[:user_id].to_i == current_user.id
-      flash[:errors] = "Cant message yourself"
+      flash[:errors] = "You cannot message yourself."
       redirect_to profiles_url
     elsif params[:controller] == "profiles" && params[:id].to_i == current_user.profile.id
       redirect_to edit_profile_url(params[:id])
