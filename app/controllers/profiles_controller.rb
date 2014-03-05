@@ -52,7 +52,7 @@ class ProfilesController < ApplicationController
     if @profile.update_attributes(params[:profile])
       render :json => @profile
     else
-      render :json => @profile.errors.full_messages }
+      render :json => @profile.errors.full_messages
     end
   end
 

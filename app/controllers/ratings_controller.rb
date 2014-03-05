@@ -15,38 +15,36 @@ class RatingsController < ApplicationController
       @reciprocal_rating.save!
 
       if (mutual_like)
-        #notify the other user!
         Notification.create({
           is_read: false,
           receiver_id: ratee_id,
           trigger_id: current_user.id,
           status_type: 0
           })
+        end
       end
+
+      @rating.save!
+      render :json => @rating, :status => :ok
+
     end
-
-    @rating.save!
-    render :json => @rating, :status => :ok
-
-    end
-
-      #ismutual should only be marked when both parties do each otehr.
-      #else leave ismutual to be nil.
-
-      #if one is found
-      #if reciprocal_rating = @rating.likes
-
-      #if one is not found.
 
     if @reciprocal_rating.nil? || reciprocal_rating.likes
+      respond_to do |format|
+        format.html { redirect_to profile_url(params[:id]) }
+        format.json { render :json => @profile }
+      end
 
 
 
-# :is_mutual, :likes, :ratee_id, :rater_id
-#check for mutuality.
-    respond_to do |format|
-      format.html { redirect_to profile_url(params[:id]) }
-      format.json { render :json => @profile }
+
+
+
+
+
+
+
+
     end
+
   end
-end
