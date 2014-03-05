@@ -15,7 +15,7 @@ class AcceptableResponse < ActiveRecord::Base
   attr_accessible :answer_choice_id, :importance, :user_id, :question_id, :answer_choice_ids
   validates :importance, presence: true
   validates :answer_choice_id, uniqueness: { scope: :user_id,
-    message: "should not let you register answer choice id twice" }
+    message: "Cannot submit answer twice." }
 
   belongs_to :answer_choice,
   foreign_key: :answer_choice_id

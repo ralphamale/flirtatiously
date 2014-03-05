@@ -7,26 +7,21 @@ class UsersController < ApplicationController
   end
 
   def create
-
     @user = User.new(params[:user])
+
     begin
       @user.transaction do
         @user.build_user_filter
         @user.build_profile(params[:profile])
         @user.save
       end
+
       log_in(@user)
       redirect_to profile_url(@user.profile)
     rescue ActiveRecord::RecordInvalid => invalid
       flash.now[:errors] = @user.errors.full_messages
       render :new
     end
-
-  end
-
-
-  def edit
-
   end
 
   def update
@@ -34,7 +29,6 @@ class UsersController < ApplicationController
     params[:user].delete(:password) if params[:user][:password].blank?
 
     if @user.update_attributes(params[:user])
-
       if request.xhr?
         render json: @user
       else
@@ -42,7 +36,7 @@ class UsersController < ApplicationController
       end
     else
       if request.xhr?
-        render json: @user
+        render json: @user.errors
       else
 
       end
@@ -53,8 +47,6 @@ class UsersController < ApplicationController
   def destroy
 
   end
-
-  #####
 
   def like
     @like_back = Like.find_by_likee_id_and_liker_id(params[:id], current_user.id)
@@ -70,10 +62,9 @@ class UsersController < ApplicationController
         @like.save!
         @like_back.save! if @like_back
       end
-
       redirect_to profile_url(params[:id])
     rescue ActiveRecord::RecordInvalid => invalid
-      flash.now[:errors] = "Like not saved."
+      flash[:errors] = "Like not saved."
       redirect_to :back
     end
   end

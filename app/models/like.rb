@@ -14,7 +14,6 @@ class Like < ActiveRecord::Base
   attr_accessible :is_mutual, :likee_id, :liker_id
   validates :is_mutual, presence: true
 
-
   belongs_to :liker,
   class_name: "User",
   foreign_key: :liker_id
