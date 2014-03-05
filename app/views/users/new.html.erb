@@ -1,11 +1,9 @@
-
-
-
-
 <form action="<%= users_url %>" class="signup" method="post">
-  <h1 class="page-title">Sign Up</h1>
   <%= auth_token_input %>
 
+  <h1 class="page-title">
+    Sign Up
+  </h1>
 
   <label for="username">
     <input type="text" name="user[username]" value="<%= @user.username %>" placeholder="Username">
@@ -20,9 +18,9 @@
   </label>
 
   <label for="birthday">
-    <input type="text" id="birthday-display" placeholder="Date of Birth"></label>
-
-    <input type="hidden" name="profile[birthday]" id="birthday-real">
+    <input type="text" id="birthday-display" placeholder="Date of Birth">
+  </label>
+  <input type="hidden" name="profile[birthday]" id="birthday-real">
 
   <label for="zip_code">
     <input type="text" name="profile[zip_code]" placeholder="Zip Code">
@@ -32,10 +30,10 @@
 </form>
 
 <script>
-$(function() {
-  $( "#birthday-display" ).datepicker({defaultDate: '-21y', altFormat: "yy-mm-dd", altField: '#birthday-real'});
-  $( "#anim" ).change(function() {
-    $( "#birthday-display" ).datepicker( "option", "showAnim", "fadeIn" );
+  $(function() {
+    $( "#birthday-display" ).datepicker({defaultDate: '-21y', altFormat: "yy-mm-dd", altField: '#birthday-real'});
+    $( "#anim" ).change(function() {
+      $( "#birthday-display" ).datepicker( "option", "showAnim", "fadeIn" );
+    });
   });
-});
 </script>

@@ -1,61 +1,81 @@
-
 <div class="header-wrap group">
-
   <h1 class="header-logo">
-    <a href="<%= status_messages_url %>" style="padding-top: 20px; padding-bottom: 20px">Ralph-Date</a>
+    <a href="<%= status_messages_url %>" style="padding-top: 20px; padding-bottom: 20px">
+      Ralph-Date
+    </a>
   </h1>
 
   <nav class="header-nav">
+    <ul class="group">
+      <% if logged_in? %>
+        <li>
+          <%= link_to "Home", status_messages_url %>
+        </li>
 
-<ul class="group">
+        <li>
+          <%= link_to "Browse", profiles_url %>
+        </li>
 
-  <% if logged_in? %>
-  <li><%= link_to "Home", status_messages_url %></li>
-    <li><%= link_to "Browse", profiles_url %></li>
-    <li><a href="<%= random_questions_url %>" id="random-question-popup" data-remote="true">Questions</a></li>
+        <li>
+          <a href="<%= random_questions_url %>" id="random-question-popup" data-remote="true">
+            Questions
+          </a>
+        </li>
 
-    <li><%= link_to "Tinder", random_profiles_url %></li>
+        <li>
+          <%= link_to "Tinder", random_profiles_url %>
+        </li>
 
-    <li><%= link_to "Messages", messages_url %></li>
+        <li>
+          <%= link_to "Messages", messages_url %>
+        </li>
 
-    <li><%= link_to "Your Profile", profile_url(current_user.profile.id) %></li>
+        <li>
+          <%= link_to "Your Profile", profile_url(current_user.profile.id) %>
+        </li>
 
-    <li id="notifications-block"><%= link_to current_user.new_notifications.count, read_notifications_url, remote: true, method: :put, id: "menu-notifications" %>
-      <ul class="header-nav-drop-down">
-        <%= render partial: "shared/notifications_menu", locals: {notes: current_user.new_notifications} %>
-        <li><a href="<%= notifications_url %>">See all notifications</a></li>
-      </ul>
-  <!-- a href="#" id="menu-notifications" --></a></li>
+        <li id="notifications-block">
+          <%= link_to current_user.new_notifications.count, read_notifications_url, remote: true, method: :put, id: "menu-notifications" %>
 
+          <ul class="header-nav-drop-down">
+            <%= render partial: "shared/notifications_menu", locals: {notes: current_user.new_notifications} %>
+            <li>
+              <a href="<%= notifications_url %>">
+                See all notifications
+              </a>
+            </li>
+          </ul></a>
+        </li>
 
- <%#= link_to 'Kill Flea', [flea.dog, flea], :confirm => 'Sure?', :method => :delete %>
-    <li><% link_to "Your Messages", messages_url %></li>
-<li><%= link_to "Log Out", session_url, method: :delete %></li>
-  <% else %>
-
-    <li><%= link_to "Sign Up", new_user_url %></li>
-    <li><a href="/auth/facebook">Facebook Sign In</a></li>
-  <% end %>
-
-</ul>
+        <li>
+          <% link_to "Your Messages", messages_url %>
+        </li>
+        <li>
+          <%= link_to "Log Out", session_url, method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "Sign Up", new_user_url %>
+        </li>
+        <li>
+          <a href="/auth/facebook">
+            Facebook Sign In
+          </a>
+        </li>
+      <% end %>
+    </ul>
   </nav>
 </div>
 
 <section class="modal">
    <article class="modal-box">
-     <span class="modal-close-button">&times;</span>
-
-     <!-- This is where you should insert your modal content -->
-     <div id="modal-container">
-
-
-       </div>
-
-
-     </div>
+     <span class="modal-close-button">
+       &times;
+     </span>
+     <div id="modal-container"></div>
+     </div> <!-- is this extra? -->
    </article>
  </section>
-
 
  <style>
  .has-active-modal .modal {
@@ -114,66 +134,50 @@
  }
  </style>
 
-
-
 <script>
-$(document).ready(function() {
+  $(document).ready(function() {
+    window.modal = {
+      show: function(){
+        $("body").addClass("has-active-modal");
+      },
+      hide: function(){
+        $("body").removeClass("has-active-modal");
+      }
+    };
 
-  window.modal = {
-    show: function(){
-      $("body").addClass("has-active-modal");
-    },
-    hide: function(){
-      $("body").removeClass("has-active-modal");
-    }
-  };
+    $('#menu-notifications').on('ajax:success', function(event, data) {
+      $('#notifications-block').toggleClass("toggle-hide");
+      $('#menu-notifications').html("0");
+    });
 
-  $('#menu-notifications').on('ajax:success', function(event, data) {
-    $('#notifications-block').toggleClass("toggle-hide");
-    $('#menu-notifications').html("0");
+    $('#random-question-popup').on('ajax:success', function(event, data) {
+      $('#modal-container').html(data);
+      window.modal.show();
+    });
+
+    $('#modal-container').on('ajax:send', '#answer-question-form', function(e) {
+      $('#answer-question-form').html('Submitting!');
+    });
+
+    $('#modal-container').on('ajax:success', function(event, data) {
+      if ($(event.target).is('form#answer-question-form')) {
+        $('#modal-container').html("Question submitted!");
+        setTimeout(
+          function()
+          {
+            $('#modal-container').html(data);
+          }, 1500);
+
+      }
+    });
+
+    $(".modal").on("click", function(event){
+      $target = $(event.target);
+
+      if($target.is(".modal") || $target.is(".modal-close-button")){
+        event.preventDefault();
+        window.modal.hide();
+      }
+    });
   });
-
-
-  // on click of any links in menu-notificaitons, closes the window.
-
-  $('#random-question-popup').on('ajax:success', function(event, data) {
-
-    $('#modal-container').html(data);
-    window.modal.show();
-  });
-  //from #answer-question
-
-
-  $('#modal-container').on('ajax:send', '#answer-question-form', function(e) {
-    $('#answer-question-form').html('Submitting!');
-  });
-
-
-  $('#modal-container').on('ajax:success', function(event, data) {
-
-    if ($(event.target).is('form#answer-question-form')) {
-      $('#modal-container').html("Question submitted!");
-      setTimeout(
-        function()
-        {
-          $('#modal-container').html(data);
-        }, 1500);
-
-    }
-  });
-
-  $(".modal").on("click", function(event){
-
-    $target = $(event.target);
-    console.log($target);
-
-    if($target.is(".modal") || $target.is(".modal-close-button")){
-      event.preventDefault();
-      window.modal.hide();
-    }
-  });
-
-});
-
-
 </script>

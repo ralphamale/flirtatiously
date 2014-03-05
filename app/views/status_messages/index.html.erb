@@ -1,25 +1,22 @@
 <div class="content-4of7">
-
-
   <% if @status_messages.blank? %>
-  <div class="flash">
-  There are no status messages to display.
-</div>
+    <div class="flash">
+      There are no status messages to display.
+    </div>
   <% end %>
 
-<ul class="objects-list" id="status-msg-list">
-  <%= render partial: "status_message", collection: @status_messages%>
-</ul>
-
-
+  <ul class="objects-list" id="status-msg-list">
+    <%= render partial: "status_message", collection: @status_messages%>
+  </ul>
 </div>
 
 <div class="content-2of7">
   <div class="update-status-message">
     <form action="<%= status_messages_url %>" method="post" data-remote="true" id="post-status-form">
-    <textarea placeholder="Say hi to the world!" class="group" name="status_message[body]"></textarea>
-    <input type="submit" value="I want to scream and shout!">
-  </form>
+      <textarea placeholder="Say hi to the world!" class="group" name="status_message[body]"></textarea>
+
+      <input type="submit" value="I want to scream and shout!">
+    </form>
   </div>
 
   <%= render partial: "shared/suggested_users" %>
@@ -34,9 +31,9 @@
       <a class="username" href="#">
         <%= current_user.username %>
       </a>
+
       <div class="status-body">
         <%%= status.body %>
-
       </div>
 
       <div class="status-timestamp">
@@ -46,14 +43,11 @@
   </li>
 </script>
 
-
 <script>
-
   $('#post-status-form').on('ajax:success', function(e,d) {
     var newStatusFn = _.template($('#new-status-wrapper').html());
 
-    $('.objects-list').prepend(newStatusFn({status: d}))
+    $('.objects-list').prepend(newStatusFn({status: d}));
     $('.update-status-message textarea').val('');
   });
-
 </script>
