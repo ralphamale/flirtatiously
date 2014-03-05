@@ -1,6 +1,3 @@
-
-
-
 <% content_for :secondary_header do %>
 
   <nav class="sec-left-nav">
@@ -12,28 +9,25 @@
 
   <nav class="sec-right-nav">
     <ul class="group enlargement-links">
-
       <% unless current_user.profile == @profile %>
         <% unless @profile.photos.blank? %>
-        <% @profile.photos.each do |photo| %>
-        <li>
-          <a href="#" class="enlarge-photo" data-url="<%= photo.file.url(:featured) %>"><img src="<%= photo.file.url(:thumb) %>"></a>
-        </li>
+          <% @profile.photos.each do |photo| %>
+          <li>
+            <a href="#" class="enlarge-photo" data-url="<%= photo.file.url(:featured) %>">
+              <img src="<%= photo.file.url(:thumb) %>">
+            </a>
+          </li>
           <% end %>
         <% end %>
       <% end %>
 
-      <script>
-
+    <script>
       function displayComposeMessage() {
         var msgTemplateFn = _.template($('#send-message-template').html());
-
         var msgForm = msgTemplateFn();
-
 
         $('#modal-container').html(msgForm);
         window.modal.show();
-
       };
 
 
@@ -44,162 +38,167 @@
           console.log("Hello moto");
           var src = $(this).attr("data-url")
           $('.featured-photo > img').attr("src",src);
-
-
         });
-
       });
-
-
-      </script>
-
-
-
-
-
-
+    </script>
 
       <% if  @is_current_user_profile %>
 
-      <% if @is_current_user_profile %>
+        <% if @is_current_user_profile %>
 
-      <li><button class="change-settings">Change Settings</button></li>
+          <li>
+            <button class="change-settings">
+              Change Settings
+            </button>
+          </li>
 
-      <script>
-      $('button.change-settings').click(function(e) {
+          <script>
+          $('button.change-settings').click(function(e) {
 
-        e.preventDefault();
-        $('#modal-container').html($('#change-settings-template').html());
-        window.modal.show();
-      });
+            e.preventDefault();
+            $('#modal-container').html($('#change-settings-template').html());
+            window.modal.show();
+          });
 
-      $('#modal-container').on('ajax:error', function(e,d) {
-        alert("There is error");
-      });
+          $('#modal-container').on('ajax:error', function(e,d) {
+            alert("There is error");
+          });
 
+          $('#modal-container').on('ajax:success', function(e,d) {
+            if ($(e.target).is('form.change-settings')) {
+              window.modal.hide();
+            };
 
+          });
 
-      $('#modal-container').on('ajax:success', function(e,d) {
-        if ($(e.target).is('form.change-settings')) {
-          window.modal.hide();
-        };
+          </script>
 
-      });
-
-      </script>
-
-      <% end %>
+        <% end %>
 
       <% else %>
       <% if @rating_status.nil? %>
         <% unless @is_current_user_profile %>
-         <li> <div class="ratings">
+          <li>
+            <div class="ratings">
+              <% ["true", "false"].each do |text| %>
+                <form action="<%= ratings_url %>" id="ratings-<%= text %>"
+                  method="post" class="rating-form" style="display: inline-block">
 
-            <% ["true", "false"].each do |text| %>
-              <form action="<%= ratings_url %>" id="ratings-<%= text %>" method="post" class="rating-form" style="display: inline-block">
-                <input type="hidden" name="rating[ratee_id]" value="<%= @profile.user_id %>">
+                  <input type="hidden" name="rating[ratee_id]" value="<%= @profile.user_id %>">
                   <%= auth_token_input %>
                   <input type="hidden" name="rating[likes]" value="<%= text %>">
-                  <input type="submit"  class="sec-nav-button" id ="<%= text == "true" ? "like-button" : "dislike-button" %>" value="<%= text %>">
-              </form>
-            <% end %>
-          </div></li>
+
+                  <input type="submit"  class="sec-nav-button"
+                    id ="<%= text == "true" ? "like-button" : "dislike-button" %>"
+                    value="<%= text %>">
+
+                </form>
+              <% end %>
+            </div>
+          </li>
         <% end %>
       <% elsif @rating_status %>
-         <li><a href="#">You guys both like each other!</a></li>
+        <li>
+          <a href="#">
+            You guys both like each other!
+          </a>
+        </li>
       <% else  %>
-         <li><a href="#">You have already rated this user.</a></li>
+        <li>
+          <a href="#">
+            You have already rated this user.
+          </a>
+        </li>
       <% end %>
-    <li><a href="#" class="message">Message</a></li>
+        <li>
+          <a href="#" class="message">
+            Message
+          </a>
+        </li>
 
-    <script>
+        <script>
+        $('#modal-container').on('ajax:error', function(e,d) {
+          alert("There is error");
+        });
 
-    $('#modal-container').on('ajax:error', function(e,d) {
-      alert("There is error");
-    });
+        $('#modal-container').on('ajax:send', '.send-message', function(e) {
+          $('.send-message').html('Sending!!');
+        });
 
-    $('#modal-container').on('ajax:send', '.send-message', function(e) {
-      $('.send-message').html('Sending!!');
-    });
+        $('#modal-container').on('ajax:success', function(e,d) {
+          if ($(e.target).is('form.send-message')) {
+            $('#modal-container').html("Sent");
+            setTimeout(
+              function()
+              {
+                window.modal.hide();
+              }, 2000);
+            };
+          });
 
-    $('#modal-container').on('ajax:success', function(e,d) {
-
-      if ($(e.target).is('form.send-message')) {
-        $('#modal-container').html("Sent");
-        setTimeout(
-          function()
-          {
-            window.modal.hide();
-          }, 2000);
-
-      };
-
-
-    });
-
-
-    </script>
-
-
-
-    <% end %>
-  </ul>
+          </script>
+        <% end %>
+      </ul>
   </nav>
 
   <script>
-  $(document).ready(function() {
-    $('.toggle-view-menu').on('click', function(e) {
-      $(this).toggleClass('toggle-hide');
-      $('.profile-view').toggleClass('show-questions');
+    $(document).ready(function() {
+      $('.toggle-view-menu').on('click', function(e) {
+        $(this).toggleClass('toggle-hide');
+        $('.profile-view').toggleClass('show-questions');
+      });
     });
-  });
-
   </script>
 
 
 <% end %>
 
-<!-- yield head -->
 
-<div class="content-half left-half" style="padding-top: 0 px">
 
-  <%= render partial: "profile_photos", locals: {profile: @profile} %>
 
-</div>
 
-<div class="content-half profile-view" style="background-color: #fff">
-  <script type="text/template" id="change-settings-template">
+
+  <!-- yield head -->
+
+  <div class="content-half left-half" style="padding-top: 0 px">
+
+    <%= render partial: "profile_photos", locals: {profile: @profile} %>
+
+  </div>
+
+  <div class="content-half profile-view" style="background-color: #fff">
+    <script type="text/template" id="change-settings-template">
     <%= render partial: "change_settings" %>
-  </script>
+    </script>
 
-  <h1 class="username">
-    <%= @profile.user.username %>
-  </h1>
+    <h1 class="username">
+      <%= @profile.user.username %>
+    </h1>
 
-  <span class="profile-field">
-    <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="age">
-      <%= age(@profile.birthday) %>
-    </span>
-    <input type="date"
+    <span class="profile-field">
+      <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="age">
+        <%= age(@profile.birthday) %>
+      </span>
+      <input type="date"
       class="form-input"
-        name="profile[birthday]"
-          value="<%= @profile.birthday %>">
-  </span>
-
-  | <span class="profile-field">
-    <span class="<%= "owner-can-modify" if @is_current_user_profile %>">
-      <% sex_orient = PROFILE_DETAILS["sexual_orientation"][@profile["sexual_orientation"]] %>
-      <%= display_detail(sex_orient, "Sexual Orientation", @is_current_user_profile) %>
-
+      name="profile[birthday]"
+      value="<%= @profile.birthday %>">
     </span>
-    <select class="form-input" name="profile[sexual_orientation]">
-      <option disabled selected>Choose New</option>
-       <% PROFILE_DETAILS["sexual_orientation"].each do |k, v| %>
-         <option
-           value="<%= k %>">
-             <%= v %>
-         </option>
-       <% end %>
+
+    | <span class="profile-field">
+      <span class="<%= "owner-can-modify" if @is_current_user_profile %>">
+        <% sex_orient = PROFILE_DETAILS["sexual_orientation"][@profile["sexual_orientation"]] %>
+        <%= display_detail(sex_orient, "Sexual Orientation", @is_current_user_profile) %>
+
+      </span>
+      <select class="form-input" name="profile[sexual_orientation]">
+        <option disabled selected>Choose New</option>
+        <% PROFILE_DETAILS["sexual_orientation"].each do |k, v| %>
+        <option
+        value="<%= k %>">
+        <%= v %>
+      </option>
+      <% end %>
     </select>
   </span>
 
@@ -211,220 +210,220 @@
     </span>
     <select class="form-input" name="profile[sex]">
       <option disabled selected>Choose New</option>
-       <% PROFILE_DETAILS["sex"].each do |k, _| %>
-         <option
-           value="<%= k %>">
-             <%= k %>
-         </option>
-       <% end %>
-    </select>
+      <% PROFILE_DETAILS["sex"].each do |k, _| %>
+      <option
+      value="<%= k %>">
+      <%= k %>
+    </option>
+    <% end %>
+  </select>
+</span>
+
+| <span class="profile-field">
+  <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="city">
+    <%= display_detail(@profile.city, "Zip Code", @is_current_user_profile) %>
+
   </span>
+  <input type="text" class="form-input"
+  name="profile[zip_code]"
+  value="<%= @profile.zip_code %>">
+</span>
 
-  | <span class="profile-field">
-    <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="city">
-      <%= display_detail(@profile.city, "Zip Code", @is_current_user_profile) %>
-
-     </span>
-     <input type="text" class="form-input"
-         name="profile[zip_code]"
-           value="<%= @profile.zip_code %>">
-  </span>
-
-   <br>
+<br>
 
 
 
-   <script>
-   $(document).ready(function() {
-     $('.ratings').on('submit', 'form', function(e) {
-       e.preventDefault();
-       var formData = $(this).serializeJSON();
+<script>
+$(document).ready(function() {
+  $('.ratings').on('submit', 'form', function(e) {
+    e.preventDefault();
+    var formData = $(this).serializeJSON();
 
-       $.ajax({
-         url: "<%= ratings_url %>",
-         type: "POST",
-         data: formData,
-         dataType: "json",
-         success: function(r) {
-           if (r.is_mutual) {
-             $('#modal-container').html($('#mutual-match-template').html());
-             window.modal.show();
-           } else if (r.likes === false) {
+    $.ajax({
+      url: "<%= ratings_url %>",
+      type: "POST",
+      data: formData,
+      dataType: "json",
+      success: function(r) {
+        if (r.is_mutual) {
+          $('#modal-container').html($('#mutual-match-template').html());
+          window.modal.show();
+        } else if (r.likes === false) {
 
-            $('body').append("<img src='<%= asset_path "giant-dislike.png" %>' class='swipe'>")
+          $('body').append("<img src='<%= asset_path "giant-dislike.png" %>' class='swipe'>")
 
-             // $('#modal-container').html("<img src='<%= asset_path "heart.png" %>' height='100%' width='100%'>");
+          // $('#modal-container').html("<img src='<%= asset_path "heart.png" %>' height='100%' width='100%'>");
 
-             // window.modal.show();
+          // window.modal.show();
 
-             setTimeout(
-               function()
-               {
-                 window.location = '<%= random_profiles_url %>';
-               }, 1500);
+          setTimeout(
+            function()
+            {
+              window.location = '<%= random_profiles_url %>';
+            }, 1500);
 
-           } else {
-             $('body').append("<img src='<%= asset_path "giant-like.png" %>' class='swipe'>")
+          } else {
+            $('body').append("<img src='<%= asset_path "giant-like.png" %>' class='swipe'>")
 
-             // $('#modal-container').html("<img src='<%= asset_path "smiley.png" %>' height='100%' width='100%'>");
-             // window.modal.show();
+            // $('#modal-container').html("<img src='<%= asset_path "smiley.png" %>' height='100%' width='100%'>");
+            // window.modal.show();
 
-             setTimeout(
-               function()
-               {
-                 window.location = '<%= random_profiles_url %>'; //placeholder for later diff action.
-               }, 1500);
-
-
-           };
-         },
-         error: function(r) {
-           alert("Error");
-           console.log(r);
-         }
-       });
-
-     });
-   });
-   </script>
-
-   <script type="text/template" id="mutual-match-template">
-
-   <h2> <%= @profile.user.username %> also likes you!</h2>
-   <img src="<%= asset_path "giant-mutual.png" %>" width="300px" height="300px">
-   <br>
-   They will receive a notification. Meanwhile, you can <a href="#" class="match-send-message">send them a message</a> or <a href="<%= random_profiles_url %>">keep playing</a>!
-
-   </script>
-
-   <script>
-   $('#modal-container').on('click', '.match-send-message', function(e) {
-     e.preventDefault();
-     displayComposeMessage();
-   });
-   </script>
+            setTimeout(
+              function()
+              {
+                window.location = '<%= random_profiles_url %>'; //placeholder for later diff action.
+              }, 1500);
 
 
-  <% unless @is_current_user_profile %>
+            };
+          },
+          error: function(r) {
+            alert("Error");
+            console.log(r);
+          }
+        });
+
+      });
+    });
+    </script>
+
+    <script type="text/template" id="mutual-match-template">
+
+    <h2> <%= @profile.user.username %> also likes you!</h2>
+    <img src="<%= asset_path "giant-mutual.png" %>" width="300px" height="300px">
+    <br>
+    They will receive a notification. Meanwhile, you can <a href="#" class="match-send-message">send them a message</a> or <a href="<%= random_profiles_url %>">keep playing</a>!
+
+    </script>
+
+    <script>
+    $('#modal-container').on('click', '.match-send-message', function(e) {
+      e.preventDefault();
+      displayComposeMessage();
+    });
+    </script>
+
+
+    <% unless @is_current_user_profile %>
     <% percentages = current_user.calculate_percentages(@profile.user) %>
     <h2 class="percentages"><%= print_percentages(percentages) %></h2>
-  <% end %>
-  <br>
-
-  <br>
-
-<div class="bio-view">
-  <table class="profile-stats">
-    <% TABULAR_DETAILS.keys.each do |key| %>
-    <tr>
-      <th><%= key.gsub(/_/," ").capitalize %></th>
-      <td>
-      <div class="profile-field">
-      <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="<%= key %>">
-        <% detail = PROFILE_DETAILS[key][@profile[key]] %>
-        <%= display_detail(detail, "Detail", @is_current_user_profile) %>
-
-
-          </span>
-          <select class="form-input" name="profile[<%= key %>]">
-          <option disabled selected>Choose new</option>
-          <% PROFILE_DETAILS[key].each do |k, v| %>
-            <option
-              value="<%= k %>">
-                <%= v %>
-            </option>
-          <% end %>
-          </select>
-      </div>
-      </td>
-    </tr>
     <% end %>
-  </table>
+    <br>
+
+    <br>
+
+    <div class="bio-view">
+      <table class="profile-stats">
+        <% TABULAR_DETAILS.keys.each do |key| %>
+        <tr>
+          <th><%= key.gsub(/_/," ").capitalize %></th>
+          <td>
+            <div class="profile-field">
+              <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="<%= key %>">
+                <% detail = PROFILE_DETAILS[key][@profile[key]] %>
+                <%= display_detail(detail, "Detail", @is_current_user_profile) %>
+
+
+              </span>
+              <select class="form-input" name="profile[<%= key %>]">
+                <option disabled selected>Choose new</option>
+                <% PROFILE_DETAILS[key].each do |k, v| %>
+                <option
+                value="<%= k %>">
+                <%= v %>
+              </option>
+              <% end %>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </table>
 
 
 
-  <h3>Bio</h3>
-  <div class="profile-field">
-    <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="description">
+    <h3>Bio</h3>
+    <div class="profile-field">
+      <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="description">
 
 
-      <%= display_detail(@profile.description, "Essay", @is_current_user_profile) %>
+        <%= display_detail(@profile.description, "Essay", @is_current_user_profile) %>
 
-    </span>
-    <textarea class="form-input" name="profile[description]"></textarea>
+      </span>
+      <textarea class="form-input" name="profile[description]"></textarea>
+    </div>
+
+    <%#   <h3>Loves</h3> %>
+
+    <%#= display_detail(@profile.description, "Essay", @is_current_user_profile) %>
+
+
   </div>
 
-<%#   <h3>Loves</h3> %>
 
-  <%#= display_detail(@profile.description, "Essay", @is_current_user_profile) %>
-
-
-</div>
-
-
-<% if @is_current_user_profile %>
+  <% if @is_current_user_profile %>
   <script type="text/javascript">
 
-        function calculateAge(birthdayString) {
-          var birthdate = new Date(birthdayString);
-          var cur = new Date();
-          var diff = cur-birthdate; // This is the difference in milliseconds
-          var age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
-          return age;
+  function calculateAge(birthdayString) {
+    var birthdate = new Date(birthdayString);
+    var cur = new Date();
+    var diff = cur-birthdate; // This is the difference in milliseconds
+    var age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
+    return age;
+  };
+  $(document).ready(function() {
+    $('.profile-field').on('click', '.owner-can-modify', function(e) {
+      var $profileText = $(this);
+      var $profileField = $(this).closest('.profile-field');
+      var $input = $profileField.find('.form-input');
+      if ($input.is('textarea') && !$(this).has('.profile-placeholder')) {
+        $input.html($(this).html());
+      };
+      //regular text input too.
+      $profileField.addClass('modifying');
+    });
+    $('.profile-field').on('blur', '.form-input', function(e) {
+      var $input = $(this);
+      var $profileField = $input.closest('.profile-field');
+      var $profileText = $profileField.find('.owner-can-modify');
+      var formData = $(this).serializeJSON();
+
+      var newValue;
+      if ($input.is('select')) {
+        newValue = this.options[e.target.selectedIndex].text;
+        if (newValue === "Choose new") {
+          $profileField.removeClass('modifying');
+          return;
         };
-        $(document).ready(function() {
-          $('.profile-field').on('click', '.owner-can-modify', function(e) {
-            var $profileText = $(this);
-            var $profileField = $(this).closest('.profile-field');
-            var $input = $profileField.find('.form-input');
-            if ($input.is('textarea') && !$(this).has('.profile-placeholder')) {
-              $input.html($(this).html());
-            };
-            //regular text input too.
-            $profileField.addClass('modifying');
-          });
-          $('.profile-field').on('blur', '.form-input', function(e) {
-          var $input = $(this);
-          var $profileField = $input.closest('.profile-field');
-          var $profileText = $profileField.find('.owner-can-modify');
-          var formData = $(this).serializeJSON();
+      } else {
+        newValue = $input.val();
+      };
+      // var newValue = $(this).;
 
-          var newValue;
-          if ($input.is('select')) {
-            newValue = this.options[e.target.selectedIndex].text;
-            if (newValue === "Choose new") {
-              $profileField.removeClass('modifying');
-              return;
-            };
-          } else {
-            newValue = $input.val();
-          };
-          // var newValue = $(this).;
-
-          //if its not a select with text Choose New
-          $.ajax({
-            url: "<%= profile_url(@profile.id) %>",
-            type: "PUT",
-            data: formData,
-            dataType: "json",
-            success: function(r) {
-              if ($profileText.is('#age')) {
-                newValue = calculateAge(r.birthday);
-              } else if ($profileText.is('#city')) {
-                newValue = r["city"] //because we change zip.
-              }
-              console.log("Profile updated");
-              $profileText.html(newValue);
-              $profileField.removeClass('modifying');
-            },
-            error: function(r) {
-              alert("Error");
-            }
-          });
-          });
-        });
+      //if its not a select with text Choose New
+      $.ajax({
+        url: "<%= profile_url(@profile.id) %>",
+        type: "PUT",
+        data: formData,
+        dataType: "json",
+        success: function(r) {
+          if ($profileText.is('#age')) {
+            newValue = calculateAge(r.birthday);
+          } else if ($profileText.is('#city')) {
+            newValue = r["city"] //because we change zip.
+          }
+          console.log("Profile updated");
+          $profileText.html(newValue);
+          $profileField.removeClass('modifying');
+        },
+        error: function(r) {
+          alert("Error");
+        }
+      });
+    });
+  });
   </script>
-<% else %>
+  <% else %>
   <script>
   $(document).ready(function() {
 
@@ -459,136 +458,136 @@
     }
   });
   </script>
-<% end %>
+  <% end %>
 
-<div class="questions-view">
+  <div class="questions-view">
 
-<%# probably need to reference the question-id in the data attribute! %>
+    <%# probably need to reference the question-id in the data attribute! %>
 
-<%
-  if @is_current_user_profile
-    primary_responses = @current_user_responses
-    empty_message = "You have not answered any questions"
-  else
-    primary_responses = @other_user_responses
-    empty_message = "The user has not answered any questions"
-  end
-%>
+    <%
+    if @is_current_user_profile
+      primary_responses = @current_user_responses
+      empty_message = "You have not answered any questions"
+    else
+      primary_responses = @other_user_responses
+      empty_message = "The user has not answered any questions"
+    end
+    %>
 
-<% if primary_responses.length == 0 %>
-  <%= empty_message %>
-<% else %>
-
-  <% primary_responses.each do |resp| %>
-  <div class="mini-question-container" data-id="<%= resp.question_id %>">
-  <b>  <%= resp.question_text %></b><br>
-
-    <% current_user_response =
-     find_response(resp.question_id, @current_user_responses)
-     %>
-
-
-
-    <% if current_user_response.nil? %> <%#= resp.question_id %>
-      <i>Answer this question to see.</i><br>
+    <% if primary_responses.length == 0 %>
+    <%= empty_message %>
     <% else %>
-    <div class="response-show">
-      Your response:
 
-      <% if @is_current_user_profile %>
-      <a href="#" class="response-answer-text <%= "toggle-edit" %>">
-        <% end %>
-        <span class="<%= "unacceptable-resp" if is_unacceptable?(current_user_response, @other_user_acceptables) && !@is_current_user_profile %>"><%= current_user_response.answer_text %></span>
+    <% primary_responses.each do |resp| %>
+    <div class="mini-question-container" data-id="<%= resp.question_id %>">
+      <b>  <%= resp.question_text %></b><br>
+
+      <% current_user_response =
+      find_response(resp.question_id, @current_user_responses)
+      %>
+
+
+
+      <% if current_user_response.nil? %> <%#= resp.question_id %>
+      <i>Answer this question to see.</i><br>
+      <% else %>
+      <div class="response-show">
+        Your response:
+
         <% if @is_current_user_profile %>
-      </a>
-      <% end %>
+        <a href="#" class="response-answer-text <%= "toggle-edit" %>">
+          <% end %>
+          <span class="<%= "unacceptable-resp" if is_unacceptable?(current_user_response, @other_user_acceptables) && !@is_current_user_profile %>"><%= current_user_response.answer_text %></span>
+          <% if @is_current_user_profile %>
+        </a>
+        <% end %>
 
-    </div>
+      </div>
 
-    <div class="response-edit">
-      <%= render partial: "edit_response", locals: {question: Question.includes([:answer_choices, :acceptable_responses]).where(:id => resp.question_id).first} %>
-    </div>
+      <div class="response-edit">
+        <%= render partial: "edit_response", locals: {question: Question.includes([:answer_choices, :acceptable_responses]).where(:id => resp.question_id).first} %>
+      </div>
 
       <% unless @is_current_user_profile %>
-        <%= (@profile["sex"] == "M") ? "His" : "Her" %> response: <span class="<%= "unacceptable-resp" if is_unacceptable?(resp, @current_user_acceptables) %>"><%= resp.answer_text %></span>
+      <%= (@profile["sex"] == "M") ? "His" : "Her" %> response: <span class="<%= "unacceptable-resp" if is_unacceptable?(resp, @current_user_acceptables) %>"><%= resp.answer_text %></span>
 
       <% end %>
 
-    <% end %>
-  </div>
-  <% end %>
-<% end %>
-
-</div>
-
-
-<script>
-$('.mini-question-container').on("click", '.toggle-edit', function(event) {
-  event.preventDefault();
-  var $trigger = $(this);
-  var $scope = $trigger.closest("div");
-  var $question = $scope.closest(".mini-question-container");
-  $question.addClass("edit-on");
-});
-
-
-$('.response-edit').on('ajax:success', function(e,d) {
-  $(this).html(d);
-});
-
-
-
-// $('.response-edit').on("submit", "form", function(event) {
-//   event.preventDefault();
-//
-//   var formData = $(this).serializeJSON();
-//   var $question = $(this).closest('.mini-question-container')
-//   var question_id = $question.attr("data-id")
-//
-//   $.ajax({
-//           url: "/questions/" + question_id + "/update_answer",
-//           type: "PUT",
-//           data: formData,
-//           dataType: "json",
-//           success: function (answer_choice) {
-//             var $answerText = $question.children('.response-show').children('.response-answer-text')
-//             $answerText.html(answer_choice.text);
-//             $('.mini-question-container').removeClass("edit-on");
-//           },
-//           error: function(response) {
-//             console.log("error");
-//             console.log(response);
-//           }
-//         });
-//
-//
-//
-// })
-
-</script>
-
-
-  <script type="text/template" id="send-message-template">
-    <div class="hide-container">
-
-    <form class="send-message" action="<%= user_messages_url(@profile.user.id) %>" method="post" data-remote="true">
-      <%= auth_token_input %>
-      <textarea name="message[body]" style="color: black" placeholder="Type some stuff here"></textarea>
-      <input type="submit" class="submit-message" value="Submit">
-
-    </form>
-
+      <% end %>
     </div>
+    <% end %>
+    <% end %>
+
+  </div>
+
+
+  <script>
+  $('.mini-question-container').on("click", '.toggle-edit', function(event) {
+    event.preventDefault();
+    var $trigger = $(this);
+    var $scope = $trigger.closest("div");
+    var $question = $scope.closest(".mini-question-container");
+    $question.addClass("edit-on");
+  });
+
+
+  $('.response-edit').on('ajax:success', function(e,d) {
+    $(this).html(d);
+  });
 
 
 
-  </script>
+  // $('.response-edit').on("submit", "form", function(event) {
+    //   event.preventDefault();
+    //
+    //   var formData = $(this).serializeJSON();
+    //   var $question = $(this).closest('.mini-question-container')
+    //   var question_id = $question.attr("data-id")
+    //
+    //   $.ajax({
+      //           url: "/questions/" + question_id + "/update_answer",
+      //           type: "PUT",
+      //           data: formData,
+      //           dataType: "json",
+      //           success: function (answer_choice) {
+        //             var $answerText = $question.children('.response-show').children('.response-answer-text')
+        //             $answerText.html(answer_choice.text);
+        //             $('.mini-question-container').removeClass("edit-on");
+        //           },
+        //           error: function(response) {
+          //             console.log("error");
+          //             console.log(response);
+          //           }
+          //         });
+          //
+          //
+          //
+          // })
+
+          </script>
+
+
+          <script type="text/template" id="send-message-template">
+          <div class="hide-container">
+
+          <form class="send-message" action="<%= user_messages_url(@profile.user.id) %>" method="post" data-remote="true">
+          <%= auth_token_input %>
+          <textarea name="message[body]" style="color: black" placeholder="Type some stuff here"></textarea>
+          <input type="submit" class="submit-message" value="Submit">
+
+          </form>
+
+          </div>
+
+
+
+          </script>
 
 
 
 
 
 
-<br>
+          <br>
 
-</div>
+        </div>

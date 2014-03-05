@@ -1,48 +1,68 @@
 <% if question.nil? %>
-You've answered all the questions.
-
+  You've answered all the questions.
 <% else %>
+  <form action="<%= question_answer_url(question) %>" id="answer-question-form" method="post" data-remote="true">
+    <%= auth_token_input %>
 
-<form action="<%= question_answer_url(question) %>" id="answer-question-form" method="post" data-remote="true">
-  <%= auth_token_input %>
-  <span class="question-text"><%= question.text %></span>
+    <span class="question-text"><%= question.text %></span>
 
-<div class="answer-choices big-choice">
-  <% question.answer_choices.each_with_index do |answer_choice, i| %>
-  <input type="hidden" name="response[question_id]" value="<%= question.id %>">
+    <div class="answer-choices big-choice">
+      <% question.answer_choices.each_with_index do |answer_choice, i| %>
+        <input type="hidden" name="response[question_id]" value="<%= question.id %>">
 
-  <input type="radio" id="<%= "r#{i}" %>" name="response[answer_choice_id]" value="<%= answer_choice.id %>"><label for="<%= "r#{i}" %>"><span><%= answer_choice.text %></span></label>
-  <!-- need to add user_id and question_id -->
-  <% end %>
-</div>
+        <input type="radio" id="<%= "r#{i}" %>" name="response[answer_choice_id]"
+          value="<%= answer_choice.id %>">
+        <label for="<%= "r#{i}" %>">
+          <span>
+            <%= answer_choice.text %>
+          </span>
+        </label>
+        <!-- need to add user_id and question_id later? -->
+      <% end %>
+    </div>
 
-What you prefer on a match:
-<div class="answer-choices big-choice">
+    What you prefer on a match:
 
-<% question.answer_choices.each_with_index do |answer_choice, index| %>
-<input type="checkbox" id="<%= "ar#{index}" %>" name="acceptable_response[<%= index %>][answer_choice_id]" value="<%= answer_choice.id %>"><label for="<%= "ar#{index}" %>"><%= answer_choice.text%></label>
-<% end %>
+    <div class="answer-choices big-choice">
+      <% question.answer_choices.each_with_index do |answer_choice, index| %>
+        <input type="checkbox" id="<%= "ar#{index}" %>"
+        name="acceptable_response[<%= index %>][answer_choice_id]"
+        value="<%= answer_choice.id %>">
+        <label for="<%= "ar#{index}" %>">
+          <%= answer_choice.text%>
+        </label>
+      <% end %>
+    </div>
 
-</div>
-  <!-- <input type="hidden" name="all_acceptable_response[question_id]" value="<%#= @random_question.id %>"> -->
+    Importance
 
+    <div class="importances group">
+      <input name="all_acceptable_response[importance]" type="radio" id="imp1"
+        class="imp1" value="0" checked>
+      <label for="imp1">
+        <span>
+          Not
+        </span>
+      </label>
 
+      <input name="all_acceptable_response[importance]" type="radio" id="imp2"  class="imp2" value="1">
+      <label for="imp2"></label>
 
+      <input name="all_acceptable_response[importance]" type="radio" id="imp3"  class="imp3" value="10">
+      <label for="imp3"></label>
 
-              Importance
+      <input name="all_acceptable_response[importance]" type="radio" id="imp4" class="imp4"  value="50">
+      <label for="imp4"></label>
 
-              <div class="importances group">
-              <input name="all_acceptable_response[importance]" type="radio" id="imp1" class="imp1" value="0" checked><label for="imp1"><span>Not</span></label>
-                      <input name="all_acceptable_response[importance]" type="radio" id="imp2"  class="imp2" value="1"><label for="imp2"></label>
-              <input name="all_acceptable_response[importance]" type="radio" id="imp3"  class="imp3" value="10"><label for="imp3"></label>
-                      <input name="all_acceptable_response[importance]" type="radio" id="imp4" class="imp4"  value="50"><label for="imp4"></label>
-                              <input name="all_acceptable_response[importance]" type="radio" id="imp5"  class="imp5" value="250"><label for="imp5"><span>Very</span></label>
-                            </div>
+      <input name="all_acceptable_response[importance]" type="radio" id="imp5"  class="imp5" value="250">
+      <label for="imp5">
+        <span>
+          Very
+        </span>
+      </label>
+    </div>
 
+    <input type="submit" class="question-submit">
 
-                            <input type="submit" class="question-submit">
-
-
-
-
+  </form>
 <% end %>

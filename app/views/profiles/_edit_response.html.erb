@@ -1,5 +1,3 @@
-
-<% question %>
 <% acceptable_responses = question.acceptable_responses.where(:user_id => current_user.id) %>
 <% response = question.responses.where(:user_id => current_user.id).first %>
 
@@ -7,61 +5,58 @@
   <input type="hidden" name="_method" value="PUT">
   <%= auth_token_input %>
 
-
-
-
-<div class="answer-choices big-choice">
-  <% question.answer_choices.each_with_index do |answer_choice, i| %>
-    <input type="hidden" name="response[question_id]" value="<%= question.id %>">
-
-
-      <input type="radio" id="<%= "#{answer_choice.id}r#{i}" %>"
-              name="response[answer_choice_id]"
-          value="<%= answer_choice.id %>"
-  <%= "checked" if (answer_choice.id.to_i == response.answer_choice_id.to_i) %>>
-  <label for="<%= "#{answer_choice.id}r#{i}" %>"><span><%= answer_choice.text %></span>
-</label>
-
-  <% end %>
-</div>
-
-
-
-
-
-  What you prefer on match:
-  <br>
   <div class="answer-choices big-choice">
-  <% question.answer_choices.each_with_index do |answer_choice, index| %>
-  <input type="checkbox" id="<%= "#{answer_choice.id}ar#{index}" %>" name="acceptable_response[answer_choice_ids][]" value="<%= answer_choice.id %>" <%= "checked" if acceptable_responses.any? {|a_r| a_r.answer_choice_id.to_i == answer_choice.id.to_i} %>>
+    <% question.answer_choices.each_with_index do |answer_choice, i| %>
+      <input type="hidden" name="response[question_id]" value="<%= question.id %>">
+      <input type="radio" id="<%= "#{answer_choice.id}r#{i}" %>"
+        name="response[answer_choice_id]"
+        value="<%= answer_choice.id %>"
+        <%= "checked" if (answer_choice.id.to_i == response.answer_choice_id.to_i) %>>
+      <label for="<%= "#{answer_choice.id}r#{i}" %>">
+        <span><%= answer_choice.text %></span>
+      </label>
+    <% end %>
+  </div>
 
-  <label for="<%= "#{answer_choice.id}ar#{index}" %>"><%= answer_choice.text%>
-</label>
-  <% end %>
+  What you prefer on match:<br>
+
+  <div class="answer-choices big-choice">
+    <% question.answer_choices.each_with_index do |answer_choice, index| %>
+      <input type="checkbox" id="<%= "#{answer_choice.id}ar#{index}" %>" name="acceptable_response[answer_choice_ids][]"
+        value="<%= answer_choice.id %>"
+        <%= "checked" if acceptable_responses.any? {|a_r| a_r.answer_choice_id.to_i == answer_choice.id.to_i} %>>
+
+      <label for="<%= "#{answer_choice.id}ar#{index}" %>">
+        <%= answer_choice.text%>
+      </label>
+    <% end %>
 </div>
 
-
-  <br>
   Importance<br>
 
-
-
-
   <% importance = acceptable_responses.first.importance %>
-<div class="importances group">
-  <input type="radio" class="imp1" id="<%= question.id %>imp1" name="all_acceptable_response[importance]" value="0" <%= "checked" if importance == 0 %>>
-  <label for="<%= question.id %>imp1"><span>Not</span></label>
+  <div class="importances group">
+    <input type="radio" class="imp1" id="<%= question.id %>imp1" name="all_acceptable_response[importance]"
+      value="0" <%= "checked" if importance == 0 %>>
+    <label for="<%= question.id %>imp1">
+      <span>Not</span>
+    </label>
 
-  <input type="radio" class="imp2" id="<%= question.id %>imp2" name="all_acceptable_response[importance]" value="1" <%= "checked" if importance == 1 %>><label for="<%= question.id %>imp2"></label>
+    <input type="radio" class="imp2" id="<%= question.id %>imp2" name="all_acceptable_response[importance]"
+      value="1" <%= "checked" if importance == 1 %>>
+    <label for="<%= question.id %>imp2"></label>
 
-  <input type="radio" class="imp3" id="<%= question.id %>imp3" name="all_acceptable_response[importance]" value="10" <%= "checked" if importance == 10 %>>
-  <label for="<%= question.id %>imp3"></label>
+    <input type="radio" class="imp3" id="<%= question.id %>imp3" name="all_acceptable_response[importance]"
+      value="10" <%= "checked" if importance == 10 %>>
+    <label for="<%= question.id %>imp3"></label>
 
-  <input type="radio" class="imp4" id="<%= question.id %>imp4" name="all_acceptable_response[importance]" value="50" <%= "checked" if importance == 50 %>>
-  <label for="<%= question.id %>imp4"></label>
-  <input type="radio" class="imp5" id="<%= question.id %>imp5" name="all_acceptable_response[importance]" value="250" <%= "checked" if importance == 250 %>>
-  <label for="<%= question.id %>imp5"><span>Very</span></label><br>
-</div>
+    <input type="radio" class="imp4" id="<%= question.id %>imp4" name="all_acceptable_response[importance]"
+      value="50" <%= "checked" if importance == 50 %>>
+    <label for="<%= question.id %>imp4"></label>
+    <input type="radio" class="imp5" id="<%= question.id %>imp5" name="all_acceptable_response[importance]"
+      value="250" <%= "checked" if importance == 250 %>>
+    <label for="<%= question.id %>imp5"><span>Very</span></label><br>
+  </div>
 
   <input type="submit" value="Edit your response" class="question-submit">
-  </form>
+</form>

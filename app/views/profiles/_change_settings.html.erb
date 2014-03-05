@@ -1,12 +1,10 @@
 <form action="<%= user_url(current_user) %>" method="post" data-remote="true" class="change-settings">
-<input type="hidden" name="_method" value="PUT">
-<%= auth_token_input %>
+  <input type="hidden" name="_method" value="PUT">
+  <%= auth_token_input %>
 
-Username: <%= current_user.username %>
-<br>
-Password: <input type="password" name="user[password]">
-<br>
-Email:  <input type="email" name="user[email]" value="<%= current_user.email %>">
-<br>
-<input type="submit" value="Update">
+  Username: <%= current_user.username %><br>
+  Password: <input type="password" name="user[password]"><br>
+  Email:  <input type="email" name="user[email]" value="<%= current_user.email %>"><br>
+
+  <input type="submit" value="Update">
 </form>

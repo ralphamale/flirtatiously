@@ -1,73 +1,63 @@
 
 <% content_for :secondary_header do %>
-<form action="<%= user_filter_url %>" method="post" class="search-bar">
-  <%= auth_token_input %>
-  <input type="hidden" name="_method" value="put">
+  <form action="<%= user_filter_url %>" method="post" class="search-bar">
+    <%= auth_token_input %>
+    <input type="hidden" name="_method" value="put">
 
-  <input type="text" name="user_filter[beg_age]" value="<%= @user_filter.beg_age %>">
+    <input type="text" name="user_filter[beg_age]" value="<%= @user_filter.beg_age %>">
+    <span class="block-floated">to</span>
+    <input type="text" name="user_filter[end_age]" value="<%= @user_filter.end_age %>">
+    <span class="block-floated">years old |</span>
 
-  <span class="block-floated">to</span>
+    <select name="user_filter[sexual_orientation]">
+      <% PROFILE_DETAILS["sexual_orientation"].each do |k, v| %>
+      <option value="<%= k %>" <%= "selected" if @user_filter.sexual_orientation == k %>>
+        <%= v %>
+      </option>
+      <% end %>
 
-  <input type="text" name="user_filter[end_age]" value="<%= @user_filter.end_age %>">
+      <option value="-1" <%= "selected" if @user_filter.sexual_orientation == "-1" %>>
+        All
+      </option>
+    </select>
 
-  <span class="block-floated">years old |</span>
+    <select name="user_filter[sex]" >
+      <% PROFILE_DETAILS["sex"].each do |k, v| %>
+      <option value="<%= k %>" <%= "selected" if @user_filter.sex == k %>>
+        <%= v %>
+      </option>
+      <% end %>
 
-  <select name="user_filter[sexual_orientation]">
+      <option value="-1" <%= "selected" if @user_filter.sex == "-1" %>>
+        Everyone
+      </option>
+    </select>
 
-    <% PROFILE_DETAILS["sexual_orientation"].each do |k, v| %>
-  <option value="<%= k %>" <%= "selected" if @user_filter.sexual_orientation == k %>><%= v %></option>
+    <input type="text" name="user_filter[distance]" value="<%= @user_filter.distance %>"><span class="block-floated"> miles away</span>
 
-    <% end %>
-    <option value="-1" <%= "selected" if @user_filter.sexual_orientation == "-1" %>>All</option>
-  </select>
-
-
-  <select name="user_filter[sex]" >
-
-
-  <% PROFILE_DETAILS["sex"].each do |k, v| %>
-  <option value="<%= k %>" <%= "selected" if @user_filter.sex == k %>><%= v %></option>
-
-  <% end %>
-
-  <option value="-1" <%= "selected" if @user_filter.sex == "-1" %>>Everyone</option>
-
-  </select> <input type="text" name="user_filter[distance]" value="<%= @user_filter.distance %>"><span class="block-floated"> miles away</span>
-
-
-  <input type="submit" value="Refresh">
-
-</form>
-
+    <input type="submit" value="Refresh">
+  </form>
 <% end %>
-
-
-
-
 
 <ul class="profiles-list group">
   <%= paginate @profiles %>
 
   <% @profiles.each do |profile| %>
-  <li>
+    <li>
+      <div class="profile-content">
+        <%= link_to profile.user.username, profile_url(profile) %>  ·
+        <%= age(profile.birthday) %> ·
+        <%= profile.city %>
+        <br>
 
-    <div class="profile-content">
-  	<%= link_to profile.user.username, profile_url(profile) %>  ·  <%= age(profile.birthday) %> · <%= profile.city %><br>
+        <span class="browse-percentages">
+          <% percentages = current_user.calculate_percentages(profile.user) %>
+          <%= print_percentages(percentages) %>
+        </span>
+      </div>
 
-    <span class="browse-percentages"><% percentages = current_user.calculate_percentages(profile.user) %>
-    <%= print_percentages(percentages) %></span>
-  </div>
-
-  <%= display_photo(profile, :avatar) %>
-
-
-    <%#= image_tag(profile.photos.sample.file.url(:browse), class: 'profile-avatar', height: '100%', width: '100%') unless profile.photos.blank? %>
-
-
-
-  </li>
+      <%= display_photo(profile, :avatar) %>
+    </li>
   <% end %>
+
 </ul>
-
-
-
