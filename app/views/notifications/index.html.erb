@@ -1,40 +1,40 @@
 <div class="content-4-of-7 ">
-
   <% if @notifications.blank? %>
-
   You do not have any notifications.
   <% else %>
   <ul class="objects-list">
     <% @notifications.each do |notification| %>
-    <li class="object-item group">
-      <div class="object-avatar">
-        <img src="<%= notification.triggerer_photos.sample.file.url(:thumb) %>">
-      </div>
-      <section class="object-content">
-        <a class="username" href="<%= profile_url(notification.triggering_user) %>"><%= notification.triggering_user.username %></a>
-        <div class="status-body">
-
-          <% if notification.status_type == 0 %>
-            has matched with you. <a href="<%=
-            profile_url(notification.triggering_user) %>">
-            View their profile!</a>
-          <% else %>
-          has sent you a <a href="<%= conversation_user_messages_url(notification.trigger_id)%>">message</a>.
-
-          <% end %>
+      <li class="object-item group">
+        <div class="object-avatar">
+          <img src="<%= notification.triggerer_photos.sample.file.url(:thumb) %>">
         </div>
 
-        <div class="status-timestamp">
-          <%= notification.created_at %>
-        </div>
-      </section>
-    </li>
-  <% end %>
+        <section class="object-content">
+          <a class="username" href="<%= profile_url(notification.triggering_user) %>">
+            <%= notification.triggering_user.username %>
+          </a>
+
+          <div class="status-body">
+            <% if notification.status_type == 0 %>
+              has matched with you. <a href="<%=
+              profile_url(notification.triggering_user) %>">
+              View their profile!</a>
+            <% else %>
+              has sent you a <a href="<%= conversation_user_messages_url(notification.trigger_id)%>">message</a>.
+            <% end %>
+          </div>
+
+          <div class="status-timestamp">
+            <%= notification.created_at %>
+          </div>
+        </section>
+      </li>
+    <% end %>
   </ul>
   <% end %>
 </div>
 
 <div class="content-2of7">
-<%= render partial: "shared/suggested_users" %>
+  <%= render partial: "shared/suggested_users" %>
 </div>
 

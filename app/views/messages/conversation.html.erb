@@ -1,62 +1,42 @@
 <div class="content-4of7">
-
-    <% profile = Profile.find_by_user_id(@other_user) %>
-
-
+  <% profile = Profile.find_by_user_id(@other_user) %>
 
   <ul class="objects-list">
-
     <%= render partial: "message", collection: @messages, locals: {display_type: 0, profile: Profile.find_by_user_id(@other_user)} %>
-
   </ul>
 
-
-
-      <%= render "form", user_id: params[:user_id] %>
-
-
-
-
-
+  <%= render "form", user_id: params[:user_id] %>
 </div>
 
 <script type="text/template" id="new-message-wrapper">
   <li class="object-item group">
     <div class="object-avatar">
-
         <%= display_photo(current_user.profile, :avatar) %>
     </div>
+
     <section class="object-content">
-
-
       <%= current_user.username %>
 
       <div class="status-body">
-
-
-      <%%= message.body %>
-
+        <%%= message.body %>
       </div>
 
       <div class="status-timestamp">
-       Now
+        Now
       </div>
     </section>
   </li>
 </script>
 
-
 <script>
-$('.create-pm').on('ajax:success', function(e,d) {
+  $('.create-pm').on('ajax:success', function(e,d) {
+    var newMsgFn = _.template($('#new-message-wrapper').html());
 
-  var newMsgFn = _.template($('#new-message-wrapper').html());
-
-  $('.objects-list').append(newMsgFn({message: d}))
-  $('.create-pm textarea').val('');
-})
+    $('.objects-list').append(newMsgFn({message: d}));
+    $('.create-pm textarea').val('');
+  });
 
 </script>
-
 
 <div class="content-2of7">
   <%= render partial: "shared/suggested_users" %>

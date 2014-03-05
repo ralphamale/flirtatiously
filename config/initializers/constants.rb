@@ -1,8 +1,7 @@
 SEXUAL_ORIENTATION = {
   0 => "Straight",
   1 => "Gay",
-  2 => "Bisexual",
-  3 => "Anything I can get"
+  2 => "Bisexual"
 }
 
 BODY_TYPE = {
@@ -10,13 +9,14 @@ BODY_TYPE = {
   1 => "Average",
   2 => "Curvy",
   3 => "Full-figured",
-  4 => "Used up"}
+  4 => "Used up"
+}
 
 DRUGS = {
-  0 => "I should probably get some help",
-  1 => "Socially like at music festivals",
+  0 => "Yes",
+  1 => "Socially",
   2 => "Rarely",
-  3 => "Straight-edge"
+  3 => "Never"
 }
 
 RELIGION = {
@@ -32,8 +32,7 @@ RELIGION = {
 SMOKES = {
   0 => "Yes",
   1 => "No",
-  2 => "When drinking",
-  3 => "Not cigarettes"
+  2 => "When drinking"
 }
 
 SEX = {
@@ -55,6 +54,3 @@ TABULAR_DETAILS = {
   "smokes" => SMOKES,
   "drugs" => DRUGS
 }
-
-
-

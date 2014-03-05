@@ -33,8 +33,6 @@ class User < ActiveRecord::Base
 
   has_many :photos, through: :profile, source: :photos
 
-
-
   has_many :received_notifications,
   class_name: "Notification",
   foreign_key: :receiver_id
@@ -42,7 +40,6 @@ class User < ActiveRecord::Base
   has_many :triggered_notifications,
   class_name: "Notification",
   foreign_key: :receiver_id
-
 
   has_many :message_headers, dependent: :destroy,
   foreign_key: :user_id
@@ -71,18 +68,18 @@ class User < ActiveRecord::Base
   through: :received_ratings,
   source: :rater
 
-   has_one :user_filter, inverse_of: :user, dependent: :destroy,
-   foreign_key: :user_id
+  has_one :user_filter, inverse_of: :user, dependent: :destroy,
+  foreign_key: :user_id
 
-   has_many :responses, inverse_of: :user, dependent: :destroy,
-   foreign_key: :user_id
+  has_many :responses, inverse_of: :user, dependent: :destroy,
+  foreign_key: :user_id
 
-   has_many :acceptable_responses, inverse_of: :user, dependent: :destroy,
-   foreign_key: :user_id
+  has_many :acceptable_responses, inverse_of: :user, dependent: :destroy,
+  foreign_key: :user_id
 
-   has_many :answered_questions,
-   through: :responses,
-   source: :question
+  has_many :answered_questions,
+  through: :responses,
+  source: :question
 
    # def is_liked_by?(user)
    #   self.likers.include?(user)
@@ -93,9 +90,6 @@ class User < ActiveRecord::Base
    # end
 
    def calculate_percentages(other_user)
-
-
-
      common_responses = Response.joins("JOIN responses
      AS other_responses
      ON responses.question_id = other_responses.question_id").select("responses.question_id AS question_id, responses.answer_choice_id AS current_user_answer_choice,
@@ -111,10 +105,10 @@ class User < ActiveRecord::Base
        return {match_percent: 0, friend_percent: 0}
      end
 
-
      common_responses.each do |common_response|
        importance_to_current_user = self.acceptable_responses
        .find { |a_r| a_r.question_id == common_response.question_id }.importance
+
        importance_to_other = other_user.acceptable_responses
        .find { |a_r| a_r.question_id == common_response.question_id }.importance
 
@@ -139,16 +133,11 @@ class User < ActiveRecord::Base
      end
 
      {match_percent: match_percent.to_i, friend_percent: friend_percent.to_i}
-
-
-
    end
-
 
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
     user.try(:is_password?, password) ? user : nil
-
   end
 
   def password=(password)
@@ -169,6 +158,5 @@ class User < ActiveRecord::Base
   def new_notifications
     Notification.where(:receiver_id => self.id).where(:is_read => false)
   end
-
 
 end

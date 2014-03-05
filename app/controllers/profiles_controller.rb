@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   before_filter :require_logged_in!
   #before_filter :require_not_current_users_page!, only: [:show]
-  #layout "show_profile", only: [:show, :edit]
+  #TO BE DELETED IF FINE: layout "show_profile", only: [:show, :edit]
 
   def index
     @user_filter = current_user.user_filter

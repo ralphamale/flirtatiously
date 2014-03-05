@@ -1,22 +1,15 @@
-
-
 <div class="content-4of7 ">
-
   <% if @messages.length == 0 %>
-  <div class="flash">
-  You have not received any messages yet.
-</div>
-<% end %>
-  <%# @messages.each do |message| %>
+    <div class="flash">
+      You have not received any messages yet.
+    </div>
+  <% end %>
 
   <ul class="objects-list">
-
     <%= render partial: "message", collection: @messages, locals: {display_type: 1} %>
-
   </ul>
-  <%# end %>
 </div>
 
 <div class="content-2of7">
-<%= render partial: "shared/suggested_users" %>
+  <%= render partial: "shared/suggested_users" %>
 </div>

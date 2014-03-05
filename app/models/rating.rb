@@ -15,6 +15,5 @@ class Rating < ActiveRecord::Base
     return nil if rating.nil?
 
     (rating.is_mutual)? true : false
-
   end
 end

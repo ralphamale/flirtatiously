@@ -1,34 +1,27 @@
-
-
-<% if display_type && display_type == 1 %>
-
-<% end %>
-
 <li class="object-item group">
   <div class="object-avatar">
     <% if display_type == 1 %>
-    <% profile = User.find(message.recipient_id).profile %>
-    <a href="<%= conversation_user_messages_url(message.recipient_id) %>"><%= display_photo(profile, :avatar) %></a>
+      <% profile = User.find(message.recipient_id).profile %>
+      <a href="<%= conversation_user_messages_url(message.recipient_id) %>"><%= display_photo(profile, :avatar) %></a>
     <% else %> <%# In conversation %>
       <% if message.is_sent? %>
-      <%= display_photo(current_user.profile, :avatar) %>
+        <%= display_photo(current_user.profile, :avatar) %>
       <% else %>
-      <a href="<%= profile_url(profile) %>"><%= display_photo(profile, :avatar) %></a>
+        <a href="<%= profile_url(profile) %>"><%= display_photo(profile, :avatar) %></a>
       <% end %>
     <% end %>
   </div>
-  <section class="object-content">
 
+  <section class="object-content">
     <% if display_type == 1 %>
-    <a class="username" href="<%= conversation_user_messages_url(message.recipient_id) %>"><%= message.recipient_username %></a>
+      <a class="username" href="<%= conversation_user_messages_url(message.recipient_id) %>"><%= message.recipient_username %></a>
     <% else %> <%# In conversation %>
-<% author = message.is_sent? ? current_user.username : @other_username %>
-    <%= author %>
-  </a>
+      <% author = message.is_sent? ? current_user.username : @other_username %>
+          <%= author %>
     <% end %>
+
     <div class="status-body">
       <%= message.body %> <%= "(Sent by me)" if message.is_sent == "t" && display_type == 1 %>
-
     </div>
 
     <div class="status-timestamp">
@@ -36,4 +29,3 @@
     </div>
   </section>
 </li>
-
