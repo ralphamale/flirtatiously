@@ -11,5 +11,7 @@
 require 'spec_helper'
 
 describe Message do
+  it { should validate_presence_of (:body) }
+  it { should have_many(:message_headers) }
 
 end

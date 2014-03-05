@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   attr_reader :password
   attr_accessible :password_digest, :session_token, :username, :password, :answer_choice_ids, :uid, :email
 
-  validates :username, presence: true #:password_digest,
+  #validates :username, presence: true #though not anymore cuz of omniauth,
   validates :username, uniqueness: true
   #validates email is unique.
   validates :password, length: { minimum: 6, allow_nil: true }
@@ -34,9 +34,12 @@ class User < ActiveRecord::Base
   dependent: :destroy,
   foreign_key: :user_id
 
-  has_many :photos, through: :profile, source: :photos
+  has_many :photos,
+  through: :profile,
+  source: :photos
 
   has_many :received_notifications,
+  inverse_of: :receiver,
   class_name: "Notification",
   foreign_key: :receiver_id
 
@@ -45,11 +48,12 @@ class User < ActiveRecord::Base
   foreign_key: :receiver_id
 
   has_many :message_headers,
+  inverse_of: :user,
   dependent: :destroy,
   foreign_key: :user_id
 
   has_many :other_message_headers,
-  class_name: "User",
+  class_name: "MessageHeader",
   foreign_key: :other_id
 
   has_many :messages,

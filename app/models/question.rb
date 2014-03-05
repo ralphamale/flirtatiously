@@ -14,12 +14,17 @@ class Question < ActiveRecord::Base
   validates :text, presence: true
 
   has_many :answer_choices, dependent: :destroy,
+  inverse_of: :question,
   foreign_key: :question_id
 
-  has_many :responses, dependent: :destroy,
+  has_many :responses,
+  inverse_of: :question,
+  dependent: :destroy,
   foreign_key: :question_id
 
-  has_many :acceptable_responses, dependent: :destroy,
+  has_many :acceptable_responses,
+  dependent: :destroy,
+  inverse_of: :question,
   foreign_key: :question_id
 
   def self.get_responses(user_id)

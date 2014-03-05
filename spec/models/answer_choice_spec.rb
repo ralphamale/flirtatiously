@@ -12,5 +12,11 @@
 require 'spec_helper'
 
 describe AnswerChoice do
+  it { should validate_presence_of(:text) }
+  it { should validate_presence_of(:question) }
+
   it { should belong_to(:question) }
+  it { should have_many(:acceptable_responses) }
+  it { should have_many(:personal_responses) }
+
 end

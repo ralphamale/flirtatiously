@@ -15,6 +15,9 @@
 require 'spec_helper'
 
 describe Photo do
+  it { should validate_presence_of(:file) }
+  it { should validate_presence_of(:profile) }
+
   it { should belong_to(:profile) }
 
 end

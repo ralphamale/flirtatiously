@@ -38,6 +38,7 @@ class Profile < ActiveRecord::Base
 
   validates :birthday, presence: true
   validates :zip_code, presence: true, numericality: true, length: { is: 5 }
+  validates :user, presence: true
 
   geocoded_by :zip_code
   reverse_geocoded_by :latitude, :longitude do |obj, results|
@@ -51,10 +52,13 @@ class Profile < ActiveRecord::Base
 
   paginates_per 24
 
-  belongs_to :user, inverse_of: :profile,
+  belongs_to :user,
+  inverse_of: :profile,
   foreign_key: :user_id
 
-  has_many :photos
+  has_many :photos,
+  inverse_of: :profile,
+  dependent: :destroy
 
   def self.get_random_unrated(current_user)
     liking_current_users = User.joins("INNER JOIN ratings

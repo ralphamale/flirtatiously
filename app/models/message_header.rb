@@ -15,8 +15,12 @@
 class MessageHeader < ActiveRecord::Base
   attr_accessible :is_read, :is_sent, :message_id, :other_id, :user_id
   validates :is_sent, :is_read, inclusion: [true, false]
+  validates :is_sent, :is_read, presence: true
+  validates :user, presence: true
+  validates :message, presence: true
 
   belongs_to :user,
+  inverse_of: :message_headers,
   foreign_key: :user_id
 
   belongs_to :other_user,

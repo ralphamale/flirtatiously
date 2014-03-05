@@ -14,6 +14,12 @@
 class Rating < ActiveRecord::Base
   attr_accessible :is_mutual, :likes, :ratee_id, :rater_id
 
+  validates :is_mutual, inclusion: [true, false], allow_nil: true
+  validates :likes, presence: true, inclusion: [true, false]
+  validates :rater, presence: true
+  validates :ratee, presence: true
+
+
   belongs_to :rater,
   class_name: "User",
   foreign_key: :rater_id

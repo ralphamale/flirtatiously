@@ -17,13 +17,20 @@ class Response < ActiveRecord::Base
     message: "Can only answer question once"
   }
 
+  validates :question, presence: true
+  validates :answer_choice, presence: true
+  validates :user, presence: true
+
   belongs_to :question,
+  inverse_of: :responses,
   foreign_key: :question_id
 
   belongs_to :answer_choice,
+  inverse_of: :personal_responses,
   foreign_key: :answer_choice_id
 
-  belongs_to :user, inverse_of: :responses,
+  belongs_to :user,
+  inverse_of: :responses,
   foreign_key: :user_id
 
 end

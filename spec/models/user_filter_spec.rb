@@ -16,8 +16,14 @@
 require 'spec_helper'
 
 describe UserFilter do
+  it { should validate_presence_of(:user) }
+
+  pending "Beg age should be 0 < x < 100 and < end_age"
+  pending "End age should be 0 < x < 100 and < end_age"
+  pending "Distance should be greater than 0 and be able to be nil"
+  pending "Sex is 'M' or 'F' with allow nil"
+  pending "Sexual Orientation should be 0..2 with nil okay"
+
   it { should belong_to(:user) }
-
-
 
 end

@@ -14,6 +14,13 @@
 require 'spec_helper'
 
 describe Rating do
+
+  it { should validate_presence_of(:likes) }
+  it { should validate_presence_of(:rater) }
+  it { should validate_presence_of(:ratee) }
+
+  pending { should ensure_inclusion_of(:likes).in_array([true,false]) }
+
   it { should belong_to(:rater) }
   it { should belong_to(:ratee) }
 

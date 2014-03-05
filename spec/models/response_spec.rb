@@ -13,6 +13,11 @@
 require 'spec_helper'
 
 describe Response do
+  it { should validate_presence_of(:question) }
+  it { should validate_presence_of(:answer_choice) }
+  it { should validate_presence_of(:user) }
+
+  it { should belong_to(:question) }
   it { should belong_to(:user) }
   it { should belong_to(:answer_choice) }
 
