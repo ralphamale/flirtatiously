@@ -23,6 +23,7 @@ class RatingsController < ApplicationController
           })
         end
       end
+      debugger
 
       @rating.save!
       render :json => @rating, :status => :ok

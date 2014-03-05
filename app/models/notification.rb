@@ -13,7 +13,7 @@
 
 class Notification < ActiveRecord::Base
   attr_accessible :is_read, :receiver_id, :trigger_id, :status_type
-  validates :is_read, presence: true, inclusion: [true, false]
+  validates :is_read, inclusion: [true, false]
   validates :status_type, presence: true, inclusion: [0, 1]
   validates :receiver, presence: true
 

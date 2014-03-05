@@ -16,7 +16,7 @@
       </option>
       <% end %>
 
-      <option value="-1" <%= "selected" if @user_filter.sexual_orientation == "-1" %>>
+      <option value="" <%= "selected" if @user_filter.sexual_orientation.nil? %>>
         All
       </option>
     </select>
@@ -28,7 +28,7 @@
       </option>
       <% end %>
 
-      <option value="-1" <%= "selected" if @user_filter.sex == "-1" %>>
+      <option value="" <%= "selected" if @user_filter.sex.nil? %>>
         Everyone
       </option>
     </select>

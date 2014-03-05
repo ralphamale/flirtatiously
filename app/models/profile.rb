@@ -34,7 +34,7 @@
 #
 
 class Profile < ActiveRecord::Base
-  attr_accessible :description, :drugs, :sex, :sexual_orientation, :user_id, :smokes, :religion, :zip_code, :latitude, :longitude, :city, :birthday, :big_photo
+  attr_accessible :description, :drugs, :sex, :sexual_orientation, :user_id, :smokes, :religion, :zip_code, :latitude, :longitude, :city, :birthday, :big_photo, :body_type
 
   validates :birthday, presence: true
   validates :zip_code, presence: true, numericality: true, length: { is: 5 }
