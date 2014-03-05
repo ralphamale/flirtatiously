@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: notifications
+#
+#  id          :integer          not null, primary key
+#  receiver_id :integer
+#  trigger_id  :integer
+#  status_type :integer
+#  is_read     :boolean
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Notification < ActiveRecord::Base
   attr_accessible :is_read, :receiver_id, :trigger_id, :status_type
 

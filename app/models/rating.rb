@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: ratings
+#
+#  id         :integer          not null, primary key
+#  rater_id   :integer
+#  ratee_id   :integer
+#  likes      :boolean
+#  is_mutual  :boolean
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Rating < ActiveRecord::Base
   attr_accessible :is_mutual, :likes, :ratee_id, :rater_id
 

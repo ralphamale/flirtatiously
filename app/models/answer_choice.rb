@@ -16,7 +16,9 @@ class AnswerChoice < ActiveRecord::Base
   belongs_to :question,
   foreign_key: :question_id
 
-  has_many :acceptable_responses, dependent: :destroy,
+  has_many :acceptable_responses,
+  dependent: :destroy,
+  inverse_of: :answer_choice,
   class_name: "Response",
   foreign_key: :answer_choice_id
 

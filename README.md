@@ -26,6 +26,7 @@ Ruby on Rails, JavaScript, UJS / AJAX, Omniauth, Geocoder
 # TODO
 
 ## Very Important
+  -Add Capybara tests.
   -Fix the multiple choices in profile.
 
   -Guest accounts that self-destruct

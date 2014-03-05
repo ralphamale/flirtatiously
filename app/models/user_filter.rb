@@ -7,9 +7,10 @@
 #  beg_age            :integer
 #  end_age            :integer
 #  sex                :string(255)
-#  sexual_orientation :string(255)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  distance           :integer
+#  sexual_orientation :integer
 #
 
 class UserFilter < ActiveRecord::Base

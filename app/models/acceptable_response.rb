@@ -18,6 +18,7 @@ class AcceptableResponse < ActiveRecord::Base
     message: "Cannot submit answer twice." }
 
   belongs_to :answer_choice,
+  inverse_of: :acceptable_responses,
   foreign_key: :answer_choice_id
 
   belongs_to :user, inverse_of: :acceptable_responses,
