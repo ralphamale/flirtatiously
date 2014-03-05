@@ -38,7 +38,6 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'debugger'
-  gem 'rspec-rails'
 end
 
 group :test do
