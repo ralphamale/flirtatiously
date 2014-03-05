@@ -12,8 +12,10 @@
 
 class Response < ActiveRecord::Base
   attr_accessible :answer_choice_id, :user_id, :question_id
-  validates :question_id, uniqueness: { scope: :user_id,
-    message: "Can only answer question once" }
+  validates :question_id, uniqueness: {
+    scope: :user_id,
+    message: "Can only answer question once"
+  }
 
   belongs_to :question,
   foreign_key: :question_id

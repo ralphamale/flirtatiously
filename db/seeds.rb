@@ -8,79 +8,124 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-
-
-
-(1..5).each do |i|
-  test_unit = User.new({username: "#{["StudMuffin#{i}",
-"GirlNextDoor#{i}", "BigBoi#{i}"].sample}",
-  password: "password"})
-  test_unit.save!
 require File.dirname(__FILE__) + '/../config/initializers/constants'
+#was generated from before?
 
-  test_unit.build_user_filter.save!
+male_usernames = ["jFire", "MyTiesAreSkinny", "luv2gym5", "cookiemonster5"]
 
-  test_profile = Profile.new({
-    user_id: test_unit.id,
-    birthday: "#{2014-18-i}-12-01",
-    sexual_orientation: rand(0..3),
-      zip_code: [10003, 33071,
-        11204, 11206, 10023,
-        10001, 33063, 12518, 14604].sample,
-      body_type: rand(0..4),
-      smokes: rand(0..3),
-      drugs: rand(0..3),
-      religion: rand(0..6),
-      likes: "#{["I love everything!",
-      "To hang and have a great time",
-      "Anything not big corporations!",
-      "Nothing because I am a huge pessimist"].sample}",
-      description: "#{["I used to be a tomboy when I was little. Looked and dressed like a boy. But I look like a girl now :)",
-      "I walk fast, and with a purpose. However, I'm typically not a very serious person, and have been told I have a contagious laugh. I often times find myself cracking awkward jokes or making light of a heavy situation.",
-      "Moved to New York a few years ago from the faraway land of Pennsylvania and currently loving BK. Looking forward to some roof top sunsets and beer garden adventures as the weather gets warmer. As for the cold, I find myself attached to the oven, popping out baked goods left and right or crock pot creations.",
-      "I moved from Wisconsin to New York to experience the big city for myself. I love it, and I'm constantly on the lookout for new, exciting things to do. My favorite thing to do is explore different neighborhoods and discover each one's personality."].sample}"
-  })
+female_usernames = ["tshirtandjeans7", "yeahnonotreally", "spicy_soup", "gallerylove"]
 
 
-  if test_unit.username.include?("Girl")
-    test_profile.sex = "F"
-  else
-    test_profile.sex = "M"
+
+male_descriptions = ["My ties are skinny. My pockets have squares.
+                      Not always a complete tool, but I play one in major periodicals
+                      (insert now-obligatory winking emoticon here).", "i splurge on
+                      concert tickets, nice shoes, and dinners where the i let the
+                      waiter order for me. this is the holy trinity...basically i
+                      let everything else fall into place.", "I like new ideas and
+                      being around people who are passionate and driven. I'm laid
+                      back, fun to be around, and can order off of a Thai menu
+                      like nobody's business.", "I've been living in New York for
+                      over 2 years, and love the endless number of things to do and
+                      explore here. I spend a lot of my free time hanging out with
+                      friends and seeing as much live music as I can, but I try to
+                      balance that with work and going to the gym regularly. I love
+                      to travel, and never seem to have enough vacation days for it.
+                      Overall I would say that I am a pretty grounded person, I am
+                      very laid-back and it is not difficult for me to have fun."]
+
+female_descriptions = ["I like being in relationships where you can be completely
+                        goofy/weird or serious. I like to go out but also just sit
+                        and have good conversation with friends. I enjoy being
+                        outside, exploring restaurants and bars, and meeting new
+                        people. I spend a lot of time walking around the city and
+                        seeing the different areas. I really like to grab a beer
+                        or a glass of wine and listen to live music. I'm into
+                        liberal, easy going, open-minded, intelligent people
+                        that can make me laugh. I'm always trying to improve
+                        things about myself and would like to be with someone
+                        who is also introspective.", "I've moved to Brooklyn
+                        after circumnavigating the globe. Couchsurfed my way
+                        through Europe, backpacked in the Himalayas, and ended
+                        my trip wandering Burma before it's overrun with
+                        tourists like me. Now I intern for a science magazine
+                        in New York City. Love writing, live music, playing
+                        pool, and anything in the outdoors-- hiking, backpacking,
+                        swimming in the ocean, skinny dipping.", "Native Pacific
+                        Northwesterner. Graduated from college, left the mean
+                        streets of L.A. and moved to NY on a whim. Currently
+                        working in architecture/design. Former ballet dancer.
+                        Vietnamese coffee lover. Hiking & skiing & music
+                        festival & travel enthusiast. Film/tv buff.", "I'm a
+                        wise ass and I have an edgy, femme look and attitude.
+                        I am passionate and fiesty. Toss a little moody in
+                        there as well- fire signs, typical Aries, though I
+                        do have a soft side as well, maybe you will be lucky
+                        enough to see that ;) I like to laugh, be silly
+                        and enjoy myself. When I get excited about something,
+                        trust me, you will know. I strive for perfection though
+                        let's be honest, is there really such a thing?"]
+
+(0..3).each do |i|
+  male_user = User.create!({username: male_usernames[i], password: "password"})
+  female_user = User.create!({username: female_usernames[i], password: "password"})
+
+  [male_user,female_user].each do |user|
+    user.build_user_filter.save!
+
+    test_profile = Profile.create!({
+      user_id: user.id,
+      birthday: "#{2014-18-i}-12-01",
+      sexual_orientation: rand(0..2),
+        zip_code: [10003, 10453,
+          11204, 11206, 10023,
+          10001, 11222, 12518, 14604].sample,
+        body_type: rand(0..4),
+        smokes: rand(0..3),
+        drugs: rand(0..3),
+        religion: rand(0..6),
+        sex: (user == male_user) ? "M" : "F"
+    })
+
+    if male_user == user
+      test_profile.update_attributes!({sex: "M", description: male_descriptions[i]})
+
+      (1..3).each do |j|
+        Photo.create!(file: File.open(File.join(::Rails.root, "/seed_images/M_#{i}_#{j}.jpeg")), profile_id: test_profile.id)
+      end
+
+    else
+      test_profile.update_attributes!({sex: "F", description: female_descriptions[i]})
+
+      (1..3).each do |j|
+        Photo.create!(file: File.open(File.join(::Rails.root, "/seed_images/F_#{i}_#{j}.jpeg")), profile_id: test_profile.id)
+      end
+    end
+
   end
-
-  test_profile.save!
 
 end
 
 
+questions = {
+  "Jealousy in a relationship..." => ["Healthy", "Unhealthy", "A little bit can add to the passion"],
+  "Choose the better romantic activity" => ["Kissing in the woods", "Going to Paris", "Skydiving"],
+  "In a relationship, I like to discuss politics with my partner" => ["Sure. I am interested in
+    sharing our beliefs", "Sometimes. It depends.", "Absolutely Not"],
+  "Do you like to cuddle?" => ["Yes", "No", "Once in a blue moon"],
+  "How do you feel about falling in love?" => ["I love it and want it very
+    much", "I try to avoid it", "I like to just let it happen", "Not sure"]
+}
 
-["Are you a loser?",
-"Are you crazy",
-"Do you have another lover?",
-"Will you break my heart?",
-"Do you have a social media addiction?",
-"Are you beautiful?",
-"Will you hate my snoring?",
-"Would you say you have bad personal hygiene?",
-"Do you have low self esteem?",
-"Do you moisturize your hands?",
-"Are you obsessed with Reddit karma points?"].each do |question_text|
+questions.each do |q_text, answer_choices|
+  q = Question.create({text: q_text})
 
-  q = Question.create({text: question_text})
-  AnswerChoice.create([
-    {question_id: q.id,
-     text: "Extremely"},
-    {question_id: q.id,
-      text: "A little bit"},
-    {question_id: q.id,
-      text: "No"},
-    {question_id: q.id,
-      text: "Not by choice"}
-      ])
-
+  answer_choices.each do |answer_text|
+    AnswerChoice.create({question_id: q.id,
+      text: answer_text})
+  end
 
   User.pluck(:id).each do |user_id|
-
     answer_choice_ids = q
         .answer_choices
         .pluck(:id)
@@ -106,37 +151,9 @@ end
         user_id: user_id
       })
     end
-
   end
+end
 
-  end
 
 
-  demo = User.create({username: "classygent69", password: "password"})
 
-  test_profile = Profile.create({
-    user_id: demo.id,
-    sex: "Yes",
-    sexual_orientation: "Straight",
-      birthday: "1989-12-07",
-      zip_code: 10003,
-      body_type: "Schwarzenegger",
-      smokes: "Not cigarettes",
-      drinks: "Desperately",
-      drugs: "They solve all my problems.",
-      religion: "Atheist",
-      sign: "Sagittarius",
-      education: "Graduate school",
-      offspring: "Might have kids he does not know about",
-      pets: "Cats",
-      likes: "Not receiving sunlight while at App Academy",
-      description: "I made this site, so you should date me or hire me!"
-  })
-
-  demo.build_user_filter.save!
-
-  User.all.each do |user|
-    profile_id = user.profile.id
-    Photo.create(file: File.open(File.join(::Rails.root, "/public/#{rand(1..2)}.jpg")), profile_id: profile_id)
-    Photo.create(file: File.open(File.join(::Rails.root, "/public/3.jpg")), profile_id: profile_id)
-  end

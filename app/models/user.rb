@@ -17,18 +17,19 @@ class User < ActiveRecord::Base
   validates :username, presence: true #:password_digest,
   validates :username, uniqueness: true
   #validates email is unique.
-  #validates :password, length: { minimum: 6, allow_nil: true }
+  validates :password, length: { minimum: 6, allow_nil: true }
   #validates :password_digest, presence: { message: "Password cannot be blank." } #now that we can oauth.
   #ensure token
-  #validates :age, inclusion:
-  #validates :gender, inclusion: { in: ["M", "F"] }
-  #validates :orientation, inclusion: { in: ["Straight", "Gay", "Bisexual"] }
   validates :username, uniqueness: true
 
-  has_one :profile, inverse_of: :user, dependent: :destroy,
+  has_one :profile,
+  inverse_of: :user,
+  dependent: :destroy,
   foreign_key: :user_id
 
-  has_many :status_messages, inverse_of: :user, dependent: :destroy,
+  has_many :status_messages,
+  inverse_of: :user,
+  dependent: :destroy,
   foreign_key: :user_id
 
   has_many :photos, through: :profile, source: :photos
@@ -41,16 +42,20 @@ class User < ActiveRecord::Base
   class_name: "Notification",
   foreign_key: :receiver_id
 
-  has_many :message_headers, dependent: :destroy,
+  has_many :message_headers,
+  dependent: :destroy,
   foreign_key: :user_id
 
   has_many :other_message_headers,
   class_name: "User",
   foreign_key: :other_id
 
-  has_many :messages, through: :message_headers, source: :message
+  has_many :messages,
+  through: :message_headers,
+  source: :message
 
   has_many :sent_ratings,
+  dependent: :destroy,
   class_name: "Rating",
   foreign_key: :rater_id,
   primary_key: :id
@@ -68,32 +73,33 @@ class User < ActiveRecord::Base
   through: :received_ratings,
   source: :rater
 
-  has_one :user_filter, inverse_of: :user, dependent: :destroy,
+  has_one :user_filter,
+  inverse_of: :user,
+  dependent: :destroy,
   foreign_key: :user_id
 
-  has_many :responses, inverse_of: :user, dependent: :destroy,
+  has_many :responses,
+  inverse_of: :user,
+  dependent: :destroy,
   foreign_key: :user_id
 
-  has_many :acceptable_responses, inverse_of: :user, dependent: :destroy,
+  has_many :acceptable_responses,
+  inverse_of: :user,
+  dependent: :destroy,
   foreign_key: :user_id
 
   has_many :answered_questions,
   through: :responses,
   source: :question
 
-   # def is_liked_by?(user)
-   #   self.likers.include?(user)
-   # end
-   #
-   # def likes?(user)
-   #   self.liked_users.include?(user)
-   # end
-
    def calculate_percentages(other_user)
-     common_responses = Response.joins("JOIN responses
-     AS other_responses
-     ON responses.question_id = other_responses.question_id").select("responses.question_id AS question_id, responses.answer_choice_id AS current_user_answer_choice,
-     other_responses.answer_choice_id AS other_user_answer_choice").where("responses.user_id = ? AND other_responses.user_id = ?", self.id, other_user.id)
+     common_responses = Response.joins("JOIN responses AS other_responses
+       ON responses.question_id = other_responses.question_id")
+       .select("responses.question_id AS question_id,
+       responses.answer_choice_id AS current_user_answer_choice,
+       other_responses.answer_choice_id AS other_user_answer_choice")
+       .where("responses.user_id = ? AND other_responses.user_id = ?",
+       self.id, other_user.id)
 
      current_acceptables = self.acceptable_responses.pluck(:answer_choice_id)
      other_acceptables = other_user.acceptable_responses.pluck(:answer_choice_id)
