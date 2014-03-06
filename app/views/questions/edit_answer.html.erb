@@ -1,34 +1,30 @@
-
-
 <% question_id = @answer_choices.first.question_id %>
+
 <form action="<%= question_update_answer_url(question_id) %>" method="post">
   <input type="hidden" name="_method" value="PUT">
-
   <%= auth_token_input %>
 
-
-
   <% question_text = @answer_choices.first.question_text %>
-<%= question_text %>
+  <%= question_text %>
 
-<% @answer_choices.each do |answer_choice| %>
-<label><input type="radio" name="response[answer_choice_id]" value="<%= answer_choice.answer_choice_id %>"
-  <%= "checked" if (answer_choice.answer_choice_id.to_i == @response.answer_choice_id.to_i) %>>
-  <%= answer_choice.answer_choice_text %>
-</label><br>
+  <% @answer_choices.each do |answer_choice| %>
+    <label>
+      <input type="radio" name="response[answer_choice_id]" value="<%= answer_choice.answer_choice_id %>"
+        <%= "checked" if (answer_choice.answer_choice_id.to_i == @response.answer_choice_id.to_i) %>>
+      <%= answer_choice.answer_choice_text %>
+    </label>
+    <br>
+  <% end %>
 
-<% end %>
+  <br>What you prefer on match:<br>
 
+  <% @answer_choices.each_with_index do |answer_choice, index| %>
+    <input type="checkbox" name="acceptable_response[answer_choice_ids][]"
+      value="<%= answer_choice.answer_choice_id %>"
+      <%= "checked" if @acceptable_responses.any? {|a_r| a_r.answer_choice_id.to_i == answer_choice.answer_choice_id.to_i} %>>
+  <%= answer_choice.answer_choice_text%></label><br>
 
-<br>
-What you prefer on match:
-<br>
-<% @answer_choices.each_with_index do |answer_choice, index| %>
-<input type="checkbox" name="acceptable_response[answer_choice_ids][]" value="<%= answer_choice.answer_choice_id %>" <%= "checked" if @acceptable_responses.any? {|a_r| a_r.answer_choice_id.to_i == answer_choice.answer_choice_id.to_i} %>>
-
-<%= answer_choice.answer_choice_text%></label><br>
-
-<% end %>
+  <% end %>
 
 <br>
 <br>

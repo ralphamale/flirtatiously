@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
       .page(params[:page])
 
     if @profiles.blank?
-      flash.now[:errors] = "No more users with your search criteria. Displaying everyone."
+      flash.now[:errors] = "There are no more profiles for your action with your current search filters. Please broaden your criteria above and try again. Displaying everyone."
       @profiles = Profile.page(params[:page])
     end
 

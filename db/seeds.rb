@@ -75,7 +75,7 @@ female_descriptions = ["I like being in relationships where you can be completel
 
     test_profile = Profile.create!({
       user_id: user.id,
-      birthday: "#{2014-18-i}-12-01",
+      birthday: "#{2013-18-i}-12-01",
       sexual_orientation: rand(0..2),
         zip_code: [10003, 10453,
           11204, 11206, 10023,
@@ -155,5 +155,11 @@ questions.each do |q_text, answer_choices|
 end
 
 
-
+["It is my birthday today!",
+"Anyone want to grab something to eat tonight?",
+"Could really use a drink right now!",
+"This website is really great!",
+"I am single and ready to mingle!"].each_with_index do |msg, i|
+  StatusMessage.create!(user_id: i, body: msg)
+end
 

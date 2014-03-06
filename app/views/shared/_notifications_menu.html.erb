@@ -1,6 +1,5 @@
-<% triggering_user = notes.first.triggering_user if notes.first %>
-
 <% notes.each do |note| %>
+<% triggering_user = note.triggering_user if notes.first %>
   <li>
 
     <a href="<%= profile_url(triggering_user.profile) %>">
