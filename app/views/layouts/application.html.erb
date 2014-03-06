@@ -44,9 +44,10 @@
     </script>
 
     <content>
-      <% if flash[:errors] %>
+      <% if flash[:errors] || flash[:success] %>
         <div class="flash sig-message">
-          <%= flash[:errors] %>
+          <%= flash[:errors] if flash[:errors] %>
+          <%= flash[:success] if flash[:success] %>
         </div>
       <% end %>
 

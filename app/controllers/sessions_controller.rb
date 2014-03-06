@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     if params[:user]
 
       user = if params[:user][:username] == "demo"
+                flash[:success] = "You are a DEMO account! Please edit your profile, check your notifications, answer some personality questions, get matchmade, and message users!"
                 set_up_demo
               else
                 User.find_by_credentials(params[:user][:username], params[:user][:password])

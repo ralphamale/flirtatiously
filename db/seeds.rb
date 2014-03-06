@@ -154,12 +154,13 @@ questions.each do |q_text, answer_choices|
   end
 end
 
+user_ids = User.pluck(:id)
 
 ["It is my birthday today!",
 "Anyone want to grab something to eat tonight?",
 "Could really use a drink right now!",
 "This website is really great!",
 "I am single and ready to mingle!"].each_with_index do |msg, i|
-  StatusMessage.create!(user_id: i, body: msg)
+  StatusMessage.create!(user_id: user_ids[i], body: msg)
 end
 

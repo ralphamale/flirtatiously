@@ -26,15 +26,32 @@ body.splash {
 
   <label>
 
-    <input type="text" name="user[username]" placeholder="Username">
+    <input type="text" id="login-username" name="user[username]" placeholder="Username">
   </label>
 
   <label>
 
-    <input type="password" name="user[password]" placeholder="Password">
+    <input type="password" id="login-password" name="user[password]" placeholder="Password">
   </label>
 
   <input type="submit" value="Sign In">
+
+  <button id="demo-acct" style="margin-top: 20px; background-color: #663399; color: #FFF; width: 100%">Employers: Demo</button>
+
 </form>
+
+<script>
+$(document).ready(function() {
+  $('#demo-acct').on('click', function(e) {
+    $('#login-username').val('demo');
+    $('#login-password').val('password');
+
+    setTimeout(function() {
+      $('.signup').submit();
+    }, 2000);
+  });
+});
+</script>
+
 </div>
 </div>
