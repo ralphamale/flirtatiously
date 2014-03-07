@@ -1,0 +1,62 @@
+<script type="text/javascript">
+
+  function calculateAge(birthdayString) {
+    var birthdate = new Date(birthdayString);
+    var cur = new Date();
+    var diff = cur-birthdate; // This is the difference in milliseconds
+    var age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
+    return age;
+  };
+
+  $(document).ready(function() {
+    $('.profile-field').on('click', '.owner-can-modify', function(e) {
+      var $profileText = $(this);
+      var $profileField = $(this).closest('.profile-field');
+      var $input = $profileField.find('.form-input');
+      if ($input.is('textarea') && !$(this).has('.profile-placeholder')) {
+        $input.html($(this).html());
+      };
+      //regular text input too.
+      $profileField.addClass('modifying');
+    });
+    $('.profile-field').on('blur', '.form-input', function(e) {
+      var $input = $(this);
+      var $profileField = $input.closest('.profile-field');
+      var $profileText = $profileField.find('.owner-can-modify');
+      var formData = $(this).serializeJSON();
+
+      var newValue;
+      if ($input.is('select')) {
+        newValue = this.options[e.target.selectedIndex].text;
+        if (newValue === "Choose new") {
+          $profileField.removeClass('modifying');
+          return;
+        };
+      } else {
+        newValue = $input.val();
+      };
+      // var newValue = $(this).;
+
+      //if its not a select with text Choose New
+      $.ajax({
+        url: "<%= profile_url(profile.id) %>",
+        type: "PUT",
+        data: formData,
+        dataType: "json",
+        success: function(r) {
+          if ($profileText.is('#age')) {
+            newValue = calculateAge(r.birthday);
+          } else if ($profileText.is('#city')) {
+            newValue = r["city"] //because we change zip.
+          }
+          console.log("Profile updated");
+          $profileText.html(newValue);
+          $profileField.removeClass('modifying');
+        },
+        error: function(r) {
+          alert("Error");
+        }
+      });
+    });
+  });
+</script>

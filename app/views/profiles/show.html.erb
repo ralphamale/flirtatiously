@@ -21,11 +21,8 @@
         <% end %>
       <% end %>
 
-
-
       <% if  @is_current_user_profile %>
 
-        <% if @is_current_user_profile %>
           <%# To be implemented %>
           <!-- ><li>
             <button class="change-settings">
@@ -33,65 +30,22 @@
             </button>
           </li> -->
 
-        <% end %>
-
       <% else %>
-      <% if @rating_status.nil? %>
-        <% unless @is_current_user_profile %>
-          <li>
-            <div class="ratings">
-              <% ["true", "false"].each do |text| %>
-                <form action="<%= ratings_url %>" id="ratings-<%= text %>"
-                  method="post" class="rating-form" style="display: inline-block">
 
-                  <input type="hidden" name="rating[ratee_id]" value="<%= @profile.user_id %>">
-                  <%= auth_token_input %>
-                  <input type="hidden" name="rating[likes]" value="<%= text %>">
-
-                  <input type="submit"  class="sec-nav-button"
-                    id ="<%= text == "true" ? "like-button" : "dislike-button" %>"
-                    value="<%= text %>">
-
-                </form>
-              <% end %>
-            </div>
-          </li>
-        <% end %>
-      <% elsif @rating_status %>
-        <li>
-          <a href="#">
-            You guys both like each other!
-          </a>
-        </li>
-      <% else  %>
-        <li>
-          <a href="#">
-            You have already rated this user.
-          </a>
-        </li>
-      <% end %>
+      <%= render partial: "ratings", locals: {
+        profile: @profile, rating_status: @rating_status} %>
         <li>
           <a href="#" class="message">
             Message
           </a>
         </li>
-
-        <% end %>
+      <% end %>
       </ul>
   </nav>
 <% end %>
 
-
-
-
-
-
-  <!-- yield head -->
-
   <div class="content-half left-half" style="padding-top: 0 px">
-
     <%= render partial: "profile_photos", locals: {profile: @profile} %>
-
   </div>
 
   <div class="content-half profile-view" style="background-color: #fff">
@@ -156,69 +110,7 @@
   name="profile[zip_code]"
   value="<%= @profile.zip_code %>">
 </span>
-
 <br>
-
-
-
-<script>
-
-$(document).ready(function() {
-  $('.ratings').on('submit', 'form', function(e) {
-    e.preventDefault();
-    var formData = $(this).serializeJSON();
-
-    $.ajax({
-      url: "/ratings",
-      type: "POST",
-      data: formData,
-      dataType: "json",
-      success: function(r) {
-        if (r.is_mutual) {
-          $('#modal-container').html($('#mutual-match-template').html());
-          window.modal.show();
-        } else if (r.likes === false) {
-          $('body').append("<img src='<%= asset_path "giant-dislike.png" %>' class='swipe'>");
-          setTimeout(
-            function()
-            {
-              window.location = '/profiles/random';
-            }, 1500);
-
-          } else {
-            $('body').append("<img src='<%= asset_path "giant-like.png" %>' class='swipe'>")
-
-            setTimeout(
-              function()
-              {
-                window.location = '/profiles/random';
-              }, 1500);
-            };
-          },
-          error: function(r) {
-            alert("Error");
-            console.log(r);
-          }
-        });
-
-      });
-});
-
-
-
-    </script>
-
-    <script type="text/template" id="mutual-match-template">
-
-    <h2> <%= @profile.user.username %> also likes you!</h2>
-    <img src="<%= asset_path "giant-mutual.png" %>" width="300px" height="300px">
-    <br>
-    They will receive a notification. Meanwhile, you can <a href="#" class="match-send-message">send them a message</a> or <a href="<%= random_profiles_url %>">keep playing</a>!
-
-    </script>
-
-
-
 
     <% unless @is_current_user_profile %>
     <% percentages = current_user.calculate_percentages(@profile.user) %>
@@ -238,8 +130,6 @@ $(document).ready(function() {
               <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="<%= key %>">
                 <% detail = PROFILE_DETAILS[key][@profile[key]] %>
                 <%= display_detail(detail, "Detail", @is_current_user_profile) %>
-
-
               </span>
               <select class="form-input" name="profile[<%= key %>]">
                 <option disabled selected>Choose new</option>
@@ -256,91 +146,19 @@ $(document).ready(function() {
       <% end %>
     </table>
 
-
-
     <h3>Bio</h3>
     <div class="profile-field">
       <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="description">
-
-
         <%= display_detail(@profile.description, "Essay", @is_current_user_profile) %>
-
       </span>
       <textarea class="form-input" name="profile[description]"></textarea>
     </div>
-
-    <%#   <h3>Loves</h3> %>
-
-    <%#= display_detail(@profile.description, "Essay", @is_current_user_profile) %>
-
-
   </div>
 
 
+
   <% if @is_current_user_profile %>
-  <script type="text/javascript">
-
-  function calculateAge(birthdayString) {
-    var birthdate = new Date(birthdayString);
-    var cur = new Date();
-    var diff = cur-birthdate; // This is the difference in milliseconds
-    var age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
-    return age;
-  };
-  $(document).ready(function() {
-    $('.profile-field').on('click', '.owner-can-modify', function(e) {
-      var $profileText = $(this);
-      var $profileField = $(this).closest('.profile-field');
-      var $input = $profileField.find('.form-input');
-      if ($input.is('textarea') && !$(this).has('.profile-placeholder')) {
-        $input.html($(this).html());
-      };
-      //regular text input too.
-      $profileField.addClass('modifying');
-    });
-    $('.profile-field').on('blur', '.form-input', function(e) {
-      var $input = $(this);
-      var $profileField = $input.closest('.profile-field');
-      var $profileText = $profileField.find('.owner-can-modify');
-      var formData = $(this).serializeJSON();
-
-      var newValue;
-      if ($input.is('select')) {
-        newValue = this.options[e.target.selectedIndex].text;
-        if (newValue === "Choose new") {
-          $profileField.removeClass('modifying');
-          return;
-        };
-      } else {
-        newValue = $input.val();
-      };
-      // var newValue = $(this).;
-
-      //if its not a select with text Choose New
-      $.ajax({
-        url: "<%= profile_url(@profile.id) %>",
-        type: "PUT",
-        data: formData,
-        dataType: "json",
-        success: function(r) {
-          if ($profileText.is('#age')) {
-            newValue = calculateAge(r.birthday);
-          } else if ($profileText.is('#city')) {
-            newValue = r["city"] //because we change zip.
-          }
-          console.log("Profile updated");
-          $profileText.html(newValue);
-          $profileField.removeClass('modifying');
-        },
-        error: function(r) {
-          alert("Error");
-        }
-      });
-    });
-  });
-  </script>
-  <% else %>
-  <%# place script back in here? %>
+    <%= render partial: "edit_profile", locals: {profile: @profile} %>
   <% end %>
 
   <div class="questions-view">
@@ -358,18 +176,15 @@ $(document).ready(function() {
     %>
 
     <% if primary_responses.length == 0 %>
-    <%= empty_message %>
+      <%= empty_message %>
     <% else %>
-
-    <% primary_responses.each do |resp| %>
-    <div class="mini-question-container" data-id="<%= resp.question_id %>">
-      <b>  <%= resp.question_text %></b><br>
-
-      <% current_user_response =
-      find_response(resp.question_id, @current_user_responses)
-      %>
-
-
+      <% primary_responses.each do |resp| %>
+      <div class="mini-question-container" data-id="<%= resp.question_id %>">
+        <b>  <%= resp.question_text %></b>
+        <br>
+        <% current_user_response =
+        find_response(resp.question_id, @current_user_responses)
+        %>
 
       <% if current_user_response.nil? %> <%#= resp.question_id %>
       <i>Answer this question to see.</i><br>

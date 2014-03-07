@@ -1,0 +1,92 @@
+<% if rating_status.nil? %>
+    <li>
+      <div class="ratings">
+        <% ["true", "false"].each do |text| %>
+          <form action="<%= ratings_url %>" id="ratings-<%= text %>"
+            method="post" class="rating-form" style="display: inline-block">
+
+            <input type="hidden" name="rating[ratee_id]" value="<%= profile.user_id %>">
+            <%= auth_token_input %>
+            <input type="hidden" name="rating[likes]" value="<%= text %>">
+
+            <input type="submit"  class="sec-nav-button"
+              id ="<%= text == "true" ? "like-button" : "dislike-button" %>"
+              value="<%= text %>">
+          </form>
+        <% end %>
+      </div>
+    </li>
+<% elsif rating_status %>
+  <li>
+    <a href="#">
+      You guys both like each other!
+    </a>
+  </li>
+<% else %>
+  <li>
+    <a href="#">
+      You have already rated this user.
+    </a>
+  </li>
+<% end %>
+
+
+
+
+
+<script>
+
+$(document).ready(function() {
+  $('.ratings').on('submit', 'form', function(e) {
+    e.preventDefault();
+    var formData = $(this).serializeJSON();
+
+    $.ajax({
+      url: "/ratings",
+      type: "POST",
+      data: formData,
+      dataType: "json",
+      success: function(r) {
+        if (r.is_mutual) {
+          $('#modal-container').html($('#mutual-match-template').html());
+          window.modal.show();
+          setTimeout(
+            function()
+            {
+              window.location = '/profiles/random';
+            }, 1500);
+        } else if (r.likes === false) {
+          $('body').append("<img src='<%= asset_path "giant-dislike.png" %>' class='swipe'>");
+          setTimeout(
+            function()
+            {
+              window.location = '/profiles/random';
+            }, 1500);
+          } else {
+            $('body').append("<img src='<%= asset_path "giant-like.png" %>' class='swipe'>")
+            setTimeout(
+              function()
+              {
+                window.location = '/profiles/random';
+              }, 1500);
+            };
+          },
+          error: function(r) {
+            alert("Error");
+            console.log(r);
+          }
+        });
+
+      });
+    });
+</script>
+
+<script type="text/template" id="mutual-match-template">
+  <h2>New match!</h2>
+
+  <img src="<%= asset_path "giant-mutual.png" %>" width="300px" height="300px">
+  <br>
+  <%= @profile.user.username %> will receive a notification about the match. Good luck!
+  <br>
+  Taking you to the next profile...
+</script>
