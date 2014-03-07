@@ -46,16 +46,6 @@
   margin-bottom: 16px;
 }
 
-
-
-
-
-
-
-
-
-
-
 .profile-placeholder {
   color: red;
   font-weight: bold;
@@ -74,11 +64,11 @@
 html, body, header, nav, h1, ul, li, h2, button, input[type=text], input[type=email], select, textarea, input[type=password] {
   border: 0;
   margin: 0;
-
   padding: 0;
   font: inherit;
   vertical-align: baseline;
-  font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+  font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida
+    Sans",Geneva,Verdana,sans-serif;
 }
 
 a {
@@ -96,24 +86,11 @@ span.owner-can-modify:hover {
   color: blue;
 }
 
-
-
-
-
 select {
   cursor: pointer;
 }
 
 input[type=email], input[type=text], select, input[type=password], button, input[type=submit] {
-
-  /*
-  This is a full reset for a button,
-  making it as plain as inline text.
-  From here you could move on to style
-  it as a regular link, or anything
-  your beautiful mind can dream up.
-  */
-
   -webkit-appearance: none;
   display: inline;
   box-sizing: content-box;
@@ -153,28 +130,18 @@ input[type=email], input[type=text], select, input[type=password], button, input
   display: block;
 }
 
-
-
-
 input[type=email], input[type=text], input[type=password] {
-  /*display: block;*/
   background: white;
   max-height: 50px;
   border-top: 1px solid #e3e3e3;
   width: 100px;
 }
 
-
-
-
-
 button, input[type=submit] {
   background: #FFFF33;
   padding: 20px;
   cursor: pointer;
 }
-
-
 
 .signup input[type=text] {
   display: block;
@@ -200,13 +167,6 @@ button, input[type=submit] {
   margin-top: 5px;
 }
 
-
-
-
-
-
-
-
 body {
   font-size: 16px;
   background-color: #333;
@@ -221,8 +181,6 @@ body {
 .accent-white {
   color: #FFF;
 }
-
-
 
 .profile-stats {
   margin: 0 auto;
@@ -246,8 +204,6 @@ header {
 
 header > .header-wrap {
   width: 1000px;
-/*  max-width: 1468px;*/
-/*  width: 100%;*/
   height: 60px;
   margin: auto;
 }
@@ -290,7 +246,6 @@ header > .header-wrap {
 .sec-header {
   background: #333;
   border: 0;
-  /*background-color: blue;*/ /* debug */
 }
 
 ul.enlargement-links > li > a > img {
@@ -304,8 +259,6 @@ ul.enlargement-links > li > a > img {
 
 .sec-header-wrapper {
   width: 1000px;
-/*  max-width: 1468px;*/
-/*  width: 100%;*/
   height: 60px;
   margin: auto;
 }
@@ -316,7 +269,6 @@ ul.enlargement-links > li > a > img {
 
 .sec-header-text a {
   display: block;
-
 }
 
 .sec-left-nav > ul > li {
@@ -330,6 +282,7 @@ ul.enlargement-links > li > a > img {
 .sec-right-nav {
   float: right;
 }
+
 .sec-right-nav > ul > li {
   position: relative;
   float: left;
@@ -342,21 +295,12 @@ ul.enlargement-links > li > a > img {
   text-decoration: none;
 }
 
-
-
 .content-wrap {
-
   width: 1000px;
-/*  max-width: 1468px;*/
   margin: 24px auto;
-/*  width: 100%;*/
   height: auto;
    overflow: hidden;
-  /*overlow hidden?*/
 }
-
-
-
 
 .splash {
   background-image: image-url("splash_bg.jpg");
@@ -372,7 +316,6 @@ ul.enlargement-links > li > a > img {
 
 .content-half {
   float: left;
-  //padding: 16px;
   width: 484px;
 }
 
@@ -385,46 +328,34 @@ ul.enlargement-links > li > a > img {
   width: 468px;
 }
 
-
-
 .content-3of7 {
-
   float: left;
   width: 428px;
-/*  width: 43%;*/
-
   padding-bottom: 100%;
   margin-bottom: -100%;
 }
 
 .content-4of7 {
-
   float: left;
   width: 571px;
-/*  width: 54%;*/
   padding-left: 3%;
   padding-bottom: 100%;
   margin-bottom: -100%;
-
 }
 
 .content-1of7 {
   float: right;
   width: 142px;
-/*  width: 15%;*/
 }
 
 .content-2of7 {
   float: right;
   width: 285px;
-/*  width: 28%;*/
 }
 
 
 .unhide > .send-message {
   display: block;
-
-
 }
 
 .send-message > textarea {
@@ -451,65 +382,11 @@ ul.enlargement-links > li > a > img {
   display: none;
 }
 
-.send-message { /*** maybe can refactor later? ***/
+.send-message {
   width: 100%;
   height: 100%;
-
   z-index: 20;
 }
-
-/***********
-content {
-  margin: 0 auto;
-  display: block;
-  position: relative;
-  width: 1000px;
-
-}
-
-.left-col-content {
-  width: 655px;
-  margin-top: 50px;
-  float: left;
-  background-color: white;
-}
-
-.right-col {
-  width: 310px;
-  margin-top: 50px;
-  float: right;
-
-}
-
-.right-col-block {
-  width: 290px;
-  padding: 10px;
-  background-color: white;
-  border-radius: 10px;
-}
-
-
-footer {
-
-}
-
-
-
-#screen {
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: #000;
-}
-
-.send-message > textarea {
-  display: block;
-  width: 520px;
-  height: 200px;
-}
-
-****/
-
 
 .page-title {
 font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
@@ -518,15 +395,12 @@ font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida Sa
   margin-bottom: 2%;
   line-height: 1.2 em;
   font-weight: bold;
-
   color: #FF6633;
 }
 
-
-
-
 h2 {
-  font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+  font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida
+  Sans",Geneva,Verdana,sans-serif;
   letter-spacing: -0.02 em;
   font-weight: 300;
   line-height: 1.3;
@@ -534,7 +408,8 @@ h2 {
 }
 
 h3 {
-  font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+  font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida
+  Sans",Geneva,Verdana,sans-serif;
   letter-spacing: -0.02em;
   font-weight: 700;
   font-size: 26px;
@@ -546,26 +421,21 @@ h4 {
   font-size: 21px;
 }
 
-
-
-
 h1.username {
-  font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
-  font-size: 42px; /*4.3em*/
+  font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida
+  Sans",Geneva,Verdana,sans-serif;
+  font-size: 42px;
   line-height: 1.2;
   margin-bottom: 4px;
   font-weight: bold;
   color: #FF6633;
-  /** #FF420B **/
 }
 
 
 
 ul.profiles-list {
   list-style: none;
-
   border-radius: 10px;
-
 }
 
 ul.profiles-list > li {
@@ -576,7 +446,6 @@ ul.profiles-list > li {
   margin: 5px;
   border-radius: 5px;
   position: relative;
-
 }
 
 ul.profiles-list > li > img {
@@ -585,22 +454,18 @@ ul.profiles-list > li > img {
   height: 230px;
   width: 230px;
   border-radius: 5px;
-
   margin-bottom: 5px;
-  /* pos relative here?*/
 }
 
 ul.profiles-list  a {
   text-decoration: none;
   font-size: 1.25em;
-
 }
 
 .profile-content {
   margin-left: 0px;
   z-index: 3;
   text-align: center;
-
   width: 225px;
   padding-left: 5px;
   padding-bottom: 5px;
@@ -621,16 +486,12 @@ span.browse-percentages {
   font-size: 10px;
 }
 
-
 .big-ass-photo {
   z-index: -1;
   display: block;
-
   width: 100%;
   height: auto;
-
 }
-
 
 .group:after {
   clear: both;
@@ -676,7 +537,6 @@ span.browse-percentages {
 }
 
 .search-bar * {
-
   float: left;
 }
 
@@ -685,11 +545,8 @@ span.browse-percentages {
   float: left;
 }
 
-
 .object-avatar {
   padding: 0;
-
-  border-right: 2px solidgrey;
   width: 100px;
   height: 100px;
   display: block;
@@ -701,7 +558,6 @@ span.browse-percentages {
 }
 
 .object-list {
-
   display: block;
 }
 
@@ -717,7 +573,6 @@ span.browse-percentages {
 
 form.create-pm textarea {
   width: 300px;
-
 }
 
 .create-pm > input[type=submit] {
@@ -729,19 +584,13 @@ form.create-pm textarea {
 }
 
 .object-content {
-
   display: block;
-
   width: 300px;
   margin: 0px 0px 0px 20px;
   float: left;
 }
 
-
-/** ANSWER QUESTIONS QUESTIONS ANSWER RESPONSES  **/
-
-/**** QUESTIONS ***/
-
+/** For Questions **/
 
 .response-show {
   display: block;
@@ -759,11 +608,6 @@ form.create-pm textarea {
   display: block;
 }
 
-
-.bio-view {
-
-}
-
 .questions-view {
   display: none;
 }
@@ -774,11 +618,6 @@ form.create-pm textarea {
 
 .show-questions > .questions-view {
   display: block;
-}
-
-
-.default-displayed {
-
 }
 
 .default-hidden {
@@ -797,18 +636,12 @@ form.create-pm textarea {
   display: block;
 }
 
-
 .suggested-users {
-
   background-color: #FFF;
   padding-top: 0px;
   text-align: center;
   padding-bottom: 5px;
 }
-
-
-
-
 
 .header-nav-drop-down {
   display: none;
@@ -828,7 +661,6 @@ form.create-pm textarea {
 
 .answer-choices > input {
   display: none;
-
 }
 
 .answer-choices > label {
@@ -844,13 +676,10 @@ form.create-pm textarea {
   font-weight: bold;
 }
 
-
-
 .answer-choices > input[type=checkbox]:checked + label, .answer-choices > input[type=radio]:checked + label {
   background-color: #663399;
   font-weight: bold;
   color: #FFF;
-
 }
 
 .importances > input {
@@ -874,8 +703,6 @@ form.create-pm textarea {
   line-height: normal;
 }
 
-
-
 .importances  label:hover {
   cursor: pointer;
   background-color: orange;
@@ -898,115 +725,117 @@ form.create-pm textarea {
   margin-top: 5px;
 }
 
-
 .imp1 + label {
   background-color: rgba(102, 102, 102, .6);
-  }
+}
+
 .imp2 + label {
   background-color: rgba(255, 255, 0, .6);
-  }
+}
 .imp3 + label {
   background-color: rgba(255, 153, 0, .6);
-  }
+}
+
 .imp4 + label {
   background-color: rgba(255, 102, 51, .6);
-  }
+}
+
 .imp5 + label {
   background-color: rgba(204, 0, 0, .6);
-  }
+}
 
-  .imp1 + label:hover {
-    background-color: rgba(102, 102, 102, .8);
-    font-weight: bold;
-    }
-  .imp2 + label:hover {
-    background-color: rgba(255, 255, 0, .8);
-    font-weight: bold;
-    }
-  .imp3 + label:hover {
-    background-color: rgba(255, 153, 0, .8);
-    font-weight: bold;
-    }
-  .imp4 + label:hover {
-    background-color: rgba(255, 102, 51, .8);
-    font-weight: bold;
-    }
-  .imp5 + label:hover {
-    background-color: rgba(204, 0, 0, .8);
-    font-weight: bold;
-    }
+.imp1 + label:hover {
+  background-color: rgba(102, 102, 102, .8);
+  font-weight: bold;
+}
 
+.imp2 + label:hover {
+  background-color: rgba(255, 255, 0, .8);
+  font-weight: bold;
+}
 
-    .imp1:checked + label {
-      background-color: rgba(102, 102, 102, 1);
-      border: 5px solid black;
-      font-weight: bold;
-      }
-    .imp2:checked + label {
-      background-color: rgba(255, 255, 0, 1);
-      border: 5px solid black;
-      font-weight: bold;
-      }
-    .imp3:checked + label {
-      background-color: rgba(255, 153, 0, 1);
-      border: 5px solid black;
-      font-weight: bold;
-      }
-    .imp4:checked + label {
-      background-color: rgba(255, 102, 51, 1);
-      border: 5px solid black;
-      font-weight: bold;
-      }
+.imp3 + label:hover {
+  background-color: rgba(255, 153, 0, .8);
+  font-weight: bold;
+}
 
-      input.question-submit {
-        display: block;
-        width: 60%;
-        height: 45px;
-        padding: 8px;
-        margin: auto;
+.imp4 + label:hover {
+  background-color: rgba(255, 102, 51, .8);
+  font-weight: bold;
+}
 
-        font-weight: bold;
-        background-color: #FF6633;
-        border: 1px solid black;
-      }
+.imp5 + label:hover {
+  background-color: rgba(204, 0, 0, .8);
+  font-weight: bold;
+}
 
-    .imp5:checked + label {
-      background-color: rgba(204, 0, 0, 1);
-      border: 5px solid black;
-      font-weight: bold;
-      }
+.imp1:checked + label {
+  background-color: rgba(102, 102, 102, 1);
+  border: 5px solid black;
+  font-weight: bold;
+}
+.imp2:checked + label {
+  background-color: rgba(255, 255, 0, 1);
+  border: 5px solid black;
+  font-weight: bold;
+}
+.imp3:checked + label {
+  background-color: rgba(255, 153, 0, 1);
+  border: 5px solid black;
+  font-weight: bold;
+}
+.imp4:checked + label {
+  background-color: rgba(255, 102, 51, 1);
+  border: 5px solid black;
+  font-weight: bold;
+}
 
-      #like-button {
-        background: image-url("heart.png") no-repeat 0 0;
-      }
+input.question-submit {
+  display: block;
+  width: 60%;
+  height: 45px;
+  padding: 8px;
+  margin: auto;
+  font-weight: bold;
+  background-color: #FF6633;
+  border: 1px solid black;
+}
 
-      #dislike-button {
-        background: image-url("reject.png") no-repeat 0 0;
-      }
+.imp5:checked + label {
+background-color: rgba(204, 0, 0, 1);
+border: 5px solid black;
+font-weight: bold;
+}
 
+#like-button {
+  background: image-url("heart.png") no-repeat 0 0;
+}
 
-      input.sec-nav-button {
-        padding: 0;
-        cursor: pointer;
-        display: block;
-        float: left;
-        border: 0;
-        width: 50px;
-        height: 0px;
-        padding-top: 50px;
-        padding-left: 5px;
-        padding-right: 5px;
-        overflow: hidden;
-      }
+#dislike-button {
+  background: image-url("reject.png") no-repeat 0 0;
+}
 
-      #like-button:hover {
-        background-position: 0 -50px;
-      }
+input.sec-nav-button {
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  float: left;
+  border: 0;
+  width: 50px;
+  height: 0px;
+  padding-top: 50px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow: hidden;
+}
 
-      #dislike-button:hover {
-        background-position: 0 -50px;
-      }
+#like-button:hover {
+  background-position: 0 -50px;
+}
 
+#dislike-button:hover {
+  background-position: 0 -50px;
+}
 
 .suggested-users > h3 {
  margin-top: 0;
@@ -1027,7 +856,6 @@ form.create-pm textarea {
   text-align: center;
 }
 
-
 div#modal-container a {
   color: #663399;
 }
@@ -1042,4 +870,55 @@ div#modal-container a {
   margin-left: -200px;
   margin-top: -200px;
   opacity: .5;
+}
+
+.has-active-modal .modal {
+  display: block;
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+}
+
+.modal:before {
+  content: "";
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.modal-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  min-height: 200px;
+  padding: 30px;
+  margin-top: -300px;
+  margin-left: -230px;
+  background: #fff;
+}
+
+.modal-close-button {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 10px;
+  font-size: 40px;
+  line-height: 1.0;
+  font-weight: bold;
+  color: #999;
+  cursor: pointer;
+}
+
+.modal-close-button:hover {
+  color: #000;
 }

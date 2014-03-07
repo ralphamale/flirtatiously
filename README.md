@@ -3,6 +3,7 @@ This README is under construction.
 [See Flirtatiously deployed.]: http://ralph-date.herokuapp.com/
 
 # Concept
+
 Flirtatiously is OKCupid meets Tinder.
 
 Users answer questions by providing the following: 1) Their response 2) How they would like others to answer and 3) how important the question is to them. Match percentages are then produced.
