@@ -11,16 +11,16 @@ Users can also browse profiles Tinder-style, where users "Like" or "Dislike" pro
 
 #Features
 
--This OKCupid and Tinder hybrid clone calculates match percentages between users by examining 1) the user's answers to personality questions 2) how the user would like others to answer and 3) how important the question is to the user
--Hand-built AJAX photo uploader
--Hand-built search filter to narrow down Browse page, Tinder matches, and "Users Near You"
--Notification system to inform users when they are being messaged or if they have a mutual like
--UJS and AJAX to edit profiles, post status messages, message in-profile and in-conversation, and answer question for more responsiveness
+* This OKCupid and Tinder hybrid clone calculates match percentages between users by examining 1) the user's answers to personality questions 2) how the user would like others to answer and 3) how important the question is to the user
+* Hand-built AJAX photo uploader
+* Hand-built search filter to narrow down Browse page, Tinder matches, and "Users Near You"
+* Notification system to inform users when they are being messaged or if they have a mutual like
+* UJS and AJAX to edit profiles, post status messages, message in-profile and in-conversation, and answer question for more responsiveness
 
 Other notable:
--Hand-built authentication with BCrypt
--Scrollbar fixed when scrolling down too much from browse or show profile.
--Secondary navbar is stickified for browse and show pages.
+* Hand-built authentication with BCrypt
+* Scrollbar fixed when scrolling down too much from browse or show profile.
+* Secondary navbar is stickified for browse and show pages.
 
 #Technologies
 Ruby on Rails, JavaScript, UJS / AJAX, Omniauth, Geocoder
