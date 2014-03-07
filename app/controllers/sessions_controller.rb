@@ -9,7 +9,9 @@ class SessionsController < ApplicationController
     if params[:user]
 
       user = if params[:user][:username] == "demo"
-                flash[:success] = "You are a DEMO account! Please edit your profile, check your notifications, answer some personality questions, get matchmade, and message users!"
+                flash[:success] = "You are a DEMO account! Please edit your profile,
+                check your notifications, answer some personality questions,
+                get matchmade, and message users!"
                 set_up_demo
               else
                 User.find_by_credentials(params[:user][:username], params[:user][:password])
@@ -51,19 +53,7 @@ class SessionsController < ApplicationController
           flash.now[:errors] = @user.errors.full_messages
           render :new
         end
-
-
-
-
       end
-
-      #log_in(user) after.
-      # all separarted bycommas as in jonathans example.
-      # , first_name: auth[:info][:first_name],
-      # last_name: auth[:info][:last_name],
-      # email: auth[:info][:email],
-      # image: auth[:info][:image]
-
     end
   end
 
@@ -80,7 +70,7 @@ class SessionsController < ApplicationController
 
     messages = ["Hey!", "Are you new to this site?", "What are you up to this weekend?", "Let's go and grab a bite."]
 
-    user_ids[0..3].each_with_index do |u_id, i|
+    user_ids[0..2].each_with_index do |u_id, i|
       message = Message.new(body: messages[i])
 
       mh = message.message_headers.new([{user_id: u_id,
@@ -102,9 +92,23 @@ class SessionsController < ApplicationController
       message.save!
     end
 
+    #create simulated mutual like
+    Rating.create!(rater_id: demo_user.id, ratee_id: user_ids[3], likes: true, is_mutual: true)
+    Rating.create!(rater_id: user_ids[3], ratee_id: demo_user.id, likes: true, is_mutual: true)
+    @notification = Notification.create!({
+        is_read: false,
+        receiver_id: demo_user.id,
+        trigger_id: user_ids[3],
+        status_type: 0
+    })
+
     user_ids[4..7].each do |u_id|
       Rating.create!(rater_id: u_id, ratee_id: demo_user.id, likes: true)
     end
+
+
+
+
   end
 
   def set_up_demo

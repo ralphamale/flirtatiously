@@ -1,6 +1,6 @@
-<div class="content-4-of-7 ">
+<div class="content-4of7 ">
   <% if @notifications.blank? %>
-  You do not have any notifications.
+    You do not have any notifications.
   <% else %>
   <ul class="objects-list">
     <% @notifications.each do |notification| %>
@@ -20,7 +20,9 @@
               profile_url(notification.triggering_user) %>">
               View their profile!</a>
             <% else %>
-              has sent you a <a href="<%= conversation_user_messages_url(notification.trigger_id)%>">message</a>.
+              has sent you a <a href="
+              <%= conversation_user_messages_url(notification.trigger_id)%>
+              ">message</a>.
             <% end %>
           </div>
 
