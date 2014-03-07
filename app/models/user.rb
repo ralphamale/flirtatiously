@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
   #validates :password_digest, presence: { message: "Password cannot be blank." } #now that we can oauth.
   #ensure token
-  validates :username, uniqueness: true
 
   has_one :profile,
   inverse_of: :user,

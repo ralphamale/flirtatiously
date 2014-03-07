@@ -36,11 +36,19 @@
 require 'spec_helper'
 
 describe Profile do
-  it { should validate_presence_of(:birthday) }
-  it { should validate_presence_of(:zip_code) }
-  it { should validate_presence_of(:user) }
+  describe "Validations" do
+    it { should validate_presence_of(:birthday) }
+    it { should validate_presence_of(:zip_code) }
+    it { should validate_presence_of(:user) }
+  end
 
-  it { should belong_to(:user) }
-  it { should have_many(:photos) }
+  describe "Associations" do
+    it { should belong_to(:user) }
+    it { should have_many(:photos) }
+  end
+
+  it "should not find previously matched profiles"
+
+  it "should correctly apply filters"
 
 end

@@ -26,4 +26,6 @@ describe UserFilter do
 
   it { should belong_to(:user) }
 
+  it "should convert blank attributes to blank"
+
 end

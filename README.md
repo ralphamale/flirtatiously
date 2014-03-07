@@ -30,18 +30,12 @@ Ruby on Rails, JavaScript, UJS / AJAX, Omniauth, Geocoder
   -Fix the multiple choices in profile.
 
   -Guest accounts that self-destruct
-    -Have stuff already filled out. And say it's in-line editing.
     -Demo pictures with Flickr creative commons
     -Make Demo walkthrough
-    -Have set notifications.
-    -Have some people message!
     -Tips around app to guide the user through app to make implemented features extra obvious.
-    -Explain how Tinder works.
   -Fix Search Bar
     -user filter "NULL" should make sure it clears the db col.
-  -Seed Data with real-life data.
-    -Status messages
-    -Add real questions
+
 
   -Model Tests
   -Check the font for pagination.
@@ -57,7 +51,6 @@ Ruby on Rails, JavaScript, UJS / AJAX, Omniauth, Geocoder
   -Validations on search. DOes not save bad ones.
   -Validations on profile fields.
   -Validations on username
-  dependent:destory on porfile, detail, photo, response
   -Delete unused profile tags.
   -Refactor: get responses, get acceptable responses, calculate percentages, find by credentials
   -Delete messages
@@ -68,7 +61,6 @@ Ruby on Rails, JavaScript, UJS / AJAX, Omniauth, Geocoder
   -Nav bar photos for show profile, be uniform
   -X button to delete photos.
   -Datepicker for in-line profile editing.
-  -Have more visual feedback for when postign message / status message. Have the box change.
   -Have delete button for profile.
   -Pretty print for time stamps.
 
@@ -82,7 +74,6 @@ Ruby on Rails, JavaScript, UJS / AJAX, Omniauth, Geocoder
   -Add sentences to help guide user through app.
   -Key bindings
 
-
 ### Double check
   -Visual actions for save, befriend, delete, modify, etc.
   -Add flash knowledges to acknolwedge saves, etc.
@@ -91,7 +82,6 @@ Ruby on Rails, JavaScript, UJS / AJAX, Omniauth, Geocoder
 
 # FUTURE TODO
   -Refactor everything.
-  -Infinite scroll
   -If you go to page again and profile likes you, it should say soemthing.
   -Is everything styled uniformly?
   -Coax you to answer question in-line if you're looking at a question you haven't answered.

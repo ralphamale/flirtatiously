@@ -38,9 +38,11 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'debugger'
+  gem 'factory_girl_rails', :require => false
 end
 
 group :test do
+  gem 'faker'
   gem 'guard-rspec'
   gem 'capybara'
   gem 'shoulda-matchers'

@@ -15,19 +15,19 @@ require 'spec_helper'
 
 describe AcceptableResponse do
 
+  describe "Validations" do
+    it { should validate_presence_of(:importance) }
+    it { should validate_presence_of(:user) }
+    it { should validate_presence_of(:question) }
+    it { should validate_presence_of(:answer_choice) }
+    it "should only allow one answer choice ID per user"
+  end
 
-  it { should validate_presence_of(:importance) }
-  it { should validate_presence_of(:user) }
-  it { should validate_presence_of(:question) }
-  it { should validate_presence_of(:answer_choice) }
-
-  it { should belong_to(:user) }
-  it { should belong_to(:answer_choice) }
-  it { should belong_to(:question) }
-
-  pending { should validate_uniqueness_of(:answer_choice_id).scoped_to(:user_id) }
-  it { should validate_presence_of(:importance) }
-
+  describe "Associations" do
+    it { should belong_to(:user) }
+    it { should belong_to(:answer_choice) }
+    it { should belong_to(:question) }
+  end
 
   pending "should not allow you to submit the same answer choice twice."
 
