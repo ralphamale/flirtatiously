@@ -42,12 +42,3 @@
     </section>
   </li>
 </script>
-
-<script>
-  $('#post-status-form').on('ajax:success', function(e,d) {
-    var newStatusFn = _.template($('#new-status-wrapper').html());
-
-    $('.objects-list').prepend(newStatusFn({status: d}));
-    $('.update-status-message textarea').val('');
-  });
-</script>

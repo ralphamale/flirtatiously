@@ -21,57 +21,17 @@
         <% end %>
       <% end %>
 
-    <script>
-      function displayComposeMessage() {
-        var msgTemplateFn = _.template($('#send-message-template').html());
-        var msgForm = msgTemplateFn();
 
-        $('#modal-container').html(msgForm);
-        window.modal.show();
-      };
-
-
-      $(document).ready(function() {
-        $('.enlargement-links').on('click', '.enlarge-photo', function(e) {
-          e.preventDefault();
-
-          console.log("Hello moto");
-          var src = $(this).attr("data-url")
-          $('.featured-photo > img').attr("src",src);
-        });
-      });
-    </script>
 
       <% if  @is_current_user_profile %>
 
         <% if @is_current_user_profile %>
-
-          <li>
+          <%# To be implemented %>
+          <!-- ><li>
             <button class="change-settings">
               Change Settings
             </button>
-          </li>
-
-          <script>
-          $('button.change-settings').click(function(e) {
-
-            e.preventDefault();
-            $('#modal-container').html($('#change-settings-template').html());
-            window.modal.show();
-          });
-
-          $('#modal-container').on('ajax:error', function(e,d) {
-            alert("There is error");
-          });
-
-          $('#modal-container').on('ajax:success', function(e,d) {
-            if ($(e.target).is('form.change-settings')) {
-              window.modal.hide();
-            };
-
-          });
-
-          </script>
+          </li> -->
 
         <% end %>
 
@@ -116,41 +76,9 @@
           </a>
         </li>
 
-        <script>
-        $('#modal-container').on('ajax:error', function(e,d) {
-          alert("There is error");
-        });
-
-        $('#modal-container').on('ajax:send', '.send-message', function(e) {
-          $('.send-message').html('Sending!!');
-        });
-
-        $('#modal-container').on('ajax:success', function(e,d) {
-          if ($(e.target).is('form.send-message')) {
-            $('#modal-container').html("Sent");
-            setTimeout(
-              function()
-              {
-                window.modal.hide();
-              }, 2000);
-            };
-          });
-
-          </script>
         <% end %>
       </ul>
   </nav>
-
-  <script>
-    $(document).ready(function() {
-      $('.toggle-view-menu').on('click', function(e) {
-        $(this).toggleClass('toggle-hide');
-        $('.profile-view').toggleClass('show-questions');
-      });
-    });
-  </script>
-
-
 <% end %>
 
 
@@ -234,13 +162,14 @@
 
 
 <script>
+
 $(document).ready(function() {
   $('.ratings').on('submit', 'form', function(e) {
     e.preventDefault();
     var formData = $(this).serializeJSON();
 
     $.ajax({
-      url: "<%= ratings_url %>",
+      url: "/ratings",
       type: "POST",
       data: formData,
       dataType: "json",
@@ -249,32 +178,21 @@ $(document).ready(function() {
           $('#modal-container').html($('#mutual-match-template').html());
           window.modal.show();
         } else if (r.likes === false) {
-
-          $('body').append("<img src='<%= asset_path "giant-dislike.png" %>' class='swipe'>")
-
-          // $('#modal-container').html("<img src='<%= asset_path "heart.png" %>' height='100%' width='100%'>");
-
-          // window.modal.show();
-
+          $('body').append("<img src='<%= asset_path "giant-dislike.png" %>' class='swipe'>");
           setTimeout(
             function()
             {
-              window.location = '<%= random_profiles_url %>';
+              window.location = '/profiles/random';
             }, 1500);
 
           } else {
             $('body').append("<img src='<%= asset_path "giant-like.png" %>' class='swipe'>")
 
-            // $('#modal-container').html("<img src='<%= asset_path "smiley.png" %>' height='100%' width='100%'>");
-            // window.modal.show();
-
             setTimeout(
               function()
               {
-                window.location = '<%= random_profiles_url %>'; //placeholder for later diff action.
+                window.location = '/profiles/random';
               }, 1500);
-
-
             };
           },
           error: function(r) {
@@ -284,7 +202,10 @@ $(document).ready(function() {
         });
 
       });
-    });
+});
+
+
+
     </script>
 
     <script type="text/template" id="mutual-match-template">
@@ -296,12 +217,7 @@ $(document).ready(function() {
 
     </script>
 
-    <script>
-    $('#modal-container').on('click', '.match-send-message', function(e) {
-      e.preventDefault();
-      displayComposeMessage();
-    });
-    </script>
+
 
 
     <% unless @is_current_user_profile %>
@@ -424,40 +340,7 @@ $(document).ready(function() {
   });
   </script>
   <% else %>
-  <script>
-  $(document).ready(function() {
-
-
-
-
-
-    $( ".message" ).click(function(event) {
-      event.preventDefault();
-
-      displayComposeMessage();
-
-
-    });
-  });
-
-
-  </script>
-
-
-
-
-
-
-
-  <script>
-  $( ".hide-container" ).draggable({
-    containment: $('content'),
-    stop: function(event, ui) {
-      console.log(event);
-      console.log(ui);
-    }
-  });
-  </script>
+  <%# place script back in here? %>
   <% end %>
 
   <div class="questions-view">
@@ -520,74 +403,16 @@ $(document).ready(function() {
 
   </div>
 
+  <script type="text/template" id="send-message-template">
+    <div class="hide-container">
+      <form class="send-message" action="<%= user_messages_url(@profile.user.id) %>" method="post" data-remote="true">
+        <%= auth_token_input %>
+        <textarea name="message[body]" style="color: black" placeholder="Type some stuff here"></textarea>
+        <input type="submit" class="submit-message" value="Submit">
+      </form>
+    </div>
+  </script>
 
-  <script>
-  $('.mini-question-container').on("click", '.toggle-edit', function(event) {
-    event.preventDefault();
-    var $trigger = $(this);
-    var $scope = $trigger.closest("div");
-    var $question = $scope.closest(".mini-question-container");
-    $question.addClass("edit-on");
-  });
+  <br>
 
-
-  $('.response-edit').on('ajax:success', function(e,d) {
-    $(this).html(d);
-  });
-
-
-
-  // $('.response-edit').on("submit", "form", function(event) {
-    //   event.preventDefault();
-    //
-    //   var formData = $(this).serializeJSON();
-    //   var $question = $(this).closest('.mini-question-container')
-    //   var question_id = $question.attr("data-id")
-    //
-    //   $.ajax({
-      //           url: "/questions/" + question_id + "/update_answer",
-      //           type: "PUT",
-      //           data: formData,
-      //           dataType: "json",
-      //           success: function (answer_choice) {
-        //             var $answerText = $question.children('.response-show').children('.response-answer-text')
-        //             $answerText.html(answer_choice.text);
-        //             $('.mini-question-container').removeClass("edit-on");
-        //           },
-        //           error: function(response) {
-          //             console.log("error");
-          //             console.log(response);
-          //           }
-          //         });
-          //
-          //
-          //
-          // })
-
-          </script>
-
-
-          <script type="text/template" id="send-message-template">
-          <div class="hide-container">
-
-          <form class="send-message" action="<%= user_messages_url(@profile.user.id) %>" method="post" data-remote="true">
-          <%= auth_token_input %>
-          <textarea name="message[body]" style="color: black" placeholder="Type some stuff here"></textarea>
-          <input type="submit" class="submit-message" value="Submit">
-
-          </form>
-
-          </div>
-
-
-
-          </script>
-
-
-
-
-
-
-          <br>
-
-        </div>
+</div>

@@ -28,12 +28,3 @@
 
   <input type="submit" value="Sign Up">
 </form>
-
-<script>
-  $(function() {
-    $( "#birthday-display" ).datepicker({defaultDate: '-21y', altFormat: "yy-mm-dd", altField: '#birthday-real'});
-    $( "#anim" ).change(function() {
-      $( "#birthday-display" ).datepicker( "option", "showAnim", "fadeIn" );
-    });
-  });
-</script>
