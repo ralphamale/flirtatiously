@@ -1,9 +1,20 @@
 <% content_for :secondary_header do %>
-
   <nav class="sec-left-nav">
     <ul class="toggle-view-menu">
-      <li class="default-hidden" style="background-color: yellow"><a href="#" style="color: red" class="profile-switch">Display Profile</a></li>
-      <li class="default-displayed" style="background-color: yellow"><a href="#" style="color: red" class="profile-switch">Display Questions</a></li>
+      <li class="default-hidden"
+        style="background-color: yellow">
+        <a href="#" style="color: red"
+        class="profile-switch">
+          Display Profile
+        </a>
+      </li>
+      <li class="default-displayed"
+      style="background-color: yellow">
+        <a href="#" style="color: red"
+          class="profile-switch">
+          Display Questions
+        </a>
+      </li>
     </ul>
   </nav>
 
@@ -19,21 +30,9 @@
           </li>
           <% end %>
         <% end %>
-      <% end %>
 
-      <% if  @is_current_user_profile %>
-
-          <%# To be implemented %>
-          <!-- ><li>
-            <button class="change-settings">
-              Change Settings
-            </button>
-          </li> -->
-
-      <% else %>
-
-      <%= render partial: "ratings", locals: {
-        profile: @profile, rating_status: @rating_status} %>
+        <%= render partial: "ratings", locals: {
+          profile: @profile, rating_status: @rating_status} %>
         <li>
           <a href="#" class="message">
             Message
@@ -44,84 +43,80 @@
   </nav>
 <% end %>
 
-  <div class="content-half left-half" style="padding-top: 0 px">
-    <%= render partial: "profile_photos", locals: {profile: @profile} %>
-  </div>
+<div class="content-half left-half" style="padding-top: 0 px">
+  <%= render partial: "profile_photos", locals: {profile: @profile} %>
+</div>
 
-  <div class="content-half profile-view" style="background-color: #fff">
-    <script type="text/template" id="change-settings-template">
-    <%= render partial: "change_settings" %>
-    </script>
+<div class="content-half profile-view" style="background-color: #fff">
+  <script type="text/template" id="change-settings-template">
+  <%= render partial: "change_settings" %>
+  </script>
 
-    <h1 class="username">
-      <%= @profile.user.username %>
-    </h1>
+  <h1 class="username">
+    <%= @profile.user.username %>
+  </h1>
 
-    <span class="profile-field">
-      <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="age">
-        <%= age(@profile.birthday) %>
-      </span>
-      <input type="date"
-      class="form-input"
-      name="profile[birthday]"
-      value="<%= @profile.birthday %>">
+  <span class="profile-field">
+    <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="age">
+      <%= age(@profile.birthday) %>
     </span>
 
-    | <span class="profile-field">
-      <span class="<%= "owner-can-modify" if @is_current_user_profile %>">
-        <% sex_orient = PROFILE_DETAILS["sexual_orientation"][@profile["sexual_orientation"]] %>
-        <%= display_detail(sex_orient, "Sexual Orientation", @is_current_user_profile) %>
+    <input type="date"
+    class="form-input"
+    name="profile[birthday]"
+    value="<%= @profile.birthday %>">
+  </span>  |
 
-      </span>
-      <select class="form-input" name="profile[sexual_orientation]">
-        <option disabled selected>Choose New</option>
-        <% PROFILE_DETAILS["sexual_orientation"].each do |k, v| %>
-        <option
-        value="<%= k %>">
-        <%= v %>
-      </option>
+  <span class="profile-field">
+    <span class="<%= "owner-can-modify" if @is_current_user_profile %>">
+      <% sex_orient = PROFILE_DETAILS["sexual_orientation"][@profile["sexual_orientation"]] %>
+      <%= display_detail(sex_orient, "Sexual Orientation", @is_current_user_profile) %>
+    </span>
+    <select class="form-input" name="profile[sexual_orientation]">
+      <option disabled selected>Choose New</option>
+      <% PROFILE_DETAILS["sexual_orientation"].each do |k, v| %>
+        <option value="<%= k %>">
+          <%= v %>
+        </option>
       <% end %>
     </select>
-  </span>
+  </span> |
 
-  | <span class="profile-field">
+  <span class="profile-field">
     <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="sex">
-
       <%= display_detail(@profile["sex"], "Sex", @is_current_user_profile) %>
-
     </span>
     <select class="form-input" name="profile[sex]">
       <option disabled selected>Choose New</option>
       <% PROFILE_DETAILS["sex"].each do |k, _| %>
-      <option
-      value="<%= k %>">
-      <%= k %>
-    </option>
-    <% end %>
-  </select>
-</span>
+        <option
+        value="<%= k %>">
+        <%= k %>
+        </option>
+      <% end %>
+    </select>
+  </span> |
+  <span class="profile-field">
+    <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="city">
+      <%= display_detail(@profile.city, "Zip Code", @is_current_user_profile) %>
 
-| <span class="profile-field">
-  <span class="<%= "owner-can-modify" if @is_current_user_profile %>" id="city">
-    <%= display_detail(@profile.city, "Zip Code", @is_current_user_profile) %>
-
+    </span>
+    <input type="text" class="form-input"
+    name="profile[zip_code]"
+    value="<%= @profile.zip_code %>">
   </span>
-  <input type="text" class="form-input"
-  name="profile[zip_code]"
-  value="<%= @profile.zip_code %>">
-</span>
-<br>
+  <br>
 
-    <% unless @is_current_user_profile %>
+  <% unless @is_current_user_profile %>
     <% percentages = current_user.calculate_percentages(@profile.user) %>
     <h2 class="percentages"><%= print_percentages(percentages) %></h2>
-    <% end %>
-    <br>
+  <% end %>
 
-    <br>
+  <br>
+  <br>
 
-    <div class="bio-view">
-      <table class="profile-stats">
+  <div class="bio-view">
+    <table class="profile-stats">
         <% TABULAR_DETAILS.keys.each do |key| %>
         <tr>
           <th><%= key.gsub(/_/," ").capitalize %></th>
@@ -155,16 +150,11 @@
     </div>
   </div>
 
-
-
   <% if @is_current_user_profile %>
     <%= render partial: "edit_profile", locals: {profile: @profile} %>
   <% end %>
 
   <div class="questions-view">
-
-    <%# probably need to reference the question-id in the data attribute! %>
-
     <%
     if @is_current_user_profile
       primary_responses = @current_user_responses
@@ -187,47 +177,57 @@
         %>
 
       <% if current_user_response.nil? %> <%#= resp.question_id %>
-      <i>Answer this question to see.</i><br>
+        <i>Answer this question to see.</i><br>
       <% else %>
       <div class="response-show">
         Your response:
 
         <% if @is_current_user_profile %>
-        <a href="#" class="response-answer-text <%= "toggle-edit" %>">
-          <% end %>
-          <span class="<%= "unacceptable-resp" if is_unacceptable?(current_user_response, @other_user_acceptables) && !@is_current_user_profile %>"><%= current_user_response.answer_text %></span>
-          <% if @is_current_user_profile %>
-        </a>
+          <a href="#" class="response-answer-text <%= "toggle-edit" %>">
         <% end %>
-
+          <span class="
+          <%= "unacceptable-resp" \
+            if is_unacceptable?(current_user_response, @other_user_acceptables) \
+            && !@is_current_user_profile %>"><%= current_user_response.answer_text %></span>
+        <% if @is_current_user_profile %>
+          </a>
+        <% end %>
       </div>
 
       <div class="response-edit">
-        <%= render partial: "edit_response", locals: {question: Question.includes([:answer_choices, :acceptable_responses]).where(:id => resp.question_id).first} %>
+        <%= render partial: "edit_response", \
+          locals: {question: Question.includes([:answer_choices,
+            :acceptable_responses]).where(:id => resp.question_id).first} %>
       </div>
 
-      <% unless @is_current_user_profile %>
-      <%= (@profile["sex"] == "M") ? "His" : "Her" %> response: <span class="<%= "unacceptable-resp" if is_unacceptable?(resp, @current_user_acceptables) %>"><%= resp.answer_text %></span>
-
-      <% end %>
-
-      <% end %>
-    </div>
+          <% unless @is_current_user_profile %>
+            <%= (@profile["sex"] == "M") ? "His" : "Her" %>
+            response:
+            <span class="<%= "unacceptable-resp" \
+              if is_unacceptable?(resp, @current_user_acceptables) %>">
+              <%= resp.answer_text %>
+            </span>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
-    <% end %>
+  <% end %>
 
   </div>
 
   <script type="text/template" id="send-message-template">
     <div class="hide-container">
-      <form class="send-message" action="<%= user_messages_url(@profile.user.id) %>" method="post" data-remote="true">
+      <form class="send-message"
+        action="<%= user_messages_url(@profile.user.id) %>"
+        method="post" data-remote="true">
+
         <%= auth_token_input %>
-        <textarea name="message[body]" style="color: black" placeholder="Type some stuff here"></textarea>
+        <textarea name="message[body]" style="color: black"
+          placeholder="Type some stuff here">
+        </textarea>
+
         <input type="submit" class="submit-message" value="Submit">
       </form>
     </div>
   </script>
-
-  <br>
-
 </div>
