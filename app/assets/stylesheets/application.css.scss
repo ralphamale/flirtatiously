@@ -646,17 +646,24 @@ form.create-pm textarea {
 .header-nav-drop-down {
   display: none;
   position: absolute;
-  left: -3px;
+  left: -200px;
   z-index: 10;
   border: 3px solid #333;
   background: #fff;
   width: 300px;
 }
 
+.header-nav-drop-down > li {
+  padding: 10px;
+  border-bottom: 3px solid #333;
+}
+
 .header-nav-drop-down > li > a {
-  display: block;
   color: #333;
-  padding: 5px 10px;
+}
+
+.header-nav-drop-down > li > a:hover {
+ color: #663399;
 }
 
 .answer-choices > input {

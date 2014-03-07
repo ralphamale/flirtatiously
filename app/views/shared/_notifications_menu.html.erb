@@ -9,11 +9,11 @@
     <% if note.status_type == 0 %>
       has matched with you. <a href="<%=
       profile_url(triggering_user.profile) %>">
-      View their profile!</a>
+      Check out <%= triggering_user.username %>'s profile!</a>
     <% else %>
       has sent you a
       <a href="<%= conversation_user_messages_url(note.trigger_id)%>">
-        message
+        message.
       </a>
     <% end %>
 
