@@ -29,7 +29,5 @@ describe AcceptableResponse do
     it { should belong_to(:question) }
   end
 
-  pending "should not allow you to submit the same answer choice twice."
-
 
 end

@@ -51,4 +51,6 @@ describe Profile do
 
   it "should correctly apply filters"
 
+  it "should suggest six profiles that have not been rated before"
+
 end

@@ -1,7 +1,9 @@
----UNDER CONSTRUCTION---
+This README is under construction.
+
+[See Flirtatiously deployed.]: http://ralph-date.herokuapp.com/
 
 # Concept
-Ralph-Date is OKCupid meets Tinder.
+Flirtatiously is OKCupid meets Tinder.
 
 Users answer questions by providing the following: 1) Their response 2) How they would like others to answer and 3) how important the question is to them. Match percentages are then produced.
 
@@ -17,91 +19,68 @@ Users can also browse profiles Tinder-style, where users "Like" or "Dislike" pro
 
 Other notable:
 -Hand-built authentication with BCrypt
--Omniauth for Facebook (pending)
 -Scrollbar fixed when scrolling down too much from browse or show profile.
+-Secondary navbar is stickified for browse and show pages.
 
 #Technologies
 Ruby on Rails, JavaScript, UJS / AJAX, Omniauth, Geocoder
 
+# Model Tests
+Tests associations, validations, and model methods
+
+# Capybara Features to Test
+## Need to implement after model tests
+
+* Account creation
+* Account sign in
+* Posting a new status message
+
+* Messages
+  * Correctly shows who sent
+  * Can delete message
+
+* Questions
+  * Popup open/close
+  * After answering question, should appear in "Questions"
+
+Browse Profiles
+  * User filter changes browse page
+
+* Conversations
+  * Posting a new message
+
+* Profile show page (viewing other users)
+  * Messaging a user
+  * Liking a user
+  * Disliking a user
+
+* Profile show page (self)
+  * Should not have message/like/dislike button
+  * Can edit biography
+  * Can edit select fields.
+  * Can upload profile photo that persists.
+
 # TODO
+* Add Capybara tests.
+* Finish Model tests
+* Fix the multiple choices in profile.
+* Set up Pingdom
 
-## Very Important
-  -Add Capybara tests.
-  -Fix the multiple choices in profile.
+* Key bindings for "Like", "Dislike", and "Message"
 
-  -Guest accounts that self-destruct
-    -Demo pictures with Flickr creative commons
-    -Make Demo walkthrough
-    -Tips around app to guide the user through app to make implemented features extra obvious.
-  -Fix Search Bar
-    -user filter "NULL" should make sure it clears the db col.
+* Organize JS
 
+* Refactor: get responses, get acceptable responses, calculate percentages, find by credentials
 
-  -Model Tests
-  -Check the font for pagination.
-  -Pingdom
-  -RSpec Tests for models (look @ link)
-  -Fix Notifications offset from bar.
-  -Is a new profile off center?
-  -Organized JS
-  -Show all users if no users fit criteria.
-  -Clear extra prompt for now.
-  -Delete extra conrtoller actions.
-  -Inclusion validations through model, etc.
-  -Validations on search. DOes not save bad ones.
-  -Validations on profile fields.
-  -Validations on username
-  -Delete unused profile tags.
-  -Refactor: get responses, get acceptable responses, calculate percentages, find by credentials
-  -Delete messages
-
-## Important
-  -"Complete registration" for those who log in with Facebook
-  -Fix box in messaging so it takes up full %.
-  -Nav bar photos for show profile, be uniform
-  -X button to delete photos.
-  -Datepicker for in-line profile editing.
-  -Have delete button for profile.
-  -Pretty print for time stamps.
-
-## Minor
-  -Bolder root page
-  -Settings icon
-  -Match screen!
-  -Action Mailer?
-  -Hover action for input, button, links
-  -Format notifications thing.
-  -Add sentences to help guide user through app.
-  -Key bindings
 
 ### Double check
-  -Visual actions for save, befriend, delete, modify, etc.
-  -Add flash knowledges to acknolwedge saves, etc.
-  -Is everything styled?
+* Make sure everything is styled uniformly.
+* Delete routes and controller actions that are no longer needed. Delete all files flagged.
+* Delete profile attributes that are old.
 
+# Features to Add in Future
 
-# FUTURE TODO
-  -Refactor everything.
-  -If you go to page again and profile likes you, it should say soemthing.
-  -Is everything styled uniformly?
-  -Coax you to answer question in-line if you're looking at a question you haven't answered.
-
-  -Refactor the graphics that show up and not.
-  -Push everything to organized JS instead of floating it around.
-  -Do I have test coverage for all my models?
-  -Are my Ruby methods in the right place? (not too long controller actions, so can put things in model)
-  -"Users I have liked"
-  -Snags Facebook photo for main photo.
-  -"To/From" represented by sprite in messages
-  -Better form errors.
-  Cant message or like self!
-  -Add sprite to "Submitting" and "Submitted"
-  Flash/messages to add:
-  No more matches for Tinder..
-  No one matches your criteria
-  Error with beginning age/end age.
-  You have no messages.
-  "No more questions."
-  "You guys both like each other!"
-
+* Allows you to answer a question in-line when you are viewing someone else's profile.
+* Push everything to organized JS instead of floating it around.
+* Move controller actions to model if appropriate.
 

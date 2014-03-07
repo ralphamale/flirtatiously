@@ -28,5 +28,5 @@ describe User do
 
   it "should not confuse new notifications for old notifications"
 
-
+  pending "should test login features like not storing password"
 end
